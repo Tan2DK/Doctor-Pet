@@ -1,0 +1,87 @@
+# Wildcard matchers.
+*tmp
+*.db
+*-build
+*.log
+*.pyc
+*.swp
+*.swo
+*.ndjson
+*~
+
+# Files and directories.
+.DS_Store
+.cache
+.dev
+.dir-locals.el
+.envrc
+.env*
+.idea
+.personalize
+.scannerwork
+.vagrant
+.vault-token
+.vendor
+.vscode/settings.json
+.fvm
+.dart_tool
+settings.json
+build
+bundles
+debug
+debug.test
+coverage.out
+node_modules
+
+# Indigo credentials
+gcp.*.json
+*.public.json
+*.secret.json
+token.json
+vault.json
+
+# Only applies to top-level directories.
+/.env
+/nbproject/*
+/data
+/coverage
+
+# Exclude these files.
+!empty
+!.keep
+!.gitkeep
+
+# Exclude infra
+# Local .terraform directories
+**/.terraform/*
+# .tfstate files
+*.tfstate
+*.tfstate.*
+# Crash log files
+crash.log
+crash.*.log
+# Exclude all .tfvars files, which are likely to contain sensitive data, such as
+# password, private keys, and other secrets. These should not be part of version 
+# control as they are data points which are potentially sensitive and subject 
+# to change depending on the environment.
+*.tfvars
+*.tfvars.json
+# Ignore override files as they are usually used to override resources locally and so
+# are not checked in
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+# Include override files you do wish to add to version control using negated pattern
+# !example_override.tf
+# Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
+# example: *tfplan*
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+.flaskenv*
+!.env.project
+!.env.vault
+.vscode
+!packages/app_user/environments/development/.env
+!packages/app_user/environments/.common/.env
