@@ -13,13 +13,13 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   get: ^4.6.5
-
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/img/anhnen.jpg
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
 
-flutter:
-  uses-material-design: true
-  assets:
-    - assets/img/anhnen.jpg
+

@@ -46,7 +46,7 @@ class SignUpScreen extends StatelessWidget {
             alignment: Alignment.centerRight, // Đặt ô đăng ký sang phải
             child: Container(
               width: 400,
-              height: 400,
+              height: 401,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(13),

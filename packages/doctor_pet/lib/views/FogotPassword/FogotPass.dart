@@ -75,7 +75,7 @@ class SignUpScreen extends StatelessWidget {
                   
                   const SizedBox(height: 16.0),
                   Container(
-                    width: 200.0,
+                    width: 201.0,
                     height: 60.5,
                     child: ElevatedButton(
                       onPressed: () {

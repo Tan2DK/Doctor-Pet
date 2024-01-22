@@ -47,7 +47,7 @@ class SignUpScreen extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: Container(
               width: 300,
-              height: 550,
+              height: 551,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(13),
