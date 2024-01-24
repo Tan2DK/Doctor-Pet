@@ -1,25 +1,16 @@
 // main.dart
+import 'package:doctor_pet/my_app.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+
+
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runMyApp();
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const SignUpScreen(title: 'Đăng ký'),
-    );
-  }
-}
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key, required this.title}) : super(key: key);
