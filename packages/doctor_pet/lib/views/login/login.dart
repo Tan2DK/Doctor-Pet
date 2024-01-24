@@ -1,8 +1,4 @@
-// main.dart
-import 'package:doctor_pet/my_app.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key, required this.title}) : super(key: key);
 
