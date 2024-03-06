@@ -1,11 +1,11 @@
-import 'package:doctor_pet/views/login/login.dart';
+import 'package:doctor_pet/views/login/login_view.dart';
 import 'package:get/get.dart';
 
 import '../views/home/home_binding.dart';
 import '../views/home/home_view.dart';
 
 import '../views/login/login_binding.dart';
-import '../views/login/login.dart';
+import '../views/login/login_view.dart';
 
 class AppRoutes {
   AppRoutes._();
@@ -18,7 +18,7 @@ class AppRoutes {
     ),
     GetPage(
       name: RoutesName.login,
-      page: () => const loginView(),
+      page: () => LoginView(),
       binding: LoginBinding(),
     ),
   ];
