@@ -77,49 +77,50 @@ class DoctorView extends StatelessWidget {
               ],
             ),
             const Divider(),
-           Expanded(
-  child: ListView.builder(
-    itemBuilder: (context, index) => Row(
-      children: [
-        Expanded(
-          flex: 6,
-          child: Row(
-            children: [
-              Expanded(
-                flex: 5,
-                child: DataTitleWidget(
-                  titles: [
-                    DataTitleModel(name: data[index].iddoctor, flex: 1),
-                    DataTitleModel(name: data[index].namedoctor, flex: 2),
-                    DataTitleModel(name: data[index].email, flex: 3),
-                    DataTitleModel(
-                      name: data[index].day.toString(),
-                      flex: 4,
+            Expanded(
+              child: ListView.builder(
+                itemBuilder: (context, index) => Row(
+                  children: [
+                    Expanded(
+                      flex: 6,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 5,
+                            child: DataTitleWidget(
+                              titles: [
+                                DataTitleModel(
+                                    name: data[index].iddoctor, flex: 1),
+                                DataTitleModel(
+                                    name: data[index].namedoctor, flex: 2),
+                                DataTitleModel(
+                                    name: data[index].email, flex: 3),
+                                DataTitleModel(
+                                  name: data[index].day.toString(),
+                                  flex: 4,
+                                ),
+                                DataTitleModel(
+                                    name: data[index].phonenum, flex: 5),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Switch(
+                              value: data[index].accepted,
+                              onChanged: (newValue) {
+                                // Update the accepted status when the switch is toggled
+                                data[index].accepted = newValue;
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    DataTitleModel(name: data[index].phonenum, flex: 5),
                   ],
-                  
                 ),
+                itemCount: data.length,
               ),
-              Expanded(
-                
-                child: Switch(
-                  value: data[index].accepted,
-                  onChanged: (newValue) {
-                    // Update the accepted status when the switch is toggled
-                    data[index].accepted = newValue;
-                  },
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    ),
-    itemCount: data.length,
-  ),
-),
-
+            ),
           ],
         ),
       ),
