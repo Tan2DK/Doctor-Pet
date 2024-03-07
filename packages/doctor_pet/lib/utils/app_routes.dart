@@ -1,3 +1,5 @@
+import 'package:doctor_pet/views/LandingPage/LandingPage_binding.dart';
+import 'package:doctor_pet/views/LandingPage/LandingPage_view.dart';
 import 'package:doctor_pet/views/doctor/Screenmain.dart';
 import 'package:doctor_pet/views/login/login.dart';
 import 'package:doctor_pet/views/pet/Screenmain.dart';
@@ -24,18 +26,22 @@ class AppRoutes {
       page: () => const Screenmain(),
       binding: PetBinding(),
     ),
-     GetPage(
+    GetPage(
       name: RoutesName.doctor,
       page: () => const Screenmaindoctor(),
       binding: DoctorBinding(),
     ),
-    
+    GetPage(
+      name: RoutesName.landingpage,
+      page: () => const LandingPageView(),
+      binding: LandingPageBinding(),
+    ),
   ];
-  
 }
 
 class RoutesName {
   static const String home = '/home';
   static const String pet = '/pet';
-   static const String doctor = '/doctor';
+  static const String doctor = '/doctor';
+  static const String landingpage = '/landing';
 }
