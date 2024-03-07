@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:doctor_pet/core/config/constants/images.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class LandingPageView extends StatelessWidget {
+  const LandingPageView({super.key});
 
   @override
   Widget build(BuildContext context) {
