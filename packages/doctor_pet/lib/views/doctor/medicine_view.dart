@@ -37,11 +37,12 @@ class MedicineView extends StatelessWidget {
           companyMedicineName: 'duochaugiang',
           expirationdate: '05/2025',
           price: '5')
-
-      // Add more pets as needed
     ];
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Medicine View'),
+      ),
       body: Container(
         decoration: BoxDecoration(
           color: Color.fromARGB(255, 254, 234, 234),
@@ -70,101 +71,70 @@ class MedicineView extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10),
-            DataTitleWidget(
-              titles: [
-                DataTitleModel(name: 'IDMedi', flex: 1),
-                DataTitleModel(name: 'Name', flex: 2),
-                DataTitleModel(name: 'Medicine Name', flex: 3),
-                DataTitleModel(name: 'date', flex: 4),
-                DataTitleModel(name: 'expiration date', flex: 5),
-                DataTitleModel(name: 'price', flex: 6),
+            DataTable(
+              columns: [
+                DataColumn(label: Text('IDMedi')),
+                DataColumn(label: Text('Name')),
+                DataColumn(label: Text('Medicine Name')),
+                DataColumn(label: Text('Date')),
+                DataColumn(label: Text('Expiration Date')),
+                DataColumn(label: Text('Price')),
               ],
-            ),
-            const Divider(),
-            Expanded(
-              child: ListView.builder(
-                itemBuilder: (context, index) => Row(
-                  children: [
-                    Expanded(
-                      flex: 6,
-                      child: DataTitleWidget(
-                        titles: [
-                          DataTitleModel(name: data[index].idMedicine, flex: 1),
-                          DataTitleModel(
-                              name: data[index].nameMedicine, flex: 2),
-                          DataTitleModel(
-                              name: data[index].companyMedicineName, flex: 3),
-                          DataTitleModel(
-                            name: data[index].dateMedicine.toString(),
-                            flex: 4,
-                          ),
-                          DataTitleModel(
-                              name: data[index].expirationdate, flex: 5),
-                          DataTitleModel(name: data[index].price, flex: 6),
-                        ],
-                      ),
-                    ),
-                   
-                  ],
-                ),
-                itemCount: data.length,
-              ),
+              rows: data.map((medicine) {
+                return DataRow(cells: [
+                  DataCell(Text(medicine.idMedicine)),
+                  DataCell(Text(medicine.nameMedicine)),
+                  DataCell(Text(medicine.companyMedicineName)),
+                  DataCell(Text(medicine.dateMedicine.toString())),
+                  DataCell(Text(medicine.expirationdate)),
+                  DataCell(Text(medicine.price)),
+                ]);
+              }).toList(),
             ),
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _showAddMedicineDialog(context, data);
+        },
+        child: Icon(Icons.local_hospital),
+      ),
     );
   }
 
-  void _showAddMedicineDialog(BuildContext context) {
-    // Implement logic to show add medicine dialog
+  void _showAddMedicineDialog(BuildContext context, List<medicine> data) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Add Medicine'),
-          // Add text fields and buttons for adding medicine
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                // Add logic for saving the new medicine
-                Navigator.of(context).pop();
-              },
-              child: Text('Save'),
+          content: SingleChildScrollView(
+            child: Column(
+              children: data.map((medicine) {
+                return CheckboxListTile(
+                  title: Text(medicine.nameMedicine),
+                  value: false, // Initially unchecked
+                  onChanged: (bool? value) {
+                    // Add logic for selecting/unselecting the medicine
+                  },
+                );
+              }).toList(),
             ),
+          ),
+          actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
               child: Text('Cancel'),
             ),
-          ],
-        );
-      },
-    );
-  }
-
-  void _showEditMedicineDialog(BuildContext context, medicine medicine) {
-    // Implement logic to show edit medicine dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Edit Medicine'),
-          // Add text fields pre-filled with medicine information
-          actions: <Widget>[
             TextButton(
               onPressed: () {
-                // Add logic for saving the edited medicine
+                // Add logic for saving the selected medicines
                 Navigator.of(context).pop();
               },
               child: Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Cancel'),
             ),
           ],
         );

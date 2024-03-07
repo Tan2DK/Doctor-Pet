@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:doctor_pet/core/config/constants/images.dart';
+import 'package:get/get.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends GetView {
   const HomeView({super.key});
 
   @override

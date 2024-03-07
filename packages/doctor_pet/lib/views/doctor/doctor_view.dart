@@ -3,40 +3,53 @@ import 'package:doctor_pet/core/data/doctor.dart';
 import 'package:doctor_pet/comon_wiget/DataTitleWidget.dart';
 import 'package:doctor_pet/core/data/DataTitleModel.dart';
 
-class DoctorView extends StatelessWidget {
+class DoctorView extends StatefulWidget {
   const DoctorView({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final List<doctor> data = [
+  _DoctorViewState createState() => _DoctorViewState();
+}
+
+class _DoctorViewState extends State<DoctorView> {
+  late List<doctor> data;
+
+  @override
+  void initState() {
+    super.initState();
+    data = [
       doctor(
           day: DateTime(2017, 11, 11),
           iddoctor: '01',
           namedoctor: 'Duy',
           email: 'tranduy9872@gmail.com',
-          phonenum: '0978376483'),
+          phonenum: '0978376483',
+          accepted: false),
       doctor(
           day: DateTime(2017, 11, 11),
           iddoctor: '02',
           namedoctor: 'Nhut',
           email: 'minhnhut@gmail.com',
-          phonenum: '0978376483'),
+          phonenum: '0978376483',
+          accepted: false),
       doctor(
           day: DateTime(2017, 11, 11),
           iddoctor: '03',
           namedoctor: 'Tan',
           email: 'tankute@gmail.com',
-          phonenum: '0978376483'),
+          phonenum: '0978376483',
+          accepted: false),
       doctor(
           day: DateTime(2017, 11, 11),
           iddoctor: '04',
           namedoctor: 'Nam',
           email: 'vinh@gmail.com',
-          phonenum: '0978376483'),
-
-      // Add more pets as needed
+          phonenum: '0978376483',
+          accepted: false),
     ];
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -72,8 +85,8 @@ class DoctorView extends StatelessWidget {
                 DataTitleModel(name: 'Name', flex: 2),
                 DataTitleModel(name: 'Email', flex: 3),
                 DataTitleModel(name: 'Date', flex: 4),
-                DataTitleModel(name: 'Phone', flex: 5),
-                DataTitleModel(name: 'Accept', flex: 6),
+                DataTitleModel(name: 'Phone', flex: 3),
+                DataTitleModel(name: 'Status', flex: 2),
               ],
             ),
             const Divider(),
@@ -83,37 +96,29 @@ class DoctorView extends StatelessWidget {
                   children: [
                     Expanded(
                       flex: 6,
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 5,
-                            child: DataTitleWidget(
-                              titles: [
-                                DataTitleModel(
-                                    name: data[index].iddoctor, flex: 1),
-                                DataTitleModel(
-                                    name: data[index].namedoctor, flex: 2),
-                                DataTitleModel(
-                                    name: data[index].email, flex: 3),
-                                DataTitleModel(
-                                  name: data[index].day.toString(),
-                                  flex: 4,
-                                ),
-                                DataTitleModel(
-                                    name: data[index].phonenum, flex: 5),
-                              ],
-                            ),
+                      child: DataTitleWidget(
+                        titles: [
+                          DataTitleModel(name: data[index].iddoctor, flex: 1),
+                          DataTitleModel(name: data[index].namedoctor, flex: 2),
+                          DataTitleModel(name: data[index].email, flex: 3),
+                          DataTitleModel(
+                            name: data[index].day.toString(),
+                            flex: 4,
                           ),
-                          Expanded(
-                            child: Switch(
-                              value: data[index].accepted,
-                              onChanged: (newValue) {
-                                // Update the accepted status when the switch is toggled
-                                data[index].accepted = newValue;
-                              },
-                            ),
-                          ),
+                          DataTitleModel(name: data[index].phonenum, flex: 1),
                         ],
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Checkbox(
+                        value: data[index].accepted,
+                        onChanged: (newValue) {
+                          setState(() {
+                            // Update the accepted status when the checkbox is toggled
+                            data[index].accepted = newValue ?? false;
+                          });
+                        },
                       ),
                     ),
                   ],
