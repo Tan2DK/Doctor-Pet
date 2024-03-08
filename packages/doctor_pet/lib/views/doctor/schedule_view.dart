@@ -1,3 +1,4 @@
+import 'package:doctor_pet/views/doctor/dialog_time_slot.dart';
 import 'package:flutter/material.dart';
 
 class ScheduleView extends StatefulWidget {
@@ -18,12 +19,7 @@ class _ScheduleViewState extends State<ScheduleView> {
     "SATURDAY"
   ];
 
-  final listTimeSlot = [
-    "8:00 pm - 11:30 pm ",
-    "11:30 pm - 1:30 pm ",
-    "3:00 pm - 5:00 pm ",
-    "6:00 pm - 11:00 pm ",
-  ];
+  var listTimeSlot = <String>[];
   var dayOfWeekSelected = "";
   @override
   void initState() {
@@ -108,28 +104,48 @@ class _ScheduleViewState extends State<ScheduleView> {
               const SizedBox(
                 height: 15,
               ),
-              const Align(
+              Align(
                 alignment: Alignment.centerLeft,
                 child: Row(
                   children: [
-                    Text(
+                    const Text(
                       'Time Slots',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    Spacer(),
-                    Icon(
+                    const Spacer(),
+                    const Icon(
                       Icons.edit_calendar_rounded,
                       color: Colors.blue,
                     ),
-                    Text(
-                      'Edit',
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.blue),
+                    GestureDetector(
+                      onTap: () async {
+                        final a = await showDialog(
+                          context: context,
+                          builder: (context) {
+                            return const DialogCustom();
+                          },
+                        );
+                        if (a) {
+                          setState(() {
+                            listTimeSlot = [
+                              "8:00 pm - 11:30 pm ",
+                              "11:30 pm - 1:30 pm ",
+                              "3:00 pm - 5:00 pm ",
+                              "6:00 pm - 11:00 pm ",
+                            ];
+                          });
+                        }
+                      },
+                      child: const Text(
+                        'Edit',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.blue),
+                      ),
                     ),
                   ],
                 ),
