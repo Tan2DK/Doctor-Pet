@@ -1,4 +1,4 @@
-import '../views/doctor/Screenmain.dart';
+import '../views/doctor/Screenmaindoctor.dart';
 
 import '../views/pet/Screenmain.dart';
 import '../views/doctor/doctor_binding.dart';
@@ -9,16 +9,13 @@ import '../views/home/home_binding.dart';
 import '../views/home/home_view.dart';
 
 import '../views/pet/pet_binding.dart';
+import '../views/pet/pet_view.dart';
+import '../views/doctor/doctor_view.dart';
 
 class AppRoutes {
   AppRoutes._();
 
   static final mainRoutes = [
-    GetPage(
-      name: RoutesName.home,
-      page: () => const HomeView(),
-      binding: HomeBinding(),
-    ),
     GetPage(
       name: RoutesName.pet,
       page: () => const Screenmain(),
@@ -26,14 +23,13 @@ class AppRoutes {
     ),
     GetPage(
       name: RoutesName.doctor,
-      page: () => const Screenmaindoctor(),
+      page: () => const ScreemainDoctor(),
       binding: DoctorBinding(),
     ),
   ];
 }
 
 class RoutesName {
-  static const String home = '/home';
   static const String pet = '/pet';
   static const String doctor = '/doctor';
   static const String nestedNavDoctor = 'nested_navigation_doctor';
