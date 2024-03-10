@@ -1,4 +1,4 @@
-import 'package:doctor_pet/views/doctor/doctor_controller.dart';
+import 'package:doctor_pet/views/clinic_manager/doctor/doctor_controller.dart';
 
 import 'package:get/get.dart';
 

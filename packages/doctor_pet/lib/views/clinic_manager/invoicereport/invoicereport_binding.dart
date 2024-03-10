@@ -1,4 +1,4 @@
-import 'package:doctor_pet/views/invoicereport/invoicereport_controller.dart';
+import 'package:doctor_pet/views/clinic_manager/invoicereport/invoicereport_controller.dart';
 import 'package:get/get.dart';
 
 class InvoiceReportBinding extends Bindings {

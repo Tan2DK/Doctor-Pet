@@ -1,4 +1,4 @@
-import 'package:doctor_pet/views/staff/staff_controller.dart';
+import 'package:doctor_pet/views/clinic_manager/staff/staff_controller.dart';
 
 import 'package:get/get.dart';
 

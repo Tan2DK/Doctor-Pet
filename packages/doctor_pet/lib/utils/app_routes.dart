@@ -1,8 +1,8 @@
-import 'package:doctor_pet/views/doctor/doctor_binding.dart';
+import 'package:doctor_pet/views/clinic_manager/doctor/doctor_binding.dart';
 import 'package:doctor_pet/views/login/login.dart';
-import 'package:doctor_pet/views/patient/patient_binding.dart';
+import 'package:doctor_pet/views/clinic_manager/patient/patient_binding.dart';
 import 'package:doctor_pet/views/pet/Screenmain.dart';
-import 'package:doctor_pet/views/medicinereport/medicinereport_binding.dart';
+import 'package:doctor_pet/views/clinic_manager/medicinereport/medicinereport_binding.dart';
 import 'package:get/get.dart';
 
 import '../views/home/home_binding.dart';
@@ -11,23 +11,26 @@ import '../views/home/home_view.dart';
 import 'package:doctor_pet/views/pet/pet_view.dart';
 import 'package:doctor_pet/views/pet/pet_binding.dart';
 
-import 'package:doctor_pet/views/medicine/medicine_view.dart';
-import 'package:doctor_pet/views/medicine/medicine_binding.dart';
+import 'package:doctor_pet/views/clinic_manager/medicine/medicine_view.dart';
+import 'package:doctor_pet/views/clinic_manager/medicine/medicine_binding.dart';
 
-import 'package:doctor_pet/views/doctor/doctor_view.dart';
-import 'package:doctor_pet/views/doctor/doctor_binding.dart';
+import 'package:doctor_pet/views/clinic_manager/doctor/doctor_view.dart';
+import 'package:doctor_pet/views/clinic_manager/doctor/doctor_binding.dart';
 
-import 'package:doctor_pet/views/staff/staff_view.dart';
-import 'package:doctor_pet/views/staff/staff_binding.dart';
+import 'package:doctor_pet/views/clinic_manager/staff/staff_view.dart';
+import 'package:doctor_pet/views/clinic_manager/staff/staff_binding.dart';
 
-import 'package:doctor_pet/views/patient/patient_view.dart';
-import 'package:doctor_pet/views/patient/patient_binding.dart';
+import 'package:doctor_pet/views/clinic_manager/patient/patient_view.dart';
+import 'package:doctor_pet/views/clinic_manager/patient/patient_binding.dart';
 
-import 'package:doctor_pet/views/medicinereport/medicinereport_view.dart';
-import 'package:doctor_pet/views/medicinereport/medicinereport_binding.dart';
+import 'package:doctor_pet/views/clinic_manager/medicinereport/medicinereport_view.dart';
+import 'package:doctor_pet/views/clinic_manager/medicinereport/medicinereport_binding.dart';
 
-import 'package:doctor_pet/views/invoicereport/invoicereport_view.dart';
-import 'package:doctor_pet/views/invoicereport/invoicereport_binding.dart';
+import 'package:doctor_pet/views/clinic_manager/invoicereport/invoicereport_view.dart';
+import 'package:doctor_pet/views/clinic_manager/invoicereport/invoicereport_binding.dart';
+
+import 'package:doctor_pet/views/clinic_manager/invoice_test/invoiceview.dart';
+import 'package:doctor_pet/views/clinic_manager/invoice_test/invoiceview_binding.dart';
 
 class AppRoutes {
   AppRoutes._();
@@ -73,6 +76,11 @@ class AppRoutes {
       page: () => const InvoiceReportView(),
       binding: InvoiceReportBinding(),
     ),
+    GetPage(
+      name: RoutesName.invoiceview,
+      page: () => const InvoiceView(),
+      binding: InvoiceViewBinding(),
+    ),
     
   ];
   
@@ -87,4 +95,5 @@ class RoutesName {
   static const String patient = '/patient';
   static const String medicinereport = '/medicinereport';
   static const String invoicereport = '/invoicereport';
+  static const String invoiceview = '/invoiceview';
 }

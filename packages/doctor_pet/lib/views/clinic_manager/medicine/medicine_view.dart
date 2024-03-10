@@ -4,8 +4,16 @@ import 'package:doctor_pet/core/data/doctor.dart';
 import 'package:doctor_pet/comon_wiget/DataTitleWidget.dart';
 import 'package:doctor_pet/core/data/DataTitleModel.dart';
 
-class MedicineView extends StatelessWidget {
+
+
+class MedicineView extends StatefulWidget {
   const MedicineView({Key? key}) : super(key: key);
+
+  @override
+  State<MedicineView> createState() => _MedicineViewState();
+}
+
+class _MedicineViewState extends State<MedicineView> {
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +49,87 @@ class MedicineView extends StatelessWidget {
           quantity: '9',
           companyMedicineName: 'duochaugiang',
           expirationdate: '05/2025',
-          price: '5')
+          price: '5'),
+      medicine(
+          dateMedicine: DateTime(2017, 11, 11),
+          idMedicine: '04',
+          nameMedicine: 'panadone',
+          quantity: '9',
+          companyMedicineName: 'duochaugiang',
+          expirationdate: '05/2025',
+          price: '5'),
+      medicine(
+          dateMedicine: DateTime(2017, 11, 11),
+          idMedicine: '04',
+          nameMedicine: 'panadone',
+          quantity: '9',
+          companyMedicineName: 'duochaugiang',
+          expirationdate: '05/2025',
+          price: '5'),
+      medicine(
+          dateMedicine: DateTime(2017, 11, 11),
+          idMedicine: '04',
+          nameMedicine: 'panadone',
+          quantity: '9',
+          companyMedicineName: 'duochaugiang',
+          expirationdate: '05/2025',
+          price: '5'),
+      medicine(
+          dateMedicine: DateTime(2017, 11, 11),
+          idMedicine: '04',
+          nameMedicine: 'panadone',
+          quantity: '9',
+          companyMedicineName: 'duochaugiang',
+          expirationdate: '05/2025',
+          price: '5'),
+      medicine(
+          dateMedicine: DateTime(2017, 11, 11),
+          idMedicine: '04',
+          nameMedicine: 'panadone',
+          quantity: '9',
+          companyMedicineName: 'duochaugiang',
+          expirationdate: '05/2025',
+          price: '5'),
+      medicine(
+          dateMedicine: DateTime(2017, 11, 11),
+          idMedicine: '04',
+          nameMedicine: 'panadone',
+          quantity: '9',
+          companyMedicineName: 'duochaugiang',
+          expirationdate: '05/2025',
+          price: '5'),
+          medicine(
+          dateMedicine: DateTime(2017, 11, 11),
+          idMedicine: '04',
+          nameMedicine: 'panadone',
+          quantity: '9',
+          companyMedicineName: 'duochaugiang',
+          expirationdate: '05/2025',
+          price: '5'),
+          medicine(
+          dateMedicine: DateTime(2017, 11, 11),
+          idMedicine: '04',
+          nameMedicine: 'panadone',
+          quantity: '9',
+          companyMedicineName: 'duochaugiang',
+          expirationdate: '05/2025',
+          price: '5'),
+          medicine(
+          dateMedicine: DateTime(2017, 11, 11),
+          idMedicine: '04',
+          nameMedicine: 'panadone',
+          quantity: '9',
+          companyMedicineName: 'duochaugiang',
+          expirationdate: '05/2025',
+          price: '5'),
+          medicine(
+          dateMedicine: DateTime(2017, 11, 11),
+          idMedicine: '04',
+          nameMedicine: 'panadone',
+          quantity: '9',
+          companyMedicineName: 'duochaugiang',
+          expirationdate: '05/2025',
+          price: '5'),
 
       // Add more pets as needed
     ];
@@ -65,45 +153,62 @@ class MedicineView extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10),
-            Center(
-              child: Row(
-                children: [
-                  SizedBox(width: 70),
-                  Text(
-                    'View Medicine',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
+            Row(
+              children: [
+                SizedBox(width: 70),
+                Text(
+                  'Medicine Management',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
                   ),
-                  SizedBox(width: 800),
-                  ElevatedButton.icon(
-                      onPressed: () {
-                        _showAddMedicineDialog(context);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ElevatedButton.icon(
+                    onPressed: () {
+                      // Add a function to sort object staff by name A-Z
+                      // _sortStaffList();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                    ),
+                    icon: Icon(Icons.sort_rounded, color: Colors.black54),
+                    label: Text(
+                      'Sort',
+                      style: TextStyle(color: Colors.black54),
+                    )),
+                SizedBox(width: 10),
+                ElevatedButton.icon(
+                    onPressed: () {
+                      _showAddMedicineDialog(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                    ),
+                    icon: Icon(Icons.add, color: Colors.white),
+                    label: Text(
+                      'Add Medicine',
+                      style: TextStyle(
+                        color: Colors.white,
                       ),
-                      icon: Icon(Icons.add, color: Colors.white),
-                      label: Text(
-                        'Add Medicine',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      )),
-                ],
-              ),
+                    )),
+                SizedBox(width: 10),
+              ],
             ),
             SizedBox(height: 20),
             DataTitleWidget(
               titles: [
                 DataTitleModel(name: 'IDMedi', flex: 2),
                 DataTitleModel(name: 'Name', flex: 3),
-                DataTitleModel(name: 'Medicine Name', flex: 4),
-                DataTitleModel(name: 'Quantity', flex: 4),
-                DataTitleModel(name: 'Date', flex: 5),
-                DataTitleModel(name: 'Expiration date', flex: 5),
-                DataTitleModel(name: 'Price', flex: 7),
+                DataTitleModel(name: 'Medicine Name', flex: 3),
+                DataTitleModel(name: 'Quantity', flex: 2),
+                DataTitleModel(name: 'Date', flex: 4),
+                DataTitleModel(name: 'Expiration date', flex: 4),
+                DataTitleModel(name: 'Price', flex: 2),
               ],
             ),
             const Divider(),
@@ -115,23 +220,23 @@ class MedicineView extends StatelessWidget {
                       flex: 6,
                       child: DataTitleWidget(
                         titles: [
-                          DataTitleModel(name: data[index].idMedicine, flex: 1),
+                          DataTitleModel(name: data[index].idMedicine, flex: 2),
                           DataTitleModel(
-                              name: data[index].nameMedicine, flex: 3),
+                              name: data[index].nameMedicine, flex: 4),
                           DataTitleModel(
                               name: data[index].companyMedicineName, flex: 4),
                           DataTitleModel(name: data[index].quantity, flex: 2),
                           DataTitleModel(
                               name: data[index].dateMedicine.toString(),
-                              flex: 5),
+                              flex: 4),
                           DataTitleModel(
                               name: data[index].expirationdate, flex: 4),
-                          DataTitleModel(name: data[index].price, flex: 4),
+                          DataTitleModel(name: data[index].price, flex: 2),
                         ],
                       ),
                     ),
                     Container(
-                      width: 100, // Set the width of the container
+                      width: 50, // Set the width of the container
                       child: PopupMenuButton<String>(
                         itemBuilder: (BuildContext context) =>
                             <PopupMenuEntry<String>>[
@@ -178,6 +283,7 @@ class MedicineView extends StatelessWidget {
                 itemCount: data.length,
               ),
             ),
+            SizedBox(height: 100,)
           ],
         ),
       ),

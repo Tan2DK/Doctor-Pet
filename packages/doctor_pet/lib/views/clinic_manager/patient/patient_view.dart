@@ -5,83 +5,34 @@ import 'package:doctor_pet/core/data/owner.dart';
 import 'package:doctor_pet/comon_wiget/DataTitleWidget.dart';
 import 'package:doctor_pet/core/data/DataTitleModel.dart';
 
-class PatientView extends StatelessWidget {
+class PatientView extends StatefulWidget {
   const PatientView({Key? key}) : super(key: key);
 
   @override
+  State<PatientView> createState() => _PatientViewState();
+}
+
+class _PatientViewState extends State<PatientView> {
+  @override
   Widget build(BuildContext context) {
-    final List<pet> data = [
-      pet(
-        id: '1',
-        name: 'Lu',
-        species: 'Dog',
-        origin: 'Viet Nam',
-        color: 'Yellow',
-        birthday: DateTime(2017, 9, 7, 17, 30),
-        own: owner(
-          id: '1',
-          name: 'duy',
-          phone: '091637238',
-          address: 'can tho',
-          birthday: DateTime(2021, 9, 7, 17, 30),
-        ),
-      ),
-      pet(
-        id: '2',
-        name: 'Na',
-        species: 'Dog',
-        origin: 'Viet Nam',
-        color: 'red',
-        birthday: DateTime(2017, 9, 7, 17, 30),
-        own: owner(
-          id: '2',
-          name: 'nhut kep',
-          phone: '0919028212',
-          address: 'can tho',
-          birthday: DateTime(2021, 9, 7, 17, 30),
-        ),
-      ),
-      pet(
-        id: '3',
-        name: 'Ldu',
-        species: 'Dog',
-        origin: 'Viet Nam',
-        color: 'Yellow',
-        birthday: DateTime(2017, 9, 7, 17, 30),
-        own: owner(
-          id: '3',
-          name: 'tan huynh',
-          phone: '091637238',
-          address: 'can tho',
-          birthday: DateTime(2021, 9, 7, 17, 30),
-        ),
-      ),
-      pet(
-        id: '4',
-        name: 'popo',
-        species: 'Dog',
-        origin: 'Viet Nam',
-        color: 'Yellow',
-        birthday: DateTime(2017, 9, 7, 17, 30),
-        own: owner(
-          id: '4',
-          name: 'vinh',
-          phone: '091637238',
-          address: 'can tho',
-          birthday: DateTime(2021, 9, 7, 17, 30),
-        ),
-      ),
-
-      // Add more pets as needed
-    ];
-
     final List<patient> dataPatient = [
       patient(ownName: 'Nguyen Van A', petName: 'Dog'),
       patient(ownName: 'One Zi', petName: 'Fish'),
       patient(ownName: 'MCK', petName: 'Horse'),
       patient(ownName: 'Wxrdie', petName: 'Cat'),
-
-      // Add more pets as needed
+      patient(ownName: 'One Zi', petName: 'Fish'),
+      patient(ownName: 'One Zi', petName: 'Fish'),
+      patient(ownName: 'One Zi', petName: 'Fish'),
+      patient(ownName: 'One Zi', petName: 'Fish'),
+      patient(ownName: 'One Zi', petName: 'Fish'),
+      patient(ownName: 'One Zi', petName: 'Fish'),
+      patient(ownName: 'One Zi', petName: 'Fish'),
+      patient(ownName: 'One Zi', petName: 'Fish'),
+      patient(ownName: 'One Zi', petName: 'Fish'),
+      patient(ownName: 'One Zi', petName: 'Fish'),
+      patient(ownName: 'One Zi', petName: 'Fish'),
+      patient(ownName: 'One Zi', petName: 'Fish'),
+      patient(ownName: 'One Zi', petName: 'Fish'),
     ];
 
     return Scaffold(
@@ -103,14 +54,35 @@ class PatientView extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10),
-            Center(
-              child: Text(
-                'View Patient List',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+            Row(
+              children: [
+                SizedBox(width: 70),
+                Text(
+                  'View Patient List',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ElevatedButton.icon(
+                    onPressed: () {
+                      // Add a function to sort object staff by name A-Z
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                    ),
+                    icon: Icon(Icons.sort_rounded, color: Colors.black54),
+                    label: Text(
+                      'Sort',
+                      style: TextStyle(color: Colors.black54),
+                    )),
+                    SizedBox(width: 20,)
+              ],
             ),
             SizedBox(height: 10),
             DataTitleWidget(
@@ -136,8 +108,6 @@ class PatientView extends StatelessWidget {
                         ],
                       ),
                     ),
-
-
                     Container(
                       width: 100, // Set the width of the container
                       child: PopupMenuButton<String>(
@@ -173,9 +143,12 @@ class PatientView extends StatelessWidget {
                     ),
                   ],
                 ),
-                itemCount: data.length,
+                itemCount: dataPatient.length,
               ),
             ),
+            SizedBox(
+              height: 100,
+            )
           ],
         ),
       ),

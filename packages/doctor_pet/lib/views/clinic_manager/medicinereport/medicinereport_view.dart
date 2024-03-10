@@ -20,6 +20,40 @@ class MedicineReportView extends StatelessWidget {
           medicineName: 'Thuoc ho', unitPrice: 6, quantity: 5, totalPrice: 6),
       medicinereport(
           medicineName: 'Thuoc ho', unitPrice: 6, quantity: 5, totalPrice: 6),
+      medicinereport(
+          medicineName: 'Thuoc ho', unitPrice: 6, quantity: 5, totalPrice: 6),
+      medicinereport(
+          medicineName: 'Thuoc ho', unitPrice: 6, quantity: 5, totalPrice: 6),
+      medicinereport(
+          medicineName: 'Thuoc ho', unitPrice: 6, quantity: 5, totalPrice: 6),
+      medicinereport(
+          medicineName: 'Thuoc ho', unitPrice: 6, quantity: 5, totalPrice: 6),
+      medicinereport(
+          medicineName: 'Thuoc ho', unitPrice: 6, quantity: 5, totalPrice: 6),
+      medicinereport(
+          medicineName: 'Thuoc ho', unitPrice: 6, quantity: 5, totalPrice: 6),
+      medicinereport(
+          medicineName: 'Thuoc ho', unitPrice: 6, quantity: 5, totalPrice: 6),
+      medicinereport(
+          medicineName: 'Thuoc ho', unitPrice: 6, quantity: 5, totalPrice: 6),
+      medicinereport(
+          medicineName: 'Thuoc ho', unitPrice: 6, quantity: 5, totalPrice: 6),
+      medicinereport(
+          medicineName: 'Thuoc ho', unitPrice: 6, quantity: 5, totalPrice: 6),
+      medicinereport(
+          medicineName: 'Thuoc ho', unitPrice: 6, quantity: 5, totalPrice: 6),
+      medicinereport(
+          medicineName: 'Thuoc ho', unitPrice: 6, quantity: 5, totalPrice: 6),
+      medicinereport(
+          medicineName: 'Thuoc ho', unitPrice: 6, quantity: 5, totalPrice: 6),
+      medicinereport(
+          medicineName: 'Thuoc ho', unitPrice: 6, quantity: 5, totalPrice: 6),
+      medicinereport(
+          medicineName: 'Thuoc ho', unitPrice: 6, quantity: 5, totalPrice: 6),
+      medicinereport(
+          medicineName: 'Thuoc ho', unitPrice: 6, quantity: 5, totalPrice: 6),
+      medicinereport(
+          medicineName: 'Thuoc ho', unitPrice: 6, quantity: 5, totalPrice: 6),
 
       // Add more pets as needed
     ];
@@ -54,10 +88,9 @@ class MedicineReportView extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SizedBox(
-                  width: 350,
-                ),
                 ElevatedButton.icon(
                     icon: Icon(Icons.calendar_month_outlined,
                         color: Colors.white),
@@ -76,9 +109,6 @@ class MedicineReportView extends StatelessWidget {
                         color: Colors.white,
                       ),
                     )),
-                SizedBox(
-                  width: 50,
-                ),
                 ElevatedButton.icon(
                     icon: Icon(Icons.calendar_month_outlined,
                         color: Colors.white),
@@ -97,9 +127,6 @@ class MedicineReportView extends StatelessWidget {
                         color: Colors.white,
                       ),
                     )),
-                SizedBox(
-                  width: 50,
-                ),
                 ElevatedButton.icon(
                     icon: Icon(Icons.slideshow, color: Colors.white),
                     style: ElevatedButton.styleFrom(
@@ -119,10 +146,10 @@ class MedicineReportView extends StatelessWidget {
             ),
             DataTitleWidget(
               titles: [
-                DataTitleModel(name: 'Medicine Name', flex: 3),
-                DataTitleModel(name: 'Price', flex: 4),
-                DataTitleModel(name: 'Quantity', flex: 4),
-                DataTitleModel(name: 'Total Price', flex: 5),
+                DataTitleModel(name: 'Medicine Name', flex: 4),
+                DataTitleModel(name: 'Price', flex: 2),
+                DataTitleModel(name: 'Quantity', flex: 2),
+                DataTitleModel(name: 'Total Price', flex: 2),
               ],
             ),
             const Divider(
@@ -142,87 +169,84 @@ class MedicineReportView extends StatelessWidget {
                           DataTitleModel(
                               name:
                                   dataMedicneReport[index].unitPrice.toString(),
-                              flex: 5),
+                              flex: 2),
                           DataTitleModel(
                               name:
                                   dataMedicneReport[index].quantity.toString(),
-                              flex: 5),
+                              flex: 2),
                           DataTitleModel(
                               name: dataMedicneReport[index]
                                   .totalPrice
                                   .toString(),
-                              flex: 5),
+                              flex: 2),
                         ],
                       ),
                     ),
-                    Container(
-                      width: 100, // Set the width of the container
-                      child: PopupMenuButton<String>(
-                        itemBuilder: (BuildContext context) =>
-                            <PopupMenuEntry<String>>[
-                          PopupMenuItem<String>(
-                            value: 'info',
-                            child: ListTile(
-                              leading: Icon(Icons.info),
-                              title: Text('Information'),
-                            ),
-                          ),
-                          PopupMenuItem<String>(
-                            value: 'info2',
-                            child: ListTile(
-                              leading: Icon(
-                                Icons.info,
-                                color: Colors.blue,
-                              ),
-                              title: Text(
-                                'Detail Information',
-                                style: TextStyle(color: Colors.blue),
-                              ),
-                            ),
-                          ),
-                        ],
-                        onSelected: (String action) {
-                          // Handle menu item selection
-                          switch (action) {
-                            case 'infor':
-                              // _showOwnerInfoDialog(context);
-                              break;
-                            case 'infor2':
-                              // _showPetInfoDialog(context);
-                              break;
-                          }
-                        },
-                      ),
-                    ),
+                    // Container(
+                    //   width: 100, // Set the width of the container
+                    //   child: PopupMenuButton<String>(
+                    //     itemBuilder: (BuildContext context) =>
+                    //         <PopupMenuEntry<String>>[
+                    //       PopupMenuItem<String>(
+                    //         value: 'info',
+                    //         child: ListTile(
+                    //           leading: Icon(Icons.info),
+                    //           title: Text('Information'),
+                    //         ),
+                    //       ),
+                    //       PopupMenuItem<String>(
+                    //         value: 'info2',
+                    //         child: ListTile(
+                    //           leading: Icon(
+                    //             Icons.info,
+                    //             color: Colors.blue,
+                    //           ),
+                    //           title: Text(
+                    //             'Detail Information',
+                    //             style: TextStyle(color: Colors.blue),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ],
+                    //     onSelected: (String action) {
+                    //       // Handle menu item selection
+                    //       switch (action) {
+                    //         case 'infor':
+                    //           // _showOwnerInfoDialog(context);
+                    //           break;
+                    //         case 'infor2':
+                    //           // _showPetInfoDialog(context);
+                    //           break;
+                    //       }
+                    //     },
+                    //   ),
+                    // ),
                   ],
                 ),
                 itemCount: dataMedicneReport.length,
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 20,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
+                Text(
+                  'Total due: ',
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text('\$100'),
                 SizedBox(
-                  width: 960,
-                ),
-                Row(
-                  children: [
-                    Text(
-                      'Total due: ',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text('100'),
-                  ],
-                ),
+                  width: 150,
+                )
               ],
             ),
             SizedBox(
-              height: 200,
+              height: 100,
             )
           ],
         ),

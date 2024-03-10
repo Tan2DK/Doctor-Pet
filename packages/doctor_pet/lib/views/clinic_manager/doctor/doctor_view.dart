@@ -2,13 +2,86 @@ import 'package:doctor_pet/core/data/doctor.dart';
 import 'package:flutter/material.dart';
 import 'package:doctor_pet/comon_wiget/DataTitleWidget.dart';
 import 'package:doctor_pet/core/data/DataTitleModel.dart';
+import 'package:flutter/widgets.dart';
 
-class DoctorView extends StatelessWidget {
+
+
+class DoctorView extends StatefulWidget {
   const DoctorView({Key? key}) : super(key: key);
+
+  @override
+  State<DoctorView> createState() => _DoctorViewState();
+}
+
+class _DoctorViewState extends State<DoctorView> {
+
 
   @override
   Widget build(BuildContext context) {
     final List<doctor> data = [
+      doctor(
+        name: 'Doctor 1',
+        address: 'Viet Nam',
+        phone: 01122334455,
+        status: 'Active',
+        description: 'Bac si nay gioi',
+      ),
+      doctor(
+        name: 'Doctor 1',
+        address: 'Viet Nam',
+        phone: 01122334455,
+        status: 'Active',
+        description: 'Bac si nay gioi',
+      ),
+      doctor(
+        name: 'Doctor 1',
+        address: 'Viet Nam',
+        phone: 01122334455,
+        status: 'Active',
+        description: 'Bac si nay gioi',
+      ),
+      doctor(
+        name: 'Doctor 1',
+        address: 'Viet Nam',
+        phone: 01122334455,
+        status: 'Active',
+        description: 'Bac si nay gioi',
+      ),
+      doctor(
+        name: 'Doctor 1',
+        address: 'Viet Nam',
+        phone: 01122334455,
+        status: 'Active',
+        description: 'Bac si nay gioi',
+      ),
+      doctor(
+        name: 'Doctor 1',
+        address: 'Viet Nam',
+        phone: 01122334455,
+        status: 'Active',
+        description: 'Bac si nay gioi',
+      ),
+      doctor(
+        name: 'Doctor 1',
+        address: 'Viet Nam',
+        phone: 01122334455,
+        status: 'Active',
+        description: 'Bac si nay gioi',
+      ),
+      doctor(
+        name: 'Doctor 1',
+        address: 'Viet Nam',
+        phone: 01122334455,
+        status: 'Active',
+        description: 'Bac si nay gioi',
+      ),
+      doctor(
+        name: 'Doctor 1',
+        address: 'Viet Nam',
+        phone: 01122334455,
+        status: 'Active',
+        description: 'Bac si nay gioi',
+      ),
       doctor(
         name: 'Doctor 1',
         address: 'Viet Nam',
@@ -58,39 +131,56 @@ class DoctorView extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10),
-            Center(
-              child: Row(
-                children: [
-                  SizedBox(width: 70),
-                  Text(
-                    'Doctor Management',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
+            Row(
+              children: [
+                SizedBox(width: 70),
+                Text(
+                  'Doctor Management',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,                    
                   ),
-                  SizedBox(width: 800),
-                  ElevatedButton.icon(
-                      onPressed: () {
-                        _showAddDialog(context);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
+                ),                
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ElevatedButton.icon(
+                    onPressed: () {
+                      // Add a function to sort object staff by name A-Z
+                      // _sortStaffList();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                    ),
+                    icon: Icon(Icons.sort_rounded, color: Colors.black54),
+                    label: Text(
+                      'Sort',
+                      style: TextStyle(color: Colors.black54),
+                    )),
+                SizedBox(width: 10),
+                ElevatedButton.icon(
+                    onPressed: () {
+                      _showAddDialog(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                    ),
+                    icon: Icon(Icons.add, color: Colors.white),
+                    label: Text(
+                      'Add Doctor',
+                      style: TextStyle(
+                        color: Colors.white,
                       ),
-                      icon: Icon(Icons.add, color: Colors.white),
-                      label: Text(
-                        'Add Doctor',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      )),
-                ],
-              ),
+                    )),
+                SizedBox(width: 10),
+              ],
             ),
             SizedBox(height: 20),
             DataTitleWidget(
               titles: [
-                DataTitleModel(name: 'Doctor Name', flex: 2),
+                DataTitleModel(name: 'Doctor Name', flex: 2,),
                 DataTitleModel(name: 'Address', flex: 2),
                 DataTitleModel(name: 'Phone', flex: 2),
                 DataTitleModel(name: 'Status', flex: 2),
@@ -164,6 +254,9 @@ class DoctorView extends StatelessWidget {
                 ),
                 itemCount: data.length,
               ),
+            ),
+            SizedBox(
+              height: 100,
             ),
           ],
         ),

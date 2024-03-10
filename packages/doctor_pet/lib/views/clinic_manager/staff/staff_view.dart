@@ -5,37 +5,169 @@ import 'package:doctor_pet/core/data/medicine.dart';
 import 'package:doctor_pet/comon_wiget/DataTitleWidget.dart';
 import 'package:doctor_pet/core/data/DataTitleModel.dart';
 
-class StaffView extends StatelessWidget {
+class StaffView extends StatefulWidget {
   const StaffView({Key? key}) : super(key: key);
-  // DateTime dateTime = DateTime(2022);
+
+  @override
+  State<StaffView> createState() => _StaffViewState();
+}
+
+class _StaffViewState extends State<StaffView> {
+  List<staff> data = [];
+
+  @override
+  void initState() {
+    data.add(staff(
+      name: 'One Zi',
+      address: 'Viet Nam',
+      phone: 01122334455,
+      status: 'Active',
+      birthday: DateTime(2021, 9, 7, 17, 30, 20),
+    ));
+    data.add(staff(
+      name: 'Quang Zi',
+      address: 'Viet Nam',
+      phone: 01122334455,
+      status: 'Active',
+      birthday: DateTime(2021, 9, 7, 17, 30, 20),
+    ));
+    data.add(staff(
+      name: 'Zi Zi Zi Zi',
+      address: 'Viet Nam',
+      phone: 01122334455,
+      status: 'Active',
+      birthday: DateTime(2021, 9, 7, 17, 30, 20),
+    ));
+    data.add(staff(
+      name: 'Hihihihi',
+      address: 'Viet Nam',
+      phone: 01122334455,
+      status: 'Active',
+      birthday: DateTime(2021, 9, 7, 17, 30, 20),
+    ));
+    data.add(staff(
+      name: 'Nguyen Van Dep Trai',
+      address: 'Viet Nam',
+      phone: 01122334455,
+      status: 'Active',
+      birthday: DateTime(2021, 9, 7, 17, 30, 20),
+    ));
+    data.add(staff(
+      name: 'Nguyen Thi C',
+      address: 'Viet Nam',
+      phone: 01122334455,
+      status: 'Active',
+      birthday: DateTime(2021, 9, 7, 17, 30, 20),
+    ));
+    data.add(staff(
+      name: 'Zi Zi Zi Zi',
+      address: 'Viet Nam',
+      phone: 01122334455,
+      status: 'Active',
+      birthday: DateTime(2021, 9, 7, 17, 30, 20),
+    ));
+    data.add(staff(
+      name: 'Zi Zi Zi Zi',
+      address: 'Viet Nam',
+      phone: 01122334455,
+      status: 'Active',
+      birthday: DateTime(2021, 9, 7, 17, 30, 20),
+    ));
+    data.add(staff(
+      name: 'Zi Zi Zi Zi',
+      address: 'Viet Nam',
+      phone: 01122334455,
+      status: 'Active',
+      birthday: DateTime(2021, 9, 7, 17, 30, 20),
+    ));
+    data.add(staff(
+      name: 'Tran Thi A',
+      address: 'Viet Nam',
+      phone: 01122334455,
+      status: 'Active',
+      birthday: DateTime(2021, 9, 7, 17, 30, 20),
+    ));
+    data.add(staff(
+      name: 'Zi Zi Zi Zi',
+      address: 'Viet Nam',
+      phone: 01122334455,
+      status: 'Active',
+      birthday: DateTime(2021, 9, 7, 17, 30, 20),
+    ));
+    data.add(staff(
+      name: 'Zi Zi Zi Zi',
+      address: 'Viet Nam',
+      phone: 01122334455,
+      status: 'Active',
+      birthday: DateTime(2021, 9, 7, 17, 30, 20),
+    ));
+    data.add(staff(
+      name: 'Zi Zi Zi Zi',
+      address: 'Viet Nam',
+      phone: 01122334455,
+      status: 'Active',
+      birthday: DateTime(2021, 9, 7, 17, 30, 20),
+    ));
+    data.add(staff(
+      name: 'One Zi',
+      address: 'Viet Nam',
+      phone: 01122334455,
+      status: 'Active',
+      birthday: DateTime(2021, 9, 7, 17, 30, 20),
+    ));
+    data.add(staff(
+      name: 'Quang Zi',
+      address: 'Viet Nam',
+      phone: 01122334455,
+      status: 'Active',
+      birthday: DateTime(2021, 9, 7, 17, 30, 20),
+    ));
+    data.add(staff(
+      name: 'Zi Zi Zi Zi',
+      address: 'Viet Nam',
+      phone: 01122334455,
+      status: 'Active',
+      birthday: DateTime(2021, 9, 7, 17, 30, 20),
+    ));
+    data.add(staff(
+      name: 'Hihihihi',
+      address: 'Viet Nam',
+      phone: 01122334455,
+      status: 'Active',
+      birthday: DateTime(2021, 9, 7, 17, 30, 20),
+    ));
+    data.add(staff(
+      name: 'Nguyen Van Dep Trai',
+      address: 'Viet Nam',
+      phone: 01122334455,
+      status: 'Active',
+      birthday: DateTime(2021, 9, 7, 17, 30, 20),
+    ));
+    data.add(staff(
+      name: 'Nguyen Thi C',
+      address: 'Viet Nam',
+      phone: 01122334455,
+      status: 'Active',
+      birthday: DateTime(2021, 9, 7, 17, 30, 20),
+    ));
+    data.add(staff(
+      name: 'Tran Thi B',
+      address: 'Viet Nam',
+      phone: 01122334455,
+      status: 'Active',
+      birthday: DateTime(2021, 9, 7, 17, 30, 20),
+    ));
+    data.add(staff(
+      name: 'Nguyen Van A',
+      address: 'Viet Nam',
+      phone: 01122334455,
+      status: 'Active',
+      birthday: DateTime(2021, 9, 7, 17, 30, 20),
+    ));
+  }
 
   @override
   Widget build(BuildContext context) {
-    final List<staff> data = [
-      staff(
-        name: 'Staff 1',
-        address: 'Viet Nam',
-        phone: 01122334455,
-        status: 'Active',
-        birthday: DateTime(2021, 9, 7, 17, 30),
-      ),
-      staff(
-        name: 'Staff 1',
-        address: 'Viet Nam',
-        phone: 01122334455,
-        status: 'Inactive',
-        birthday: DateTime(2021, 9, 7, 17, 30),
-      ),
-      staff(
-        name: 'Staff 1',
-        address: 'Viet Nam',
-        phone: 01122334455,
-        status: 'Active',
-        birthday: DateTime(2021, 9, 7, 17, 30),
-      ),
-      // Add more pets as needed
-    ];
-
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -55,112 +187,128 @@ class StaffView extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10),
-            Center(
-              child: Row(
-                children: [
-                  SizedBox(width: 70),
-                  Text(
-                    'Staff Management',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
+            Row(
+              children: [
+                SizedBox(width: 70),
+                Text(
+                  'Staff Management',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
                   ),
-                  SizedBox(width: 800),
-                  ElevatedButton.icon(
-                      onPressed: () {
-                        _showAddDialog(context);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ElevatedButton.icon(
+                    onPressed: () {
+                      // Add a function to sort object staff by name A-Z
+                      // _sortStaffList();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                    ),
+                    icon: Icon(Icons.sort_rounded, color: Colors.black54),
+                    label: Text(
+                      'Sort',
+                      style: TextStyle(color: Colors.black54),
+                    )),
+                SizedBox(width: 10),
+                ElevatedButton.icon(
+                    onPressed: () {
+                      _showAddDialog(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                    ),
+                    icon: Icon(Icons.add, color: Colors.white),
+                    label: Text(
+                      'Add Staff',
+                      style: TextStyle(
+                        color: Colors.white,
                       ),
-                      icon: Icon(Icons.add, color: Colors.white),
-                      label: Text(
-                        'Add Staff',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      )),
-                ],
-              ),
+                    )),
+                SizedBox(width: 10),
+              ],
             ),
             SizedBox(height: 20),
             DataTitleWidget(
               titles: [
-                DataTitleModel(name: 'Staff Name', flex: 2),
+                DataTitleModel(name: 'Staff Name', flex: 3),
                 DataTitleModel(name: 'Address', flex: 3),
                 DataTitleModel(name: 'Phone', flex: 3),
                 DataTitleModel(name: 'Status', flex: 3),
-                DataTitleModel(name: 'Birthday', flex: 5),
+                DataTitleModel(name: 'Birthday', flex: 3),
+
               ],
             ),
             const Divider(thickness: 2),
             Expanded(
               child: ListView.builder(
-                itemBuilder: (context, index) => Row(
-                  children: [
-                    Expanded(
-                      flex: 6,
-                      child: DataTitleWidget(
-                        titles: [
-                          DataTitleModel(name: data[index].name, flex: 2),
-                          DataTitleModel(name: data[index].address, flex: 3),
-                          DataTitleModel(
-                              name: data[index].phone.toString(), flex: 3),
-                          DataTitleModel(name: data[index].status, flex: 3),
-                          DataTitleModel(
-                              name: data[index].birthday.toString(), flex: 5),
-                        ],
+                itemBuilder: (context, index) => GestureDetector(
+                  onTap: () {
+                    // _showAddDialog(context);
+                  },
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 6,
+                        child: DataTitleWidget(
+                          titles: [
+                            DataTitleModel(name: data[index].name, flex: 3),
+                            DataTitleModel(name: data[index].address, flex: 3),
+                            DataTitleModel(
+                                name: data[index].phone.toString(), flex: 3),
+                            DataTitleModel(name: data[index].status, flex: 3),
+                            DataTitleModel(
+                                name: data[index].birthday.toString(), flex: 3),
+                          ],
+                        ),
                       ),
-                    ),
-                    Container(
-                      width: 100, // Set the width of the container
-                      child: PopupMenuButton<String>(
-                        itemBuilder: (BuildContext context) =>
-                            <PopupMenuEntry<String>>[
-                          // PopupMenuItem<String>(
-                          //   value: 'add',
-                          //   child: ListTile(
-                          //     leading: Icon(Icons.add),
-                          //     title: Text('Add'),
-                          //   ),
-                          // ),
-                          PopupMenuItem<String>(
-                            value: 'edit',
-                            child: ListTile(
-                              leading: Icon(Icons.edit),
-                              title: Text('Edit'),
+                      Container(
+                        width: 50, // Set the width of the container
+                        child: PopupMenuButton<String>(
+                          itemBuilder: (BuildContext context) =>
+                              <PopupMenuEntry<String>>[
+                            PopupMenuItem<String>(
+                              value: 'edit',
+                              child: ListTile(
+                                leading: Icon(Icons.edit),
+                                title: Text('Edit'),
+                              ),
                             ),
-                          ),
-                          PopupMenuItem<String>(
-                            value: 'delete',
-                            child: ListTile(
-                              leading: Icon(Icons.delete),
-                              title: Text('Delete'),
+                            PopupMenuItem<String>(
+                              value: 'delete',
+                              child: ListTile(
+                                leading: Icon(Icons.delete),
+                                title: Text('Delete'),
+                              ),
                             ),
-                          ),
-                        ],
-                        onSelected: (String action) {
-                          // Handle menu item selection
-                          switch (action) {
-                            case 'add':
-                              _showAddDialog(context);
-                              break;
-                            case 'edit':
-                              _showEditDialog(context, data[index]);
-                              break;
-                            case 'delete':
-                              _showDeleteDialog(context);
-                              break;
-                          }
-                        },
+                          ],
+                          onSelected: (String action) {
+                            // Handle menu item selection
+                            switch (action) {
+                              case 'edit':
+                                _showEditDialog(context, data[index]);
+                                break;
+                              case 'delete':
+                                _showDeleteDialog(context);
+                                break;
+                            }
+                          },
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 itemCount: data.length,
               ),
             ),
+            SizedBox(
+              height: 100,
+            )
           ],
         ),
       ),
@@ -216,7 +364,6 @@ class StaffView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10))),
                 ),
                 SizedBox(height: 10),
-                
                 TextField(
                   keyboardType: TextInputType.text,
                   style: TextStyle(fontSize: 15),
@@ -228,11 +375,10 @@ class StaffView extends StatelessWidget {
                         ),
                         onPressed: () {
                           showDatePicker(
-                            context: context, 
-                            initialDate: dateTime,
-                            firstDate: (DateTime(1900,1,1)), 
-                            lastDate: (DateTime(2500,12,31))
-                            );
+                              context: context,
+                              initialDate: dateTime,
+                              firstDate: (DateTime(1900, 1, 1)),
+                              lastDate: (DateTime(2500, 12, 31)));
                         },
                       ),
                       labelText: 'Birthday',
@@ -332,11 +478,10 @@ class StaffView extends StatelessWidget {
                         ),
                         onPressed: () {
                           showDatePicker(
-                            context: context, 
-                            initialDate: dateTime,
-                            firstDate: (DateTime(1900,1,1)), 
-                            lastDate: (DateTime(2500,12,31))
-                            );
+                              context: context,
+                              initialDate: dateTime,
+                              firstDate: (DateTime(1900, 1, 1)),
+                              lastDate: (DateTime(2500, 12, 31)));
                         },
                       ),
                       labelText: 'Birthday',

@@ -7,9 +7,14 @@ import 'package:doctor_pet/core/data/owner.dart';
 import 'package:doctor_pet/comon_wiget/DataTitleWidget.dart';
 import 'package:doctor_pet/core/data/DataTitleModel.dart';
 
-class InvoiceReportView extends StatelessWidget {
+class InvoiceReportView extends StatefulWidget {
   const InvoiceReportView({Key? key}) : super(key: key);
 
+  @override
+  State<InvoiceReportView> createState() => _InvoiceReportViewState();
+}
+
+class _InvoiceReportViewState extends State<InvoiceReportView> {
   @override
   Widget build(BuildContext context) {
     final List<invoicereport> dataInvoiceReport = [
@@ -31,6 +36,102 @@ class InvoiceReportView extends StatelessWidget {
           cost: 7,
           day: DateTime(2024, 3, 7, 12, 6, 43),
           prescription: 'Thuoc sot'),
+      invoicereport(
+          patientID: '1',
+          patientName: 'oK',
+          cost: 5,
+          day: DateTime(2024, 3, 7, 12, 6, 43),
+          prescription: 'Thuoc tieu chay'),
+      invoicereport(
+          patientID: '1',
+          patientName: 'oK',
+          cost: 5,
+          day: DateTime(2024, 3, 7, 12, 6, 43),
+          prescription: 'Thuoc tieu chay'),
+      invoicereport(
+          patientID: '1',
+          patientName: 'oK',
+          cost: 5,
+          day: DateTime(2024, 3, 7, 12, 6, 43),
+          prescription: 'Thuoc tieu chay'),
+      invoicereport(
+          patientID: '1',
+          patientName: 'oK',
+          cost: 5,
+          day: DateTime(2024, 3, 7, 12, 6, 43),
+          prescription: 'Thuoc tieu chay'),
+      invoicereport(
+          patientID: '1',
+          patientName: 'oK',
+          cost: 5,
+          day: DateTime(2024, 3, 7, 12, 6, 43),
+          prescription: 'Thuoc tieu chay'),
+      invoicereport(
+          patientID: '1',
+          patientName: 'oK',
+          cost: 5,
+          day: DateTime(2024, 3, 7, 12, 6, 43),
+          prescription: 'Thuoc tieu chay'),
+      invoicereport(
+          patientID: '1',
+          patientName: 'oK',
+          cost: 5,
+          day: DateTime(2024, 3, 7, 12, 6, 43),
+          prescription: 'Thuoc tieu chay'),
+      invoicereport(
+          patientID: '34',
+          patientName: 'Duy',
+          cost: 5,
+          day: DateTime(2024, 3, 7, 12, 6, 43),
+          prescription: 'Thuoc tieu chay'),
+      invoicereport(
+          patientID: '123',
+          patientName: 'Dep trai',
+          cost: 5,
+          day: DateTime(2024, 3, 7, 12, 6, 43),
+          prescription: 'Thuoc tieu chay'),
+      invoicereport(
+          patientID: '13',
+          patientName: 'Nguyen Van A',
+          cost: 5,
+          day: DateTime(2024, 3, 7, 12, 6, 43),
+          prescription: 'Thuoc tieu chay'),
+      invoicereport(
+          patientID: '1',
+          patientName: 'Tran Thi B',
+          cost: 5,
+          day: DateTime(2024, 3, 7, 12, 6, 43),
+          prescription: 'Thuoc tieu chay'),
+      invoicereport(
+          patientID: '1',
+          patientName: 'oK',
+          cost: 5,
+          day: DateTime(2024, 3, 7, 12, 6, 43),
+          prescription: 'Thuoc tieu chay'),
+      invoicereport(
+          patientID: '1',
+          patientName: 'One Zi',
+          cost: 5,
+          day: DateTime(2024, 3, 7, 12, 6, 43),
+          prescription: 'Thuoc tieu chay'),
+      invoicereport(
+          patientID: '1',
+          patientName: 'Nguyen Van Dep Trai',
+          cost: 5,
+          day: DateTime(2024, 3, 7, 12, 6, 43),
+          prescription: 'Thuoc tieu chay'),
+      invoicereport(
+          patientID: '1',
+          patientName: 'oK',
+          cost: 5,
+          day: DateTime(2024, 3, 7, 12, 6, 43),
+          prescription: 'Thuoc tieu chay'),
+      invoicereport(
+          patientID: '1',
+          patientName: 'oK',
+          cost: 5,
+          day: DateTime(2024, 3, 7, 12, 6, 43),
+          prescription: 'Thuoc tieu chay'),
       invoicereport(
           patientID: '1',
           patientName: 'oK',
@@ -71,10 +172,9 @@ class InvoiceReportView extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SizedBox(
-                  width: 350,
-                ),
                 ElevatedButton.icon(
                     icon: Icon(Icons.calendar_month_outlined,
                         color: Colors.white),
@@ -93,9 +193,6 @@ class InvoiceReportView extends StatelessWidget {
                         color: Colors.white,
                       ),
                     )),
-                SizedBox(
-                  width: 50,
-                ),
                 ElevatedButton.icon(
                     icon: Icon(Icons.calendar_month_outlined,
                         color: Colors.white),
@@ -114,9 +211,6 @@ class InvoiceReportView extends StatelessWidget {
                         color: Colors.white,
                       ),
                     )),
-                SizedBox(
-                  width: 50,
-                ),
                 ElevatedButton.icon(
                     icon: Icon(Icons.slideshow, color: Colors.white),
                     style: ElevatedButton.styleFrom(
@@ -136,7 +230,10 @@ class InvoiceReportView extends StatelessWidget {
             ),
             DataTitleWidget(
               titles: [
-                DataTitleModel(name: 'Patient ID', flex: 3,),
+                DataTitleModel(
+                  name: 'Patient ID',
+                  flex: 2,
+                ),
                 DataTitleModel(name: 'Patient Name', flex: 4),
                 DataTitleModel(name: 'Cost', flex: 2),
                 DataTitleModel(name: 'Day', flex: 5),
@@ -156,7 +253,7 @@ class InvoiceReportView extends StatelessWidget {
                         titles: [
                           DataTitleModel(
                               name: dataInvoiceReport[index].patientID,
-                              flex: 3),
+                              flex: 2),
                           DataTitleModel(
                               name: dataInvoiceReport[index].patientName,
                               flex: 4),
@@ -178,12 +275,8 @@ class InvoiceReportView extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 100,
             ),
-
-            SizedBox(
-              height: 320,
-            )
           ],
         ),
       ),
