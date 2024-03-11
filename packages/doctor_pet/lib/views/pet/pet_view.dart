@@ -1,183 +1,123 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:doctor_pet/views/pet/pet_controller.dart';
 import 'package:doctor_pet/core/data/pet.dart';
 import 'package:doctor_pet/core/data/owner.dart';
-import 'package:doctor_pet/comon_wiget/DataTitleWidget.dart';
 import 'package:doctor_pet/core/data/DataTitleModel.dart';
+import 'package:doctor_pet/comon_wiget/DataTitleWidget.dart'; // Đường dẫn đến DataTitleWidget
 
-class PetView extends StatelessWidget {
+class PetView extends GetView<PetController> {
   const PetView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final List<pet> data = [
-      pet(
-        id: '1',
-        name: 'Lu',
-        species: 'Dog',
-        origin: 'Viet Nam',
-        color: 'Yellow',
-        birthday: DateTime(2017, 9, 7, 17, 30),
-        own: owner(
-          id: '1',
-          name: 'duy',
-          phone: '091637238',
-          address: 'can tho',
-          birthday: DateTime(2021, 9, 7, 17, 30),
-        ),
-      ),
-      pet(
-        id: '2',
-        name: 'Na',
-        species: 'Dog',
-        origin: 'Viet Nam',
-        color: 'red',
-        birthday: DateTime(2017, 9, 7, 17, 30),
-        own: owner(
-          id: '2',
-          name: 'nhut kep',
-          phone: '0919028212',
-          address: 'can tho',
-          birthday: DateTime(2021, 9, 7, 17, 30),
-        ),
-      ),
-      pet(
-        id: '3',
-        name: 'Ldu',
-        species: 'Dog',
-        origin: 'Viet Nam',
-        color: 'Yellow',
-        birthday: DateTime(2017, 9, 7, 17, 30),
-        own: owner(
-          id: '3',
-          name: 'tan huynh',
-          phone: '091637238',
-          address: 'can tho',
-          birthday: DateTime(2021, 9, 7, 17, 30),
-        ),
-      ),
-      pet(
-        id: '4',
-        name: 'popo',
-        species: 'Dog',
-        origin: 'Viet Nam',
-        color: 'Yellow',
-        birthday: DateTime(2017, 9, 7, 17, 30),
-        own: owner(
-          id: '4',
-          name: 'vinh',
-          phone: '091637238',
-          address: 'can tho',
-          birthday: DateTime(2021, 9, 7, 17, 30),
-        ),
-      ),
-      
-      // Add more pets as needed
-    ];
-
     return Scaffold(
-     
       body: Container(
-        decoration: BoxDecoration(
-          color: Color.fromARGB(255, 254, 234, 234),
-        ),
+        decoration:
+            const BoxDecoration(color: Color.fromARGB(255, 254, 234, 234)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
-                decoration: InputDecoration(
+                onChanged: controller.searchPet,
+                decoration: const InputDecoration(
                   hintText: 'Search...',
                   prefixIcon: Icon(Icons.search),
                   border: OutlineInputBorder(),
                 ),
               ),
             ),
-            SizedBox(height: 10),
-            Center(
+            const SizedBox(height: 10),
+            const Center(
               child: Text(
                 'View Pet Information',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             DataTitleWidget(
               titles: [
-                DataTitleModel(name: 'ID PET', flex: 1),
+                DataTitleModel(name: 'ID', flex: 1),
                 DataTitleModel(name: 'Name', flex: 2),
                 DataTitleModel(name: 'Species', flex: 3),
                 DataTitleModel(name: 'Origin', flex: 4),
                 DataTitleModel(name: 'Color', flex: 5),
-                DataTitleModel(name: 'Birthday', flex: 6),
               ],
             ),
-            const Divider(),
             Expanded(
-              child: ListView.builder(
-                itemBuilder: (context, index) => Row(
-                  children: [
-                    Expanded(
-                      flex: 6,
-                      child: DataTitleWidget(
-                        titles: [
-                          DataTitleModel(name: data[index].id, flex: 1),
-                          DataTitleModel(name: data[index].name, flex: 2),
-                          DataTitleModel(name: data[index].species, flex: 3),
-                          DataTitleModel(name: data[index].origin, flex: 4),
-                          DataTitleModel(name: data[index].color, flex: 5),
-                          DataTitleModel(
-                            name: data[index].birthday.toString(),
-                            flex: 6,
+              child: Obx(() => ListView.builder(
+                    itemCount: controller.filteredPets.length,
+                    itemBuilder: (context, index) {
+                      final Pet pet = controller.filteredPets[index];
+                      return Row(
+                        children: [
+                          const SizedBox(
+                              width: 70), // Để thẳng hàng với tiêu đề
+                          Expanded(
+                            flex: 1,
+                            child: Text(pet.id),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Text(pet.name),
+                          ),
+                          Expanded(
+                            flex: 3,
+                            child: Text(pet.species),
+                          ),
+                          Expanded(
+                            flex: 4,
+                            child: Text(pet.origin),
+                          ),
+                          Expanded(
+                            flex: 5,
+                            child: Text(pet.color),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.info_outline),
+                            onPressed: () =>
+                                _showOwnerDetails(context, pet.own),
                           ),
                         ],
-                      ),
-                    ),
-                    Container(
-                      width: 100, // Set the width of the container
-                      child: IconButton(
-                        icon: Icon(Icons.ads_click),
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text('Owner Information'),
-                                content: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text('ID: ${data[index].own.id}'),
-                                    Text('Name: ${data[index].own.name}'),
-                                    Text('Phone: ${data[index].own.phone}'),
-                                    Text('Address: ${data[index].own.address}'),
-                                    Text('Birthday: ${data[index].own.birthday}'),
-                                  ],
-                                ),
-                                actions: [
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop(); // Close the dialog
-                                    },
-                                    child: Text('Close'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-                itemCount: data.length,
-              ),
+                      );
+                    },
+                  )),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  void _showOwnerDetails(BuildContext context, Owner owner) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Owner Information'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('ID: ${owner.id}'),
+                Text('Name: ${owner.name}'),
+                Text('Phone: ${owner.phone}'),
+                Text('Address: ${owner.address}'),
+                Text('Birthday: ${owner.birthday.toString()}'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Close'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

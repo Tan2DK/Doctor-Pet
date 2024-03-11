@@ -1,8 +1,14 @@
-class owner {
+class Owner {
+  // Sửa tên class
   String id;
   String name;
   String phone;
   String address;
   DateTime birthday;
-  owner({required this.name,required this.id,required this.address,required this.birthday,required this.phone});
+  Owner(
+      {required this.id,
+      required this.name,
+      required this.phone,
+      required this.address,
+      required this.birthday}); // Sửa constructor
 }
