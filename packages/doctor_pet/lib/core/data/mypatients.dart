@@ -1,16 +1,17 @@
-class mypatients {
-  String CustomerId;
-  String Name;
-  String PhoneNumber;
-  DateTime Birthday;
-  String Address;
-  DateTime DateBuyMedicine;
+class Mypatients {
+  String customerId;
+  String name;
+  String phoneNumber;
+  DateTime birthday;
+  String address;
+  DateTime dateBuyMedicine;
 
-  mypatients(
-      {required this.CustomerId,
-      required this.Name,
-      required this.PhoneNumber,
-      required this.Birthday,
-      required this.Address,
-      required this.DateBuyMedicine});
+  Mypatients({
+    required this.customerId,
+    required this.name,
+    required this.phoneNumber,
+    required this.birthday,
+    required this.address,
+    required this.dateBuyMedicine,
+  });
 }

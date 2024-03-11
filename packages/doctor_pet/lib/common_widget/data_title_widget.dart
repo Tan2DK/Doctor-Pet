@@ -1,4 +1,4 @@
-import 'package:doctor_pet/core/data/DataTitleModel.dart';
+import 'package:doctor_pet/core/data/data_title_model.dart';
 import 'package:flutter/material.dart';
 
 class DataTitleWidget extends StatelessWidget {
