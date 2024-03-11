@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:doctor_pet/views/pet/pet_controller.dart';
 import 'package:doctor_pet/core/data/pet.dart';
 import 'package:doctor_pet/core/data/owner.dart';
-import 'package:doctor_pet/core/data/DataTitleModel.dart';
-import 'package:doctor_pet/comon_wiget/DataTitleWidget.dart'; // Đường dẫn đến DataTitleWidget
+import 'package:doctor_pet/core/data/data_title_model.dart';
+import 'package:doctor_pet/common_widget/data_title_widget.dart'; // Đường dẫn đến DataTitleWidget
 
 class PetView extends GetView<PetController> {
   const PetView({Key? key}) : super(key: key);
@@ -54,7 +54,7 @@ class PetView extends GetView<PetController> {
                       return Row(
                         children: [
                           const SizedBox(
-                              width: 70), // Để thẳng hàng với tiêu đề
+                              width: 90), // Để thẳng hàng với tiêu đề
                           Expanded(
                             flex: 1,
                             child: Text(pet.id),

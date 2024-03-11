@@ -1,4 +1,5 @@
 import 'package:doctor_pet/views/home/nested_navigation/nested_navation_doctor.dart';
+import 'package:doctor_pet/views/pet/nested_navigation/nested_navation_pet.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
@@ -6,7 +7,7 @@ import '../../utils/app_enum.dart';
 
 class HomeController extends GetxController {
   RxInt index = RxInt(0);
-  Rx<Role> role = Rx<Role>(Role.clinicManager);
+  Rx<Role> role = Rx<Role>(Role.customer);
 
   final adminTabNameList = [
     'Clinic Management',
@@ -35,6 +36,7 @@ class HomeController extends GetxController {
     'Question Management',
   ];
   final customerTabNameList = [
+    'ViewPet',
     'Dashboard',
     'Appointment',
     'Medical history',
@@ -53,7 +55,7 @@ class HomeController extends GetxController {
 
   List<Widget> listScreen() {
     return [
-      const NestedNavigationDoctor(),
+      const NestedNavigationPet(),
     ];
   }
 }

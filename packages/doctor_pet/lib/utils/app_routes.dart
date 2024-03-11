@@ -1,6 +1,6 @@
 import 'package:doctor_pet/views/doctor/doctor_binding.dart';
 import 'package:doctor_pet/views/doctor/doctor_view.dart';
-import 'package:doctor_pet/views/pet/Screenmain.dart';
+
 import 'package:get/get.dart';
 
 import '../views/home/home_binding.dart';
@@ -24,7 +24,7 @@ class AppRoutes {
     ),
     GetPage(
       name: RoutesName.pet,
-      page: () => const Screenmain(),
+      page: () => const PetView(),
       binding: PetBinding(),
     ),
   ];
@@ -35,4 +35,5 @@ class RoutesName {
   static const String doctor = '/doctor';
   static const String pet = '/pet';
   static const String nestedNavDoctor = 'nested_navigation_doctor';
+  static const String nestedNavPet = 'nested_navigation_pet';
 }
