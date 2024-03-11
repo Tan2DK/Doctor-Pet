@@ -98,7 +98,7 @@ class StaffView extends GetView<StaffController> {
                                 name: data[index].phone.toString(), flex: 4),
                             DataTitleModel(name: data[index].status, flex: 2),
                             DataTitleModel(
-                                name: data[index].birthday.toString(), flex: 4),
+                                name: data[index].birthday.toString().substring(0,11), flex: 4),
                           ],
                         ),
                       ),

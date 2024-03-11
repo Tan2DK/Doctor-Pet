@@ -92,7 +92,7 @@ class InvoiceReportView extends GetView<InvoiceReportController> {
                               name: dataInvoiceReport[index].cost.toString(),
                               flex: 2),
                           DataTitleModel(
-                              name: dataInvoiceReport[index].day.toString(),
+                              name: dataInvoiceReport[index].day.toString().substring(0,11),
                               flex: 5),
                           DataTitleModel(
                               name: dataInvoiceReport[index].prescription,

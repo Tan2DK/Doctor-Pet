@@ -41,16 +41,6 @@ class MedicineView extends GetView<MedicineController> {
                   label: 'Sort',
                   bgColor: Colors.blue,
                 ),
-                // ElevatedButton.icon(
-                //     onPressed: () {},
-                //     style: ElevatedButton.styleFrom(
-                //       backgroundColor: Colors.white,
-                //     ),
-                //     icon: Icon(Icons.sort_rounded, color: Colors.black54),
-                //     label: Text(
-                //       'Sort',
-                //       style: TextStyle(color: Colors.black54),
-                //     )),
                 const SizedBox(width: 10),
                 const CustomButtonActionWidget(
                   label: 'Add Medicine',
@@ -88,7 +78,7 @@ class MedicineView extends GetView<MedicineController> {
                               name: data[index].companyMedicineName, flex: 4),
                           DataTitleModel(name: data[index].quantity, flex: 2),
                           DataTitleModel(
-                              name: data[index].dateMedicine.toString(),
+                              name: data[index].dateMedicine.toString().substring(0,11),
                               flex: 4),
                           DataTitleModel(
                               name: data[index].expirationdate, flex: 4),

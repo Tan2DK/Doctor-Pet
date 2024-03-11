@@ -147,7 +147,6 @@ class StaffController extends GetxController {
     ];
 
   void showEditDialog(BuildContext context, staff staff) {
-    // Implement logic to show edit medicine dialog
     DateTime dateTime = DateTime(2024);
     showDialog(
       context: context,
@@ -163,7 +162,7 @@ class StaffController extends GetxController {
                   keyboardType: TextInputType.text,
                   style: TextStyle(fontSize: 15),
                   decoration: InputDecoration(
-                      hintText: ('dasda'),
+                      hintText: (''),
                       labelText: 'Staff Name',
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10))),
