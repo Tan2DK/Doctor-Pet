@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 import '../views/home/home_binding.dart';
 import '../views/home/home_view.dart';
-import '../views/register/register.dart';
+import '../views/register/register_view.dart';
 import '../views/register/register_binding.dart';
 
 class AppRoutes {
