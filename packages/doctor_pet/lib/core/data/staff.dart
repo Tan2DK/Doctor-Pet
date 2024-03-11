@@ -3,7 +3,7 @@ import 'dart:html';
 class staff {
   String name;
   String address;
-  int phone;
+  String phone;
   String status;
   DateTime birthday;
 

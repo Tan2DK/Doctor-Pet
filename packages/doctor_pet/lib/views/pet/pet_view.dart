@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:doctor_pet/core/data/pet.dart';
 import 'package:doctor_pet/core/data/owner.dart';
-import 'package:doctor_pet/comon_wiget/DataTitleWidget.dart';
+import 'package:doctor_pet/common_widget/data_title_widget.dart';
 import 'package:doctor_pet/core/data/DataTitleModel.dart';
 
 class PetView extends StatelessWidget {

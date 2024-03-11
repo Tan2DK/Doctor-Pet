@@ -1,0 +1,148 @@
+import '../staff.dart';
+
+class StaffList {
+  StaffList._();
+  
+  List<staff> listStaff = [
+       staff(
+        name: 'Nguyen Van A',
+        address: 'Viet Nam',
+        phone: '01122334455',
+        status: 'Active',
+        birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      ),
+      staff(
+        name: 'Nguyen Van A',
+        address: 'Viet Nam',
+        phone: '01122334455',
+        status: 'Active',
+        birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      ),
+      staff(
+        name: 'Nguyen Van A',
+        address: 'Viet Nam',
+        phone: '01122334455',
+        status: 'Active',
+        birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      ),
+      staff(
+        name: 'Nguyen Van A',
+        address: 'Viet Nam',
+        phone: '01122334455',
+        status: 'Active',
+        birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      ),
+      staff(
+        name: 'Nguyen Van A',
+        address: 'Viet Nam',
+        phone: '01122334455',
+        status: 'Active',
+        birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      ),
+      staff(
+        name: 'Nguyen Van A',
+        address: 'Viet Nam',
+        phone: '01122334455',
+        status: 'Active',
+        birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      ),
+      staff(
+        name: 'Nguyen Van A',
+        address: 'Viet Nam',
+        phone: '01122334455',
+        status: 'Active',
+        birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      ),
+      staff(
+        name: 'Nguyen Van A',
+        address: 'Viet Nam',
+        phone: '01122334455',
+        status: 'Active',
+        birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      ),
+      staff(
+        name: 'Nguyen Van A',
+        address: 'Viet Nam',
+        phone: '01122334455',
+        status: 'Active',
+        birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      ),
+      staff(
+        name: 'Nguyen Van A',
+        address: 'Viet Nam',
+        phone: '01122334455',
+        status: 'Active',
+        birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      ),
+      staff(
+        name: 'Nguyen Van A',
+        address: 'Viet Nam',
+        phone: '01122334455',
+        status: 'Active',
+        birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      ),
+      staff(
+        name: 'Nguyen Van A',
+        address: 'Viet Nam',
+        phone: '01122334455',
+        status: 'Active',
+        birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      ),
+      staff(
+        name: 'Nguyen Van A',
+        address: 'Viet Nam',
+        phone: '01122334455',
+        status: 'Active',
+        birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      ),
+      staff(
+        name: 'Nguyen Van A',
+        address: 'Viet Nam',
+        phone: '01122334455',
+        status: 'Active',
+        birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      ),
+      staff(
+        name: 'Nguyen Van A',
+        address: 'Viet Nam',
+        phone: '01122334455',
+        status: 'Active',
+        birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      ),
+      staff(
+        name: 'Nguyen Van A',
+        address: 'Viet Nam',
+        phone: '01122334455',
+        status: 'Active',
+        birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      ),
+      staff(
+        name: 'Nguyen Van A',
+        address: 'Viet Nam',
+        phone: '01122334455',
+        status: 'Active',
+        birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      ),
+      staff(
+        name: 'Nguyen Van A',
+        address: 'Viet Nam',
+        phone: '01122334455',
+        status: 'Active',
+        birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      ),
+      staff(
+        name: 'Nguyen Van A',
+        address: 'Viet Nam',
+        phone: '01122334455',
+        status: 'Active',
+        birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      ),
+      staff(
+        name: 'Nguyen Van A',
+        address: 'Viet Nam',
+        phone: '01122334455',
+        status: 'Active',
+        birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      ),
+    ];
+}

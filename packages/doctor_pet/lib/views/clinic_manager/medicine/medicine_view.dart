@@ -1,139 +1,17 @@
+import 'package:doctor_pet/common_widget/custom_button/custom_button_action_widget.dart';
+import 'package:doctor_pet/common_widget/custom_searchbar_widget.dart';
+import 'package:doctor_pet/views/clinic_manager/medicine/medicine_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:doctor_pet/core/data/medicine.dart';
-import 'package:doctor_pet/core/data/doctor.dart';
-import 'package:doctor_pet/comon_wiget/DataTitleWidget.dart';
+import 'package:doctor_pet/common_widget/data_title_widget.dart';
 import 'package:doctor_pet/core/data/DataTitleModel.dart';
+import 'package:get/get.dart';
 
-
-
-class MedicineView extends StatefulWidget {
-  const MedicineView({Key? key}) : super(key: key);
-
-  @override
-  State<MedicineView> createState() => _MedicineViewState();
-}
-
-class _MedicineViewState extends State<MedicineView> {
-
+class MedicineView extends GetView<MedicineController> {
+  const MedicineView({super.key});
   @override
   Widget build(BuildContext context) {
-    final List<medicine> data = [
-      medicine(
-          dateMedicine: DateTime(2017, 11, 11),
-          idMedicine: '01',
-          nameMedicine: 'panadone',
-          quantity: '6',
-          companyMedicineName: 'duochaugiang',
-          expirationdate: '05/2025',
-          price: '5'),
-      medicine(
-          dateMedicine: DateTime(2017, 11, 11),
-          idMedicine: '02',
-          nameMedicine: 'thuoc sot',
-          quantity: '4',
-          companyMedicineName: 'duochaugiang',
-          expirationdate: '05/2025',
-          price: '5'),
-      medicine(
-          dateMedicine: DateTime(2017, 11, 11),
-          idMedicine: '03',
-          nameMedicine: 'panadone',
-          quantity: '6',
-          companyMedicineName: 'duochaugiang',
-          expirationdate: '05/2025',
-          price: '5'),
-      medicine(
-          dateMedicine: DateTime(2017, 11, 11),
-          idMedicine: '04',
-          nameMedicine: 'panadone',
-          quantity: '9',
-          companyMedicineName: 'duochaugiang',
-          expirationdate: '05/2025',
-          price: '5'),
-      medicine(
-          dateMedicine: DateTime(2017, 11, 11),
-          idMedicine: '04',
-          nameMedicine: 'panadone',
-          quantity: '9',
-          companyMedicineName: 'duochaugiang',
-          expirationdate: '05/2025',
-          price: '5'),
-      medicine(
-          dateMedicine: DateTime(2017, 11, 11),
-          idMedicine: '04',
-          nameMedicine: 'panadone',
-          quantity: '9',
-          companyMedicineName: 'duochaugiang',
-          expirationdate: '05/2025',
-          price: '5'),
-      medicine(
-          dateMedicine: DateTime(2017, 11, 11),
-          idMedicine: '04',
-          nameMedicine: 'panadone',
-          quantity: '9',
-          companyMedicineName: 'duochaugiang',
-          expirationdate: '05/2025',
-          price: '5'),
-      medicine(
-          dateMedicine: DateTime(2017, 11, 11),
-          idMedicine: '04',
-          nameMedicine: 'panadone',
-          quantity: '9',
-          companyMedicineName: 'duochaugiang',
-          expirationdate: '05/2025',
-          price: '5'),
-      medicine(
-          dateMedicine: DateTime(2017, 11, 11),
-          idMedicine: '04',
-          nameMedicine: 'panadone',
-          quantity: '9',
-          companyMedicineName: 'duochaugiang',
-          expirationdate: '05/2025',
-          price: '5'),
-      medicine(
-          dateMedicine: DateTime(2017, 11, 11),
-          idMedicine: '04',
-          nameMedicine: 'panadone',
-          quantity: '9',
-          companyMedicineName: 'duochaugiang',
-          expirationdate: '05/2025',
-          price: '5'),
-          medicine(
-          dateMedicine: DateTime(2017, 11, 11),
-          idMedicine: '04',
-          nameMedicine: 'panadone',
-          quantity: '9',
-          companyMedicineName: 'duochaugiang',
-          expirationdate: '05/2025',
-          price: '5'),
-          medicine(
-          dateMedicine: DateTime(2017, 11, 11),
-          idMedicine: '04',
-          nameMedicine: 'panadone',
-          quantity: '9',
-          companyMedicineName: 'duochaugiang',
-          expirationdate: '05/2025',
-          price: '5'),
-          medicine(
-          dateMedicine: DateTime(2017, 11, 11),
-          idMedicine: '04',
-          nameMedicine: 'panadone',
-          quantity: '9',
-          companyMedicineName: 'duochaugiang',
-          expirationdate: '05/2025',
-          price: '5'),
-          medicine(
-          dateMedicine: DateTime(2017, 11, 11),
-          idMedicine: '04',
-          nameMedicine: 'panadone',
-          quantity: '9',
-          companyMedicineName: 'duochaugiang',
-          expirationdate: '05/2025',
-          price: '5'),
-
-      // Add more pets as needed
-    ];
-
+    final List<medicine> data = List.from(controller.data);
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -142,16 +20,7 @@ class _MedicineViewState extends State<MedicineView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search...',
-                  prefixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ),
+            const CustomSearchBarWidget(),
             SizedBox(height: 10),
             Row(
               children: [
@@ -168,34 +37,25 @@ class _MedicineViewState extends State<MedicineView> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                ElevatedButton.icon(
-                    onPressed: () {
-                      // Add a function to sort object staff by name A-Z
-                      // _sortStaffList();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                    ),
-                    icon: Icon(Icons.sort_rounded, color: Colors.black54),
-                    label: Text(
-                      'Sort',
-                      style: TextStyle(color: Colors.black54),
-                    )),
-                SizedBox(width: 10),
-                ElevatedButton.icon(
-                    onPressed: () {
-                      _showAddMedicineDialog(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                    ),
-                    icon: Icon(Icons.add, color: Colors.white),
-                    label: Text(
-                      'Add Medicine',
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    )),
+                const CustomButtonActionWidget(
+                  label: 'Sort',
+                  bgColor: Colors.blue,
+                ),
+                // ElevatedButton.icon(
+                //     onPressed: () {},
+                //     style: ElevatedButton.styleFrom(
+                //       backgroundColor: Colors.white,
+                //     ),
+                //     icon: Icon(Icons.sort_rounded, color: Colors.black54),
+                //     label: Text(
+                //       'Sort',
+                //       style: TextStyle(color: Colors.black54),
+                //     )),
+                const SizedBox(width: 10),
+                const CustomButtonActionWidget(
+                  label: 'Add Medicine',
+                  bgColor: Colors.blue,
+                ),
                 SizedBox(width: 10),
               ],
             ),
@@ -203,12 +63,13 @@ class _MedicineViewState extends State<MedicineView> {
             DataTitleWidget(
               titles: [
                 DataTitleModel(name: 'IDMedi', flex: 2),
-                DataTitleModel(name: 'Name', flex: 3),
-                DataTitleModel(name: 'Medicine Name', flex: 3),
+                DataTitleModel(name: 'Name', flex: 4),
+                DataTitleModel(name: 'Medicine Name', flex: 4),
                 DataTitleModel(name: 'Quantity', flex: 2),
                 DataTitleModel(name: 'Date', flex: 4),
                 DataTitleModel(name: 'Expiration date', flex: 4),
                 DataTitleModel(name: 'Price', flex: 2),
+                DataTitleModel(name: '', flex: 1),
               ],
             ),
             const Divider(),
@@ -240,13 +101,6 @@ class _MedicineViewState extends State<MedicineView> {
                       child: PopupMenuButton<String>(
                         itemBuilder: (BuildContext context) =>
                             <PopupMenuEntry<String>>[
-                          // PopupMenuItem<String>(
-                          //   value: 'add',
-                          //   child: ListTile(
-                          //     leading: Icon(Icons.add),
-                          //     title: Text('Add'),
-                          //   ),
-                          // ),
                           PopupMenuItem<String>(
                             value: 'edit',
                             child: ListTile(
@@ -265,14 +119,12 @@ class _MedicineViewState extends State<MedicineView> {
                         onSelected: (String action) {
                           // Handle menu item selection
                           switch (action) {
-                            case 'add':
-                              _showAddMedicineDialog(context);
-                              break;
                             case 'edit':
-                              _showEditMedicineDialog(context, data[index]);
+                              controller.showEditMedicineDialog(
+                                  context, data[index]);
                               break;
                             case 'delete':
-                              _showDeleteMedicineDialog(context);
+                              controller.showDeleteMedicineDialog(context);
                               break;
                           }
                         },
@@ -283,297 +135,12 @@ class _MedicineViewState extends State<MedicineView> {
                 itemCount: data.length,
               ),
             ),
-            SizedBox(height: 100,)
+            SizedBox(
+              height: 100,
+            )
           ],
         ),
       ),
-    );
-  }
-
-  void _showAddMedicineDialog(BuildContext context) {
-    DateTime dateTime = DateTime(2024);
-    // Implement logic to show add medicine dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Add Medicine'),
-          // Add text fields and buttons for adding medicine
-          content: Padding(
-            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // TextField(
-                //   keyboardType: TextInputType.text,
-                //   style: TextStyle(fontSize: 15),
-                //   decoration: InputDecoration(
-                //       labelText: 'ID',
-                //       border: OutlineInputBorder(
-                //           borderRadius: BorderRadius.circular(10))),
-                // ),
-
-                TextField(
-                  keyboardType: TextInputType.text,
-                  style: TextStyle(fontSize: 15),
-                  decoration: InputDecoration(
-                      labelText: 'Name',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-                SizedBox(height: 10),
-                TextField(
-                  keyboardType: TextInputType.text,
-                  style: TextStyle(fontSize: 15),
-                  decoration: InputDecoration(
-                      labelText: 'Medicine Name',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-                SizedBox(height: 10),
-                TextField(
-                  keyboardType: TextInputType.text,
-                  style: TextStyle(fontSize: 15),
-                  decoration: InputDecoration(
-                      labelText: 'Quantity',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-                SizedBox(height: 10),
-                TextField(
-                  keyboardType: TextInputType.text,
-                  style: TextStyle(fontSize: 15),
-                  decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          Icons.calendar_today,
-                          size: 15,
-                        ),
-                        onPressed: () {
-                          showDatePicker(
-                              context: context,
-                              initialDate: dateTime,
-                              firstDate: (DateTime(1900, 1, 1)),
-                              lastDate: (DateTime(2500, 12, 31)));
-                        },
-                      ),
-                      labelText: 'Date',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-                SizedBox(height: 10),
-                TextField(
-                  keyboardType: TextInputType.text,
-                  style: TextStyle(fontSize: 15),
-                  decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          Icons.calendar_today,
-                          size: 15,
-                        ),
-                        onPressed: () {
-                          showDatePicker(
-                              context: context,
-                              initialDate: dateTime,
-                              firstDate: (DateTime(1900, 1, 1)),
-                              lastDate: (DateTime(2500, 12, 31)));
-                        },
-                      ),
-                      labelText: 'Expiration Date',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-                SizedBox(height: 10),
-                TextField(
-                  keyboardType: TextInputType.text,
-                  style: TextStyle(fontSize: 15),
-                  decoration: InputDecoration(
-                      labelText: 'Price',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                // Add logic for saving the new medicine
-                Navigator.of(context).pop();
-              },
-              child: Text('Add'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Cancel'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  void _showEditMedicineDialog(BuildContext context, medicine medicine) {
-    DateTime dateTime = DateTime(2024);
-    // Implement logic to show edit medicine dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Edit Medicine'),
-
-          // Add text fields pre-filled with medicine information
-          content: Padding(
-            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  // TextField(
-                  //   keyboardType: TextInputType.text,
-                  //   style: TextStyle(fontSize: 15),
-                  //   decoration: InputDecoration(
-                  //       labelText: 'ID',
-                  //       border: OutlineInputBorder(
-                  //           borderRadius: BorderRadius.circular(10))),
-                  // ),
-                  // SizedBox(height: 10),
-                  TextField(
-                    keyboardType: TextInputType.text,
-                    style: TextStyle(fontSize: 15),
-                    decoration: InputDecoration(
-                        labelText: 'Name',
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10))),
-                  ),
-                  SizedBox(height: 10),
-                  TextField(
-                    keyboardType: TextInputType.text,
-                    style: TextStyle(fontSize: 15),
-                    decoration: InputDecoration(
-                        labelText: 'Medicine Name',
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10))),
-                  ),
-                  SizedBox(height: 10),
-                  TextField(
-                    keyboardType: TextInputType.text,
-                    style: TextStyle(fontSize: 15),
-                    decoration: InputDecoration(
-                        labelText: 'Quantity',
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10))),
-                  ),
-                  SizedBox(height: 10),
-                  TextField(
-                    keyboardType: TextInputType.text,
-                    style: TextStyle(fontSize: 15),
-                    decoration: InputDecoration(
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            Icons.calendar_today,
-                            size: 15,
-                          ),
-                          onPressed: () {
-                            showDatePicker(
-                                context: context,
-                                initialDate: dateTime,
-                                firstDate: (DateTime(1900, 1, 1)),
-                                lastDate: (DateTime(2500, 12, 31)));
-                          },
-                        ),
-                        labelText: 'Date',
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10))),
-                  ),
-                  SizedBox(height: 10),
-                  TextField(
-                    keyboardType: TextInputType.text,
-                    style: TextStyle(fontSize: 15),
-                    decoration: InputDecoration(
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            Icons.calendar_today,
-                            size: 15,
-                          ),
-                          onPressed: () {
-                            showDatePicker(
-                                context: context,
-                                initialDate: dateTime,
-                                firstDate: (DateTime(1900, 1, 1)),
-                                lastDate: (DateTime(2500, 12, 31)));
-                          },
-                        ),
-                        labelText: 'Expiration Date',
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10))),
-                  ),
-                  SizedBox(height: 10),
-                  TextField(
-                    keyboardType: TextInputType.text,
-                    style: TextStyle(fontSize: 15),
-                    decoration: InputDecoration(
-                        labelText: 'Price',
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10))),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                // Add logic for saving the edited medicine
-                Navigator.of(context).pop();
-              },
-              child: Text('Save'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Cancel'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  void _showDeleteMedicineDialog(BuildContext context) {
-    // Implement logic to show add medicine dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          icon: Icon(
-            Icons.delete,
-            color: Colors.red,
-          ),
-          title: Text('Delete Medicine'),
-          content: Text('Do you want to DELETE this medicine?'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                // Add logic for saving the new medicine
-                Navigator.of(context).pop();
-              },
-              child: Text('Yes'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('No'),
-            ),
-          ],
-        );
-      },
     );
   }
 }

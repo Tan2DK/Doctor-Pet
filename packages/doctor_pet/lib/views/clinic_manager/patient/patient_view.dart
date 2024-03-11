@@ -1,39 +1,17 @@
+import 'package:doctor_pet/common_widget/custom_searchbar_widget.dart';
 import 'package:doctor_pet/core/data/patient.dart';
+import 'package:doctor_pet/views/clinic_manager/patient/patient_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:doctor_pet/core/data/pet.dart';
-import 'package:doctor_pet/core/data/owner.dart';
-import 'package:doctor_pet/comon_wiget/DataTitleWidget.dart';
+import 'package:doctor_pet/common_widget/data_title_widget.dart';
 import 'package:doctor_pet/core/data/DataTitleModel.dart';
+import 'package:get/get.dart';
 
-class PatientView extends StatefulWidget {
+
+class PatientView extends GetView<PatientController> {
   const PatientView({Key? key}) : super(key: key);
-
-  @override
-  State<PatientView> createState() => _PatientViewState();
-}
-
-class _PatientViewState extends State<PatientView> {
   @override
   Widget build(BuildContext context) {
-    final List<patient> dataPatient = [
-      patient(ownName: 'Nguyen Van A', petName: 'Dog'),
-      patient(ownName: 'One Zi', petName: 'Fish'),
-      patient(ownName: 'MCK', petName: 'Horse'),
-      patient(ownName: 'Wxrdie', petName: 'Cat'),
-      patient(ownName: 'One Zi', petName: 'Fish'),
-      patient(ownName: 'One Zi', petName: 'Fish'),
-      patient(ownName: 'One Zi', petName: 'Fish'),
-      patient(ownName: 'One Zi', petName: 'Fish'),
-      patient(ownName: 'One Zi', petName: 'Fish'),
-      patient(ownName: 'One Zi', petName: 'Fish'),
-      patient(ownName: 'One Zi', petName: 'Fish'),
-      patient(ownName: 'One Zi', petName: 'Fish'),
-      patient(ownName: 'One Zi', petName: 'Fish'),
-      patient(ownName: 'One Zi', petName: 'Fish'),
-      patient(ownName: 'One Zi', petName: 'Fish'),
-      patient(ownName: 'One Zi', petName: 'Fish'),
-      patient(ownName: 'One Zi', petName: 'Fish'),
-    ];
+    List<patient> dataPatient = List.from(controller.dataPatient);
 
     return Scaffold(
       body: Container(
@@ -43,16 +21,7 @@ class _PatientViewState extends State<PatientView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search...',
-                  prefixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ),
+            const CustomSearchBarWidget(),
             SizedBox(height: 10),
             Row(
               children: [
@@ -132,10 +101,10 @@ class _PatientViewState extends State<PatientView> {
                           // Handle menu item selection
                           switch (action) {
                             case 'owner':
-                              _showOwnerInfoDialog(context);
+                              controller.showOwnerInfoDialog(context);
                               break;
                             case 'pet':
-                              _showPetInfoDialog(context);
+                              controller.showPetInfoDialog(context);
                               break;
                           }
                         },
@@ -152,67 +121,6 @@ class _PatientViewState extends State<PatientView> {
           ],
         ),
       ),
-    );
-  }
-
-  void _showOwnerInfoDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Owner Information'),
-          content: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text('ID: 1'),
-              Text('Name: Nguyen Van A'),
-              Text('Phone: 011223344'),
-              Text('Address: Viet Nam'),
-              Text('Birthday: 29/2/2002'),
-            ],
-          ),
-          actions: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-              },
-              child: Text('Close'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  void _showPetInfoDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Pet Information'),
-          content: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text('Pet ID: 1'),
-              Text('Pet Name: Lu'),
-              Text('Species: Cho Phu Quoc'),
-              Text('Color: Yellow'),
-              Text('Birthday: 29/2/2002'),
-              Text('Origin: Viet Nam')
-            ],
-          ),
-          actions: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-              },
-              child: Text('Close'),
-            ),
-          ],
-        );
-      },
     );
   }
 }
