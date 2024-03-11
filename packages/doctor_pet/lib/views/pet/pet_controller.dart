@@ -1,10 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter/widgets.dart';
-import '../../utils/app_enum.dart'; // Đảm bảo đường dẫn đúng tùy theo cấu trúc thư mục dự án của bạn
+import '../../utils/app_enum.dart';
 import 'package:doctor_pet/core/data/pet.dart';
 import 'package:doctor_pet/core/data/owner.dart';
-import 'package:doctor_pet/views/pet/nested_navigation/nested_navation_pet.dart'; // Đảm bảo đường dẫn đúng
-import 'package:doctor_pet/core/data/data_mock/petslist.dart'; // Đảm bảo đường dẫn đến file petslist.dart đúng
+import 'package:doctor_pet/views/home/nested_navigation/nested_navigation_pet.dart';
+import 'package:doctor_pet/data/data_mock/petslist.dart';
 
 class PetController extends GetxController {
   RxInt index = RxInt(0);
@@ -19,6 +19,9 @@ class PetController extends GetxController {
     'Pet view',
   ];
 
+  Rx<List<Pet>> pets = Rx<List<Pet>>([]);
+  Rx<List<Pet>> filteredPets = Rx<List<Pet>>([]);
+
   void changeTab(int i) => index.value = i;
 
   List<String> getTabListByRole(Role role) {
@@ -26,39 +29,63 @@ class PetController extends GetxController {
       case Role.customer:
         return customerTabNameList;
       default:
-        return []; // Hoặc trả về một danh sách mặc định nếu không có vai trò nào khớp
+        return [];
     }
   }
 
   List<Widget> listScreen() {
     return [
       const NestedNavigationPet(),
-      // Thêm các screen tương ứng với mỗi tab ở đây
+      // Add other screens corresponding to each tab here
     ];
   }
-
-  var pets = <Pet>[].obs;
-  var filteredPets = <Pet>[].obs;
 
   @override
   void onInit() {
     super.onInit();
-    // Sử dụng dữ liệu từ file mockPets
-    pets.assignAll(mockPets);
-    filteredPets.assignAll(pets);
+    // Use data from mockPets
+    pets.value = mockPets;
+    filteredPets.value = List.from(pets.value);
   }
 
   void searchPet(String query) {
     if (query.isEmpty) {
-      filteredPets.assignAll(pets);
+      filteredPets.value = List.from(pets.value);
     } else {
-      filteredPets.assignAll(
-        pets
-            .where(
-                (pet) => pet.name.toLowerCase().contains(query.toLowerCase()))
-            .toList(),
-      );
+      filteredPets.value = pets.value
+          .where((pet) => pet.name.toLowerCase().contains(query.toLowerCase()))
+          .toList();
     }
     filteredPets.refresh();
+  }
+
+  void showOwnerDetails(BuildContext context, Owner owner) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Owner Information'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('ID: ${owner.id}'),
+                Text('Name: ${owner.name}'),
+                Text('Phone: ${owner.phone}'),
+                Text('Address: ${owner.address}'),
+                Text('Birthday: ${owner.birthday.toString()}'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Close'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

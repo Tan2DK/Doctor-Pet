@@ -1,5 +1,5 @@
-import 'package:doctor_pet/views/home/nested_navigation/nested_navation_doctor.dart';
-import 'package:doctor_pet/views/pet/nested_navigation/nested_navation_pet.dart';
+import 'package:doctor_pet/views/home/nested_navigation/nested_navigation_doctor.dart';
+import 'package:doctor_pet/views/home/nested_navigation/nested_navigation_pet.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 

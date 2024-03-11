@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:doctor_pet/views/pet/pet_controller.dart';
 import 'package:doctor_pet/core/data/pet.dart';
-import 'package:doctor_pet/core/data/owner.dart';
 import 'package:doctor_pet/core/data/data_title_model.dart';
-import 'package:doctor_pet/common_widget/data_title_widget.dart'; // Đường dẫn đến DataTitleWidget
+import 'package:doctor_pet/common_widget/data_title_widget.dart';
 
 class PetView extends GetView<PetController> {
   const PetView({Key? key}) : super(key: key);
@@ -48,13 +47,12 @@ class PetView extends GetView<PetController> {
             ),
             Expanded(
               child: Obx(() => ListView.builder(
-                    itemCount: controller.filteredPets.length,
+                    itemCount: controller.filteredPets.value.length,
                     itemBuilder: (context, index) {
-                      final Pet pet = controller.filteredPets[index];
+                      final Pet pet = controller.filteredPets.value[index];
                       return Row(
                         children: [
-                          const SizedBox(
-                              width: 90), // Để thẳng hàng với tiêu đề
+                          const SizedBox(width: 90), // Align with the title
                           Expanded(
                             flex: 1,
                             child: Text(pet.id),
@@ -78,7 +76,7 @@ class PetView extends GetView<PetController> {
                           IconButton(
                             icon: const Icon(Icons.info_outline),
                             onPressed: () =>
-                                _showOwnerDetails(context, pet.own),
+                                controller.showOwnerDetails(context, pet.own),
                           ),
                         ],
                       );
@@ -88,36 +86,6 @@ class PetView extends GetView<PetController> {
           ],
         ),
       ),
-    );
-  }
-
-  void _showOwnerDetails(BuildContext context, Owner owner) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Owner Information'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text('ID: ${owner.id}'),
-                Text('Name: ${owner.name}'),
-                Text('Phone: ${owner.phone}'),
-                Text('Address: ${owner.address}'),
-                Text('Birthday: ${owner.birthday.toString()}'),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Close'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
     );
   }
 }
