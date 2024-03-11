@@ -14,15 +14,15 @@ class MedicineView extends GetView<MedicineController> {
     final List<medicine> data = List.from(controller.data);
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color.fromARGB(255, 254, 234, 234),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const CustomSearchBarWidget(),
-            SizedBox(height: 10),
-            Row(
+            const SizedBox(height: 10),
+            const Row(
               children: [
                 SizedBox(width: 70),
                 Text(
@@ -34,22 +34,28 @@ class MedicineView extends GetView<MedicineController> {
                 ),
               ],
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                const CustomButtonActionWidget(
+                CustomButtonActionWidget(
                   label: 'Sort',
-                  bgColor: Colors.blue,
+                  bgColor: Colors.white,
+                  txtColor: Colors.black54,
+                  iconColor: Colors.black54,
+                  icon: Icons.sort,
                 ),
-                const SizedBox(width: 10),
-                const CustomButtonActionWidget(
+                SizedBox(width: 10),
+                CustomButtonActionWidget(
                   label: 'Add Medicine',
                   bgColor: Colors.blue,
+                  txtColor: Colors.white,
+                  icon: Icons.add,
+                  iconColor: Colors.white,
                 ),
                 SizedBox(width: 10),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             DataTitleWidget(
               titles: [
                 DataTitleModel(name: 'IDMedi', flex: 2),
@@ -91,14 +97,14 @@ class MedicineView extends GetView<MedicineController> {
                       child: PopupMenuButton<String>(
                         itemBuilder: (BuildContext context) =>
                             <PopupMenuEntry<String>>[
-                          PopupMenuItem<String>(
+                          const PopupMenuItem<String>(
                             value: 'edit',
                             child: ListTile(
                               leading: Icon(Icons.edit),
                               title: Text('Edit'),
                             ),
                           ),
-                          PopupMenuItem<String>(
+                          const PopupMenuItem<String>(
                             value: 'delete',
                             child: ListTile(
                               leading: Icon(Icons.delete),
@@ -125,7 +131,7 @@ class MedicineView extends GetView<MedicineController> {
                 itemCount: data.length,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 100,
             )
           ],

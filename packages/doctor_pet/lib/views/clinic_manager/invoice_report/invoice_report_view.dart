@@ -1,6 +1,7 @@
 import 'package:doctor_pet/common_widget/custom_button/custom_button_selectday_widget.dart';
 import 'package:doctor_pet/common_widget/custom_button/custom_button_show_widget.dart';
 import 'package:doctor_pet/common_widget/custom_searchbar_widget.dart';
+import 'package:doctor_pet/common_widget/custom_text/custom_text_widget.dart';
 import 'package:doctor_pet/core/data/invoicereport.dart';
 import 'package:doctor_pet/core/data/medicinereport.dart';
 import 'package:doctor_pet/core/data/patient.dart';
@@ -16,41 +17,40 @@ class InvoiceReportView extends GetView<InvoiceReportController> {
   const InvoiceReportView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final List<invoicereport> dataInvoiceReport = List.from(controller.dataInvoiceReport);
+    final List<invoicereport> dataInvoiceReport =
+        List.from(controller.dataInvoiceReport);
 
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color.fromARGB(255, 254, 234, 234),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const CustomSearchBarWidget(),
-            SizedBox(height: 10),
-            Center(
-              child: Text(
-                'Invoice Report',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+            const SizedBox(height: 10),
+            const Center(
+              child: CustomTextWidget(
+                text: 'Invoice Report',
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 10),
-            Row(
+            const SizedBox(height: 10),
+            const Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const CustomButtonSelectDayWidget(
+                CustomButtonSelectDayWidget(
                   label: 'Select Start Day',
                   bgColor: Color.fromARGB(255, 28, 195, 142),
                 ),
-                const CustomButtonSelectDayWidget(
+                CustomButtonSelectDayWidget(
                   label: 'Select End Day',
                   bgColor: Color.fromARGB(255, 189, 50, 22),
                 ),
-                const CustomButtonShowWidget(
+                CustomButtonShowWidget(
                   label: 'Show Report',
                   bgColor: Color.fromARGB(255, 102, 169, 228),
                 )
@@ -92,7 +92,10 @@ class InvoiceReportView extends GetView<InvoiceReportController> {
                               name: dataInvoiceReport[index].cost.toString(),
                               flex: 2),
                           DataTitleModel(
-                              name: dataInvoiceReport[index].day.toString().substring(0,11),
+                              name: dataInvoiceReport[index]
+                                  .day
+                                  .toString()
+                                  .substring(0, 11),
                               flex: 5),
                           DataTitleModel(
                               name: dataInvoiceReport[index].prescription,
@@ -105,7 +108,7 @@ class InvoiceReportView extends GetView<InvoiceReportController> {
                 itemCount: dataInvoiceReport.length,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 100,
             ),
           ],

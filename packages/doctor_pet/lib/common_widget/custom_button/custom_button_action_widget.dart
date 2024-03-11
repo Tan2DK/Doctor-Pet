@@ -6,12 +6,16 @@ class CustomButtonActionWidget extends StatefulWidget {
     Key? key,
     this.label,
     this.bgColor,
-    this.btnColor,
+    this.txtColor,
+    this.iconColor,
+    this.icon
   }) : super(key: key);
 
   final String? label;
   final Color? bgColor;
-  final Color? btnColor;
+  final Color? txtColor;
+  final Color? iconColor;
+  final IconData? icon;
 
   @override
   State<CustomButtonActionWidget> createState() => _CustomButtonActionWidgetState();
@@ -21,7 +25,7 @@ class _CustomButtonActionWidgetState extends State<CustomButtonActionWidget> {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
-        icon: Icon(Icons.add, color: Colors.white),
+        icon: Icon(widget.icon, color: widget.iconColor),
         style: ElevatedButton.styleFrom(
           backgroundColor: widget.bgColor,
         ),
@@ -34,7 +38,7 @@ class _CustomButtonActionWidgetState extends State<CustomButtonActionWidget> {
         label: Text(
           widget.label.toString(),
           style: TextStyle(
-            color: Colors.white,
+            color: widget.txtColor,
           ),
         ));
   }

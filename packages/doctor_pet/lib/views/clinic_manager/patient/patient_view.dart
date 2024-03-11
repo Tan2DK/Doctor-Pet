@@ -15,15 +15,15 @@ class PatientView extends GetView<PatientController> {
 
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color.fromARGB(255, 254, 234, 234),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const CustomSearchBarWidget(),
-            SizedBox(height: 10),
-            Row(
+            const SizedBox(height: 10),
+            const Row(
               children: [
                 SizedBox(width: 70),
                 Text(
@@ -45,15 +45,15 @@ class PatientView extends GetView<PatientController> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                     ),
-                    icon: Icon(Icons.sort_rounded, color: Colors.black54),
-                    label: Text(
+                    icon: const Icon(Icons.sort_rounded, color: Colors.black54),
+                    label: const Text(
                       'Sort',
                       style: TextStyle(color: Colors.black54),
                     )),
-                    SizedBox(width: 20,)
+                    const SizedBox(width: 20,)
               ],
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             DataTitleWidget(
               titles: [
                 DataTitleModel(name: 'Owner Name', flex: 4),
@@ -82,14 +82,14 @@ class PatientView extends GetView<PatientController> {
                       child: PopupMenuButton<String>(
                         itemBuilder: (BuildContext context) =>
                             <PopupMenuEntry<String>>[
-                          PopupMenuItem<String>(
+                          const PopupMenuItem<String>(
                             value: 'owner',
                             child: ListTile(
                               leading: Icon(Icons.info),
                               title: Text('Owner Information'),
                             ),
                           ),
-                          PopupMenuItem<String>(
+                          const PopupMenuItem<String>(
                             value: 'pet',
                             child: ListTile(
                               leading: Icon(Icons.info),
@@ -115,7 +115,7 @@ class PatientView extends GetView<PatientController> {
                 itemCount: dataPatient.length,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 100,
             )
           ],

@@ -1,4 +1,5 @@
 import 'package:doctor_pet/common_widget/custom_searchbar_widget.dart';
+import 'package:doctor_pet/common_widget/custom_text/custom_text_widget.dart';
 import 'package:doctor_pet/core/data/doctor.dart';
 import 'package:doctor_pet/views/clinic_manager/doctor/doctor_controller.dart';
 import 'package:flutter/material.dart';
@@ -16,23 +17,22 @@ class DoctorView extends GetView<DoctorController> {
 
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color.fromARGB(255, 254, 234, 234),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const CustomSearchBarWidget(),
-            SizedBox(height: 10),
-            Row(
+            const SizedBox(height: 10),
+            const Row(
               children: [
                 SizedBox(width: 70),
-                Text(
-                  'Doctor Management',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
+                // ignore: unnecessary_const
+                const CustomTextWidget(
+                  text: 'Doctor Management',
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
                 ),
               ],
             ),
@@ -44,12 +44,12 @@ class DoctorView extends GetView<DoctorController> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                     ),
-                    icon: Icon(Icons.sort_rounded, color: Colors.black54),
-                    label: Text(
-                      'Sort',
-                      style: TextStyle(color: Colors.black54),
+                    icon: const Icon(Icons.sort_rounded, color: Colors.black54),
+                    label: const CustomTextWidget(
+                      text: 'Sort',
+                      txtColor: Colors.black54,
                     )),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 ElevatedButton.icon(
                     onPressed: () {
                       controller.showAddDialog(context);
@@ -57,17 +57,15 @@ class DoctorView extends GetView<DoctorController> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
                     ),
-                    icon: Icon(Icons.add, color: Colors.white),
-                    label: Text(
-                      'Add Doctor',
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
+                    icon: const Icon(Icons.add, color: Colors.white),
+                    label: const CustomTextWidget(
+                      text: 'Add Doctor',
+                      txtColor: Colors.white,
                     )),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             DataTitleWidget(
               titles: [
                 DataTitleModel(
@@ -105,14 +103,14 @@ class DoctorView extends GetView<DoctorController> {
                       child: PopupMenuButton<String>(
                         itemBuilder: (BuildContext context) =>
                             <PopupMenuEntry<String>>[
-                          PopupMenuItem<String>(
+                          const PopupMenuItem<String>(
                             value: 'edit',
                             child: ListTile(
                               leading: Icon(Icons.edit),
                               title: Text('Edit'),
                             ),
                           ),
-                          PopupMenuItem<String>(
+                          const PopupMenuItem<String>(
                             value: 'delete',
                             child: ListTile(
                               leading: Icon(Icons.delete),
@@ -138,7 +136,7 @@ class DoctorView extends GetView<DoctorController> {
                 itemCount: data.length,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 100,
             ),
           ],

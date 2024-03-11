@@ -17,15 +17,15 @@ class StaffView extends GetView<StaffController> {
     List<staff> data = List.from(controller.data);
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color.fromARGB(255, 254, 234, 234),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const CustomSearchBarWidget(),
-            SizedBox(height: 10),
-            Row(
+            const SizedBox(height: 10),
+            const Row(
               children: [
                 SizedBox(width: 70),
                 Text(
@@ -45,12 +45,12 @@ class StaffView extends GetView<StaffController> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                     ),
-                    icon: Icon(Icons.sort_rounded, color: Colors.black54),
-                    label: Text(
+                    icon: const Icon(Icons.sort_rounded, color: Colors.black54),
+                    label: const Text(
                       'Sort',
                       style: TextStyle(color: Colors.black54),
                     )),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 ElevatedButton.icon(
                     onPressed: () {
                       controller.showAddDialog(context);
@@ -58,17 +58,17 @@ class StaffView extends GetView<StaffController> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
                     ),
-                    icon: Icon(Icons.add, color: Colors.white),
-                    label: Text(
+                    icon: const Icon(Icons.add, color: Colors.white),
+                    label: const Text(
                       'Add Staff',
                       style: TextStyle(
                         color: Colors.white,
                       ),
                     )),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             DataTitleWidget(
               titles: [
                 DataTitleModel(name: 'Staff Name', flex: 4),
@@ -107,14 +107,14 @@ class StaffView extends GetView<StaffController> {
                         child: PopupMenuButton<String>(
                           itemBuilder: (BuildContext context) =>
                               <PopupMenuEntry<String>>[
-                            PopupMenuItem<String>(
+                            const PopupMenuItem<String>(
                               value: 'edit',
                               child: ListTile(
                                 leading: Icon(Icons.edit),
                                 title: Text('Edit'),
                               ),
                             ),
-                            PopupMenuItem<String>(
+                            const PopupMenuItem<String>(
                               value: 'delete',
                               child: ListTile(
                                 leading: Icon(Icons.delete),
@@ -141,7 +141,7 @@ class StaffView extends GetView<StaffController> {
                 itemCount: data.length,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 100,
             )
           ],
