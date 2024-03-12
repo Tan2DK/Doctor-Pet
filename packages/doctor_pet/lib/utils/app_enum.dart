@@ -1,1 +1,7 @@
-enum Role { admin, clinicManager, doctor, staff, customer }
+enum Role {
+  admin,
+  clinicManager,
+  doctor,
+  staff,
+  customer,
+}

@@ -76,7 +76,7 @@ class PetView extends GetView<PetController> {
                           IconButton(
                             icon: const Icon(Icons.info_outline),
                             onPressed: () =>
-                                controller.showOwnerDetails(context, pet.own),
+                                controller.showOwnerDetails(pet.own),
                           ),
                         ],
                       );

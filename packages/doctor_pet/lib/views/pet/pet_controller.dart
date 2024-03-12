@@ -50,7 +50,7 @@ class PetController extends GetxController {
     filteredPets.refresh();
   }
 
-  void showOwnerDetails(BuildContext context, Owner owner) {
+  void showOwnerDetails(Owner owner) {
     Get.dialog(
       AlertDialog(
         title: const Text('Owner Information'),
@@ -66,13 +66,9 @@ class PetController extends GetxController {
           ),
         ),
         actions: <Widget>[
-          Builder(
-            builder: (context) => TextButton(
-              child: const Text('Close'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
+          TextButton(
+            child: const Text('Close'),
+            onPressed: Get.back,
           ),
         ],
       ),
