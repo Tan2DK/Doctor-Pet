@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'doctor_controller.dart';
-
-class DoctorView extends GetView<DoctorController> {
-  const DoctorView({super.key});
+class DoctorView extends StatelessWidget {
+  const DoctorView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      appBar: AppBar(
+        title: const Text('Doctor View'),
+      ),
+      body: ListView(
         children: [
-          Center(
-            child: Obx(() => Text(controller.count.value.toString())),
+          ListTile(
+            title: const Text('Patient Management'),
+            onTap: () {
+              // Điều hướng tới màn hình "My Patients" khi người dùng chọn "Patient Management"
+              Get.toNamed('/myPatients');
+            },
           ),
-          ElevatedButton(
-            onPressed: controller.increase,
-            child: const Text('Increase'),
-          ),
+          // Thêm các ListTile khác ở đây cho các mục còn lại trong doctorTabNameList
         ],
       ),
     );
