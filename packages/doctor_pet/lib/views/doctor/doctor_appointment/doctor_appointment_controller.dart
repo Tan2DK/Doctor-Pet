@@ -3,7 +3,7 @@ import 'package:doctor_pet/core/data/doctor.dart';
 import 'package:doctor_pet/data/data_mock/doctor_manager.dart';
 
 class DoctorAppointmentController extends GetxController {
-  Rx<List<doctor>> doctors = Rx<List<doctor>>([]);
+  Rx<List<Doctor>> doctors = Rx<List<Doctor>>([]);
 
   @override
   void onInit() {

@@ -2,8 +2,8 @@
 
 import 'package:doctor_pet/core/data/doctor.dart';
 
-final List<doctor> mockDoctors = [
-  doctor(
+final List<Doctor> mockDoctors = [
+  Doctor(
     day: DateTime(2017, 9, 7),
     idCustomer: '1',
     nameCustomer: 'Duy',
@@ -11,7 +11,7 @@ final List<doctor> mockDoctors = [
     phoneNum: '091637238',
     accepted: false,
   ),
-  doctor(
+  Doctor(
     day: DateTime(2018, 4, 16),
     idCustomer: '2',
     nameCustomer: 'Kep',

@@ -1,4 +1,4 @@
-class doctor {
+class Doctor {
   String idCustomer;
   String nameCustomer;
   String email;
@@ -6,7 +6,7 @@ class doctor {
   String phoneNum;
   bool accepted;
 
-  doctor({
+  Doctor({
     required this.day,
     required this.idCustomer,
     required this.nameCustomer,
