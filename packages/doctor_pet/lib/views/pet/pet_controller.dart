@@ -1,36 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../utils/app_enum.dart';
 import 'package:doctor_pet/core/data/pet.dart';
 import 'package:doctor_pet/core/data/owner.dart';
 import 'package:doctor_pet/data/data_mock/petslist.dart';
 
 class PetController extends GetxController {
-  RxInt index = RxInt(0);
-  Rx<Role> role = Rx<Role>(Role.customer);
-
-  final customerTabNameList = [
-    'Dashboard',
-    'Appointment',
-    'Medical history',
-    'Ask Doctor',
-    'Search Clinic',
-    'Pet view',
-  ];
-
   Rx<List<Pet>> pets = Rx<List<Pet>>([]);
   Rx<List<Pet>> filteredPets = Rx<List<Pet>>([]);
-
-  void changeTab(int i) => index.value = i;
-
-  List<String> getTabListByRole(Role role) {
-    switch (role) {
-      case Role.customer:
-        return customerTabNameList;
-      default:
-        return [];
-    }
-  }
 
   @override
   void onInit() {

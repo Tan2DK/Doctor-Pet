@@ -11,9 +11,8 @@ class PetView extends GetView<PetController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration:
-            const BoxDecoration(color: Color.fromARGB(255, 254, 234, 234)),
+      body: ColoredBox(
+        color: const Color.fromARGB(255, 254, 234, 234),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
