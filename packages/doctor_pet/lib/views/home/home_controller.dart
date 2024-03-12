@@ -7,7 +7,7 @@ import '../../utils/app_enum.dart';
 
 class HomeController extends GetxController {
   RxInt index = RxInt(0);
-  Rx<Role> role = Rx<Role>(Role.customer);
+  Rx<Role> role = Rx<Role>(Role.doctor);
 
   final adminTabNameList = [
     'Clinic Management',
@@ -24,8 +24,8 @@ class HomeController extends GetxController {
     'Report',
   ];
   final doctorTabNameList = [
-    'Schedule Timing',
     'Appointment Management',
+    'Schedule Timing',
     'Available Timing',
     'Patient Management',
     'Answer question',
@@ -55,6 +55,7 @@ class HomeController extends GetxController {
 
   List<Widget> listScreen() {
     return [
+      const NestedNavigationDoctor(),
       const NestedNavigationPet(),
     ];
   }
