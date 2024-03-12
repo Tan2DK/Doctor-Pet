@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import '../../../utils/app_routes.dart';
 import '../../doctor/doctor_binding.dart';
 import '../../doctor/doctor_view.dart';
+import '../../doctor/doctor_appointment/doctor_appointment_binding.dart';
+import '../../doctor/doctor_appointment/doctor_appointment_view.dart';
 
 class NestedNavigationDoctor extends StatelessWidget {
   const NestedNavigationDoctor({super.key});
@@ -16,8 +18,8 @@ class NestedNavigationDoctor extends StatelessWidget {
       onGenerateRoute: (settings) {
         return GetPageRoute(
           settings: settings,
-          binding: DoctorBinding(),
-          page: () => const DoctorView(),
+          binding: DoctorAppointmentBinding(),
+          page: () => const DoctorAppointmentView(),
         );
       },
     );
