@@ -49,10 +49,10 @@ class DoctorAppointmentView extends GetView<DoctorAppointmentController> {
                         final doctor = controller.doctors.value[index];
                         return DataRow(
                           cells: <DataCell>[
-                            DataCell(Text(doctor.idcustomer)),
-                            DataCell(Text(doctor.namedoctor)),
+                            DataCell(Text(doctor.idCustomer)),
+                            DataCell(Text(doctor.nameCustomer)),
                             DataCell(Text(doctor.email)),
-                            DataCell(Text(doctor.phonenum)),
+                            DataCell(Text(doctor.phoneNum)),
                             DataCell(Checkbox(
                               value: doctor.accepted,
                               onChanged: (newValue) {

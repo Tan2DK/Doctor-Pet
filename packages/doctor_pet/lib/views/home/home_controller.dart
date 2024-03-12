@@ -56,6 +56,7 @@ class HomeController extends GetxController {
   List<Widget> listScreen() {
     return [
       const NestedNavigationDoctor(),
+      const NestedNavigationPet(),
     ];
   }
 }

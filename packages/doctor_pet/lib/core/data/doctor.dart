@@ -1,17 +1,17 @@
 class doctor {
-  String idcustomer;
-  String namedoctor;
+  String idCustomer;
+  String nameCustomer;
   String email;
   DateTime day;
-  String phonenum;
+  String phoneNum;
   bool accepted;
 
   doctor({
     required this.day,
-    required this.idcustomer,
-    required this.namedoctor,
+    required this.idCustomer,
+    required this.nameCustomer,
     required this.email,
-    required this.phonenum,
+    required this.phoneNum,
     this.accepted = false,
   });
 }
