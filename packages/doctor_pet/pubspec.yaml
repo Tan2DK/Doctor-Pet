@@ -13,6 +13,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   get: ^4.6.5
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
@@ -23,5 +24,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-    - assets/img/
 
