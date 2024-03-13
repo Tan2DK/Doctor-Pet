@@ -1,3 +1,4 @@
+import 'package:doctor_pet/views/home/nested_navigation/nested_navigation_doctor%20_mypatients.dart';
 import 'package:doctor_pet/views/home/nested_navigation/nested_navigation_doctor.dart';
 import 'package:doctor_pet/views/home/nested_navigation/nested_navigation_pet.dart';
 import 'package:flutter/widgets.dart';
@@ -61,7 +62,7 @@ class HomeController extends GetxController {
         ];
       case Role.doctor:
         return [
-          const NestedNavigationDoctor(),
+          const NestedNavigationDocMypatients(),
         ];
       default:
         return [];

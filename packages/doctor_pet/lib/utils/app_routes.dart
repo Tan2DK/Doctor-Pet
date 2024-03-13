@@ -44,4 +44,5 @@ class RoutesName {
   static const myPatients = '/myPatients';
   static const String nestedNavDoctor = 'nested_navigation_doctor';
   static const String nestedNavPet = 'nested_navigation_pet';
+  static const String nestedNavDocMypatients = 'nested_navigation_pet';
 }
