@@ -3,14 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 import 'customer_profile_controller.dart';
-// Use this for date formatting
 
 class ProfileView extends GetView<CustomerProfileController> {
-  const ProfileView({super.key});
+  const ProfileView({super.key, Key? keys});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Your Profile'),
+        // Đặt các thuộc tính của AppBar tại đây
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

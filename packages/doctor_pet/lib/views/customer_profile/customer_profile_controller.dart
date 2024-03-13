@@ -5,6 +5,8 @@ class CustomerProfileController extends GetxController {
   final TextEditingController dobController = TextEditingController();
   final TextEditingController firstnamecontroller = TextEditingController();
   final TextEditingController lastnamecontroller = TextEditingController();
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
   String displayName = "";
   Rx<String> fisname = Rx<String>('');
   Rx<String> lastname = Rx<String>('');
@@ -18,21 +20,21 @@ class CustomerProfileController extends GetxController {
   Rxn<String> errorMessageDob = Rxn<String>();
 
   RxBool showErrors = RxBool(false);
+
   void saveChanges() async {
-    final result = await showDialog<bool>(
-      context: Get.context!,
-      builder: (context) => AlertDialog(
+    final result = await Get.dialog<bool>(
+      AlertDialog(
         title: const Text('Confirm'),
         content: const Text('Are you sure you want to save changes?'),
         actions: <Widget>[
           TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
+            onPressed: () => Get.back(result: false),
             child: const Text('Cancel'),
           ),
           TextButton(
             onPressed: () {
               onTapSubmit();
-              Navigator.of(context).pop(true);
+              Get.back(result: true);
             },
             child: const Text('OK'),
           ),
@@ -41,7 +43,7 @@ class CustomerProfileController extends GetxController {
     );
 
     if (result == true) {
-      // Cập nhật dữ liệu khi nhấn nút OK
+      // Update data when OK button is pressed
       displayName = "${firstnamecontroller.text} ${lastnamecontroller.text}";
     }
   }
@@ -84,31 +86,31 @@ class CustomerProfileController extends GetxController {
   }
 
   void validateInputs() {
-    // Xác thực tên
     errorMessageFisName.value =
         fisname.value.isNotEmpty ? null : 'First name cannot be empty';
-    // Xác thực họ
     errorMessageLastName.value =
         lastname.value.isNotEmpty ? null : 'Last name cannot be empty';
-    // Xác thực email
     errorMessageEmail.value =
         email.value.isEmail ? null : 'Email address is not valid';
-    // Xác thực số điện thoại
     errorMessagePhone.value =
         phonenumber.value.isPhoneNumber ? null : 'Phone number is not valid';
-    // Xác thực ngày sinh, ví dụ không xác thực cụ thể ở đây
-    // Gọi thêm xác thực cho các trường khác tương tự
   }
 
   void onTapSubmit() {
     showErrors.value = true;
     validateInputs();
-    Get.dialog(const AlertDialog(content: Text('afwefw')));
+    if (errorMessageFisName.value == null &&
+        errorMessageLastName.value == null &&
+        errorMessageEmail.value == null &&
+        errorMessagePhone.value == null &&
+        errorMessageDob.value == null) {
+      Get.back();
+      saveChanges();
+    }
   }
 
   @override
   void dispose() {
-    // Giải phóng tài nguyên khi không cần thiết nữa
     firstnamecontroller.dispose();
     lastnamecontroller.dispose();
     dobController.dispose();
