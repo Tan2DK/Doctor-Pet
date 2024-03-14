@@ -11,3 +11,7 @@ class CountryKey {
   static const String en = "EN";
   static const String vn = "VN";
 }
+
+class IntConstant {
+  static const int maxDay = 24;
+}
