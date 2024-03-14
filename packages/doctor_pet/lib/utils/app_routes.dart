@@ -1,8 +1,10 @@
+import 'package:doctor_pet/views/customer_comments/customer_comments_view.dart';
 import 'package:doctor_pet/views/doctor/doctor_binding.dart';
 import 'package:doctor_pet/views/doctor/doctor_view.dart';
 
 import 'package:get/get.dart';
 
+import '../views/customer_comments/customer_comments_binding.dart';
 import '../views/home/home_binding.dart';
 import '../views/home/home_view.dart';
 import 'package:doctor_pet/views/pet/pet_view.dart';
@@ -27,6 +29,11 @@ class AppRoutes {
       page: () => const PetView(),
       binding: PetBinding(),
     ),
+    GetPage(
+      name: RoutesName.customercomment,
+      page: () => CommentView(),
+      binding: CustomerCommentBinding(),
+    ),
   ];
 }
 
@@ -34,6 +41,7 @@ class RoutesName {
   static const String home = '/home';
   static const String doctor = '/doctor';
   static const String pet = '/pet';
+  static const String customercomment = '/comment';
   static const String nestedNavDoctor = 'nested_navigation_doctor';
   static const String nestedNavPet = 'nested_navigation_pet';
 }
