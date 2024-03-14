@@ -6,15 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:doctor_pet/core/data/medicine.dart';
 import 'package:doctor_pet/common_widget/data_title_widget.dart';
 import 'package:doctor_pet/core/data/DataTitleModel.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:doctor_pet/core/data/datasources/staff_list.dart';
 
 class StaffView extends GetView<StaffController> {
   const StaffView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<staff> data = List.from(controller.data);
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -53,7 +52,9 @@ class StaffView extends GetView<StaffController> {
                 const SizedBox(width: 10),
                 ElevatedButton.icon(
                     onPressed: () {
-                      controller.showAddDialog(context);
+                      controller.showAddDialog(
+                        context,
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
@@ -75,72 +76,72 @@ class StaffView extends GetView<StaffController> {
                 DataTitleModel(name: 'Address', flex: 4),
                 DataTitleModel(name: 'Phone', flex: 4),
                 DataTitleModel(name: 'Status', flex: 2),
-                DataTitleModel(name: 'Birthday', flex: 4),
+                DataTitleModel(name: 'Birthday', flex: 3),
                 DataTitleModel(name: '', flex: 1),
               ],
             ),
             const Divider(thickness: 2),
-            Expanded(
-              child: ListView.builder(
-                itemBuilder: (context, index) => GestureDetector(
-                  onTap: () {
-                    // _showAddDialog(context);
-                  },
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 6,
-                        child: DataTitleWidget(
-                          titles: [
-                            DataTitleModel(name: data[index].name, flex: 4),
-                            DataTitleModel(name: data[index].address, flex: 4),
-                            DataTitleModel(
-                                name: data[index].phone.toString(), flex: 4),
-                            DataTitleModel(name: data[index].status, flex: 2),
-                            DataTitleModel(
-                                name: data[index].birthday.toString().substring(0,11), flex: 4),
-                          ],
-                        ),
+            Expanded(child: Obx(() {
+              final List<staff> data = controller.dataMockStaff.value;
+              return ListView.builder(
+                itemBuilder: (context, index) => Row(
+                  children: [
+                    Expanded(
+                      flex: 6,
+                      child: DataTitleWidget(
+                        titles: [
+                          DataTitleModel(name: data[index].name, flex: 4),
+                          DataTitleModel(name: data[index].address, flex: 4),
+                          DataTitleModel(
+                              name: data[index].phone.toString(), flex: 4),
+                          DataTitleModel(name: data[index].status, flex: 2),
+                          DataTitleModel(
+                              name: data[index]
+                                  .birthday
+                                  .toString()
+                                  .substring(0, 11),
+                              flex: 3),
+                        ],
                       ),
-                      Container(
-                        width: 60, // Set the width of the container
-                        child: PopupMenuButton<String>(
-                          itemBuilder: (BuildContext context) =>
-                              <PopupMenuEntry<String>>[
-                            const PopupMenuItem<String>(
-                              value: 'edit',
-                              child: ListTile(
-                                leading: Icon(Icons.edit),
-                                title: Text('Edit'),
-                              ),
+                    ),
+                    SizedBox(
+                      width: 60, // Set the width of the container
+                      child: PopupMenuButton<String>(
+                        itemBuilder: (BuildContext context) =>
+                            <PopupMenuEntry<String>>[
+                          const PopupMenuItem<String>(
+                            value: 'edit',
+                            child: ListTile(
+                              leading: Icon(Icons.edit),
+                              title: Text('Edit'),
                             ),
-                            const PopupMenuItem<String>(
-                              value: 'delete',
-                              child: ListTile(
-                                leading: Icon(Icons.delete),
-                                title: Text('Delete'),
-                              ),
+                          ),
+                          const PopupMenuItem<String>(
+                            value: 'delete',
+                            child: ListTile(
+                              leading: Icon(Icons.delete),
+                              title: Text('Delete'),
                             ),
-                          ],
-                          onSelected: (String action) {
-                            // Handle menu item selection
-                            switch (action) {
-                              case 'edit':
-                                controller.showEditDialog(context, data[index]);
-                                break;
-                              case 'delete':
-                                controller.showDeleteDialog(context);
-                                break;
-                            }
-                          },
-                        ),
+                          ),
+                        ],
+                        onSelected: (String action) {
+                          // Handle menu item selection
+                          switch (action) {
+                            case 'edit':
+                              controller.showEditDialog(context, data[index]);
+                              break;
+                            case 'delete':
+                              controller.showDeleteDialog(context, data[index]);
+                              break;
+                          }
+                        },
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 itemCount: data.length,
-              ),
-            ),
+              );
+            })),
             const SizedBox(
               height: 100,
             )

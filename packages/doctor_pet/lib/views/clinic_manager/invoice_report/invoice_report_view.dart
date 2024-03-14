@@ -17,8 +17,7 @@ class InvoiceReportView extends GetView<InvoiceReportController> {
   const InvoiceReportView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final List<invoicereport> dataInvoiceReport =
-        List.from(controller.dataInvoiceReport);
+    final List<invoicereport> data = controller.dataMockInvoiceReport.value;
 
     return Scaffold(
       body: Container(
@@ -40,20 +39,21 @@ class InvoiceReportView extends GetView<InvoiceReportController> {
             const SizedBox(height: 10),
             const Row(
               mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CustomButtonSelectDayWidget(
                   label: 'Select Start Day',
                   bgColor: Color.fromARGB(255, 28, 195, 142),
                 ),
+                SizedBox(width: 50,),
                 CustomButtonSelectDayWidget(
                   label: 'Select End Day',
                   bgColor: Color.fromARGB(255, 189, 50, 22),
                 ),
-                CustomButtonShowWidget(
-                  label: 'Show Report',
-                  bgColor: Color.fromARGB(255, 102, 169, 228),
-                )
+                // CustomButtonShowWidget(
+                //   label: 'Show Report',
+                //   bgColor: Color.fromARGB(255, 102, 169, 228),
+                // )
               ],
             ),
             SizedBox(
@@ -83,29 +83,29 @@ class InvoiceReportView extends GetView<InvoiceReportController> {
                       child: DataTitleWidget(
                         titles: [
                           DataTitleModel(
-                              name: dataInvoiceReport[index].patientID,
+                              name: data[index].patientID,
                               flex: 2),
                           DataTitleModel(
-                              name: dataInvoiceReport[index].patientName,
+                              name: data[index].patientName,
                               flex: 4),
                           DataTitleModel(
-                              name: dataInvoiceReport[index].cost.toString(),
+                              name: data[index].cost.toString(),
                               flex: 2),
                           DataTitleModel(
-                              name: dataInvoiceReport[index]
+                              name: data[index]
                                   .day
                                   .toString()
                                   .substring(0, 11),
                               flex: 5),
                           DataTitleModel(
-                              name: dataInvoiceReport[index].prescription,
+                              name: data[index].prescription,
                               flex: 5),
                         ],
                       ),
                     ),
                   ],
                 ),
-                itemCount: dataInvoiceReport.length,
+                itemCount: data.length,
               ),
             ),
             const SizedBox(

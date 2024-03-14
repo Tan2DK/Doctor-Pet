@@ -3,7 +3,7 @@ import 'dart:html';
 class doctor {
   String name;
   String address;
-  int phone;
+  String phone;
   String status;
   String description;
 

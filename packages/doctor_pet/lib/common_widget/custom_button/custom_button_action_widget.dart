@@ -8,7 +8,8 @@ class CustomButtonActionWidget extends StatefulWidget {
     this.bgColor,
     this.txtColor,
     this.iconColor,
-    this.icon
+    this.icon,
+    this.onPressed,
   }) : super(key: key);
 
   final String? label;
@@ -16,6 +17,7 @@ class CustomButtonActionWidget extends StatefulWidget {
   final Color? txtColor;
   final Color? iconColor;
   final IconData? icon;
+  final Function()? onPressed;
 
   @override
   State<CustomButtonActionWidget> createState() => _CustomButtonActionWidgetState();
@@ -29,12 +31,7 @@ class _CustomButtonActionWidgetState extends State<CustomButtonActionWidget> {
         style: ElevatedButton.styleFrom(
           backgroundColor: widget.bgColor,
         ),
-        onPressed: () {
-          showDatePicker(
-              context: context,
-              firstDate: (DateTime(1900, 1, 1)),
-              lastDate: (DateTime(2500, 12, 31)));
-        },
+        onPressed: widget.onPressed,
         label: Text(
           widget.label.toString(),
           style: TextStyle(

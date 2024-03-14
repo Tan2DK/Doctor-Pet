@@ -14,7 +14,7 @@ class MedicineReportView extends GetView<MedicineReportController> {
 
   @override
   Widget build(BuildContext context) {
-    final List<medicinereport> dataMedicneReport = List.from(controller.dataMedicneReport);
+    final List<medicinereport> data = controller.dataMockMedicineReport.value;
 
     return Scaffold(
       body: Container(
@@ -38,20 +38,21 @@ class MedicineReportView extends GetView<MedicineReportController> {
             const SizedBox(height: 10),
             const Row(
               mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CustomButtonSelectDayWidget(
                   label: 'Select Start Day',
                   bgColor: Color.fromARGB(255, 28, 195, 142),
                 ),
+                SizedBox(width: 50,),
                 CustomButtonSelectDayWidget(
                   label: 'Select End Day',
                   bgColor: Color.fromARGB(255, 189, 50, 22),
                 ),
-                CustomButtonShowWidget(
-                  label: 'Show Report',
-                  bgColor: Color.fromARGB(255, 102, 169, 228),
-                )
+                // CustomButtonShowWidget(
+                //   label: 'Show Report',
+                //   bgColor: Color.fromARGB(255, 102, 169, 228),
+                // )
               ],
             ),
             const SizedBox(
@@ -77,18 +78,18 @@ class MedicineReportView extends GetView<MedicineReportController> {
                       child: DataTitleWidget(
                         titles: [
                           DataTitleModel(
-                              name: dataMedicneReport[index].medicineName,
+                              name: data[index].medicineName,
                               flex: 4),
                           DataTitleModel(
                               name:
-                                  dataMedicneReport[index].unitPrice.toString(),
+                                  data[index].unitPrice.toString(),
                               flex: 2),
                           DataTitleModel(
                               name:
-                                  dataMedicneReport[index].quantity.toString(),
+                                  data[index].quantity.toString(),
                               flex: 2),
                           DataTitleModel(
-                              name: dataMedicneReport[index]
+                              name: data[index]
                                   .totalPrice
                                   .toString(),
                               flex: 2),
@@ -97,7 +98,7 @@ class MedicineReportView extends GetView<MedicineReportController> {
                     ),                 
                   ],
                 ),
-                itemCount: dataMedicneReport.length,
+                itemCount: data.length,
               ),
             ),
             const SizedBox(

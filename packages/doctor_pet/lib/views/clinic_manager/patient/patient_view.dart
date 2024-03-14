@@ -11,7 +11,7 @@ class PatientView extends GetView<PatientController> {
   const PatientView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    List<patient> dataPatient = List.from(controller.dataPatient);
+    final List<patient> data = controller.dataMockPatient.value;
 
     return Scaffold(
       body: Container(
@@ -71,9 +71,9 @@ class PatientView extends GetView<PatientController> {
                       child: DataTitleWidget(
                         titles: [
                           DataTitleModel(
-                              name: dataPatient[index].ownName, flex: 5),
+                              name: data[index].ownName, flex: 5),
                           DataTitleModel(
-                              name: dataPatient[index].petName, flex: 5),
+                              name: data[index].petName, flex: 5),
                         ],
                       ),
                     ),
@@ -112,7 +112,7 @@ class PatientView extends GetView<PatientController> {
                     ),
                   ],
                 ),
-                itemCount: dataPatient.length,
+                itemCount: data.length,
               ),
             ),
             const SizedBox(

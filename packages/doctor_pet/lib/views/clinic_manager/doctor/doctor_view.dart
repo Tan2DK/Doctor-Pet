@@ -8,13 +8,13 @@ import 'package:doctor_pet/core/data/DataTitleModel.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
+import '../../../common_widget/custom_button/custom_button_action_widget.dart';
+
 class DoctorView extends GetView<DoctorController> {
   const DoctorView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final List<doctor> data = List.from(controller.data);
-
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -39,29 +39,23 @@ class DoctorView extends GetView<DoctorController> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                ElevatedButton.icon(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                    ),
-                    icon: const Icon(Icons.sort_rounded, color: Colors.black54),
-                    label: const CustomTextWidget(
-                      text: 'Sort',
-                      txtColor: Colors.black54,
-                    )),
+                CustomButtonActionWidget(
+                  label: 'Sort',
+                  bgColor: Colors.white,
+                  txtColor: Colors.black54,
+                  icon: Icons.sort_rounded,
+                  iconColor: Colors.black54,
+                  onPressed: () {},
+                ),
                 const SizedBox(width: 10),
-                ElevatedButton.icon(
-                    onPressed: () {
-                      controller.showAddDialog(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                    ),
-                    icon: const Icon(Icons.add, color: Colors.white),
-                    label: const CustomTextWidget(
-                      text: 'Add Doctor',
-                      txtColor: Colors.white,
-                    )),
+                CustomButtonActionWidget(
+                  label: 'Add Doctor',
+                  bgColor: Colors.blue,
+                  txtColor: Colors.white,
+                  icon: Icons.add,
+                  iconColor: Colors.white,
+                  onPressed: () => controller.showAddDialog(context),
+                ),
                 const SizedBox(width: 10),
               ],
             ),
@@ -81,60 +75,64 @@ class DoctorView extends GetView<DoctorController> {
             ),
             const Divider(thickness: 2),
             Expanded(
-              child: ListView.builder(
-                itemBuilder: (context, index) => Row(
-                  children: [
-                    Expanded(
-                      flex: 6,
-                      child: DataTitleWidget(
-                        titles: [
-                          DataTitleModel(name: data[index].name, flex: 2),
-                          DataTitleModel(name: data[index].address, flex: 2),
-                          DataTitleModel(
-                              name: data[index].phone.toString(), flex: 2),
-                          DataTitleModel(name: data[index].status, flex: 2),
-                          DataTitleModel(
-                              name: data[index].description, flex: 2),
-                        ],
+              child: Obx(() {
+                final List<doctor> data = controller.dataMockDoctor.value;
+                return ListView.builder(
+                  itemBuilder: (context, index) => Row(
+                    children: [
+                      Expanded(
+                        flex: 6,
+                        child: DataTitleWidget(
+                          titles: [
+                            DataTitleModel(name: data[index].name, flex: 2),
+                            DataTitleModel(name: data[index].address, flex: 2),
+                            DataTitleModel(
+                                name: data[index].phone.toString(), flex: 2),
+                            DataTitleModel(name: data[index].status, flex: 2),
+                            DataTitleModel(
+                                name: data[index].description, flex: 2),
+                          ],
+                        ),
                       ),
-                    ),
-                    Container(
-                      width: 100, // Set the width of the container
-                      child: PopupMenuButton<String>(
-                        itemBuilder: (BuildContext context) =>
-                            <PopupMenuEntry<String>>[
-                          const PopupMenuItem<String>(
-                            value: 'edit',
-                            child: ListTile(
-                              leading: Icon(Icons.edit),
-                              title: Text('Edit'),
+                      SizedBox(
+                        width: 100, // Set the width of the container
+                        child: PopupMenuButton<String>(
+                          itemBuilder: (BuildContext context) =>
+                              <PopupMenuEntry<String>>[
+                            const PopupMenuItem<String>(
+                              value: 'edit',
+                              child: ListTile(
+                                leading: Icon(Icons.edit),
+                                title: Text('Edit'),
+                              ),
                             ),
-                          ),
-                          const PopupMenuItem<String>(
-                            value: 'delete',
-                            child: ListTile(
-                              leading: Icon(Icons.delete),
-                              title: Text('Delete'),
+                            const PopupMenuItem<String>(
+                              value: 'delete',
+                              child: ListTile(
+                                leading: Icon(Icons.delete),
+                                title: Text('Delete'),
+                              ),
                             ),
-                          ),
-                        ],
-                        onSelected: (String action) {
-                          // Handle menu item selection
-                          switch (action) {
-                            case 'edit':
-                              controller.showEditDialog(context, data[index]);
-                              break;
-                            case 'delete':
-                              controller.showDeleteDialog(context);
-                              break;
-                          }
-                        },
+                          ],
+                          onSelected: (String action) {
+                            // Handle menu item selection
+                            switch (action) {
+                              case 'edit':
+                                controller.showEditDialog(context, data[index]);
+                                break;
+                              case 'delete':
+                                controller.showDeleteDialog(
+                                    context, data[index]);
+                                break;
+                            }
+                          },
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                itemCount: data.length,
-              ),
+                    ],
+                  ),
+                  itemCount: data.length,
+                );
+              }),
             ),
             const SizedBox(
               height: 100,

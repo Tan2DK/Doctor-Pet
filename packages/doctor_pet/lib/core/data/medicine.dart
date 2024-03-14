@@ -3,11 +3,11 @@ class medicine {
   String nameMedicine;
   String companyMedicineName  ;
   String quantity;
-  DateTime dateMedicine;
-  String expirationdate;
+  DateTime importDate;
+  DateTime expirationDate;
   String price;
  
   
 
-  medicine({required this.idMedicine,required this.nameMedicine,required this.companyMedicineName,required this.quantity,required this.dateMedicine,required this.expirationdate,required this.price});
+  medicine({required this.idMedicine,required this.nameMedicine,required this.companyMedicineName,required this.quantity,required this.importDate,required this.expirationDate,required this.price});
 }

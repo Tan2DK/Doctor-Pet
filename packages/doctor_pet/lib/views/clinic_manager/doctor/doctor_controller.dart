@@ -1,294 +1,251 @@
 import 'package:doctor_pet/core/data/doctor.dart';
+import 'package:doctor_pet/data/datamock/data_mock_doctor.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 class DoctorController extends GetxController {
-  final List<doctor> data = [
-      doctor(
-        name: 'Doctor 1',
-        address: 'Viet Nam',
-        phone: 01122334455,
-        status: 'Active',
-        description: 'Bac si nay gioi',
-      ),
-      doctor(
-        name: 'Doctor 1',
-        address: 'Viet Nam',
-        phone: 01122334455,
-        status: 'Active',
-        description: 'Bac si nay gioi',
-      ),
-      doctor(
-        name: 'Doctor 1',
-        address: 'Viet Nam',
-        phone: 01122334455,
-        status: 'Active',
-        description: 'Bac si nay gioi',
-      ),
-      doctor(
-        name: 'Doctor 1',
-        address: 'Viet Nam',
-        phone: 01122334455,
-        status: 'Active',
-        description: 'Bac si nay gioi',
-      ),
-      doctor(
-        name: 'Doctor 1',
-        address: 'Viet Nam',
-        phone: 01122334455,
-        status: 'Active',
-        description: 'Bac si nay gioi',
-      ),
-      doctor(
-        name: 'Doctor 1',
-        address: 'Viet Nam',
-        phone: 01122334455,
-        status: 'Active',
-        description: 'Bac si nay gioi',
-      ),
-      doctor(
-        name: 'Doctor 1',
-        address: 'Viet Nam',
-        phone: 01122334455,
-        status: 'Active',
-        description: 'Bac si nay gioi',
-      ),
-      doctor(
-        name: 'Doctor 1',
-        address: 'Viet Nam',
-        phone: 01122334455,
-        status: 'Active',
-        description: 'Bac si nay gioi',
-      ),
-      doctor(
-        name: 'Doctor 1',
-        address: 'Viet Nam',
-        phone: 01122334455,
-        status: 'Active',
-        description: 'Bac si nay gioi',
-      ),
-      doctor(
-        name: 'Doctor 1',
-        address: 'Viet Nam',
-        phone: 01122334455,
-        status: 'Active',
-        description: 'Bac si nay gioi',
-      ),
-      doctor(
-        name: 'Doctor 1',
-        address: 'Viet Nam',
-        phone: 01122334455,
-        status: 'Active',
-        description: 'Bac si nay gioi',
-      ),
-      doctor(
-        name: 'Doctor 1',
-        address: 'Viet Nam',
-        phone: 01122334455,
-        status: 'Active',
-        description: 'Bac si nay gioi',
-      ),
-      doctor(
-        name: 'Doctor 1',
-        address: 'Viet Nam',
-        phone: 01122334455,
-        status: 'Active',
-        description: 'Bac si nay gioi',
-      ),
-    ];
+  Rx<List<doctor>> dataMockDoctor = Rx<List<doctor>>([]);
+
+  Rx<String> name = Rx<String>('');
+  Rx<String> address = Rx<String>('');
+  Rx<String> phone = Rx<String>('');
+  Rx<String> status = Rx<String>('');
+  Rx<String> description = Rx<String>('');
+
+  void onChangedName(String? value) {
+    name.value = value ?? '';
+  }
+
+  void onChangedAddress(String? value) {
+    address.value = value ?? '';
+  }
+
+  void onChangedPhone(String? value) {
+    phone.value = value ?? '';
+  }
+
+  void onChangedStatus(String? value) {
+    status.value = value ?? '';
+  }
+
+  void onChangedDescription(String? value) {
+    description.value = value ?? '';
+  }
+
+  @override
+  void onInit() {
+    dataMockDoctor.value = mockDoctor;
+  }
 
   void showAddDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Add Doctor'),
-          // Add text fields and buttons for adding medicine
-          content: Padding(
-            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  keyboardType: TextInputType.text,
-                  style: TextStyle(fontSize: 15),
-                  decoration: InputDecoration(
-                      labelText: 'Name',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-                SizedBox(height: 10),
-                TextField(
-                  keyboardType: TextInputType.text,
-                  style: TextStyle(fontSize: 15),
-                  decoration: InputDecoration(
-                      labelText: 'Address',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-                SizedBox(height: 10),
-                TextField(
-                  keyboardType: TextInputType.text,
-                  style: TextStyle(fontSize: 15),
-                  decoration: InputDecoration(
-                      labelText: 'Phone',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-                SizedBox(height: 10),
-                TextField(
-                  keyboardType: TextInputType.text,
-                  style: TextStyle(fontSize: 15),
-                  decoration: InputDecoration(
-                      labelText: 'Status',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-                SizedBox(height: 10),
-                TextField(
-                  keyboardType: TextInputType.text,
-                  style: TextStyle(fontSize: 15),
-                  decoration: InputDecoration(
-                      labelText: 'Description',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-              ],
+    Get.dialog(AlertDialog(
+      title: Text('Add Doctor'),
+      content: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              onChanged: onChangedName,
+              keyboardType: TextInputType.text,
+              style: TextStyle(fontSize: 15),
+              decoration: InputDecoration(
+                  labelText: 'Name',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10))),
             ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                // Add logic for saving the new medicine
-                Navigator.of(context).pop();
-              },
-              child: Text('Add'),
+            SizedBox(height: 10),
+            TextField(
+              onChanged: onChangedAddress,
+              keyboardType: TextInputType.text,
+              style: TextStyle(fontSize: 15),
+              decoration: InputDecoration(
+                  labelText: 'Address',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10))),
             ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Cancel'),
+            SizedBox(height: 10),
+            TextField(
+              onChanged: onChangedPhone,
+              keyboardType: TextInputType.text,
+              style: TextStyle(fontSize: 15),
+              decoration: InputDecoration(
+                  labelText: 'Phone',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10))),
+            ),
+            SizedBox(height: 10),
+            TextField(
+              onChanged: onChangedStatus,
+              keyboardType: TextInputType.text,
+              style: TextStyle(fontSize: 15),
+              decoration: InputDecoration(
+                  labelText: 'Status',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10))),
+            ),
+            SizedBox(height: 10),
+            TextField(
+              onChanged: onChangedDescription,
+              keyboardType: TextInputType.text,
+              style: TextStyle(fontSize: 15),
+              decoration: InputDecoration(
+                  labelText: 'Description',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10))),
             ),
           ],
-        );
-      },
-    );
+        ),
+      ),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () {
+            dataMockDoctor.value.add(doctor(
+                name: name.value,
+                address: address.value,
+                phone: phone.value,
+                status: status.value,
+                description: description.value));
+            dataMockDoctor.refresh();
+            Navigator.of(context).pop();
+          },
+          child: Text('Add'),
+        ),
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: Text('Cancel'),
+        ),
+      ],
+    ));
   }
 
   void showEditDialog(BuildContext context, doctor doctor) {
-    // Implement logic to show edit medicine dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Edit Doctor'),
-          // Add text fields pre-filled with medicine information
-          content: Padding(
-            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  keyboardType: TextInputType.text,
-                  style: TextStyle(fontSize: 15),
-                  decoration: InputDecoration(
-                      hintText: ('dasda'),
-                      labelText: 'Doctor Name',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-                SizedBox(height: 10),
-                TextField(
-                  keyboardType: TextInputType.text,
-                  style: TextStyle(fontSize: 15),
-                  decoration: InputDecoration(
-                      labelText: 'Address',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-                SizedBox(height: 10),
-                TextField(
-                  keyboardType: TextInputType.text,
-                  style: TextStyle(fontSize: 15),
-                  decoration: InputDecoration(
-                      labelText: 'Phone',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-                SizedBox(height: 10),
-                TextField(
-                  keyboardType: TextInputType.text,
-                  style: TextStyle(fontSize: 15),
-                  decoration: InputDecoration(
-                      labelText: 'Status',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-                SizedBox(height: 10),
-                TextField(
-                  keyboardType: TextInputType.text,
-                  style: TextStyle(fontSize: 15),
-                  decoration: InputDecoration(
-                      labelText: 'Description',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-              ],
+    Get.dialog(AlertDialog(
+      title: Text('Edit Doctor'),
+      // Add text fields pre-filled with medicine information
+      content: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              onChanged: onChangedName,
+              keyboardType: TextInputType.text,
+              controller: TextEditingController(
+                text: doctor.name,
+              ),
+              style: TextStyle(fontSize: 15),
+              decoration: InputDecoration(
+                  labelText: 'Doctor Name',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10))),
             ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                // Add logic for saving the edited medicine
-                Navigator.of(context).pop();
-              },
-              child: Text('Save'),
+            SizedBox(height: 10),
+            TextField(
+              onChanged: onChangedAddress,
+              keyboardType: TextInputType.text,
+              controller: TextEditingController(
+                text: doctor.address,
+              ),
+              style: TextStyle(fontSize: 15),
+              decoration: InputDecoration(
+                  labelText: 'Address',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10))),
             ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Cancel'),
+            SizedBox(height: 10),
+            TextField(
+              onChanged: onChangedPhone,
+              keyboardType: TextInputType.text,
+              controller: TextEditingController(
+                text: doctor.phone,
+              ),
+              style: TextStyle(fontSize: 15),
+              decoration: InputDecoration(
+                  labelText: 'Phone',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10))),
+            ),
+            SizedBox(height: 10),
+            TextField(
+              onChanged: onChangedStatus,
+              keyboardType: TextInputType.text,
+              controller: TextEditingController(
+                text: doctor.status,
+              ),
+              style: TextStyle(fontSize: 15),
+              decoration: InputDecoration(
+                  labelText: 'Status',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10))),
+            ),
+            SizedBox(height: 10),
+            TextField(
+              onChanged: onChangedDescription,
+              keyboardType: TextInputType.text,
+              controller: TextEditingController(
+                text: doctor.description,
+              ),
+              style: TextStyle(fontSize: 15),
+              decoration: InputDecoration(
+                  labelText: 'Description',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10))),
             ),
           ],
-        );
-      },
-    );
+        ),
+      ),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () {
+            doctor.name = name.value.isEmpty ? doctor.name : name.value;
+            doctor.address = address.isEmpty ? doctor.address : address.value;
+            doctor.phone = phone.isEmpty ? doctor.phone : phone.value;
+            doctor.status = status.value.isEmpty ? doctor.status : status.value;
+            doctor.description = doctor.description;
+            dataMockDoctor.refresh();
+            Navigator.of(context).pop();
+          },
+          child: Text('Save'),
+        ),
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: Text('Cancel'),
+        ),
+      ],
+    ));
   }
 
-  void showDeleteDialog(BuildContext context) {
-    // Implement logic to show add medicine dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          icon: Icon(
-            Icons.delete,
-            color: Colors.red,
-          ),
-          title: Text('Delete Doctor'),
-          content: Text('Do you want to DELETE this Doctor?'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                // Add logic for saving the new medicine
-                Navigator.of(context).pop();
-              },
-              child: Text('Yes'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('No'),
-            ),
-          ],
-        );
-      },
-    );
+  void showDeleteDialog(BuildContext context, doctor doctor) {
+    Get.dialog(AlertDialog(
+      icon: Icon(
+        Icons.delete,
+        color: Colors.red,
+      ),
+      title: Text('Delete Doctor'),
+      content: Text('Do you want to DELETE this Doctor?'),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () {
+            dataMockDoctor.value.remove(doctor);
+            dataMockDoctor.refresh();
+            Navigator.of(context).pop();
+          },
+          child: Text('Yes'),
+        ),
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: Text('Cancel'),
+        ),
+      ],
+    ));
   }
-  
 }
