@@ -41,7 +41,7 @@ class RoutesName {
   static const String home = '/home';
   static const String doctor = '/doctor';
   static const String pet = '/pet';
-  static const myPatients = '/myPatients';
+  static const myPatients = '/my-patients';
   static const String nestedNavDoctor = 'nested_navigation_doctor';
   static const String nestedNavPet = 'nested_navigation_pet';
   static const String nestedNavDocMypatients = 'nested_navigation_pet';
