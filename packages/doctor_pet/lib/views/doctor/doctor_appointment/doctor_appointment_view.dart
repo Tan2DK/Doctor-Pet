@@ -26,7 +26,7 @@ class DoctorAppointmentView extends GetView<DoctorAppointmentController> {
             const SizedBox(height: 10),
             const Center(
               child: Text(
-                'View Doctor Information',
+                'View Appointment Management',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ),
