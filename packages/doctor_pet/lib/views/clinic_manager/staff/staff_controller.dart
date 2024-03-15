@@ -1,3 +1,4 @@
+import 'package:doctor_pet/common_widget/custom_text/custom_text_widget.dart';
 import 'package:doctor_pet/core/data/staff.dart';
 import 'package:doctor_pet/data/datamock/data_mock_staff.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ class StaffController extends GetxController {
   Rx<String> name = Rx<String>('');
   Rx<String> address = Rx<String>('');
   Rx<String> phone = Rx<String>('');
-  Rx<String> status = Rx<String>('');
+  Rx<bool> status = Rx<bool>(false);
   Rx<DateTime> birthday = Rx<DateTime>(DateTime.now());
 
   void onChangedName(String? value) {
@@ -23,8 +24,8 @@ class StaffController extends GetxController {
     phone.value = value ?? '';
   }
 
-  void onChangedStatus(String? value) {
-    status.value = value ?? '';
+  void onChangedStatus(bool? value) {
+    status.value = value == true ? true : false;
   }
 
   void onChangedBirthday(DateTime? value) {
@@ -44,6 +45,14 @@ class StaffController extends GetxController {
     birthday.refresh();
   }
 
+  void clearData() {
+    name.value = '';
+    address.value = '';
+    phone.value = '';
+    status.value = false;
+    birthday.value = DateTime.now();
+  }
+
   @override
   void onInit() {
     super.onInit();
@@ -52,6 +61,7 @@ class StaffController extends GetxController {
 
   void showEditDialog(BuildContext context, staff staff) {
     birthday.value = staff.birthday;
+    status.value = staff.status;
     Get.dialog(AlertDialog(
       title: Text('Edit Staff'),
       content: Padding(
@@ -97,41 +107,80 @@ class StaffController extends GetxController {
                       borderRadius: BorderRadius.circular(10))),
             ),
             SizedBox(height: 10),
-            TextField(
-              onChanged: onChangedStatus,
-              keyboardType: TextInputType.text,
-              controller: TextEditingController(
-                text: staff.status,
-              ),
-              style: TextStyle(fontSize: 15),
-              decoration: InputDecoration(
-                  labelText: 'Status',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10))),
-            ),
-            SizedBox(height: 10),
-            Obx(
-              () => TextField(
-                keyboardType: TextInputType.text,
-                controller: TextEditingController(
-                  text: birthday.value.toString().substring(0, 10),
+            Row(
+              children: [
+                CustomTextWidget(
+                  text: 'Status: ',
                 ),
-                style: TextStyle(fontSize: 15),
-                decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        Icons.calendar_today,
-                        size: 15,
-                      ),
+                Obx(
+                  () => Checkbox(
+                    value: status.value,
+                    onChanged: onChangedStatus,
+                  ),
+                ),
+                Obx(
+                  () => CustomTextWidget(
+                    text: status.value ? 'Active' : 'Inactive',
+                  ),
+                ),
+              ],
+            ),
+
+            // TextField(
+            //   onChanged: onChangedStatus,
+            //   keyboardType: TextInputType.text,
+            //   controller: TextEditingController(
+            //     text: staff.status.toString(),
+            //   ),
+            //   style: TextStyle(fontSize: 15),
+            //   decoration: InputDecoration(
+            //       labelText: 'Status',
+            //       border: OutlineInputBorder(
+            //           borderRadius: BorderRadius.circular(10))),
+            // ),
+            SizedBox(height: 10),
+            // Obx(
+            //   () => TextField(
+            //     keyboardType: TextInputType.text,
+            //     controller: TextEditingController(
+            //       text: birthday.value.toString().substring(0, 10),
+            //     ),
+            //     style: TextStyle(fontSize: 15),
+            //     decoration: InputDecoration(
+            //         suffixIcon: IconButton(
+            //           icon: Icon(
+            //             Icons.calendar_today,
+            //             size: 15,
+            //           ),
+            //           onPressed: () {
+            //             selectDate(context);
+            //           },
+            //         ),
+            //         labelText: 'Birthday',
+            //         border: OutlineInputBorder(
+            //             borderRadius: BorderRadius.circular(10))),
+            //   ),
+            // ),
+
+            Row(
+              children: [
+                CustomTextWidget(
+                  text: 'Birthday: ',
+                ),
+                Obx(
+                  () => ElevatedButton(
                       onPressed: () {
                         selectDate(context);
                       },
-                    ),
-                    labelText: 'Birthday',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10))),
-              ),
+                      child: CustomTextWidget(
+                        text:
+                            '${birthday.value.day}-${birthday.value.month}-${birthday.value.year}',
+                        txtColor: Colors.black,
+                      )),
+                ),
+              ],
             ),
+
             SizedBox(height: 10),
           ],
         ),
@@ -142,10 +191,11 @@ class StaffController extends GetxController {
             staff.name = name.value.isEmpty ? staff.name : name.value;
             staff.address = address.isEmpty ? staff.address : address.value;
             staff.phone = phone.isEmpty ? staff.phone : phone.value;
-            staff.status = status.value.isEmpty ? staff.status : status.value;
+            staff.status = status.value;
             staff.birthday = birthday.value;
             dataMockStaff.refresh();
             Navigator.of(context).pop();
+            clearData();
           },
           child: Text('Save'),
         ),
@@ -223,53 +273,99 @@ class StaffController extends GetxController {
                       borderRadius: BorderRadius.circular(10))),
             ),
             SizedBox(height: 10),
-            TextField(
-              onChanged: onChangedStatus,
-              keyboardType: TextInputType.text,
-              style: TextStyle(fontSize: 15),
-              decoration: InputDecoration(
-                  labelText: 'Status',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10))),
-            ),
+
+            // Obx(
+            //   () => TextField(
+            //     // onChanged: onChangedBirthday,
+            //     keyboardType: TextInputType.text,
+            //     controller: TextEditingController(
+            //       text: birthday.value.toString().substring(0, 10),
+            //     ),
+            //     style: TextStyle(fontSize: 15),
+            //     decoration: InputDecoration(
+            //         suffixIcon: IconButton(
+            //           icon: Icon(
+            //             Icons.calendar_today,
+            //             size: 15,
+            //           ),
+            //           onPressed: () {
+            //             selectDate(context);
+            //           },
+            //         ),
+            //         labelText: 'Birthday',
+            //         border: OutlineInputBorder(
+            //             borderRadius: BorderRadius.circular(10))),
+            //   ),
+            // ),
             SizedBox(height: 10),
-            Obx(
-              () => TextField(
-                // onChanged: onChangedBirthday,
-                keyboardType: TextInputType.text,
-                controller: TextEditingController(
-                  text: birthday.value.toString().substring(0, 10),
+            Row(
+              children: [
+                CustomTextWidget(
+                  text: 'Status: ',
                 ),
-                style: TextStyle(fontSize: 15),
-                decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        Icons.calendar_today,
-                        size: 15,
-                      ),
+                Obx(
+                  () => Checkbox(
+                    value: status.value,
+                    onChanged: onChangedStatus,
+                  ),
+                ),
+                Obx(
+                  () => CustomTextWidget(
+                    text: status.value ? 'Active' : 'Inactive',
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10,),
+            Row(
+              children: [
+                CustomTextWidget(
+                  text: 'Birthday: ',
+                ),
+                Obx(
+                  () => ElevatedButton(
                       onPressed: () {
                         selectDate(context);
                       },
-                    ),
-                    labelText: 'Birthday',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10))),
-              ),
+                      child: CustomTextWidget(
+                        text:
+                            '${birthday.value.day}-${birthday.value.month}-${birthday.value.year}',
+                        txtColor: Colors.black,
+                      )),
+                ),
+              ],
             ),
+
+            // TextField(
+            //   onChanged: onChangedStatus,
+            //   keyboardType: TextInputType.text,
+            //   style: TextStyle(fontSize: 15),
+            //   decoration: InputDecoration(
+            //       labelText: 'Status',
+            //       border: OutlineInputBorder(
+            //           borderRadius: BorderRadius.circular(10))),
+            // ),
           ],
         ),
       ),
       actions: <Widget>[
         TextButton(
           onPressed: () {
-            dataMockStaff.value.add(staff(
-                name: name.value,
-                address: address.value,
-                phone: phone.value,
-                status: status.value,
-                birthday: birthday.value));
-            dataMockStaff.refresh();
+            if (name.value.isEmpty ||
+                address.value.isEmpty ||
+                phone.value.isEmpty) {
+            } else {
+              dataMockStaff.value.add(staff(
+                  name: name.value,
+                  address: address.value,
+                  phone: phone.value,
+                  status: status.value,
+                  birthday: birthday.value));
+              dataMockStaff.refresh();
+            }
+
             Navigator.of(context).pop();
+            clearData();
           },
           child: Text('Add'),
         ),

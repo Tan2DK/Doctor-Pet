@@ -44,7 +44,9 @@ class MedicineReportView extends GetView<MedicineReportController> {
                   label: 'Select Start Day',
                   bgColor: Color.fromARGB(255, 28, 195, 142),
                 ),
-                SizedBox(width: 50,),
+                SizedBox(
+                  width: 50,
+                ),
                 CustomButtonSelectDayWidget(
                   label: 'Select End Day',
                   bgColor: Color.fromARGB(255, 189, 50, 22),
@@ -61,6 +63,8 @@ class MedicineReportView extends GetView<MedicineReportController> {
             DataTitleWidget(
               titles: [
                 DataTitleModel(name: 'Medicine Name', flex: 4),
+                DataTitleModel(name: 'Import Date', flex: 4),
+                DataTitleModel(name: 'Expiration Date', flex: 4),
                 DataTitleModel(name: 'Price', flex: 2),
                 DataTitleModel(name: 'Quantity', flex: 2),
                 DataTitleModel(name: 'Total Price', flex: 2),
@@ -78,24 +82,20 @@ class MedicineReportView extends GetView<MedicineReportController> {
                       child: DataTitleWidget(
                         titles: [
                           DataTitleModel(
-                              name: data[index].medicineName,
-                              flex: 4),
+                              name: data[index].medicineName, flex: 4),
                           DataTitleModel(
-                              name:
-                                  data[index].unitPrice.toString(),
-                              flex: 2),
+                              name: data[index].importDate.toString().substring(0,10), flex: 4),
+                              DataTitleModel(
+                              name: data[index].expirationDate.toString().substring(0,10), flex: 4),
                           DataTitleModel(
-                              name:
-                                  data[index].quantity.toString(),
-                              flex: 2),
+                              name: data[index].unitPrice.toString(), flex: 2),
                           DataTitleModel(
-                              name: data[index]
-                                  .totalPrice
-                                  .toString(),
-                              flex: 2),
+                              name: data[index].quantity.toString(), flex: 2),
+                          DataTitleModel(
+                              name: data[index].totalPrice.toString(), flex: 2),
                         ],
                       ),
-                    ),                 
+                    ),
                   ],
                 ),
                 itemCount: data.length,

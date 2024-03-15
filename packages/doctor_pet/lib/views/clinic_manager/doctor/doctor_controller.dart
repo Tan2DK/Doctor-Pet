@@ -1,3 +1,4 @@
+import 'package:doctor_pet/common_widget/custom_text/custom_text_widget.dart';
 import 'package:doctor_pet/core/data/doctor.dart';
 import 'package:doctor_pet/data/datamock/data_mock_doctor.dart';
 import 'package:get/get.dart';
@@ -9,7 +10,7 @@ class DoctorController extends GetxController {
   Rx<String> name = Rx<String>('');
   Rx<String> address = Rx<String>('');
   Rx<String> phone = Rx<String>('');
-  Rx<String> status = Rx<String>('');
+  Rx<bool> status = Rx<bool>(false);
   Rx<String> description = Rx<String>('');
 
   void onChangedName(String? value) {
@@ -24,12 +25,20 @@ class DoctorController extends GetxController {
     phone.value = value ?? '';
   }
 
-  void onChangedStatus(String? value) {
-    status.value = value ?? '';
+  void onChangedStatus(bool? value) {
+    status.value = value == true ? true : false;
   }
 
   void onChangedDescription(String? value) {
     description.value = value ?? '';
+  }
+
+  void clearData() {
+    name.value = '';
+    address.value = '';
+    phone.value = '';
+    status.value = false;
+    description.value = '';
   }
 
   @override
@@ -76,16 +85,7 @@ class DoctorController extends GetxController {
                       borderRadius: BorderRadius.circular(10))),
             ),
             SizedBox(height: 10),
-            TextField(
-              onChanged: onChangedStatus,
-              keyboardType: TextInputType.text,
-              style: TextStyle(fontSize: 15),
-              decoration: InputDecoration(
-                  labelText: 'Status',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10))),
-            ),
-            SizedBox(height: 10),
+
             TextField(
               onChanged: onChangedDescription,
               keyboardType: TextInputType.text,
@@ -95,20 +95,55 @@ class DoctorController extends GetxController {
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
             ),
+            SizedBox(height: 10),
+            Row(
+              children: [
+                CustomTextWidget(
+                  text: 'Status: ',
+                ),
+                Obx(
+                  () => Checkbox(
+                    value: status.value,
+                    onChanged: onChangedStatus,
+                  ),
+                ),
+                Obx(
+                  () => CustomTextWidget(
+                    text: status.value ? 'Active' : 'Inactive',
+                  ),
+                ),
+              ],
+            ),
+            // TextField(
+            //   onChanged: onChangedStatus,
+            //   keyboardType: TextInputType.text,
+            //   style: TextStyle(fontSize: 15),
+            //   decoration: InputDecoration(
+            //       labelText: 'Status',
+            //       border: OutlineInputBorder(
+            //           borderRadius: BorderRadius.circular(10))),
+            // ),
           ],
         ),
       ),
       actions: <Widget>[
         TextButton(
           onPressed: () {
-            dataMockDoctor.value.add(doctor(
-                name: name.value,
-                address: address.value,
-                phone: phone.value,
-                status: status.value,
-                description: description.value));
-            dataMockDoctor.refresh();
+            if (name.value.isEmpty ||
+                address.value.isEmpty ||
+                phone.value.isEmpty ||
+                description.value.isEmpty) {
+            } else {
+              dataMockDoctor.value.add(doctor(
+                  name: name.value,
+                  address: address.value,
+                  phone: phone.value,
+                  status: status.value,
+                  description: description.value));
+              dataMockDoctor.refresh();
+            }
             Navigator.of(context).pop();
+            clearData();
           },
           child: Text('Add'),
         ),
@@ -123,6 +158,7 @@ class DoctorController extends GetxController {
   }
 
   void showEditDialog(BuildContext context, doctor doctor) {
+    status.value = doctor.status;
     Get.dialog(AlertDialog(
       title: Text('Edit Doctor'),
       // Add text fields pre-filled with medicine information
@@ -171,19 +207,7 @@ class DoctorController extends GetxController {
                       borderRadius: BorderRadius.circular(10))),
             ),
             SizedBox(height: 10),
-            TextField(
-              onChanged: onChangedStatus,
-              keyboardType: TextInputType.text,
-              controller: TextEditingController(
-                text: doctor.status,
-              ),
-              style: TextStyle(fontSize: 15),
-              decoration: InputDecoration(
-                  labelText: 'Status',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10))),
-            ),
-            SizedBox(height: 10),
+
             TextField(
               onChanged: onChangedDescription,
               keyboardType: TextInputType.text,
@@ -196,6 +220,37 @@ class DoctorController extends GetxController {
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
             ),
+            SizedBox(height: 10),
+            Row(
+              children: [
+                CustomTextWidget(
+                  text: 'Status: ',
+                ),
+                Obx(
+                  () => Checkbox(
+                    value: status.value,
+                    onChanged: onChangedStatus,
+                  ),
+                ),
+                Obx(
+                  () => CustomTextWidget(
+                    text: status.value ? 'Active' : 'Inactive',
+                  ),
+                ),
+              ],
+            ),
+            // TextField(
+            //   onChanged: onChangedStatus,
+            //   keyboardType: TextInputType.text,
+            //   controller: TextEditingController(
+            //     text: doctor.status,
+            //   ),
+            //   style: TextStyle(fontSize: 15),
+            //   decoration: InputDecoration(
+            //       labelText: 'Status',
+            //       border: OutlineInputBorder(
+            //           borderRadius: BorderRadius.circular(10))),
+            // ),
           ],
         ),
       ),
@@ -205,10 +260,13 @@ class DoctorController extends GetxController {
             doctor.name = name.value.isEmpty ? doctor.name : name.value;
             doctor.address = address.isEmpty ? doctor.address : address.value;
             doctor.phone = phone.isEmpty ? doctor.phone : phone.value;
-            doctor.status = status.value.isEmpty ? doctor.status : status.value;
-            doctor.description = doctor.description;
+            doctor.status = status.value;
+            doctor.description = description.value.isEmpty
+                ? doctor.description
+                : description.value;
             dataMockDoctor.refresh();
             Navigator.of(context).pop();
+            clearData();
           },
           child: Text('Save'),
         ),

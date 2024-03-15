@@ -88,7 +88,7 @@ class DoctorView extends GetView<DoctorController> {
                             DataTitleModel(name: data[index].address, flex: 2),
                             DataTitleModel(
                                 name: data[index].phone.toString(), flex: 2),
-                            DataTitleModel(name: data[index].status, flex: 2),
+                            DataTitleModel(name: data[index].status ? 'Active' : 'Inactive', flex: 2),
                             DataTitleModel(
                                 name: data[index].description, flex: 2),
                           ],

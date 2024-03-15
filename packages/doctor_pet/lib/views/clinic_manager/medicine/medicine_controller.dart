@@ -1,4 +1,6 @@
+import 'package:doctor_pet/common_widget/custom_text/custom_text_widget.dart';
 import 'package:doctor_pet/core/data/medicine.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:doctor_pet/data/datamock/data_mock_medicine.dart';
@@ -6,12 +8,17 @@ import 'package:doctor_pet/data/datamock/data_mock_medicine.dart';
 class MedicineController extends GetxController {
   Rx<List<medicine>> dataMockMedicine = Rx<List<medicine>>([]);
 
+  Rx<String> mediId = Rx<String>('');
   Rx<String> mediName = Rx<String>('');
   Rx<String> mediCompanyName = Rx<String>('');
   Rx<String> quantity = Rx<String>('');
   Rx<DateTime> importDate = Rx<DateTime>(DateTime.now());
   Rx<DateTime> expirationDate = Rx<DateTime>(DateTime.now());
   Rx<String> price = Rx<String>('');
+
+  void onChangedMediId(String? value) {
+    mediId.value = value ?? '';
+  }
 
   void onChangedMediName(String? value) {
     mediName.value = value ?? '';
@@ -37,6 +44,16 @@ class MedicineController extends GetxController {
     price.value = value ?? '';
   }
 
+  void clearData() {
+    mediId.value = '';
+    mediName.value = '';
+    mediCompanyName.value = '';
+    quantity.value = '';
+    importDate.value = DateTime.now();
+    expirationDate.value = DateTime.now();
+    price.value = '';
+  }
+
   @override
   void onInit() {
     dataMockMedicine.value = mockMedicine;
@@ -47,7 +64,7 @@ class MedicineController extends GetxController {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(1900),
-      lastDate: DateTime.now(),
+      lastDate: DateTime(2200),
     );
     if (picked != null) {
       importDate.value = picked; // Saves the selected date
@@ -60,7 +77,7 @@ class MedicineController extends GetxController {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(1900),
-      lastDate: DateTime.now(),
+      lastDate: DateTime(2200),
     );
     if (picked != null) {
       expirationDate.value = picked; // Saves the selected date
@@ -80,19 +97,19 @@ class MedicineController extends GetxController {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              // SizedBox(height: 10),
-              // TextField(
-              //   keyboardType: TextInputType.text,
-              //   controller: TextEditingController(
-              //     text: medicine.idMedicine,
-              //   ),
-              //   style: TextStyle(fontSize: 15),
-              //   decoration: InputDecoration(
-              //       labelText: 'ID',
-              //       border: OutlineInputBorder(
-              //           borderRadius: BorderRadius.circular(10))),
-              // ),
-              // SizedBox(height: 10),
+              SizedBox(height: 10),
+              TextField(
+                keyboardType: TextInputType.text,
+                controller: TextEditingController(
+                  text: medicine.idMedicine,
+                ),
+                style: TextStyle(fontSize: 15),
+                decoration: InputDecoration(
+                    labelText: 'ID',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10))),
+              ),
+              SizedBox(height: 10),
               TextField(
                 onChanged: onChangedMediName,
                 keyboardType: TextInputType.text,
@@ -132,64 +149,101 @@ class MedicineController extends GetxController {
                         borderRadius: BorderRadius.circular(10))),
               ),
               SizedBox(height: 10),
-              Obx(
-                () => TextField(
-                  keyboardType: TextInputType.text,
-                  controller: TextEditingController(
-                    text: importDate.value.toString().substring(0, 10),
-                  ),
-                  style: TextStyle(fontSize: 15),
-                  decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          Icons.calendar_today,
-                          size: 15,
-                        ),
-                        onPressed: () {
-                          selectImportDate(context);
-                        },
-                      ),
-                      labelText: 'Import Date',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-              ),
-              SizedBox(height: 10),
-              Obx(
-                () => TextField(
-                  keyboardType: TextInputType.text,
-                  controller: TextEditingController(
-                    text: expirationDate.value.toString().substring(0, 10),
-                  ),
-                  style: TextStyle(fontSize: 15),
-                  decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          Icons.calendar_today,
-                          size: 15,
-                        ),
-                        onPressed: () {
-                          selectExpirationDate(context);
-                        },
-                      ),
-                      labelText: 'Expiration Day',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                ),
-              ),
-              SizedBox(height: 10),
               TextField(
                 onChanged: onChangedPrice,
                 keyboardType: TextInputType.text,
-                controller: TextEditingController(
-                  text: medicine.price.toString(),
-                ),
                 style: TextStyle(fontSize: 15),
                 decoration: InputDecoration(
                     labelText: 'Price',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10))),
               ),
+              Row(
+                children: [
+                  CustomTextWidget(
+                    text: 'Import Date: ',
+                  ),
+                  Obx(
+                    () => ElevatedButton(
+                        onPressed: () {
+                          selectImportDate(context);
+                        },
+                        child: CustomTextWidget(
+                          text:
+                              '${importDate.value.day}-${importDate.value.month}-${importDate.value.year}',
+                          txtColor: Colors.black,
+                        )),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  CustomTextWidget(
+                    text: 'Expiration Date: ',
+                  ),
+                  Obx(
+                    () => ElevatedButton(
+                        onPressed: () {
+                          selectExpirationDate(context);
+                        },
+                        child: CustomTextWidget(
+                          text:
+                              '${expirationDate.value.day}-${expirationDate.value.month}-${expirationDate.value.year}',
+                          txtColor: Colors.black,
+                        )),
+                  ),
+                ],
+              ),
+              // SizedBox(height: 10),
+              // Obx(
+              //   () => TextField(
+              //     keyboardType: TextInputType.text,
+              //     controller: TextEditingController(
+              //       text: importDate.value.toString().substring(0, 10),
+              //     ),
+              //     style: TextStyle(fontSize: 15),
+              //     decoration: InputDecoration(
+              //         suffixIcon: IconButton(
+              //           icon: Icon(
+              //             Icons.calendar_today,
+              //             size: 15,
+              //           ),
+              //           onPressed: () {
+              //             selectImportDate(context);
+              //           },
+              //         ),
+              //         labelText: 'Import Date',
+              //         border: OutlineInputBorder(
+              //             borderRadius: BorderRadius.circular(10))),
+              //   ),
+              // ),
+              // SizedBox(height: 10),
+              // Obx(
+              //   () => TextField(
+              //     keyboardType: TextInputType.text,
+              //     controller: TextEditingController(
+              //       text: expirationDate.value.toString().substring(0, 10),
+              //     ),
+              //     style: TextStyle(fontSize: 15),
+              //     decoration: InputDecoration(
+              //         suffixIcon: IconButton(
+              //           icon: Icon(
+              //             Icons.calendar_today,
+              //             size: 15,
+              //           ),
+              //           onPressed: () {
+              //             selectExpirationDate(context);
+              //           },
+              //         ),
+              //         labelText: 'Expiration Day',
+              //         border: OutlineInputBorder(
+              //             borderRadius: BorderRadius.circular(10))),
+              //   ),
+              // ),
+              // SizedBox(height: 10),
             ],
           ),
         ),
@@ -197,17 +251,27 @@ class MedicineController extends GetxController {
       actions: <Widget>[
         TextButton(
           onPressed: () {
-            medicine.nameMedicine =
-                mediName.value.isEmpty ? medicine.nameMedicine : mediName.value;
-            medicine.companyMedicineName = mediCompanyName.value.isEmpty
-                ? medicine.companyMedicineName
-                : mediCompanyName.value;
-            medicine.quantity =
-                quantity.value.isEmpty ? medicine.quantity : quantity.value;
-            medicine.importDate = importDate.value;
-            medicine.expirationDate = expirationDate.value;
-            medicine.price = price.value.isEmpty ? medicine.price : price.value;
-            dataMockMedicine.refresh();
+            if (mediId.value.isEmpty ||
+                mediName.value.isEmpty ||
+                mediCompanyName.value.isEmpty ||
+                quantity.value.isEmpty ||
+                price.value.isEmpty) {
+              medicine.nameMedicine = mediName.value.isEmpty
+                  ? medicine.nameMedicine
+                  : mediName.value;
+              medicine.companyMedicineName = mediCompanyName.value.isEmpty
+                  ? medicine.companyMedicineName
+                  : mediCompanyName.value;
+              medicine.quantity =
+                  quantity.value.isEmpty ? medicine.quantity : quantity.value;
+              medicine.importDate = importDate.value;
+              medicine.expirationDate = expirationDate.value;
+              medicine.price =
+                  price.value.isEmpty ? medicine.price : price.value;
+              dataMockMedicine.refresh();
+            }
+
+            clearData();
             Navigator.of(context).pop();
           },
           child: Text('Save'),
@@ -250,115 +314,174 @@ class MedicineController extends GetxController {
   }
 
   void showAddMedicineDialog(BuildContext context) {
-    DateTime dateTime = DateTime(2024);
     Get.dialog(AlertDialog(
       title: Text('Add Medicine'),
       content: Padding(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(
-              onChanged: onChangedMediName,
-              keyboardType: TextInputType.text,
-              style: TextStyle(fontSize: 15),
-              decoration: InputDecoration(
-                  labelText: 'Name',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10))),
-            ),
-            SizedBox(height: 10),
-            TextField(
-              onChanged: onChangedMediCompanyName,
-              keyboardType: TextInputType.text,
-              style: TextStyle(fontSize: 15),
-              decoration: InputDecoration(
-                  labelText: 'Company Medicine Name',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10))),
-            ),
-            SizedBox(height: 10),
-            TextField(
-              onChanged: onChangedQuantity,
-              keyboardType: TextInputType.text,
-              style: TextStyle(fontSize: 15),
-              decoration: InputDecoration(
-                  labelText: 'Quantity',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10))),
-            ),
-            SizedBox(height: 10),
-            Obx(
-              () => TextField(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                onChanged: onChangedMediId,
                 keyboardType: TextInputType.text,
-                controller: TextEditingController(
-                  text: importDate.value.toString().substring(0, 10),
-                ),
                 style: TextStyle(fontSize: 15),
                 decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        Icons.calendar_today,
-                        size: 15,
-                      ),
-                      onPressed: () {
-                        selectImportDate(context);
-                      },
-                    ),
-                    labelText: 'Import Date',
+                    labelText: 'ID',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10))),
               ),
-            ),
-            SizedBox(height: 10),
-            Obx(
-              () => TextField(
+              SizedBox(height: 10),
+              TextField(
+                onChanged: onChangedMediName,
                 keyboardType: TextInputType.text,
-                controller: TextEditingController(
-                  text: expirationDate.value.toString().substring(0, 10),
-                ),
                 style: TextStyle(fontSize: 15),
                 decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        Icons.calendar_today,
-                        size: 15,
-                      ),
-                      onPressed: () {
-                        selectExpirationDate(context);
-                      },
-                    ),
-                    labelText: 'Expiration Day',
+                    labelText: 'Name',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10))),
               ),
-            ),
-            SizedBox(height: 10),
-            TextField(
-              onChanged: onChangedPrice,
-              keyboardType: TextInputType.text,
-              style: TextStyle(fontSize: 15),
-              decoration: InputDecoration(
-                  labelText: 'Price',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10))),
-            ),
-          ],
+              SizedBox(height: 10),
+              TextField(
+                onChanged: onChangedMediCompanyName,
+                keyboardType: TextInputType.text,
+                style: TextStyle(fontSize: 15),
+                decoration: InputDecoration(
+                    labelText: 'Company Medicine Name',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10))),
+              ),
+              SizedBox(height: 10),
+              TextField(
+                onChanged: onChangedQuantity,
+                keyboardType: TextInputType.text,
+                style: TextStyle(fontSize: 15),
+                decoration: InputDecoration(
+                    labelText: 'Quantity',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10))),
+              ),
+              SizedBox(height: 10),
+
+              TextField(
+                onChanged: onChangedPrice,
+                keyboardType: TextInputType.text,
+                style: TextStyle(fontSize: 15),
+                decoration: InputDecoration(
+                    labelText: 'Price',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10))),
+              ),
+              SizedBox(height: 10),
+              // Obx(
+              //   () => TextField(
+              //     keyboardType: TextInputType.text,
+              //     controller: TextEditingController(
+              //       text: importDate.value.toString().substring(0, 10),
+              //     ),
+              //     style: TextStyle(fontSize: 15),
+              //     decoration: InputDecoration(
+              //         suffixIcon: IconButton(
+              //           icon: Icon(
+              //             Icons.calendar_today,
+              //             size: 15,
+              //           ),
+              //           onPressed: () {
+              //             selectImportDate(context);
+              //           },
+              //         ),
+              //         labelText: 'Import Date',
+              //         border: OutlineInputBorder(
+              //             borderRadius: BorderRadius.circular(10))),
+              //   ),
+              // ),
+              Row(
+                children: [
+                  CustomTextWidget(
+                    text: 'Import Date: ',
+                  ),
+                  Obx(
+                    () => ElevatedButton(
+                        onPressed: () {
+                          selectImportDate(context);
+                        },
+                        child: CustomTextWidget(
+                          text:
+                              '${importDate.value.day}-${importDate.value.month}-${importDate.value.year}',
+                          txtColor: Colors.black,
+                        )),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  CustomTextWidget(
+                    text: 'Expiration Date: ',
+                  ),
+                  Obx(
+                    () => ElevatedButton(
+                        onPressed: () {
+                          selectExpirationDate(context);
+                        },
+                        child: CustomTextWidget(
+                          text:
+                              '${expirationDate.value.day}-${expirationDate.value.month}-${expirationDate.value.year}',
+                          txtColor: Colors.black,
+                        )),
+                  ),
+                ],
+              ),
+              // SizedBox(height: 10),
+              // Obx(
+              //   () => TextField(
+              //     keyboardType: TextInputType.text,
+              //     controller: TextEditingController(
+              //       text: expirationDate.value.toString().substring(0, 10),
+              //     ),
+              //     style: TextStyle(fontSize: 15),
+              //     decoration: InputDecoration(
+              //         suffixIcon: IconButton(
+              //           icon: Icon(
+              //             Icons.calendar_today,
+              //             size: 15,
+              //           ),
+              //           onPressed: () {
+              //             selectExpirationDate(context);
+              //           },
+              //         ),
+              //         labelText: 'Expiration Day',
+              //         border: OutlineInputBorder(
+              //             borderRadius: BorderRadius.circular(10))),
+              //   ),
+              // ),
+            ],
+          ),
         ),
       ),
       actions: <Widget>[
         TextButton(
           onPressed: () {
-            dataMockMedicine.value.add(medicine(
-                idMedicine: 'a',
-                nameMedicine: mediName.value,
-                companyMedicineName: mediCompanyName.value,
-                quantity: quantity.value,
-                importDate: importDate.value,
-                expirationDate: expirationDate.value,
-                price: price.value));
-            dataMockMedicine.refresh();
+            if (mediId.value.isEmpty ||
+                mediName.value.isEmpty ||
+                mediCompanyName.value.isEmpty ||
+                quantity.value.isEmpty ||
+                price.value.isEmpty) {
+            } else {
+              dataMockMedicine.value.add(medicine(
+                  idMedicine: mediId.value,
+                  nameMedicine: mediName.value,
+                  companyMedicineName: mediCompanyName.value,
+                  quantity: quantity.value,
+                  importDate: importDate.value,
+                  expirationDate: expirationDate.value,
+                  price: price.value));
+              dataMockMedicine.refresh();
+            }
+            clearData();
             Navigator.of(context).pop();
           },
           child: Text('Add'),
