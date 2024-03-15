@@ -30,11 +30,11 @@ class AppRoutes {
       page: () => const PetView(),
       binding: PetBinding(),
     ),
-    GetPage(
-      name: RoutesName.schedule,
-      page: () => const ScheduleView(),
-      binding: ScheduleBinding(),
-    ),
+    // GetPage(
+    //   name: RoutesName.schedule,
+    //   page: () => const ScheduleView(),
+    //   binding: ScheduleBinding(),
+    // ),
   ];
 }
 
@@ -43,6 +43,7 @@ class RoutesName {
   static const String doctor = '/doctor';
   static const String pet = '/pet';
   static const String schedule = '/schedule';
+  static const String scheduleTime = '/scheduleTime';
   static const String nestedNavDoctor = 'nested_navigation_doctor';
   static const String nestedNavPet = 'nested_navigation_pet';
 }

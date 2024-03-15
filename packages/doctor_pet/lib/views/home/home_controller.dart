@@ -2,7 +2,7 @@ import 'package:doctor_pet/views/home/nested_navigation/nested_navigation_doctor
 import 'package:doctor_pet/views/home/nested_navigation/nested_navigation_pet.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-
+import 'package:doctor_pet/views/home/nested_navigation/nested_navigation_doctor_time.dart';
 import '../../utils/app_enum.dart';
 
 class HomeController extends GetxController {

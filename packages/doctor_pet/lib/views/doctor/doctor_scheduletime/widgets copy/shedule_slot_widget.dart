@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Condition;
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:doctor_pet/utils/app_enum.dart';
-import '../../../core/data/doctor_slot_in_day_model.dart';
+import 'package:doctor_pet/core/data/doctor_slot_in_day_model.dart';
 import 'row_calendar_widget.dart';
 
 class ScheduleSlotWidget extends StatelessWidget {
