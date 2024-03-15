@@ -30,7 +30,7 @@ class AppRoutes {
       binding: PetBinding(),
     ),
     GetPage(
-      name: RoutesName.customercomment,
+      name: RoutesName.customerComment,
       page: () => CommentView(),
       binding: CustomerCommentBinding(),
     ),
@@ -41,7 +41,7 @@ class RoutesName {
   static const String home = '/home';
   static const String doctor = '/doctor';
   static const String pet = '/pet';
-  static const String customercomment = '/comment';
+  static const String customerComment = '/comment';
   static const String nestedNavDoctor = 'nested_navigation_doctor';
   static const String nestedNavPet = 'nested_navigation_pet';
 }
