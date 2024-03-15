@@ -1,3 +1,5 @@
+import 'package:doctor_pet/views/customer_booking/customer_booking_binding.dart';
+import 'package:doctor_pet/views/customer_booking/customer_booking_view.dart';
 import 'package:doctor_pet/views/customer_comments/customer_comments_view.dart';
 import 'package:doctor_pet/views/doctor/doctor_binding.dart';
 import 'package:doctor_pet/views/doctor/doctor_view.dart';
@@ -34,6 +36,11 @@ class AppRoutes {
       page: () => CommentView(),
       binding: CustomerCommentBinding(),
     ),
+    GetPage(
+      name: RoutesName.booking,
+      page: () => const AppointmentView(),
+      binding: CustomerBookingBinding(),
+    ),
   ];
 }
 
@@ -42,6 +49,7 @@ class RoutesName {
   static const String doctor = '/doctor';
   static const String pet = '/pet';
   static const String customercomment = '/comment';
+  static const String booking = '/booking';
   static const String nestedNavDoctor = 'nested_navigation_doctor';
   static const String nestedNavPet = 'nested_navigation_pet';
 }
