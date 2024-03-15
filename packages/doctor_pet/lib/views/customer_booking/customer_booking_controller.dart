@@ -9,13 +9,13 @@ class CustomerBookingController extends GetxController {
   Rx<TimeOfDay> selectedTime = TimeOfDay.now().obs;
   final Rx<CalendarFormat> calendarFormat = CalendarFormat.month.obs;
   Rx<DateTime> focusedDay = DateTime.now().obs;
-  final List<String> doctorList = [
+  final RxList<String> doctorList = <String>[
     'Dr. John Doe',
     'Dr. Jane Smith',
     'Dr. Michael Brown',
     'Dr. Emily Johnson',
-  ];
-  var selectedDoctor = 'All Doctors'.obs; // Initialize as an empty string
+  ].obs;
+  RxString selectedDoctor = ''.obs;
   RxString status = ''.obs;
   RxString displayedDoctor = ''.obs;
   RxString displayedDate = ''.obs;
@@ -25,10 +25,10 @@ class CustomerBookingController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // Giả sử `mockComments` là danh sách các comment mô phỏng đã được tạo sẵn
-    // ignore: invalid_use_of_protected_member
-    selectedDoctor.value =
-        doctorList[0]; // Gán giá trị string, không phải RxString
+    // Assuming `mockComments` is a pre-existing list of mock comments
+    if (doctorList.isNotEmpty) {
+      selectedDoctor.value = doctorList[0]; // Set the default selected doctor
+    }
   }
 
   void updateFocusedDay(DateTime focuserd) {
@@ -48,7 +48,7 @@ class CustomerBookingController extends GetxController {
 
   void updateSelectedDoctor(String doctor) {
     selectedDoctor.value = doctor;
-    update();
+    update(); // This might not be necessary if you're just updating observable values
   }
 
   void scheduleAppointment(BuildContext context) {
@@ -64,14 +64,13 @@ class CustomerBookingController extends GetxController {
     appointments.value.add(appointment);
   }
 
-  Future<void> selectTime(
-      BuildContext context, CustomerBookingController controller) async {
+  Future<void> selectTime(BuildContext context) async {
     final TimeOfDay? picked = await showTimePicker(
       context: context,
-      initialTime: controller.selectedTime.value,
+      initialTime: selectedTime.value,
     );
     if (picked != null) {
-      controller.updateSelectedTime(picked);
+      updateSelectedTime(picked);
     }
   }
 }

@@ -15,73 +15,78 @@ class AppointmentView extends GetView<CustomerBookingController> {
       backgroundColor: Colors.pink[50],
       body: Center(
         child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Obx(() => DropdownButton<String>(
-                    value: controller.selectedDoctor
-                        .value, // The selected value is bound to the controller's RxString
+          child: Obx(() => Column(
+                // Wrapped the Column with an Obx
+                children: <Widget>[
+                  DropdownButton<String>(
+                    value: controller
+                        .selectedDoctor.value, // Current selected value
                     onChanged: (String? newValue) {
                       if (newValue != null) {
-                        controller.updateSelectedDoctor(newValue);
+                        controller.updateSelectedDoctor(
+                            newValue); // Directly pass the new value
                       }
                     },
-                    items: controller.doctorList.map((String doctor) {
+                    items: controller.doctorList
+                        .map<DropdownMenuItem<String>>((String doctor) {
                       return DropdownMenuItem<String>(
                         value: doctor,
-                        child: Text(
-                            doctor), // This text doesn't need to be reactive; it's static.
+                        child: Text(doctor), // Display the doctor's name
                       );
                     }).toList(),
-                  )),
-              const SizedBox(height: 20),
-
-              TableCalendar(
-                firstDay: DateTime.utc(2021, 1, 1),
-                lastDay: DateTime.utc(2030, 12, 31),
-                focusedDay: DateTime.now(),
-                calendarFormat: CalendarFormat.month,
-                selectedDayPredicate: (day) {
-                  return isSameDay(controller.selectedDate.value, day);
-                },
-                onDaySelected: (selectedDay, focusedDay) {
-                  controller.updateSelectedDate(selectedDay);
-                },
-                onPageChanged: (focusedDay) {
-                  controller.updateFocusedDay(focusedDay);
-                },
-              ),
-
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  controller.selectTime(context, controller);
-                },
-                child: Obx(() => Text(
-                      'Select Time: ${controller.selectedTime.value.format(context)}',
-                    )),
-              ),
-              const SizedBox(height: 20),
-              // Aligning the button to the right
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
+                  ),
+                  const SizedBox(height: 20),
+                  TableCalendar(
+                    firstDay: DateTime.utc(2021, 1, 1),
+                    lastDay: DateTime.utc(2030, 12, 31),
+                    focusedDay: controller.focusedDay.value,
+                    calendarFormat: CalendarFormat.month,
+                    selectedDayPredicate: (day) =>
+                        isSameDay(controller.selectedDate.value, day),
+                    onDaySelected: (selectedDay, focusedDay) {
+                      controller.selectedDate.value = selectedDay;
+                      controller.focusedDay.value =
+                          focusedDay; // Update focused day reactively
+                    },
+                    onPageChanged: (focusedDay) {
+                      controller.focusedDay.value =
+                          focusedDay; // Update focused day reactively
+                    },
+                    // Add any custom properties here
+                  ),
+                  const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
-                      controller.scheduleAppointment(context);
+                      controller.selectTime(
+                          context); // Ensure this matches the method signature in your controller
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                    ),
-                    child: const Text(
-                      'Book Appointment',
-                      style: TextStyle(color: Colors.white),
+                    child: Text(
+                      'Select Time: ${controller.selectedTime.value.format(context)}',
                     ),
                   ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              // Display selected information after booking in table form
-              Obx(() => DataTable(
+                  const SizedBox(height: 20),
+                  // Aligning the button to the right
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          controller.scheduleAppointment(
+                              context); // Ensure this matches the method signature in your controller
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green,
+                        ),
+                        child: const Text(
+                          'Book Appointment',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  // Display selected information after booking in table form
+                  DataTable(
                     columns: const <DataColumn>[
                       DataColumn(
                         label: Text(
@@ -122,9 +127,9 @@ class AppointmentView extends GetView<CustomerBookingController> {
                         ],
                       ),
                     ],
-                  )),
-            ],
-          ),
+                  ),
+                ],
+              )),
         ),
       ),
     );
