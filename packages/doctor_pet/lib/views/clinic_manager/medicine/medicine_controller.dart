@@ -172,7 +172,7 @@ class MedicineController extends GetxController {
                     text: 'Import Date: ',
                   ),
                   Obx(
-                    () => ElevatedButton.icon(
+                    () => TextButton.icon(
                       icon: Icon(Icons.calendar_month_outlined,color: Colors.black54),
                         onPressed: () {
                           selectImportDate(context);
@@ -194,7 +194,7 @@ class MedicineController extends GetxController {
                     text: 'Expiration Date: ',
                   ),
                   Obx(
-                    () => ElevatedButton.icon(
+                    () => TextButton.icon(
                       icon: Icon(Icons.calendar_month_outlined,color: Colors.black54),
                         onPressed: () {
                           selectExpirationDate(context);
@@ -361,7 +361,7 @@ class MedicineController extends GetxController {
                     text: 'Import Date: ',
                   ),
                   Obx(
-                    () => ElevatedButton.icon(
+                    () => TextButton.icon(
                       icon: Icon(Icons.calendar_month_outlined,color: Colors.black54),
                         onPressed: () {
                           selectImportDate(context);
@@ -383,7 +383,7 @@ class MedicineController extends GetxController {
                     text: 'Expiration Date: ',
                   ),
                   Obx(
-                    () => ElevatedButton.icon(
+                    () => TextButton.icon(
                       icon: Icon(Icons.calendar_month_outlined,color: Colors.black54),
                         onPressed: () {
                           selectExpirationDate(context);

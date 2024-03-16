@@ -138,11 +138,13 @@ class StaffController extends GetxController {
                   text: 'Birthday: ',
                 ),
                 Obx(
-                  () => ElevatedButton(
+                  () => TextButton.icon(
+                      icon: Icon(Icons.calendar_month_outlined,
+                          color: Colors.black54),
                       onPressed: () {
                         selectDate(context);
                       },
-                      child: CustomTextWidget(
+                      label: CustomTextWidget(
                         text:
                             '${birthday.value.day}-${birthday.value.month}-${birthday.value.year}',
                         txtColor: Colors.black,
@@ -214,7 +216,7 @@ class StaffController extends GetxController {
   void showAddDialog(BuildContext context) {
     Get.dialog(AlertDialog(
       title: CustomTextWidget(
-        text: 'Add Doctor',
+        text: 'Add Staff',
         fontWeight: FontWeight.bold,
       ),
       content: Padding(
@@ -281,11 +283,13 @@ class StaffController extends GetxController {
                   text: 'Birthday: ',
                 ),
                 Obx(
-                  () => ElevatedButton(
+                  () => TextButton.icon(
+                      icon: Icon(Icons.calendar_month_outlined,
+                          color: Colors.black54),
                       onPressed: () {
                         selectDate(context);
                       },
-                      child: CustomTextWidget(
+                      label: CustomTextWidget(
                         text:
                             '${birthday.value.day}-${birthday.value.month}-${birthday.value.year}',
                         txtColor: Colors.black,
