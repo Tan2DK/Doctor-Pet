@@ -1,7 +1,7 @@
 import 'package:doctor_pet/core/data/mypatients.dart';
 
-final List<Mypatients> mockMypatients = [
-  Mypatients(
+final List<Patients> mockMypatients = [
+  Patients(
     customerId: '01',
     name: 'Duy',
     phoneNumber: '0978376483',

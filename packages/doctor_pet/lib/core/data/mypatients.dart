@@ -1,4 +1,4 @@
-class Mypatients {
+class Patients {
   String customerId;
   String name;
   String phoneNumber;
@@ -6,7 +6,7 @@ class Mypatients {
   String address;
   DateTime dateBuyMedicine;
 
-  Mypatients({
+  Patients({
     required this.customerId,
     required this.name,
     required this.phoneNumber,

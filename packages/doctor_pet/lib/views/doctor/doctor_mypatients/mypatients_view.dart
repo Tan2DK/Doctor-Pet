@@ -3,13 +3,12 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:doctor_pet/views/doctor/doctor_mypatients/doctor_mypatients_controller.dart';
 
-class MypatientsView extends GetView<DoctorMypatientsController> {
+class MypatientsView extends GetView<MyPatientsController> {
   const MypatientsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<DoctorMypatientsController>();
-    final screenWidth = MediaQuery.of(context).size.width;
+    final controller = Get.find<MyPatientsController>();
 
     return Scaffold(
       appBar: AppBar(
@@ -45,45 +44,33 @@ class MypatientsView extends GetView<DoctorMypatientsController> {
             SizedBox(height: 10),
             Expanded(
               child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: SingleChildScrollView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  child: SizedBox(
-                    width: screenWidth,
-                    child: ConstrainedBox(
-                      constraints:
-                          BoxConstraints(maxWidth: 1200), // Limit maximum width
-                      child: DataTable(
-                        columnSpacing: 10,
-                        horizontalMargin: 10,
-                        dataRowHeight: 50,
-                        columns: const [
-                          DataColumn(label: Text('ID Customer')),
-                          DataColumn(label: Text('Name')),
-                          DataColumn(label: Text('Phone Number')),
-                          DataColumn(label: Text('Birthday')),
-                          DataColumn(label: Text('Address')),
-                          DataColumn(label: Text('Date Buy')),
-                        ],
-                        rows: controller.myPatients.value.map((patient) {
-                          return DataRow(cells: [
-                            DataCell(Text(patient.customerId ?? '')),
-                            DataCell(Text(patient.name ?? '')),
-                            DataCell(Text(patient.phoneNumber ?? '')),
-                            DataCell(Text(patient.birthday != null
-                                ? DateFormat('yyyy-MM-dd')
-                                    .format(patient.birthday!)
-                                : '')),
-                            DataCell(Text(patient.address ?? '')),
-                            DataCell(Text(patient.dateBuyMedicine != null
-                                ? DateFormat('yyyy-MM-dd')
-                                    .format(patient.dateBuyMedicine!)
-                                : '')),
-                          ]);
-                        }).toList(),
-                      ),
-                    ),
-                  ),
+                child: DataTable(
+                  columnSpacing: 10,
+                  horizontalMargin: 10,
+                  dataRowHeight: 50,
+                  columns: const [
+                    DataColumn(label: Text('ID Customer')),
+                    DataColumn(label: Text('Name')),
+                    DataColumn(label: Text('Phone Number')),
+                    DataColumn(label: Text('Birthday')),
+                    DataColumn(label: Text('Address')),
+                    DataColumn(label: Text('Date Buy')),
+                  ],
+                  rows: controller.myPatients.value.map((patient) {
+                    return DataRow(cells: [
+                      DataCell(Text(patient.customerId ?? '')),
+                      DataCell(Text(patient.name ?? '')),
+                      DataCell(Text(patient.phoneNumber ?? '')),
+                      DataCell(Text(patient.birthday != null
+                          ? DateFormat('yyyy-MM-dd').format(patient.birthday!)
+                          : '')),
+                      DataCell(Text(patient.address ?? '')),
+                      DataCell(Text(patient.dateBuyMedicine != null
+                          ? DateFormat('yyyy-MM-dd')
+                              .format(patient.dateBuyMedicine!)
+                          : '')),
+                    ]);
+                  }).toList(),
                 ),
               ),
             ),
