@@ -100,6 +100,9 @@ class MedicineController extends GetxController {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
+              SizedBox(
+                height: 10,
+              ),
               TextField(
                 keyboardType: TextInputType.text,
                 controller: TextEditingController(
@@ -166,46 +169,71 @@ class MedicineController extends GetxController {
               SizedBox(
                 height: 10,
               ),
-              Row(
-                children: [
-                  CustomTextWidget(
-                    text: 'Import Date: ',
+              Container(
+                height: 50,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black, // Border color
+                    width: 0.5, // Border width
                   ),
-                  Obx(
-                    () => TextButton.icon(
-                      icon: Icon(Icons.calendar_month_outlined,color: Colors.black54),
-                        onPressed: () {
-                          selectImportDate(context);
-                        },
-                        label: CustomTextWidget(
-                          text:
-                              '${importDate.value.day}-${importDate.value.month}-${importDate.value.year}',
-                          txtColor: Colors.black,
-                        )),
-                  ),
-                ],
+                  borderRadius: BorderRadius.circular(
+                      8.0), // Optional: for rounded corners
+                ),
+                padding: EdgeInsets.all(8.0), // Opt
+                child: Row(
+                  children: [
+                    CustomTextWidget(
+                      text: 'Import Date: ',
+                    ),
+                    Obx(
+                      () => TextButton.icon(
+                          icon: Icon(Icons.calendar_month_outlined,
+                              color: Colors.black54),
+                          onPressed: () {
+                            selectImportDate(context);
+                          },
+                          label: CustomTextWidget(
+                            text:
+                                '${importDate.value.day}-${importDate.value.month}-${importDate.value.year}',
+                            txtColor: Colors.black,
+                          )),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 10,
               ),
-              Row(
-                children: [
-                  CustomTextWidget(
-                    text: 'Expiration Date: ',
+              Container(
+                height: 50,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 0.5, // Border width
                   ),
-                  Obx(
-                    () => TextButton.icon(
-                      icon: Icon(Icons.calendar_month_outlined,color: Colors.black54),
-                        onPressed: () {
-                          selectExpirationDate(context);
-                        },
-                        label: CustomTextWidget(
-                          text:
-                              '${expirationDate.value.day}-${expirationDate.value.month}-${expirationDate.value.year}',
-                          txtColor: Colors.black,
-                        )),
-                  ),
-                ],
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                padding: EdgeInsets.all(8.0), // Opt
+                child: Row(
+                  children: [
+                    CustomTextWidget(
+                      text: 'Expiration Date: ',
+                    ),
+                    Obx(
+                      () => TextButton.icon(
+                          icon: Icon(Icons.calendar_month_outlined,
+                              color: Colors.black54),
+                          onPressed: () {
+                            selectExpirationDate(context);
+                          },
+                          label: CustomTextWidget(
+                            text:
+                                '${expirationDate.value.day}-${expirationDate.value.month}-${expirationDate.value.year}',
+                            txtColor: Colors.black,
+                          )),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -305,6 +333,9 @@ class MedicineController extends GetxController {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
+              SizedBox(
+                height: 10,
+              ),
               TextField(
                 onChanged: onChangedMediId,
                 keyboardType: TextInputType.text,
@@ -355,46 +386,73 @@ class MedicineController extends GetxController {
                         borderRadius: BorderRadius.circular(10))),
               ),
               SizedBox(height: 10),
-              Row(
-                children: [
-                  CustomTextWidget(
-                    text: 'Import Date: ',
+              Container(
+                height: 50,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black, // Border color
+                    width: 0.5, // Border width
                   ),
-                  Obx(
-                    () => TextButton.icon(
-                      icon: Icon(Icons.calendar_month_outlined,color: Colors.black54),
-                        onPressed: () {
-                          selectImportDate(context);
-                        },
-                        label: CustomTextWidget(
-                          text:
-                              '${importDate.value.day}-${importDate.value.month}-${importDate.value.year}',
-                          txtColor: Colors.black,
-                        )),
-                  ),
-                ],
+                  borderRadius: BorderRadius.circular(
+                      8.0), // Optional: for rounded corners
+                ),
+                padding: EdgeInsets.all(
+                    8.0), // Optional: for padding around the widget
+                child: Row(
+                  children: [
+                    CustomTextWidget(
+                      text: 'Import Date: ',
+                    ),
+                    Obx(
+                      () => TextButton.icon(
+                          icon: Icon(Icons.calendar_month_outlined,
+                              color: Colors.black54),
+                          onPressed: () {
+                            selectImportDate(context);
+                          },
+                          label: CustomTextWidget(
+                            text:
+                                '${importDate.value.day}-${importDate.value.month}-${importDate.value.year}',
+                            txtColor: Colors.black,
+                          )),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 10,
               ),
-              Row(
-                children: [
-                  CustomTextWidget(
-                    text: 'Expiration Date: ',
+              Container(
+                height: 50,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black, // Border color
+                    width: 0.5, // Border width
                   ),
-                  Obx(
-                    () => TextButton.icon(
-                      icon: Icon(Icons.calendar_month_outlined,color: Colors.black54),
-                        onPressed: () {
-                          selectExpirationDate(context);
-                        },
-                        label: CustomTextWidget(
-                          text:
-                              '${expirationDate.value.day}-${expirationDate.value.month}-${expirationDate.value.year}',
-                          txtColor: Colors.black,
-                        )),
-                  ),
-                ],
+                  borderRadius: BorderRadius.circular(
+                      8.0), // Optional: for rounded corners
+                ),
+                padding: EdgeInsets.all(8.0), //
+                child: Row(
+                  children: [
+                    CustomTextWidget(
+                      text: 'Expiration Date: ',
+                    ),
+                    Obx(
+                      () => TextButton.icon(
+                          icon: Icon(Icons.calendar_month_outlined,
+                              color: Colors.black54),
+                          onPressed: () {
+                            selectExpirationDate(context);
+                          },
+                          label: CustomTextWidget(
+                            text:
+                                '${expirationDate.value.day}-${expirationDate.value.month}-${expirationDate.value.year}',
+                            txtColor: Colors.black,
+                          )),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

@@ -112,6 +112,39 @@ class StaffController extends GetxController {
                       borderRadius: BorderRadius.circular(10))),
             ),
             SizedBox(height: 10),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.black, // Border color
+                  width: 0.5, // Border width
+                ),
+                borderRadius:
+                    BorderRadius.circular(8.0), // Optional: for rounded corners
+              ),
+              padding: EdgeInsets.all(
+                  8.0), // Optional: for padding around the widget
+              child: Row(
+                children: [
+                  CustomTextWidget(
+                    text: 'Birthday: ',
+                  ),
+                  Obx(
+                    () => TextButton.icon(
+                        icon: Icon(Icons.calendar_month_outlined,
+                            color: Colors.black54),
+                        onPressed: () {
+                          selectDate(context);
+                        },
+                        label: CustomTextWidget(
+                          text:
+                              '${birthday.value.day}-${birthday.value.month}-${birthday.value.year}',
+                          txtColor: Colors.black,
+                        )),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 10),
             Row(
               children: [
                 CustomTextWidget(
@@ -131,28 +164,6 @@ class StaffController extends GetxController {
                 ),
               ],
             ),
-            SizedBox(height: 10),
-            Row(
-              children: [
-                CustomTextWidget(
-                  text: 'Birthday: ',
-                ),
-                Obx(
-                  () => TextButton.icon(
-                      icon: Icon(Icons.calendar_month_outlined,
-                          color: Colors.black54),
-                      onPressed: () {
-                        selectDate(context);
-                      },
-                      label: CustomTextWidget(
-                        text:
-                            '${birthday.value.day}-${birthday.value.month}-${birthday.value.year}',
-                        txtColor: Colors.black,
-                      )),
-                ),
-              ],
-            ),
-            SizedBox(height: 10),
           ],
         ),
       ),
@@ -255,6 +266,41 @@ class StaffController extends GetxController {
                       borderRadius: BorderRadius.circular(10))),
             ),
             SizedBox(height: 10),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.black, // Border color
+                  width: 0.5, // Border width
+                ),
+                borderRadius:
+                    BorderRadius.circular(8.0), // Optional: for rounded corners
+              ),
+              padding: EdgeInsets.all(
+                  8.0), // Optional: for padding around the widget
+              child: Row(
+                children: [
+                  CustomTextWidget(
+                    text: 'Birthday: ',
+                  ),
+                  Obx(
+                    () => TextButton.icon(
+                        icon: Icon(Icons.calendar_month_outlined,
+                            color: Colors.black54),
+                        onPressed: () {
+                          selectDate(context);
+                        },
+                        label: CustomTextWidget(
+                          text:
+                              '${birthday.value.day}-${birthday.value.month}-${birthday.value.year}',
+                          txtColor: Colors.black,
+                        )),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
             Row(
               children: [
                 CustomTextWidget(
@@ -274,39 +320,6 @@ class StaffController extends GetxController {
                 ),
               ],
             ),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              children: [
-                CustomTextWidget(
-                  text: 'Birthday: ',
-                ),
-                Obx(
-                  () => TextButton.icon(
-                      icon: Icon(Icons.calendar_month_outlined,
-                          color: Colors.black54),
-                      onPressed: () {
-                        selectDate(context);
-                      },
-                      label: CustomTextWidget(
-                        text:
-                            '${birthday.value.day}-${birthday.value.month}-${birthday.value.year}',
-                        txtColor: Colors.black,
-                      )),
-                ),
-              ],
-            ),
-
-            // TextField(
-            //   onChanged: onChangedStatus,
-            //   keyboardType: TextInputType.text,
-            //   style: TextStyle(fontSize: 15),
-            //   decoration: InputDecoration(
-            //       labelText: 'Status',
-            //       border: OutlineInputBorder(
-            //           borderRadius: BorderRadius.circular(10))),
-            // ),
           ],
         ),
       ),
