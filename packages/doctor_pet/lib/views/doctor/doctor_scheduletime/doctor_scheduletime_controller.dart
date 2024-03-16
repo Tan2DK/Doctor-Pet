@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:doctor_pet/views/doctor/doctor_scheduletime/widgets/dialog_time_slot.dart';
 import 'package:doctor_pet/data/data_mock/doctor_slot_in_day_data.dart';
 import 'package:doctor_pet/utils/app_enum.dart';
 import 'package:doctor_pet/views/schedule/widgets/shedule_slot_widget.dart';
