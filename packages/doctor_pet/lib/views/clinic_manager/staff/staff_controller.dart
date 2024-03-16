@@ -63,10 +63,15 @@ class StaffController extends GetxController {
     birthday.value = staff.birthday;
     status.value = staff.status;
     Get.dialog(AlertDialog(
-      title: Text('Edit Staff'),
+      title: CustomTextWidget(
+        text: 'Edit Staff',
+        fontWeight: FontWeight.bold,
+      ),
       content: Padding(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
               onChanged: onChangedName,
@@ -114,6 +119,7 @@ class StaffController extends GetxController {
                 ),
                 Obx(
                   () => Checkbox(
+                    activeColor: Colors.green,
                     value: status.value,
                     onChanged: onChangedStatus,
                   ),
@@ -125,43 +131,7 @@ class StaffController extends GetxController {
                 ),
               ],
             ),
-
-            // TextField(
-            //   onChanged: onChangedStatus,
-            //   keyboardType: TextInputType.text,
-            //   controller: TextEditingController(
-            //     text: staff.status.toString(),
-            //   ),
-            //   style: TextStyle(fontSize: 15),
-            //   decoration: InputDecoration(
-            //       labelText: 'Status',
-            //       border: OutlineInputBorder(
-            //           borderRadius: BorderRadius.circular(10))),
-            // ),
             SizedBox(height: 10),
-            // Obx(
-            //   () => TextField(
-            //     keyboardType: TextInputType.text,
-            //     controller: TextEditingController(
-            //       text: birthday.value.toString().substring(0, 10),
-            //     ),
-            //     style: TextStyle(fontSize: 15),
-            //     decoration: InputDecoration(
-            //         suffixIcon: IconButton(
-            //           icon: Icon(
-            //             Icons.calendar_today,
-            //             size: 15,
-            //           ),
-            //           onPressed: () {
-            //             selectDate(context);
-            //           },
-            //         ),
-            //         labelText: 'Birthday',
-            //         border: OutlineInputBorder(
-            //             borderRadius: BorderRadius.circular(10))),
-            //   ),
-            // ),
-
             Row(
               children: [
                 CustomTextWidget(
@@ -180,7 +150,6 @@ class StaffController extends GetxController {
                 ),
               ],
             ),
-
             SizedBox(height: 10),
           ],
         ),
@@ -197,13 +166,19 @@ class StaffController extends GetxController {
             Navigator.of(context).pop();
             clearData();
           },
-          child: Text('Save'),
+          child: CustomTextWidget(
+            text: 'Save',
+            txtColor: Colors.black,
+          ),
         ),
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text('Cancel'),
+          child: CustomTextWidget(
+            text: 'Cancel',
+            txtColor: Colors.black,
+          ),
         ),
       ],
     ));
@@ -238,10 +213,15 @@ class StaffController extends GetxController {
 
   void showAddDialog(BuildContext context) {
     Get.dialog(AlertDialog(
-      title: Text('Add Staff'),
+      title: CustomTextWidget(
+        text: 'Add Doctor',
+        fontWeight: FontWeight.bold,
+      ),
       content: Padding(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
               onChanged: onChangedName,
@@ -273,31 +253,6 @@ class StaffController extends GetxController {
                       borderRadius: BorderRadius.circular(10))),
             ),
             SizedBox(height: 10),
-
-            // Obx(
-            //   () => TextField(
-            //     // onChanged: onChangedBirthday,
-            //     keyboardType: TextInputType.text,
-            //     controller: TextEditingController(
-            //       text: birthday.value.toString().substring(0, 10),
-            //     ),
-            //     style: TextStyle(fontSize: 15),
-            //     decoration: InputDecoration(
-            //         suffixIcon: IconButton(
-            //           icon: Icon(
-            //             Icons.calendar_today,
-            //             size: 15,
-            //           ),
-            //           onPressed: () {
-            //             selectDate(context);
-            //           },
-            //         ),
-            //         labelText: 'Birthday',
-            //         border: OutlineInputBorder(
-            //             borderRadius: BorderRadius.circular(10))),
-            //   ),
-            // ),
-            SizedBox(height: 10),
             Row(
               children: [
                 CustomTextWidget(
@@ -305,6 +260,7 @@ class StaffController extends GetxController {
                 ),
                 Obx(
                   () => Checkbox(
+                    activeColor: Colors.green,
                     value: status.value,
                     onChanged: onChangedStatus,
                   ),
@@ -316,7 +272,9 @@ class StaffController extends GetxController {
                 ),
               ],
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Row(
               children: [
                 CustomTextWidget(
@@ -367,13 +325,19 @@ class StaffController extends GetxController {
             Navigator.of(context).pop();
             clearData();
           },
-          child: Text('Add'),
+          child: CustomTextWidget(
+            text: 'Add',
+            txtColor: Colors.black,
+          ),
         ),
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text('Cancel'),
+          child: CustomTextWidget(
+            text: 'Cancel',
+            txtColor: Colors.black,
+          ),
         ),
       ],
     ));

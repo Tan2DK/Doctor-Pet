@@ -89,7 +89,10 @@ class MedicineController extends GetxController {
     importDate.value = medicine.importDate;
     expirationDate.value = medicine.expirationDate;
     Get.dialog(AlertDialog(
-      title: Text('Edit Medicine'),
+      title: CustomTextWidget(
+        text: 'Edit Medicine',
+        fontWeight: FontWeight.bold,
+      ),
       content: Padding(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
         child: SingleChildScrollView(
@@ -97,7 +100,6 @@ class MedicineController extends GetxController {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(height: 10),
               TextField(
                 keyboardType: TextInputType.text,
                 controller: TextEditingController(
@@ -152,11 +154,17 @@ class MedicineController extends GetxController {
               TextField(
                 onChanged: onChangedPrice,
                 keyboardType: TextInputType.text,
+                controller: TextEditingController(
+                  text: medicine.price.toString(),
+                ),
                 style: TextStyle(fontSize: 15),
                 decoration: InputDecoration(
                     labelText: 'Price',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10))),
+              ),
+              SizedBox(
+                height: 10,
               ),
               Row(
                 children: [
@@ -164,11 +172,12 @@ class MedicineController extends GetxController {
                     text: 'Import Date: ',
                   ),
                   Obx(
-                    () => ElevatedButton(
+                    () => ElevatedButton.icon(
+                      icon: Icon(Icons.calendar_month_outlined,color: Colors.black54),
                         onPressed: () {
                           selectImportDate(context);
                         },
-                        child: CustomTextWidget(
+                        label: CustomTextWidget(
                           text:
                               '${importDate.value.day}-${importDate.value.month}-${importDate.value.year}',
                           txtColor: Colors.black,
@@ -185,11 +194,12 @@ class MedicineController extends GetxController {
                     text: 'Expiration Date: ',
                   ),
                   Obx(
-                    () => ElevatedButton(
+                    () => ElevatedButton.icon(
+                      icon: Icon(Icons.calendar_month_outlined,color: Colors.black54),
                         onPressed: () {
                           selectExpirationDate(context);
                         },
-                        child: CustomTextWidget(
+                        label: CustomTextWidget(
                           text:
                               '${expirationDate.value.day}-${expirationDate.value.month}-${expirationDate.value.year}',
                           txtColor: Colors.black,
@@ -197,53 +207,6 @@ class MedicineController extends GetxController {
                   ),
                 ],
               ),
-              // SizedBox(height: 10),
-              // Obx(
-              //   () => TextField(
-              //     keyboardType: TextInputType.text,
-              //     controller: TextEditingController(
-              //       text: importDate.value.toString().substring(0, 10),
-              //     ),
-              //     style: TextStyle(fontSize: 15),
-              //     decoration: InputDecoration(
-              //         suffixIcon: IconButton(
-              //           icon: Icon(
-              //             Icons.calendar_today,
-              //             size: 15,
-              //           ),
-              //           onPressed: () {
-              //             selectImportDate(context);
-              //           },
-              //         ),
-              //         labelText: 'Import Date',
-              //         border: OutlineInputBorder(
-              //             borderRadius: BorderRadius.circular(10))),
-              //   ),
-              // ),
-              // SizedBox(height: 10),
-              // Obx(
-              //   () => TextField(
-              //     keyboardType: TextInputType.text,
-              //     controller: TextEditingController(
-              //       text: expirationDate.value.toString().substring(0, 10),
-              //     ),
-              //     style: TextStyle(fontSize: 15),
-              //     decoration: InputDecoration(
-              //         suffixIcon: IconButton(
-              //           icon: Icon(
-              //             Icons.calendar_today,
-              //             size: 15,
-              //           ),
-              //           onPressed: () {
-              //             selectExpirationDate(context);
-              //           },
-              //         ),
-              //         labelText: 'Expiration Day',
-              //         border: OutlineInputBorder(
-              //             borderRadius: BorderRadius.circular(10))),
-              //   ),
-              // ),
-              // SizedBox(height: 10),
             ],
           ),
         ),
@@ -256,6 +219,7 @@ class MedicineController extends GetxController {
                 mediCompanyName.value.isEmpty ||
                 quantity.value.isEmpty ||
                 price.value.isEmpty) {
+            } else {
               medicine.nameMedicine = mediName.value.isEmpty
                   ? medicine.nameMedicine
                   : mediName.value;
@@ -274,13 +238,19 @@ class MedicineController extends GetxController {
             clearData();
             Navigator.of(context).pop();
           },
-          child: Text('Save'),
+          child: CustomTextWidget(
+            text: 'Edit',
+            txtColor: Colors.black,
+          ),
         ),
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text('Cancel'),
+          child: CustomTextWidget(
+            text: 'Cancel',
+            txtColor: Colors.black,
+          ),
         ),
       ],
     ));
@@ -292,7 +262,10 @@ class MedicineController extends GetxController {
         Icons.delete,
         color: Colors.red,
       ),
-      title: Text('Delete Medicine'),
+      title: CustomTextWidget(
+        text: 'Delete Medicine',
+        fontWeight: FontWeight.bold,
+      ),
       content: Text('Do you want to DELETE this medicine?'),
       actions: <Widget>[
         TextButton(
@@ -301,13 +274,19 @@ class MedicineController extends GetxController {
             dataMockMedicine.refresh();
             Navigator.of(context).pop();
           },
-          child: Text('Yes'),
+          child: CustomTextWidget(
+            text: 'Delete',
+            txtColor: Colors.red,
+          ),
         ),
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text('No'),
+          child: CustomTextWidget(
+            text: 'Cancel',
+            txtColor: Colors.black,
+          ),
         ),
       ],
     ));
@@ -315,7 +294,10 @@ class MedicineController extends GetxController {
 
   void showAddMedicineDialog(BuildContext context) {
     Get.dialog(AlertDialog(
-      title: Text('Add Medicine'),
+      title: CustomTextWidget(
+        text: 'Add Medicine',
+        fontWeight: FontWeight.bold,
+      ),
       content: Padding(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
         child: SingleChildScrollView(
@@ -363,7 +345,6 @@ class MedicineController extends GetxController {
                         borderRadius: BorderRadius.circular(10))),
               ),
               SizedBox(height: 10),
-
               TextField(
                 onChanged: onChangedPrice,
                 keyboardType: TextInputType.text,
@@ -374,39 +355,18 @@ class MedicineController extends GetxController {
                         borderRadius: BorderRadius.circular(10))),
               ),
               SizedBox(height: 10),
-              // Obx(
-              //   () => TextField(
-              //     keyboardType: TextInputType.text,
-              //     controller: TextEditingController(
-              //       text: importDate.value.toString().substring(0, 10),
-              //     ),
-              //     style: TextStyle(fontSize: 15),
-              //     decoration: InputDecoration(
-              //         suffixIcon: IconButton(
-              //           icon: Icon(
-              //             Icons.calendar_today,
-              //             size: 15,
-              //           ),
-              //           onPressed: () {
-              //             selectImportDate(context);
-              //           },
-              //         ),
-              //         labelText: 'Import Date',
-              //         border: OutlineInputBorder(
-              //             borderRadius: BorderRadius.circular(10))),
-              //   ),
-              // ),
               Row(
                 children: [
                   CustomTextWidget(
                     text: 'Import Date: ',
                   ),
                   Obx(
-                    () => ElevatedButton(
+                    () => ElevatedButton.icon(
+                      icon: Icon(Icons.calendar_month_outlined,color: Colors.black54),
                         onPressed: () {
                           selectImportDate(context);
                         },
-                        child: CustomTextWidget(
+                        label: CustomTextWidget(
                           text:
                               '${importDate.value.day}-${importDate.value.month}-${importDate.value.year}',
                           txtColor: Colors.black,
@@ -423,11 +383,12 @@ class MedicineController extends GetxController {
                     text: 'Expiration Date: ',
                   ),
                   Obx(
-                    () => ElevatedButton(
+                    () => ElevatedButton.icon(
+                      icon: Icon(Icons.calendar_month_outlined,color: Colors.black54),
                         onPressed: () {
                           selectExpirationDate(context);
                         },
-                        child: CustomTextWidget(
+                        label: CustomTextWidget(
                           text:
                               '${expirationDate.value.day}-${expirationDate.value.month}-${expirationDate.value.year}',
                           txtColor: Colors.black,
@@ -435,29 +396,6 @@ class MedicineController extends GetxController {
                   ),
                 ],
               ),
-              // SizedBox(height: 10),
-              // Obx(
-              //   () => TextField(
-              //     keyboardType: TextInputType.text,
-              //     controller: TextEditingController(
-              //       text: expirationDate.value.toString().substring(0, 10),
-              //     ),
-              //     style: TextStyle(fontSize: 15),
-              //     decoration: InputDecoration(
-              //         suffixIcon: IconButton(
-              //           icon: Icon(
-              //             Icons.calendar_today,
-              //             size: 15,
-              //           ),
-              //           onPressed: () {
-              //             selectExpirationDate(context);
-              //           },
-              //         ),
-              //         labelText: 'Expiration Day',
-              //         border: OutlineInputBorder(
-              //             borderRadius: BorderRadius.circular(10))),
-              //   ),
-              // ),
             ],
           ),
         ),
@@ -484,13 +422,19 @@ class MedicineController extends GetxController {
             clearData();
             Navigator.of(context).pop();
           },
-          child: Text('Add'),
+          child: CustomTextWidget(
+            text: 'Add',
+            txtColor: Colors.black,
+          ),
         ),
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text('Cancel'),
+          child: CustomTextWidget(
+            text: 'Cancel',
+            txtColor: Colors.black,
+          ),
         ),
       ],
     ));

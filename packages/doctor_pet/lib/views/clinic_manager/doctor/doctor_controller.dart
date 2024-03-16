@@ -48,7 +48,10 @@ class DoctorController extends GetxController {
 
   void showAddDialog(BuildContext context) {
     Get.dialog(AlertDialog(
-      title: Text('Add Doctor'),
+      title: CustomTextWidget(
+        text: 'Add Doctor',
+        fontWeight: FontWeight.bold,
+      ),
       content: Padding(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
         child: Column(
@@ -103,6 +106,7 @@ class DoctorController extends GetxController {
                 ),
                 Obx(
                   () => Checkbox(
+                    activeColor: Colors.green,
                     value: status.value,
                     onChanged: onChangedStatus,
                   ),
@@ -114,15 +118,6 @@ class DoctorController extends GetxController {
                 ),
               ],
             ),
-            // TextField(
-            //   onChanged: onChangedStatus,
-            //   keyboardType: TextInputType.text,
-            //   style: TextStyle(fontSize: 15),
-            //   decoration: InputDecoration(
-            //       labelText: 'Status',
-            //       border: OutlineInputBorder(
-            //           borderRadius: BorderRadius.circular(10))),
-            // ),
           ],
         ),
       ),
@@ -145,13 +140,19 @@ class DoctorController extends GetxController {
             Navigator.of(context).pop();
             clearData();
           },
-          child: Text('Add'),
+          child: CustomTextWidget(
+            text: 'Add',
+            txtColor: Colors.black,
+          ),
         ),
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text('Cancel'),
+          child: CustomTextWidget(
+            text: 'Cancel',
+            txtColor: Colors.black,
+          ),
         ),
       ],
     ));
@@ -160,8 +161,10 @@ class DoctorController extends GetxController {
   void showEditDialog(BuildContext context, doctor doctor) {
     status.value = doctor.status;
     Get.dialog(AlertDialog(
-      title: Text('Edit Doctor'),
-      // Add text fields pre-filled with medicine information
+      title: CustomTextWidget(
+        text: 'Edit Doctor',
+        fontWeight: FontWeight.bold,
+      ),
       content: Padding(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
         child: Column(
@@ -228,6 +231,7 @@ class DoctorController extends GetxController {
                 ),
                 Obx(
                   () => Checkbox(
+                    activeColor: Colors.green,
                     value: status.value,
                     onChanged: onChangedStatus,
                   ),
@@ -239,18 +243,6 @@ class DoctorController extends GetxController {
                 ),
               ],
             ),
-            // TextField(
-            //   onChanged: onChangedStatus,
-            //   keyboardType: TextInputType.text,
-            //   controller: TextEditingController(
-            //     text: doctor.status,
-            //   ),
-            //   style: TextStyle(fontSize: 15),
-            //   decoration: InputDecoration(
-            //       labelText: 'Status',
-            //       border: OutlineInputBorder(
-            //           borderRadius: BorderRadius.circular(10))),
-            // ),
           ],
         ),
       ),
@@ -268,13 +260,19 @@ class DoctorController extends GetxController {
             Navigator.of(context).pop();
             clearData();
           },
-          child: Text('Save'),
+          child: CustomTextWidget(
+            text: 'Save',
+            txtColor: Colors.black,
+          ),
         ),
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text('Cancel'),
+          child: CustomTextWidget(
+            text: 'Cancel',
+            txtColor: Colors.black,
+          ),
         ),
       ],
     ));
@@ -286,7 +284,10 @@ class DoctorController extends GetxController {
         Icons.delete,
         color: Colors.red,
       ),
-      title: Text('Delete Doctor'),
+      title: CustomTextWidget(
+        text: 'Delete Doctor',
+        fontWeight: FontWeight.bold,
+      ),
       content: Text('Do you want to DELETE this Doctor?'),
       actions: <Widget>[
         TextButton(
@@ -295,13 +296,19 @@ class DoctorController extends GetxController {
             dataMockDoctor.refresh();
             Navigator.of(context).pop();
           },
-          child: Text('Yes'),
+          child: CustomTextWidget(
+            text: 'Delete',
+            txtColor: Colors.red,
+          ),
         ),
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text('Cancel'),
+          child: CustomTextWidget(
+            text: 'Cancel',
+            txtColor: Colors.black,
+          ),
         ),
       ],
     ));
