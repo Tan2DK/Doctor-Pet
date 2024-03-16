@@ -9,6 +9,8 @@ import '../views/clinic_manager/doctor/clinic_doctor_view.dart';
 import '../views/clinic_manager/invoice_report/invoice_report_binding.dart';
 import '../views/clinic_manager/invoice_report/invoice_report_view.dart';
 import '../views/clinic_manager/medicine/medicine_binding.dart';
+import '../views/clinic_manager/medicine_report/medicinereport_binding.dart';
+import '../views/clinic_manager/medicine_report/medicinereport_view.dart';
 import '../views/home/home_binding.dart';
 import '../views/home/home_view.dart';
 import 'package:doctor_pet/views/pet/pet_view.dart';
@@ -57,6 +59,11 @@ class AppRoutes {
       page: () => const MedicineView(),
       binding: MedicineBinding(),
     ),
+    GetPage(
+      name: RoutesName.medicineReport,
+      page: () => const MedicineReportView(),
+      binding: MedicineReportBinding(),
+    ),
   ];
 }
 
@@ -66,6 +73,7 @@ class RoutesName {
   static const String clinicDoctor = '/clinic-doctor';
   static const String invoiceReport = '/invoice-report';
   static const String medicine = '/medicine';
+  static const String medicineReport = '/medicine-report';
   static const String pet = '/pet';
   static const String schedule = '/schedule';
   static const String nestedNavDoctor = 'nested_navigation_doctor';
