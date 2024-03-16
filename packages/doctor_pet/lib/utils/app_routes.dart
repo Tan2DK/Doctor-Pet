@@ -10,6 +10,8 @@ import 'package:doctor_pet/views/pet/pet_binding.dart';
 
 import '../views/schedule/schedule_binding.dart';
 import '../views/schedule/schedule_view.dart';
+import 'package:doctor_pet/views/doctor/doctor_scheduletime/doctor_scheduletime_binding.dart';
+import 'package:doctor_pet/views/doctor/doctor_scheduletime/doctor_scheduletime_view.dart';
 
 class AppRoutes {
   AppRoutes._();
@@ -35,6 +37,11 @@ class AppRoutes {
     //   page: () => const ScheduleView(),
     //   binding: ScheduleBinding(),
     // ),
+    GetPage(
+      name: RoutesName.scheduleTime,
+      page: () => const DoctorScheduletimeView(),
+      binding: DoctorScheduletimeBinding(),
+    ),
   ];
 }
 
@@ -43,7 +50,7 @@ class RoutesName {
   static const String doctor = '/doctor';
   static const String pet = '/pet';
   static const String schedule = '/schedule';
-  static const String scheduleTime = '/scheduleTime';
+  static const String scheduleTime = '/schedule-time';
   static const String nestedNavDoctor = 'nested_navigation_doctor';
   static const String nestedNavPet = 'nested_navigation_pet';
 }
