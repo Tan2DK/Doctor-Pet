@@ -64,17 +64,19 @@ class ProfileView extends GetView<CustomerProfileController> {
                           labelText: 'Gender',
                           border: OutlineInputBorder(),
                           contentPadding: EdgeInsets.all(8),
+                          // Bạn có thể thêm một dòng để hiển thị thông báo lỗi nếu muốn
+                          // errorText: controller.isValidGender ? null : 'Invalid gender selected',
                         ),
-                        value: controller.gender.value == 'Select Gender'
-                            ? null
-                            : controller.gender.value,
+                        value: controller.gender.value.isNotEmpty &&
+                                controller.gender.value != 'Select Gender'
+                            ? controller.gender.value
+                            : null,
                         hint: const Text('Select Gender'),
                         onChanged: (String? newValue) {
                           if (newValue != null) {
                             controller.gender.value = newValue;
                           }
                         },
-                        errorMessage: controller.errorMessageGender.value,
                         items: controller.genderOptions
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
