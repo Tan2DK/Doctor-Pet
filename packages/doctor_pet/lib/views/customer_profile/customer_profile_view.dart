@@ -23,13 +23,13 @@ class ProfileView extends GetView<CustomerProfileController> {
                   const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
               child: Column(
                 children: [
-                  Text(
-                    controller.displayName,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24,
-                    ),
-                  ),
+                  Obx(() => Text(
+                        controller.displayName.value,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                        ),
+                      )),
                   const SizedBox(height: 24),
                   Row(
                     children: [
@@ -39,6 +39,7 @@ class ProfileView extends GetView<CustomerProfileController> {
                             lable: 'First Name',
                             hint: 'Please enter your First Name.',
                             controller: controller.firstnamecontroller,
+                            onChanged: controller.fistNameChanged,
                             errorMessage: controller.errorMessageFisName.value,
                           ),
                         ),
@@ -50,6 +51,7 @@ class ProfileView extends GetView<CustomerProfileController> {
                             lable: 'Last Name',
                             hint: 'Please enter your Last Name.',
                             controller: controller.lastnamecontroller,
+                            onChanged: controller.lastNameChanged,
                             errorMessage: controller.errorMessageLastName.value,
                           ),
                         ),
@@ -57,22 +59,51 @@ class ProfileView extends GetView<CustomerProfileController> {
                     ],
                   ),
                   const SizedBox(height: 16),
+                  Obx(() => DropdownButtonFormField<String>(
+                        decoration: const InputDecoration(
+                          labelText: 'Gender',
+                          border: OutlineInputBorder(),
+                          contentPadding: EdgeInsets.all(8),
+                        ),
+                        value: controller.gender.value == 'Select Gender'
+                            ? null
+                            : controller.gender.value,
+                        hint: const Text('Select Gender'),
+                        onChanged: (String? newValue) {
+                          if (newValue != null) {
+                            controller.gender.value = newValue;
+                          }
+                        },
+                        errorMessage: controller.errorMessageGender.value,
+                        items: controller.genderOptions
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      )),
+                  const SizedBox(height: 16),
                   Obx(
                     () => CustomTextfieldWidget(
-                      lable: 'Email',
-                      hint: 'Please enter your Last Email.',
-                      controller: TextEditingController(text: 'Kep@gmail.com'),
-                      fixIcon: const Icon(Icons.email),
-                      errorMessage: controller.errorMessageEmail.value,
+                      lable: 'Address',
+                      hint: 'Please enter your address.',
+                      controller: controller.addresscontroller,
+                      onChanged: controller.addressChanged,
+                      fixIcon: const Icon(Icons.location_city),
+                      errorMessage: controller.errorMessageAddress.value,
                     ),
                   ),
                   const SizedBox(height: 16),
-                  CustomTextfieldWidget(
-                    lable: 'Phone Number',
-                    hint: 'Please enter your Phone Number.',
-                    controller: TextEditingController(text: '012345678'),
-                    fixIcon: const Icon(Icons.phone),
-                    errorMessage: controller.errorMessagePhone.value,
+                  Obx(
+                    () => CustomTextfieldWidget(
+                      lable: 'Phone Number',
+                      hint: 'Please enter your Phone Number.',
+                      controller: controller.phonecontroller,
+                      onChanged: controller.phoneChanged,
+                      fixIcon: const Icon(Icons.phone),
+                      errorMessage: controller.errorMessagePhone.value,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   CustomTextfieldWidget(
@@ -91,9 +122,12 @@ class ProfileView extends GetView<CustomerProfileController> {
                           lastDate: DateTime.now(),
                         );
                         if (pickedDate != null) {
+                          // Định dạng và cập nhật giá trị cho dobController
                           controller.dobController.text =
-                              DateFormat('yyyy-MM-dd').format(
-                                  pickedDate); // Cập nhật giá trị của dobController
+                              DateFormat('dd-MM-yyyy').format(pickedDate);
+                          // Gọi dobChanged với ngày được chọn
+                          controller.dobChanged(
+                              pickedDate); // Sử dụng dobChanged tại đây
                         }
                       },
                     ),

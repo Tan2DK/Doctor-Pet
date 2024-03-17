@@ -5,21 +5,29 @@ class CustomerProfileController extends GetxController {
   final TextEditingController dobController = TextEditingController();
   final TextEditingController firstnamecontroller = TextEditingController();
   final TextEditingController lastnamecontroller = TextEditingController();
+  final TextEditingController gendercontroller = TextEditingController();
+
+  final TextEditingController addresscontroller = TextEditingController();
+  final TextEditingController phonecontroller = TextEditingController();
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-  String displayName = "";
+  Rx<String> displayName = Rx<String>('');
   Rx<String> fisname = Rx<String>('');
   Rx<String> lastname = Rx<String>('');
-  Rx<String> email = Rx<String>('');
+  Rx<String> gender = Rx<String>('');
+  Rx<String> address = Rx<String>('');
   Rx<String> phonenumber = Rx<String>('');
   Rxn<DateTime> dob = Rxn<DateTime>();
-  Rxn<String> errorMessageEmail = Rxn<String>();
+  Rxn<String> errorMessageAddress = Rxn<String>();
+  Rxn<String> errorMessageGender = Rxn<String>();
+
   Rxn<String> errorMessagePhone = Rxn<String>();
   Rxn<String> errorMessageFisName = Rxn<String>();
   Rxn<String> errorMessageLastName = Rxn<String>();
   Rxn<String> errorMessageDob = Rxn<String>();
 
   RxBool showErrors = RxBool(false);
+  final List<String> genderOptions = ['Male', 'Female'];
 
   void saveChanges() async {
     final result = await Get.dialog<bool>(
@@ -44,14 +52,21 @@ class CustomerProfileController extends GetxController {
 
     if (result == true) {
       // Update data when OK button is pressed
-      displayName = "${firstnamecontroller.text} ${lastnamecontroller.text}";
+      displayName.value =
+          "${firstnamecontroller.text} ${lastnamecontroller.text}";
     }
   }
 
-  void emailChanged(String? value) {
-    email.value = value ?? '';
-    errorMessageEmail.value =
-        email.value.isEmail ? null : 'Email address is not valid';
+  void addressChanged(String? value) {
+    address.value = value ?? '';
+    errorMessageAddress.value =
+        address.value.isAddress ? null : 'Address is not valid';
+  }
+
+  void genderChanged(String? value) {
+    gender.value = value ?? '';
+    errorMessageGender.value =
+        gender.value.isGender ? null : 'Address is not valid';
   }
 
   void phoneChanged(String? value) {
@@ -60,7 +75,7 @@ class CustomerProfileController extends GetxController {
         phonenumber.value.isPhoneNumber ? null : 'Phone number is not valid';
   }
 
-  void fisNameChanged(String? value) {
+  void fistNameChanged(String? value) {
     fisname.value = value ?? '';
     errorMessageFisName.value =
         fisname.value.isNotEmpty ? null : 'First name cannot be empty';
@@ -90,10 +105,12 @@ class CustomerProfileController extends GetxController {
         fisname.value.isNotEmpty ? null : 'First name cannot be empty';
     errorMessageLastName.value =
         lastname.value.isNotEmpty ? null : 'Last name cannot be empty';
-    errorMessageEmail.value =
-        email.value.isEmail ? null : 'Email address is not valid';
+    errorMessageAddress.value =
+        address.value.isAddress ? null : 'Address is not valid';
     errorMessagePhone.value =
         phonenumber.value.isPhoneNumber ? null : 'Phone number is not valid';
+    errorMessageGender.value =
+        gender.value.isGender ? null : 'Gender is not valid';
   }
 
   void onTapSubmit() {
@@ -101,8 +118,9 @@ class CustomerProfileController extends GetxController {
     validateInputs();
     if (errorMessageFisName.value == null &&
         errorMessageLastName.value == null &&
-        errorMessageEmail.value == null &&
+        errorMessageAddress.value == null &&
         errorMessagePhone.value == null &&
+        errorMessageGender.value == null &&
         errorMessageDob.value == null) {
       Get.back();
       saveChanges();
@@ -113,6 +131,9 @@ class CustomerProfileController extends GetxController {
   void dispose() {
     firstnamecontroller.dispose();
     lastnamecontroller.dispose();
+    addresscontroller.dispose();
+    phonecontroller.dispose();
+    gendercontroller.dispose();
     dobController.dispose();
     super.dispose();
   }
