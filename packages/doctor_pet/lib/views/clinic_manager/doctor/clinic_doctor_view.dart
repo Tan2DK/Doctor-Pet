@@ -52,7 +52,7 @@ class ClinicDoctorView extends GetView<ClinicDoctorController> {
                   txtColor: Colors.white,
                   icon: Icons.add,
                   iconColor: Colors.white,
-                  onPressed: () => controller.showAddDialog(context),
+                  onPressed: () => controller.showAddEditDialog(context),
                 ),
                 const SizedBox(width: 10),
               ],
@@ -86,7 +86,10 @@ class ClinicDoctorView extends GetView<ClinicDoctorController> {
                             DataTitleModel(name: data[index].address, flex: 2),
                             DataTitleModel(
                                 name: data[index].phone.toString(), flex: 2),
-                            DataTitleModel(name: data[index].status ? 'Active' : 'Inactive', flex: 2),
+                            DataTitleModel(
+                                name:
+                                    data[index].status ? 'Active' : 'Inactive',
+                                flex: 2),
                             DataTitleModel(
                                 name: data[index].description, flex: 2),
                           ],
@@ -116,11 +119,16 @@ class ClinicDoctorView extends GetView<ClinicDoctorController> {
                             // Handle menu item selection
                             switch (action) {
                               case 'edit':
-                                controller.showEditDialog(context, data[index]);
+                                controller.showAddEditDialog(
+                                  context,
+                                  index: index,
+                                );
                                 break;
                               case 'delete':
                                 controller.showDeleteDialog(
-                                    context, data[index]);
+                                  context,
+                                  index,
+                                );
                                 break;
                             }
                           },

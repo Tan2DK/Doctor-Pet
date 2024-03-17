@@ -5,31 +5,17 @@ import '../../../../common_widget/custom_text/custom_text_widget.dart';
 import '../../../../core/data/doctor.dart';
 
 class EditDoctorDialog extends StatefulWidget {
-  const EditDoctorDialog(
-      {super.key,
-      this.doctor,
-      this.onChangedName,
-      this.onChangedAddress,
-      this.onChangedPhone,
-      this.onChangedDescription,
-      this.onChangedStatus,
-      this.addDoctor,
-      required this.textControllerName,
-      required this.textControllerAddress,
-      required this.textControllerPhone,
-      required this.textControllerDescription});
+  const EditDoctorDialog({
+    Key? key,
+    this.doctor,
+    this.index,
+    this.onChangedStatus,
+    this.addEditDoctor,
+  }) : super(key: key);
   final Doctor? doctor;
-  final Function(String?)? onChangedName;
-  final Function(String?)? onChangedAddress;
-  final Function(String?)? onChangedPhone;
-  final Function(String?)? onChangedDescription;
+  final int? index;
   final Function(bool?)? onChangedStatus;
-  final Function()? addDoctor;
-
-  final TextEditingController textControllerName;
-  final TextEditingController textControllerAddress;
-  final TextEditingController textControllerPhone;
-  final TextEditingController textControllerDescription;
+  final Function(Doctor, int?)? addEditDoctor;
 
   @override
   State<EditDoctorDialog> createState() => _EditDoctorDialogState();
@@ -37,6 +23,22 @@ class EditDoctorDialog extends StatefulWidget {
 
 class _EditDoctorDialogState extends State<EditDoctorDialog> {
   bool status = false;
+
+  final textControllerName = TextEditingController();
+  final textControllerAddress = TextEditingController();
+  final textControllerPhone = TextEditingController();
+  final textControllerDescription = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.doctor == null) return;
+    textControllerName.text = widget.doctor!.name;
+    textControllerAddress.text = widget.doctor!.address;
+    textControllerPhone.text = widget.doctor!.phone;
+    textControllerDescription.text = widget.doctor!.description;
+    status = widget.doctor!.status;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +54,8 @@ class _EditDoctorDialogState extends State<EditDoctorDialog> {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
-              onChanged: widget.onChangedName,
               keyboardType: TextInputType.text,
-              controller: widget.textControllerName..text = widget.doctor?.name?? '',
+              controller: textControllerName,
               style: const TextStyle(fontSize: 15),
               decoration: InputDecoration(
                   labelText: 'Doctor Name',
@@ -63,9 +64,8 @@ class _EditDoctorDialogState extends State<EditDoctorDialog> {
             ),
             const SizedBox(height: 10),
             TextField(
-              onChanged: widget.onChangedAddress,
               keyboardType: TextInputType.text,
-              controller: widget.textControllerAddress..text = widget.doctor?.address?? '',
+              controller: textControllerAddress,
               style: const TextStyle(fontSize: 15),
               decoration: InputDecoration(
                   labelText: 'Address',
@@ -74,9 +74,8 @@ class _EditDoctorDialogState extends State<EditDoctorDialog> {
             ),
             const SizedBox(height: 10),
             TextField(
-              onChanged: widget.onChangedPhone,
               keyboardType: TextInputType.text,
-              controller: widget.textControllerPhone..text = widget.doctor?.phone?? '',
+              controller: textControllerPhone,
               style: const TextStyle(fontSize: 15),
               decoration: InputDecoration(
                   labelText: 'Phone',
@@ -85,9 +84,8 @@ class _EditDoctorDialogState extends State<EditDoctorDialog> {
             ),
             const SizedBox(height: 10),
             TextField(
-              onChanged: widget.onChangedDescription,
               keyboardType: TextInputType.text,
-              controller: widget.textControllerDescription..text = widget.doctor?.description?? '',
+              controller: textControllerDescription,
               style: const TextStyle(fontSize: 15),
               decoration: InputDecoration(
                   labelText: 'Description',
@@ -120,19 +118,16 @@ class _EditDoctorDialogState extends State<EditDoctorDialog> {
       ),
       actions: <Widget>[
         TextButton(
-          // onPressed: () {
-          //   doctor.name = name.value.isEmpty ? doctor.name : name.value;
-          //   doctor.address = address.isEmpty ? doctor.address : address.value;
-          //   doctor.phone = phone.isEmpty ? doctor.phone : phone.value;
-          //   doctor.status = status.value;
-          //   doctor.description = description.value.isEmpty
-          //       ? doctor.description
-          //       : description.value;
-          //   dataMockDoctor.refresh();
-          //   Get.back();
-          //   clearData();
-          // },
-          onPressed: widget.addDoctor,
+          onPressed: () => widget.addEditDoctor?.call(
+            Doctor(
+              name: textControllerName.text,
+              address: textControllerAddress.text,
+              phone: textControllerPhone.text,
+              status: status,
+              description: textControllerDescription.text,
+            ),
+            widget.index,
+          ),
           child: CustomTextWidget(
             text: widget.doctor != null ? 'Edit' : 'Add',
             txtColor: Colors.black,
