@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 class ClinicDoctorController extends GetxController {
-  Rx<List<doctor>> dataMockDoctor = Rx<List<doctor>>([]);
+  Rx<List<Doctor>> dataMockDoctor = Rx<List<Doctor>>([]);
 
   Rx<String> name = Rx<String>('');
   Rx<String> address = Rx<String>('');
@@ -43,12 +43,13 @@ class ClinicDoctorController extends GetxController {
 
   @override
   void onInit() {
+    super.onInit();
     dataMockDoctor.value = mockDoctor;
   }
 
   void showAddDialog(BuildContext context) {
     Get.dialog(AlertDialog(
-      title: CustomTextWidget(
+      title: const CustomTextWidget(
         text: 'Add Doctor',
         fontWeight: FontWeight.bold,
       ),
@@ -61,47 +62,46 @@ class ClinicDoctorController extends GetxController {
             TextField(
               onChanged: onChangedName,
               keyboardType: TextInputType.text,
-              style: TextStyle(fontSize: 15),
+              style: const TextStyle(fontSize: 15),
               decoration: InputDecoration(
                   labelText: 'Name',
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             TextField(
               onChanged: onChangedAddress,
               keyboardType: TextInputType.text,
-              style: TextStyle(fontSize: 15),
+              style: const TextStyle(fontSize: 15),
               decoration: InputDecoration(
                   labelText: 'Address',
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             TextField(
               onChanged: onChangedPhone,
               keyboardType: TextInputType.text,
-              style: TextStyle(fontSize: 15),
+              style: const TextStyle(fontSize: 15),
               decoration: InputDecoration(
                   labelText: 'Phone',
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
             ),
-            SizedBox(height: 10),
-
+            const SizedBox(height: 10),
             TextField(
               onChanged: onChangedDescription,
               keyboardType: TextInputType.text,
-              style: TextStyle(fontSize: 15),
+              style: const TextStyle(fontSize: 15),
               decoration: InputDecoration(
                   labelText: 'Description',
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               children: [
-                CustomTextWidget(
+                const CustomTextWidget(
                   text: 'Status: ',
                 ),
                 Obx(
@@ -129,7 +129,7 @@ class ClinicDoctorController extends GetxController {
                 phone.value.isEmpty ||
                 description.value.isEmpty) {
             } else {
-              dataMockDoctor.value.add(doctor(
+              dataMockDoctor.value.add(Doctor(
                   name: name.value,
                   address: address.value,
                   phone: phone.value,
@@ -137,19 +137,17 @@ class ClinicDoctorController extends GetxController {
                   description: description.value));
               dataMockDoctor.refresh();
             }
-            Navigator.of(context).pop();
+            Get.back();
             clearData();
           },
-          child: CustomTextWidget(
+          child: const CustomTextWidget(
             text: 'Add',
             txtColor: Colors.black,
           ),
         ),
         TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: CustomTextWidget(
+          onPressed: Get.back,
+          child: const CustomTextWidget(
             text: 'Cancel',
             txtColor: Colors.black,
           ),
@@ -158,10 +156,10 @@ class ClinicDoctorController extends GetxController {
     ));
   }
 
-  void showEditDialog(BuildContext context, doctor doctor) {
+  void showEditDialog(BuildContext context, Doctor doctor) {
     status.value = doctor.status;
     Get.dialog(AlertDialog(
-      title: CustomTextWidget(
+      title: const CustomTextWidget(
         text: 'Edit Doctor',
         fontWeight: FontWeight.bold,
       ),
@@ -177,56 +175,55 @@ class ClinicDoctorController extends GetxController {
               controller: TextEditingController(
                 text: doctor.name,
               ),
-              style: TextStyle(fontSize: 15),
+              style: const TextStyle(fontSize: 15),
               decoration: InputDecoration(
                   labelText: 'Doctor Name',
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             TextField(
               onChanged: onChangedAddress,
               keyboardType: TextInputType.text,
               controller: TextEditingController(
                 text: doctor.address,
               ),
-              style: TextStyle(fontSize: 15),
+              style: const TextStyle(fontSize: 15),
               decoration: InputDecoration(
                   labelText: 'Address',
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             TextField(
               onChanged: onChangedPhone,
               keyboardType: TextInputType.text,
               controller: TextEditingController(
                 text: doctor.phone,
               ),
-              style: TextStyle(fontSize: 15),
+              style: const TextStyle(fontSize: 15),
               decoration: InputDecoration(
                   labelText: 'Phone',
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
             ),
-            SizedBox(height: 10),
-
+            const SizedBox(height: 10),
             TextField(
               onChanged: onChangedDescription,
               keyboardType: TextInputType.text,
               controller: TextEditingController(
                 text: doctor.description,
               ),
-              style: TextStyle(fontSize: 15),
+              style: const TextStyle(fontSize: 15),
               decoration: InputDecoration(
                   labelText: 'Description',
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10))),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               children: [
-                CustomTextWidget(
+                const CustomTextWidget(
                   text: 'Status: ',
                 ),
                 Obx(
@@ -257,19 +254,17 @@ class ClinicDoctorController extends GetxController {
                 ? doctor.description
                 : description.value;
             dataMockDoctor.refresh();
-            Navigator.of(context).pop();
+            Get.back();
             clearData();
           },
-          child: CustomTextWidget(
+          child: const CustomTextWidget(
             text: 'Save',
             txtColor: Colors.black,
           ),
         ),
         TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: CustomTextWidget(
+          onPressed: Get.back,
+          child: const CustomTextWidget(
             text: 'Cancel',
             txtColor: Colors.black,
           ),
@@ -278,34 +273,32 @@ class ClinicDoctorController extends GetxController {
     ));
   }
 
-  void showDeleteDialog(BuildContext context, doctor doctor) {
+  void showDeleteDialog(BuildContext context, Doctor doctor) {
     Get.dialog(AlertDialog(
-      icon: Icon(
+      icon: const Icon(
         Icons.delete,
         color: Colors.red,
       ),
-      title: CustomTextWidget(
+      title: const CustomTextWidget(
         text: 'Delete Doctor',
         fontWeight: FontWeight.bold,
       ),
-      content: Text('Do you want to DELETE this Doctor?'),
+      content: const Text('Do you want to DELETE this Doctor?'),
       actions: <Widget>[
         TextButton(
           onPressed: () {
             dataMockDoctor.value.remove(doctor);
             dataMockDoctor.refresh();
-            Navigator.of(context).pop();
+            Get.back();
           },
-          child: CustomTextWidget(
+          child: const CustomTextWidget(
             text: 'Delete',
             txtColor: Colors.red,
           ),
         ),
         TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: CustomTextWidget(
+          onPressed: Get.back,
+          child: const CustomTextWidget(
             text: 'Cancel',
             txtColor: Colors.black,
           ),

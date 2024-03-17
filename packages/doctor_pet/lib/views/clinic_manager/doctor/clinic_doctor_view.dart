@@ -5,7 +5,6 @@ import 'package:doctor_pet/core/data/doctor.dart';
 import 'package:doctor_pet/views/clinic_manager/doctor/clinic_doctor_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:doctor_pet/common_widget/data_title_widget.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import '../../../common_widget/custom_button/custom_button_action_widget.dart';
@@ -75,7 +74,7 @@ class ClinicDoctorView extends GetView<ClinicDoctorController> {
             const Divider(thickness: 2),
             Expanded(
               child: Obx(() {
-                final List<doctor> data = controller.dataMockDoctor.value;
+                final List<Doctor> data = controller.dataMockDoctor.value;
                 return ListView.builder(
                   itemBuilder: (context, index) => Row(
                     children: [
