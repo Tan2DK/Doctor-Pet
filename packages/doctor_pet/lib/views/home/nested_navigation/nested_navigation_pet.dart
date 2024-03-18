@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/app_routes.dart';
-import '../../pet/pet_binding.dart';
-import '../../pet/pet_view.dart';
+import '../../customer/customer_viewpet/customer_viewpet_binding.dart';
+import '../../customer/customer_viewpet/customer_viewpet_view.dart';
 
 class NestedNavigationPet extends StatelessWidget {
   const NestedNavigationPet({super.key});

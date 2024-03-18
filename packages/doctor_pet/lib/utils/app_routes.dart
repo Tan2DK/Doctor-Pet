@@ -3,10 +3,10 @@ import 'package:doctor_pet/views/doctor/doctor_view.dart';
 
 import 'package:get/get.dart';
 
+import '../views/customer/customer_viewpet/customer_viewpet_binding.dart';
+import '../views/customer/customer_viewpet/customer_viewpet_view.dart';
 import '../views/home/home_binding.dart';
 import '../views/home/home_view.dart';
-import 'package:doctor_pet/views/pet/pet_view.dart';
-import 'package:doctor_pet/views/pet/pet_binding.dart';
 
 class AppRoutes {
   AppRoutes._();
