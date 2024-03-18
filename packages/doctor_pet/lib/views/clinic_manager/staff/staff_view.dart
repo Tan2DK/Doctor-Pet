@@ -1,5 +1,6 @@
 import 'package:doctor_pet/common_widget/custom_searchbar_widget.dart';
 import 'package:doctor_pet/core/data/staff.dart';
+import 'package:doctor_pet/utils/app_extension.dart';
 import 'package:doctor_pet/views/clinic_manager/staff/staff_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:doctor_pet/common_widget/data_title_widget.dart';
@@ -49,11 +50,9 @@ class StaffView extends GetView<StaffController> {
                     )),
                 const SizedBox(width: 10),
                 ElevatedButton.icon(
-                    onPressed: () {
-                      controller.showAddDialog(
-                        context,
-                      );
-                    },
+                    onPressed: () => controller.showAddEditStaffDialog(
+                    context,
+                  ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
                     ),
@@ -92,12 +91,13 @@ class StaffView extends GetView<StaffController> {
                           DataTitleModel(name: data[index].address, flex: 4),
                           DataTitleModel(
                               name: data[index].phone.toString(), flex: 4),
-                          DataTitleModel(name: data[index].status ? 'Active' : 'Inactive', flex: 2),
+                          DataTitleModel(
+                              name: data[index].status ? 'Active' : 'Inactive',
+                              flex: 2),
                           DataTitleModel(
                               name: data[index]
                                   .birthday
-                                  .toString()
-                                  .substring(0, 11),
+                                  .formatDateTime('dd-MM-yyyy'),
                               flex: 3),
                         ],
                       ),
@@ -126,10 +126,13 @@ class StaffView extends GetView<StaffController> {
                           // Handle menu item selection
                           switch (action) {
                             case 'edit':
-                              controller.showEditDialog(context, data[index]);
+                              controller.showAddEditStaffDialog(
+                                context,
+                                index: index,
+                              );
                               break;
                             case 'delete':
-                              controller.showDeleteDialog(context, data[index]);
+                              controller.showDeleteDialog(context, index);
                               break;
                           }
                         },
