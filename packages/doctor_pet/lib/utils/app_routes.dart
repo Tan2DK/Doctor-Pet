@@ -12,7 +12,7 @@ import '../views/home/home_view.dart';
 import 'package:doctor_pet/views/pet/pet_view.dart';
 import 'package:doctor_pet/views/pet/pet_binding.dart';
 import 'package:doctor_pet/views/doctor/doctor_mypatients/doctor_mypatients_binding.dart';
-import 'package:doctor_pet/views/doctor/doctor_mypatients/mypatients_view.dart';
+import 'package:doctor_pet/views/doctor/doctor_mypatients/my_patients_view.dart';
 
 import '../views/schedule/schedule_binding.dart';
 import '../views/schedule/schedule_view.dart';
@@ -38,15 +38,14 @@ class AppRoutes {
     ),
     GetPage(
       name: RoutesName.myPatients,
-      page: () => const MypatientsView(),
-      binding: DoctorMypatientsBinding(),
-     
+      page: () => const MyPatientsView(),
+      binding: MyPatientsBinding(),
     ),
-    GetPage( name: RoutesName.schedule,
+    GetPage(
+      name: RoutesName.schedule,
       page: () => const ScheduleView(),
       binding: ScheduleBinding(),
     ),
-
     GetPage(
       name: RoutesName.clinicDoctor,
       page: () => const ClinicDoctorView(),

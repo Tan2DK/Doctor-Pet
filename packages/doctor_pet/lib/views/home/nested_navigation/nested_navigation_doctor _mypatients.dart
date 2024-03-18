@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/app_routes.dart';
-import '../../doctor/doctor_mypatients/mypatients_view.dart'; // Import MyPatientsView
+import '../../doctor/doctor_mypatients/my_patients_view.dart'; // Import MyPatientsView
 
 class NestedNavigationDocMypatients extends StatelessWidget {
   const NestedNavigationDocMypatients({Key? key});
@@ -16,8 +16,8 @@ class NestedNavigationDocMypatients extends StatelessWidget {
       onGenerateRoute: (settings) {
         return GetPageRoute(
           settings: settings,
-          binding: DoctorMypatientsBinding(),
-          page: () => const MypatientsView(),
+          binding: MyPatientsBinding(),
+          page: () => const MyPatientsView(),
         );
       },
     );
