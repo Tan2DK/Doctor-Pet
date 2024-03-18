@@ -88,15 +88,6 @@ class InvoiceView extends GetView<DoctorInvoiceController> {
             ],
           ),
           const SizedBox(height: 25),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _textkey("Payment Method", textAlign: TextAlign.start),
-              _textValue("Debit Card\nXXXXXXXXXXXX-2541\nHDFC Bank",
-                  textAlign: TextAlign.start),
-            ],
-          ),
-          const SizedBox(height: 25),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
@@ -135,7 +126,7 @@ class InvoiceView extends GetView<DoctorInvoiceController> {
                     children: [
                       Expanded(
                           flex: 4,
-                          child: _textValue(medicine.nameMedicine ?? '',
+                          child: _textValue(medicine.nameMedicine,
                               textAlign: TextAlign.start)),
                       Expanded(
                           flex: 2,
@@ -154,62 +145,6 @@ class InvoiceView extends GetView<DoctorInvoiceController> {
               }).toList(),
             );
           }),
-          const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Expanded(flex: 6, child: SizedBox()),
-                Expanded(
-                  flex: 2,
-                  child: _textkey(
-                    "Subtotal:",
-                    textAlign: TextAlign.end,
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: _textValue(
-                    "\$350",
-                    textAlign: TextAlign.end,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 5),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(flex: 7, child: SizedBox()),
-              Expanded(flex: 3, child: Divider()),
-            ],
-          ),
-          const SizedBox(height: 5),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Expanded(flex: 6, child: SizedBox()),
-                Expanded(
-                  flex: 2,
-                  child: _textkey(
-                    "Discount:",
-                    textAlign: TextAlign.end,
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: _textValue(
-                    "-10%",
-                    textAlign: TextAlign.end,
-                  ),
-                ),
-              ],
-            ),
-          ),
           const SizedBox(height: 5),
           const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -263,7 +198,7 @@ class InvoiceView extends GetView<DoctorInvoiceController> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         _textkey(
-          "Order:",
+          "Order: ",
           textAlign: TextAlign.end,
         ),
         _textValue(
@@ -319,7 +254,7 @@ Widget _order() {
   return Row(
     mainAxisAlignment: MainAxisAlignment.end,
     children: [
-      _textkey("Order:", textAlign: TextAlign.end),
+      _textkey("Order: ", textAlign: TextAlign.end),
       _textValue("#00124", textAlign: TextAlign.end),
     ],
   );
@@ -329,7 +264,7 @@ Widget _issued() {
   return Row(
     mainAxisAlignment: MainAxisAlignment.end,
     children: [
-      _textkey("Issued:", textAlign: TextAlign.end),
+      _textkey("Issued: ", textAlign: TextAlign.end),
       _textValue("20/07/2023", textAlign: TextAlign.end),
     ],
   );
