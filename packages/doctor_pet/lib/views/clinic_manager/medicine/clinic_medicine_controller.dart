@@ -29,7 +29,6 @@ class ClinicMedicineController extends GetxController {
         medicine.companyMedicineName.isEmpty ||
         medicine.quantity.isEmpty ||
         medicine.price.isEmpty) return;
-        
     if (medicine.idMedicine.isEmpty) {
       dataMockMedicine.value.add(medicine.copyWith(
           idMedicine: dataMockMedicine.value.length.toString()));

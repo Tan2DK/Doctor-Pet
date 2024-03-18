@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:doctor_pet/core/data/medicine.dart';
 import 'package:doctor_pet/utils/app_extension.dart';
 import 'package:get/get.dart';
-
 import '../../../../common_widget/custom_text/custom_text_widget.dart';
 
 class EditMedicineDialog extends StatefulWidget {
@@ -57,7 +55,6 @@ class _EditMedicineDialogState extends State<EditMedicineDialog> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              const SizedBox(height: 10),
               TextField(
                 keyboardType: TextInputType.text,
                 controller: textControllerName,
@@ -131,7 +128,7 @@ class _EditMedicineDialogState extends State<EditMedicineDialog> {
                           });
                         },
                         label: CustomTextWidget(
-                          text: importDate.formatDateTime('yyyy-MM-dd'),
+                          text: importDate.formatDateTime('dd-MM-yyyy'),
                           txtColor: Colors.black,
                         )),
                   ],
@@ -170,7 +167,7 @@ class _EditMedicineDialogState extends State<EditMedicineDialog> {
                           });
                         },
                         label: CustomTextWidget(
-                          text: expirationDate.formatDateTime('yyyy-MM-dd'),
+                          text: expirationDate.formatDateTime('dd-MM-yyyy'),
                           txtColor: Colors.black,
                         )),
                   ],

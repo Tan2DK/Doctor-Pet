@@ -1,6 +1,7 @@
 import 'package:doctor_pet/common_widget/custom_button/custom_button_action_widget.dart';
 import 'package:doctor_pet/common_widget/custom_searchbar_widget.dart';
 import 'package:doctor_pet/common_widget/custom_text/custom_text_widget.dart';
+import 'package:doctor_pet/utils/app_extension.dart';
 import 'package:doctor_pet/views/clinic_manager/medicine/clinic_medicine_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:doctor_pet/core/data/medicine.dart';
@@ -93,12 +94,14 @@ class ClinicMedicineView extends GetView<ClinicMedicineController> {
                             DataTitleModel(
                                 name: data[index]
                                     .importDate
+                                    .formatDateTime('dd-MM-yyyy')
                                     .toString()
                                     .substring(0, 10),
                                 flex: 4),
                             DataTitleModel(
                                 name: data[index]
                                     .expirationDate
+                                    .formatDateTime('dd-MM-yyyy')
                                     .toString()
                                     .substring(0, 10),
                                 flex: 4),
