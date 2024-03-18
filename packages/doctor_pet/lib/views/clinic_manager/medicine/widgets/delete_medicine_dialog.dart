@@ -11,7 +11,7 @@ class DeleteMedicineDialog extends StatelessWidget {
     this.onDeleteMedicine,
   }) : super(key: key);
 
-final Medicine medicine;
+  final Medicine medicine;
   final Function(Medicine)? onDeleteMedicine;
 
   @override
