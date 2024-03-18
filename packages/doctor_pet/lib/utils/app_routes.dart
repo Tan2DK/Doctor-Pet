@@ -53,9 +53,9 @@ class AppRoutes {
       binding: InvoiceReportBinding(),
     ),
     GetPage(
-      name: RoutesName.medicine,
-      page: () => const MedicineView(),
-      binding: MedicineBinding(),
+      name: RoutesName.clinicMedicine,
+      page: () => const ClinicMedicineView(),
+      binding: ClinicMedicineBinding(),
     ),
   ];
 }
@@ -65,7 +65,7 @@ class RoutesName {
   static const String doctor = '/doctor';
   static const String clinicDoctor = '/clinic-doctor';
   static const String invoiceReport = '/invoice-report';
-  static const String medicine = '/medicine';
+  static const String clinicMedicine = '/clinic-medicine';
   static const String pet = '/pet';
   static const String schedule = '/schedule';
   static const String nestedNavDoctor = 'nested_navigation_doctor';
