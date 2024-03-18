@@ -3,6 +3,8 @@ import 'package:doctor_pet/views/doctor/doctor_view.dart';
 
 import 'package:get/get.dart';
 
+import '../views/customer_profile/customer_profile_binding.dart';
+import '../views/customer_profile/customer_profile_view.dart';
 import '../views/home/home_binding.dart';
 import '../views/home/home_view.dart';
 import 'package:doctor_pet/views/pet/pet_view.dart';
@@ -31,6 +33,11 @@ class AppRoutes {
       binding: PetBinding(),
     ),
     GetPage(
+      name: RoutesName.customerProfile,
+      page: () => const ProfileView(),
+      binding: CustomerProfileBinding(),
+    ),
+    GetPage(
       name: RoutesName.schedule,
       page: () => const ScheduleView(),
       binding: ScheduleBinding(),
@@ -45,4 +52,5 @@ class RoutesName {
   static const String schedule = '/schedule';
   static const String nestedNavDoctor = 'nested_navigation_doctor';
   static const String nestedNavPet = 'nested_navigation_pet';
+  static const String customerProfile = '/profile';
 }
