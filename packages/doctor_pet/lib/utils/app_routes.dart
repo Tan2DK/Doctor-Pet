@@ -1,12 +1,17 @@
+import 'package:doctor_pet/views/customer_comments/customer_comments_view.dart';
 import 'package:doctor_pet/views/doctor/doctor_binding.dart';
 import 'package:doctor_pet/views/doctor/doctor_view.dart';
 
 import 'package:get/get.dart';
 
+
+import '../views/customer_comments/customer_comments_binding.dart';
+
 import '../views/clinic_manager/doctor/clinic_doctor_binding.dart';
 import '../views/clinic_manager/doctor/clinic_doctor_view.dart';
 import '../views/clinic_manager/invoice_report/invoice_report_binding.dart';
 import '../views/clinic_manager/invoice_report/invoice_report_view.dart';
+
 import '../views/home/home_binding.dart';
 import '../views/home/home_view.dart';
 import 'package:doctor_pet/views/pet/pet_view.dart';
@@ -35,6 +40,11 @@ class AppRoutes {
       binding: PetBinding(),
     ),
     GetPage(
+      name: RoutesName.customerComment,
+      page: () => CommentView(),
+      binding: CustomerCommentBinding(),
+    ),
+    GetPage(
       name: RoutesName.schedule,
       page: () => const ScheduleView(),
       binding: ScheduleBinding(),
@@ -59,6 +69,7 @@ class RoutesName {
   static const String clinicDoctor = '/clinic-doctor';
   static const String invoiceReport = '/invoice-report';
   static const String pet = '/pet';
+  static const String customerComment = '/comment';
   static const String schedule = '/schedule';
   static const String nestedNavDoctor = 'nested_navigation_doctor';
   static const String nestedNavPet = 'nested_navigation_pet';
