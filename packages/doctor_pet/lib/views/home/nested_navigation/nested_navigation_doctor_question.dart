@@ -17,7 +17,7 @@ class NestedNavigationDocQuestion extends StatelessWidget {
         return GetPageRoute(
           settings: settings,
           binding: DoctorQuestionBinding(),
-          page: () => const DoctorQuestionView(),
+          page: () => DoctorQuestionView(),
         );
       },
     );

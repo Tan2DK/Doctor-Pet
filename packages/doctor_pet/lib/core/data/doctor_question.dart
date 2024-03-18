@@ -1,15 +1,23 @@
 class DoctorQuestion {
-  final String reviewerName;
-  final String reviewTime;
-  final String reviewContent;
-  final bool isRecommended;
-  String doctorReply; // Thêm dòng này
+  String id;
+  String reviewerName;
+  String reviewTime;
+  String reviewContent;
+  String? reviewContentDoctor;
+  String nameDoctor;
+  bool isReply;
+  String? parentCommentId;
+  bool showReplyField = false;
 
   DoctorQuestion({
+    required this.id,
     required this.reviewerName,
     required this.reviewTime,
     required this.reviewContent,
-    required this.isRecommended,
-    this.doctorReply = '', // Khởi tạo giá trị mặc định là chuỗi trống
+    this.reviewContentDoctor,
+    required this.nameDoctor,
+    required this.isReply,
+    this.parentCommentId,
+    this.showReplyField = false,
   });
 }
