@@ -70,12 +70,12 @@ class CommentView extends GetView<CommentController> {
                       label: Text("${comment.dislikes}"),
                       onPressed: () => controller.dislikeComment(comment.id),
                     ),
-                    TextButton.icon(
-                      icon: const Icon(Icons.reply),
-                      label: const Text("Reply"),
-                      onPressed: () =>
-                          controller.showReplyInput(context, comment.id),
-                    ),
+                    // TextButton.icon(
+                    //   icon: const Icon(Icons.reply),
+                    //   label: const Text("Reply"),
+                    //   onPressed: () =>
+                    //       controller.showReplyInput(context, comment.id),
+                    // ),
                   ],
                 ),
                 for (var reply in replies) _buildReplyItem(context, reply),
