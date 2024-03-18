@@ -20,7 +20,6 @@ class DoctorMedicineView extends GetView<DoctorMedicineController> {
             onPressed: () {
               controller.showAddMedicineDialog();
             },
-            child: Text('Add New Medicine'),
             style: ElevatedButton.styleFrom(
               backgroundColor:
                   Colors.blue, // Màu nền của nút, có thể điều chỉnh cho phù hợp
@@ -29,9 +28,10 @@ class DoctorMedicineView extends GetView<DoctorMedicineController> {
                 borderRadius: BorderRadius.circular(
                     20.0), // Điều chỉnh bán kính góc nếu muốn
               ),
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                   horizontal: 10, vertical: 10), // Điều chỉnh padding cho nút
             ),
+            child: const Text('Add New Medicine'),
           ),
         ],
       ),
@@ -79,17 +79,15 @@ class DoctorMedicineView extends GetView<DoctorMedicineController> {
                     ],
                     rows: medicines.map<DataRow>((medicine) {
                       return DataRow(cells: [
-                        DataCell(Text(medicine.idMedicine ?? '')),
-                        DataCell(Text(medicine.nameMedicine ?? '')),
-                        DataCell(Text(medicine.companyMedicineName ?? '')),
+                        DataCell(Text(medicine.idMedicine)),
+                        DataCell(Text(medicine.nameMedicine)),
+                        DataCell(Text(medicine.companyMedicineName)),
                         DataCell(Text(
-                          medicine.dateMedicine != null
-                              ? DateFormat('yyyy-MM-dd')
-                                  .format(medicine.dateMedicine!)
-                              : '',
+                          DateFormat('yyyy-MM-dd')
+                              .format(medicine.dateMedicine),
                         )),
-                        DataCell(Text(medicine.expirationdate ?? '')),
-                        DataCell(Text('\$${medicine.price ?? ''}')),
+                        DataCell(Text(medicine.expirationdate)),
+                        DataCell(Text('\$${medicine.price}')),
                       ]);
                     }).toList(),
                   ),

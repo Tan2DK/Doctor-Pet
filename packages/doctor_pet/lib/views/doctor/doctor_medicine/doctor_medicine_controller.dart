@@ -57,7 +57,7 @@ class DoctorMedicineController extends GetxController {
                     .map<DropdownMenuItem<Medicine>>((Medicine medicine) {
                   return DropdownMenuItem<Medicine>(
                     value: medicine,
-                    child: Text(medicine.nameMedicine ?? ''),
+                    child: Text(medicine.nameMedicine),
                   );
                 }).toList(),
               ),
