@@ -16,90 +16,72 @@ class AppointmentView extends GetView<CustomerBookingController> {
       body: Center(
         child: SingleChildScrollView(
           child: Obx(() => Column(
-                // Wrapped the Column with an Obx
                 children: <Widget>[
                   DropdownButton<String>(
-                    value: controller
-                        .selectedDoctor.value, // Current selected value
+                    value: controller.selectedDoctor.value,
                     onChanged: (String? newValue) {
                       if (newValue != null) {
-                        controller.updateSelectedDoctor(
-                            newValue); // Directly pass the new value
+                        controller.updateSelectedDoctor(newValue);
                       }
                     },
                     items: controller.doctorList
                         .map<DropdownMenuItem<String>>((String doctor) {
                       return DropdownMenuItem<String>(
                         value: doctor,
-                        child: Text(doctor), // Display the doctor's name
+                        child: Text(doctor),
                       );
                     }).toList(),
                   ),
                   const SizedBox(height: 20),
                   TableCalendar(
-                    firstDay: DateTime.utc(2021, 1, 1),
-                    lastDay: DateTime.utc(2030, 12, 31),
+                    firstDay: DateTime.now(),
+                    lastDay: DateTime.now().add(const Duration(
+                        days:
+                            21)), // Only allow selection up to 3 weeks in the future
                     focusedDay: controller.focusedDay.value,
-                    calendarFormat: CalendarFormat.month,
+                    calendarFormat: controller.calendarFormat.value,
                     selectedDayPredicate: (day) =>
                         isSameDay(controller.selectedDate.value, day),
                     onDaySelected: (selectedDay, focusedDay) {
-                      controller.selectedDate.value = selectedDay;
-                      controller.focusedDay.value =
-                          focusedDay; // Update focused day reactively
+                      if (!selectedDay.isBefore(DateTime.now())) {
+                        // Prevent selection of past days
+                        controller.updateSelectedDate(selectedDay);
+                        controller.updateFocusedDay(focusedDay);
+                      }
                     },
                     onPageChanged: (focusedDay) {
-                      controller.focusedDay.value =
-                          focusedDay; // Update focused day reactively
+                      controller.focusedDay.value = focusedDay;
                     },
-                    // Add any custom properties here
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: () {
-                      controller.selectTime(
-                          context); // Ensure this matches the method signature in your controller
-                    },
+                    onPressed: () => controller.selectTime(context),
                     child: Text(
-                      'Select Time: ${controller.selectedTime.value.format(context)}',
-                    ),
+                        'Select Time: ${controller.selectedTime.value.format(context)}'),
                   ),
                   const SizedBox(height: 20),
-                  // Aligning the button to the right
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       ElevatedButton(
-                        onPressed: () {
-                          controller.scheduleAppointment(
-                              context); // Ensure this matches the method signature in your controller
-                        },
+                        onPressed: () =>
+                            controller.scheduleAppointment(context),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.green,
-                        ),
-                        child: const Text(
-                          'Book Appointment',
-                          style: TextStyle(color: Colors.white),
-                        ),
+                            backgroundColor: Colors.green),
+                        child: const Text('Book Appointment',
+                            style: TextStyle(color: Colors.white)),
                       ),
                     ],
                   ),
                   const SizedBox(height: 20),
-                  // Display selected information after booking in table form
                   DataTable(
                     columns: const <DataColumn>[
                       DataColumn(
-                        label: Text(
-                          'Field',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
+                          label: Text('Field',
+                              style: TextStyle(fontWeight: FontWeight.bold))),
                       DataColumn(
-                        label: Text(
-                          'Value',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
+                          label: Text('Value',
+                              style: TextStyle(fontWeight: FontWeight.bold))),
                     ],
                     rows: [
                       DataRow(
