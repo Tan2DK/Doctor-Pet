@@ -1,12 +1,11 @@
 import 'package:doctor_pet/common_widget/custom_button/custom_button_action_widget.dart';
 import 'package:doctor_pet/common_widget/custom_searchbar_widget.dart';
 import 'package:doctor_pet/common_widget/custom_text/custom_text_widget.dart';
-import 'package:doctor_pet/views/clinic_manager/medicine/medicine_controller.dart';
+import 'package:doctor_pet/views/clinic_manager/medicine/clinic_medicine_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:doctor_pet/core/data/medicine.dart';
 import 'package:doctor_pet/common_widget/data_title_widget.dart';
 import 'package:get/get.dart';
-
 import '../../../core/data/data_title_model.dart';
 
 class ClinicMedicineView extends GetView<ClinicMedicineController> {

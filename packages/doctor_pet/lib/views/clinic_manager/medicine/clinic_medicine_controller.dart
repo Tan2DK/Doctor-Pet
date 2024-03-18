@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:doctor_pet/data/data_mock/data_mock_medicine.dart';
 
-class MedicineController extends GetxController {
+class ClinicMedicineController extends GetxController {
   Rx<List<Medicine>> dataMockMedicine = Rx<List<Medicine>>([]);
 
   @override
@@ -25,6 +25,11 @@ class MedicineController extends GetxController {
   }
 
   void onAddEditMedicine(Medicine medicine) {
+    if (medicine.nameMedicine.isEmpty ||
+        medicine.companyMedicineName.isEmpty ||
+        medicine.quantity.isEmpty ||
+        medicine.price.isEmpty) return;
+        
     if (medicine.idMedicine.isEmpty) {
       dataMockMedicine.value.add(medicine.copyWith(
           idMedicine: dataMockMedicine.value.length.toString()));
