@@ -12,6 +12,9 @@ import '../views/home/home_view.dart';
 import 'package:doctor_pet/views/pet/pet_view.dart';
 import 'package:doctor_pet/views/pet/pet_binding.dart';
 
+import '../views/schedule/schedule_binding.dart';
+import '../views/schedule/schedule_view.dart';
+
 class AppRoutes {
   AppRoutes._();
 
@@ -41,6 +44,11 @@ class AppRoutes {
       page: () => const AppointmentView(),
       binding: CustomerBookingBinding(),
     ),
+    GetPage(
+      name: RoutesName.schedule,
+      page: () => const ScheduleView(),
+      binding: ScheduleBinding(),
+    )
   ];
 }
 
@@ -48,8 +56,12 @@ class RoutesName {
   static const String home = '/home';
   static const String doctor = '/doctor';
   static const String pet = '/pet';
+
   static const String customercomment = '/comment';
   static const String booking = '/booking';
+
+  static const String schedule = '/schedule';
+
   static const String nestedNavDoctor = 'nested_navigation_doctor';
   static const String nestedNavPet = 'nested_navigation_pet';
 }
