@@ -4,7 +4,14 @@ import 'package:doctor_pet/views/doctor/doctor_view.dart';
 
 import 'package:get/get.dart';
 
+
 import '../views/customer_comments/customer_comments_binding.dart';
+
+import '../views/clinic_manager/doctor/clinic_doctor_binding.dart';
+import '../views/clinic_manager/doctor/clinic_doctor_view.dart';
+import '../views/clinic_manager/invoice_report/invoice_report_binding.dart';
+import '../views/clinic_manager/invoice_report/invoice_report_view.dart';
+
 import '../views/home/home_binding.dart';
 import '../views/home/home_view.dart';
 import 'package:doctor_pet/views/pet/pet_view.dart';
@@ -42,12 +49,25 @@ class AppRoutes {
       page: () => const ScheduleView(),
       binding: ScheduleBinding(),
     ),
+
+    GetPage(
+      name: RoutesName.clinicDoctor,
+      page: () => const ClinicDoctorView(),
+      binding: ClinicDoctorBinding(),
+    ),
+    GetPage(
+      name: RoutesName.invoiceReport,
+      page: () => const InvoiceReportView(),
+      binding: InvoiceReportBinding(),
+    ),
   ];
 }
 
 class RoutesName {
   static const String home = '/home';
   static const String doctor = '/doctor';
+  static const String clinicDoctor = '/clinic-doctor';
+  static const String invoiceReport = '/invoice-report';
   static const String pet = '/pet';
   static const String customerComment = '/comment';
   static const String schedule = '/schedule';
