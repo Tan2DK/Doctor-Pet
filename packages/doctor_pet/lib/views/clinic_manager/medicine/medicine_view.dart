@@ -9,8 +9,8 @@ import 'package:get/get.dart';
 
 import '../../../core/data/data_title_model.dart';
 
-class MedicineView extends GetView<MedicineController> {
-  const MedicineView({super.key});
+class ClinicMedicineView extends GetView<ClinicMedicineController> {
+  const ClinicMedicineView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

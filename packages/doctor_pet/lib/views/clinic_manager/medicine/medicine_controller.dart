@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:doctor_pet/data/data_mock/data_mock_medicine.dart';
 
-class MedicineController extends GetxController {
+class ClinicMedicineController extends GetxController {
   Rx<List<Medicine>> dataMockMedicine = Rx<List<Medicine>>([]);
 
   Rx<String> mediId = Rx<String>('');
