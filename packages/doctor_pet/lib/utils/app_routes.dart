@@ -1,4 +1,4 @@
-import 'package:doctor_pet/views/clinic_manager/medicine/medicine_view.dart';
+import 'package:doctor_pet/views/clinic_manager/medicine/clinic_medicine_view.dart';
 import 'package:doctor_pet/views/doctor/doctor_binding.dart';
 import 'package:doctor_pet/views/doctor/doctor_view.dart';
 
@@ -8,9 +8,9 @@ import '../views/clinic_manager/doctor/clinic_doctor_binding.dart';
 import '../views/clinic_manager/doctor/clinic_doctor_view.dart';
 import '../views/clinic_manager/invoice_report/invoice_report_binding.dart';
 import '../views/clinic_manager/invoice_report/invoice_report_view.dart';
-import '../views/clinic_manager/medicine/medicine_binding.dart';
 import '../views/clinic_manager/medicine_report/medicinereport_binding.dart';
 import '../views/clinic_manager/medicine_report/medicinereport_view.dart';
+import '../views/clinic_manager/medicine/clinic_medicine_binding.dart';
 import '../views/home/home_binding.dart';
 import '../views/home/home_view.dart';
 import 'package:doctor_pet/views/pet/pet_view.dart';

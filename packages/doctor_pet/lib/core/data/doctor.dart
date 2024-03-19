@@ -1,9 +1,9 @@
-class doctor {
+class Doctor{
   String name;
   String address;
   String phone;
   bool status;
   String description;
 
-  doctor({required this.name,required this.address, required this.phone, required this.status, required this.description});
+  Doctor({required this.name,required this.address, required this.phone, required this.status, required this.description});
 }

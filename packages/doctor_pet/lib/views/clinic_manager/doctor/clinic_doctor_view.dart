@@ -5,7 +5,6 @@ import 'package:doctor_pet/core/data/doctor.dart';
 import 'package:doctor_pet/views/clinic_manager/doctor/clinic_doctor_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:doctor_pet/common_widget/data_title_widget.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import '../../../common_widget/custom_button/custom_button_action_widget.dart';
@@ -53,7 +52,7 @@ class ClinicDoctorView extends GetView<ClinicDoctorController> {
                   txtColor: Colors.white,
                   icon: Icons.add,
                   iconColor: Colors.white,
-                  onPressed: () => controller.showAddDialog(context),
+                  onPressed: () => controller.showAddEditDialog(context),
                 ),
                 const SizedBox(width: 10),
               ],
@@ -75,7 +74,7 @@ class ClinicDoctorView extends GetView<ClinicDoctorController> {
             const Divider(thickness: 2),
             Expanded(
               child: Obx(() {
-                final List<doctor> data = controller.dataMockDoctor.value;
+                final List<Doctor> data = controller.dataMockDoctor.value;
                 return ListView.builder(
                   itemBuilder: (context, index) => Row(
                     children: [
@@ -87,7 +86,10 @@ class ClinicDoctorView extends GetView<ClinicDoctorController> {
                             DataTitleModel(name: data[index].address, flex: 2),
                             DataTitleModel(
                                 name: data[index].phone.toString(), flex: 2),
-                            DataTitleModel(name: data[index].status ? 'Active' : 'Inactive', flex: 2),
+                            DataTitleModel(
+                                name:
+                                    data[index].status ? 'Active' : 'Inactive',
+                                flex: 2),
                             DataTitleModel(
                                 name: data[index].description, flex: 2),
                           ],
@@ -117,11 +119,16 @@ class ClinicDoctorView extends GetView<ClinicDoctorController> {
                             // Handle menu item selection
                             switch (action) {
                               case 'edit':
-                                controller.showEditDialog(context, data[index]);
+                                controller.showAddEditDialog(
+                                  context,
+                                  index: index,
+                                );
                                 break;
                               case 'delete':
                                 controller.showDeleteDialog(
-                                    context, data[index]);
+                                  context,
+                                  index,
+                                );
                                 break;
                             }
                           },
