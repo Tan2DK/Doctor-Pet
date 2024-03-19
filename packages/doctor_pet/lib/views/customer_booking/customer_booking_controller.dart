@@ -1,76 +1,69 @@
+import 'package:doctor_pet/utils/app_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:doctor_pet/core/data/booking.dart';
-import 'package:table_calendar/table_calendar.dart'; // Đường dẫn này cần phải đúng với vị trí của file data của bạn
+import 'package:doctor_pet/core/data/booking.dart'; // Asumsi ini adalah path ke model data Anda
+import 'package:table_calendar/table_calendar.dart';
 
 class CustomerBookingController extends GetxController {
   Rx<DateTime> selectedDate = DateTime.now().obs;
-  Rx<TimeOfDay> selectedTime = TimeOfDay.now().obs;
+  // Thời gian mặc định
   final Rx<CalendarFormat> calendarFormat = CalendarFormat.month.obs;
   Rx<DateTime> focusedDay = DateTime.now().obs;
-  final RxList<String> doctorList = <String>[
-    'Dr. John Doe',
-    'Dr. Jane Smith',
-    'Dr. Michael Brown',
-    'Dr. Emily Johnson',
-  ].obs;
-  RxString selectedDoctor = ''.obs;
-  RxString status = ''.obs;
-  RxString displayedDoctor = ''.obs;
-  RxString displayedDate = ''.obs;
-  RxString displayedTime = ''.obs;
 
+  final Rx<FixedSlot> selectedSlot =
+      FixedSlot.slot1.obs; // Giả sử slot1 là giá trị mặc định
+  final RxList<String> clinicList = <String>[
+    'Clinic A',
+    'Clinic B',
+    'Clinic C',
+    'Clinic D',
+  ].obs;
+  RxString selectedClinic = ''.obs;
+  RxString status = ''.obs;
+  RxString displayedClinic = ''.obs; // Thay đổi từ displayedDoctor
+  RxString displayedDate = ''.obs;
+  RxString displayedSlot = ''.obs;
   Rx<List<Appointment>> appointments = Rx<List<Appointment>>([]);
+
   @override
   void onInit() {
     super.onInit();
-    // Assuming `mockComments` is a pre-existing list of mock comments
-    if (doctorList.isNotEmpty) {
-      selectedDoctor.value = doctorList[0]; // Set the default selected doctor
+    if (clinicList.isNotEmpty) {
+      selectedClinic.value = clinicList.first;
     }
   }
 
-  void updateFocusedDay(DateTime focuserd) {
-    focusedDay.value = focuserd;
-    focusedDay.refresh();
+  void updateFocusedDay(DateTime focused) {
+    focusedDay.value = focused;
   }
 
   void updateSelectedDate(DateTime date) {
     selectedDate.value = date;
-    selectedDate.refresh();
   }
 
-  void updateSelectedTime(TimeOfDay time) {
-    selectedTime.value = time;
-    selectedTime.refresh();
+  void updateSelectedSlot(FixedSlot slot) {
+    selectedSlot.value = slot;
+    update();
   }
 
-  void updateSelectedDoctor(String doctor) {
-    selectedDoctor.value = doctor;
-    update(); // This might not be necessary if you're just updating observable values
+  void updateSelectedClinic(String clinic) {
+    // Đổi tên từ updateSelectedDoctor
+    selectedClinic.value = clinic;
+    update(); // Update UI
   }
 
   void scheduleAppointment(BuildContext context) {
     status.value = 'Pending Acceptance';
-    displayedDoctor.value = selectedDoctor.value;
+    displayedClinic.value = selectedClinic.value;
     displayedDate.value = DateFormat('yyyy-MM-dd').format(selectedDate.value);
-    displayedTime.value = selectedTime.value.format(context);
-
-    // Tiếp theo, bạn có thể hiển thị AlertDialog giống như trong _scheduleAppointment của trước
+    // Correct way to get the string value of the enum
+    displayedSlot.value = selectedSlot.value.name;
+    // Update the UI to reflect the changes
+    update();
   }
 
   void addAppointment(Appointment appointment) {
     appointments.value.add(appointment);
-  }
-
-  Future<void> selectTime(BuildContext context) async {
-    final TimeOfDay? picked = await showTimePicker(
-      context: context,
-      initialTime: selectedTime.value,
-    );
-    if (picked != null) {
-      updateSelectedTime(picked);
-    }
   }
 }
