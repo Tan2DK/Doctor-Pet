@@ -45,13 +45,9 @@ class InvoiceReportView extends GetView<InvoiceReportController> {
                   label: 'Select End Day',
                   bgColor: Color.fromARGB(255, 189, 50, 22),
                 ),
-                // CustomButtonShowWidget(
-                //   label: 'Show Report',
-                //   bgColor: Color.fromARGB(255, 102, 169, 228),
-                // )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             DataTitleWidget(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-class CustomButtonActionWidget extends StatefulWidget {
+class CustomButtonActionWidget extends StatelessWidget {
   const CustomButtonActionWidget({
     Key? key,
     this.label,
@@ -20,23 +19,20 @@ class CustomButtonActionWidget extends StatefulWidget {
   final Function()? onPressed;
 
   @override
-  State<CustomButtonActionWidget> createState() => _CustomButtonActionWidgetState();
-}
-
-class _CustomButtonActionWidgetState extends State<CustomButtonActionWidget> {
-  @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
-        icon: Icon(widget.icon, color: widget.iconColor),
+        icon: Icon(icon, color: iconColor),
         style: ElevatedButton.styleFrom(
-          backgroundColor: widget.bgColor,
+          backgroundColor: bgColor,
         ),
-        onPressed: widget.onPressed,
-        label: Text(
-          widget.label.toString(),
-          style: TextStyle(
-            color: widget.txtColor,
-          ),
-        ));
+        onPressed: onPressed,
+        label: label != null
+            ? Text(
+                label.toString(),
+                style: TextStyle(
+                  color: txtColor,
+                ),
+              )
+            : const SizedBox.shrink());
   }
 }

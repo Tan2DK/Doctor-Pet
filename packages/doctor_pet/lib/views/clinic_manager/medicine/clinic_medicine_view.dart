@@ -1,16 +1,16 @@
 import 'package:doctor_pet/common_widget/custom_button/custom_button_action_widget.dart';
 import 'package:doctor_pet/common_widget/custom_searchbar_widget.dart';
 import 'package:doctor_pet/common_widget/custom_text/custom_text_widget.dart';
-import 'package:doctor_pet/views/clinic_manager/medicine/medicine_controller.dart';
+import 'package:doctor_pet/utils/app_extension.dart';
+import 'package:doctor_pet/views/clinic_manager/medicine/clinic_medicine_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:doctor_pet/core/data/medicine.dart';
 import 'package:doctor_pet/common_widget/data_title_widget.dart';
 import 'package:get/get.dart';
-
 import '../../../core/data/data_title_model.dart';
 
-class MedicineView extends GetView<MedicineController> {
-  const MedicineView({super.key});
+class ClinicMedicineView extends GetView<ClinicMedicineController> {
+  const ClinicMedicineView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +51,10 @@ class MedicineView extends GetView<MedicineController> {
                   txtColor: Colors.white,
                   icon: Icons.add,
                   iconColor: Colors.white,
-                  onPressed: () => controller.showAddMedicineDialog(context),
+                  onPressed: () => controller.showAddEditMedicineDialog(
+                    context,
+                    null,
+                  ),
                 ),
                 const SizedBox(width: 10),
               ],
@@ -86,20 +89,28 @@ class MedicineView extends GetView<MedicineController> {
                                 name: data[index].nameMedicine, flex: 4),
                             DataTitleModel(
                                 name: data[index].companyMedicineName, flex: 4),
-                            DataTitleModel(name: data[index].quantity.toString(), flex: 2),
+                            DataTitleModel(
+                                name: data[index].quantity.toString(), flex: 2),
                             DataTitleModel(
                                 name: data[index]
                                     .importDate
+                                    .formatDateTime('dd-MM-yyyy')
                                     .toString()
                                     .substring(0, 10),
                                 flex: 4),
                             DataTitleModel(
-                                name: data[index].expirationDate.toString().substring(0,10), flex: 4),
-                            DataTitleModel(name: data[index].price.toString(), flex: 2),
+                                name: data[index]
+                                    .expirationDate
+                                    .formatDateTime('dd-MM-yyyy')
+                                    .toString()
+                                    .substring(0, 10),
+                                flex: 4),
+                            DataTitleModel(
+                                name: data[index].price.toString(), flex: 2),
                           ],
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         width: 50, // Set the width of the container
                         child: PopupMenuButton<String>(
                           itemBuilder: (BuildContext context) =>
@@ -123,11 +134,14 @@ class MedicineView extends GetView<MedicineController> {
                             // Handle menu item selection
                             switch (action) {
                               case 'edit':
-                                controller.showEditMedicineDialog(
-                                    context, data[index]);
+                                controller.showAddEditMedicineDialog(
+                                  context,
+                                  data[index],
+                                );
                                 break;
                               case 'delete':
-                                controller.showDeleteMedicineDialog(context,data[index]);
+                                controller.showDeleteMedicineDialog(
+                                    context, data[index]);
                                 break;
                             }
                           },
@@ -139,9 +153,7 @@ class MedicineView extends GetView<MedicineController> {
                 );
               }),
             ),
-            const SizedBox(
-              height: 100,
-            )
+            const SizedBox(height: 100)
           ],
         ),
       ),
