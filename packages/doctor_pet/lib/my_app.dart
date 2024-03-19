@@ -37,7 +37,7 @@ Future<void> runMyApp() async {
       ],
       defaultTransition: Transition.cupertino,
       debugShowCheckedModeBanner: false,
-      initialRoute: RoutesName.home,
+      initialRoute: RoutesName.scheduleTime,
       getPages: AppRoutes.mainRoutes,
       theme: AppThemes.lightTheme,
       translations: Language(),
