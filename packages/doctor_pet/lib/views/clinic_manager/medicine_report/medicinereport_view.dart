@@ -1,5 +1,4 @@
 import 'package:doctor_pet/common_widget/custom_button/custom_button_selectday_widget.dart';
-import 'package:doctor_pet/common_widget/custom_button/custom_button_show_widget.dart';
 import 'package:doctor_pet/common_widget/custom_searchbar_widget.dart';
 import 'package:doctor_pet/common_widget/custom_text/custom_text_widget.dart';
 import 'package:doctor_pet/core/data/medicine_report.dart';
@@ -52,10 +51,6 @@ class MedicineReportView extends GetView<MedicineReportController> {
                   label: 'Select End Day',
                   bgColor: Color.fromARGB(255, 189, 50, 22),
                 ),
-                // CustomButtonShowWidget(
-                //   label: 'Show Report',
-                //   bgColor: Color.fromARGB(255, 102, 169, 228),
-                // )
               ],
             ),
             const SizedBox(

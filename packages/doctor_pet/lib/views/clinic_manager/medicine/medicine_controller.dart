@@ -1,6 +1,5 @@
 import 'package:doctor_pet/common_widget/custom_text/custom_text_widget.dart';
 import 'package:doctor_pet/core/data/medicine.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:doctor_pet/data/data_mock/data_mock_medicine.dart';
