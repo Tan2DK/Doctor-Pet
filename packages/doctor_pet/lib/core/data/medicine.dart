@@ -1,15 +1,15 @@
 class Medicine {
   String idMedicine;
   String nameMedicine;
-  String companyMedicineName;
+  String specifications;
   DateTime dateMedicine;
-  String expirationdate;
+  DateTime expirationdate;
   String price;
 
   Medicine(
       {required this.idMedicine,
       required this.nameMedicine,
-      required this.companyMedicineName,
+      required this.specifications,
       required this.dateMedicine,
       required this.expirationdate,
       required this.price});

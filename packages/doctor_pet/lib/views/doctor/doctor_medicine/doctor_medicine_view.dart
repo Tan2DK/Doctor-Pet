@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:doctor_pet/views/doctor/doctor_medicine/doctor_medicine_controller.dart';
-import 'package:doctor_pet/core/data/medicine.dart';
+import 'package:doctor_pet/views/doctor/doctor_medicine/doctor_medicine_controller.dart'; // Make sure this path matches where your file is located
+import 'package:doctor_pet/core/data/medicine.dart'; // Make sure this path matches where your file is located
 
 class DoctorMedicineView extends GetView<DoctorMedicineController> {
   const DoctorMedicineView({Key? key}) : super(key: key);
@@ -10,31 +10,8 @@ class DoctorMedicineView extends GetView<DoctorMedicineController> {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<DoctorMedicineController>();
-    final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Medicine View'),
-        actions: [
-          ElevatedButton(
-            onPressed: () {
-              controller.showAddMedicineDialog();
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor:
-                  Colors.blue, // Màu nền của nút, có thể điều chỉnh cho phù hợp
-              foregroundColor: Colors.white, // Màu chữ trên nút
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                    20.0), // Điều chỉnh bán kính góc nếu muốn
-              ),
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 10, vertical: 10), // Điều chỉnh padding cho nút
-            ),
-            child: const Text('Add New Medicine'),
-          ),
-        ],
-      ),
       body: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 254, 234, 234),
@@ -53,41 +30,68 @@ class DoctorMedicineView extends GetView<DoctorMedicineController> {
               ),
             ),
             const SizedBox(height: 10),
-            const Center(
-              child: Text(
-                'View Medicine Information',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 20), // Adjust based on your layout needs
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment
+                    .spaceBetween, // This will space out your children as far apart as possible
+                children: [
+                  const Text(
+                    'View Medicine Information',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      controller
+                          .showAddMedicineDialog(); // Make sure this method exists in your controller
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          Colors.blue, // Background color of the button
+                      foregroundColor: Colors.white, // Text color
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
+                    ),
+                    child: const Text('Add New Medicine'),
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 10),
             Expanded(
               child: Obx(() {
                 final List<Medicine> medicines = controller.medicines.value;
-                return SizedBox(
-                  width: screenWidth,
+                return SingleChildScrollView(
                   child: DataTable(
                     columns: const [
                       DataColumn(label: Text('IDMedi')),
                       DataColumn(label: Text('Name')),
-                      DataColumn(label: Text('Company Medicine Name')),
+                      DataColumn(label: Text('Specifications')),
                       DataColumn(label: Text('Date')),
                       DataColumn(label: Text('Expiration Date')),
                       DataColumn(label: Text('Price')),
                     ],
-                    rows: medicines.map<DataRow>((medicine) {
+                    rows: medicines.map<DataRow>((Medicine medicine) {
                       return DataRow(cells: [
                         DataCell(Text(medicine.idMedicine)),
                         DataCell(Text(medicine.nameMedicine)),
-                        DataCell(Text(medicine.companyMedicineName)),
+                        DataCell(Text(medicine.specifications)),
                         DataCell(Text(
                           DateFormat('yyyy-MM-dd')
                               .format(medicine.dateMedicine),
                         )),
-                        DataCell(Text(medicine.expirationdate)),
-                        DataCell(Text('\$${medicine.price}')),
+                        DataCell(Text(
+                          DateFormat('yyyy-MM-dd')
+                              .format(medicine.expirationdate as DateTime),
+                        )),
+                        DataCell(Text('\$${medicine.price.toString()}')),
                       ]);
                     }).toList(),
                   ),
