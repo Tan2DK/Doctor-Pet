@@ -1,5 +1,6 @@
-import 'package:doctor_pet/views/pet/pet_controller.dart';
 import 'package:get/get.dart';
+
+import 'customer_viewpet_controller.dart';
 
 class PetBinding extends Bindings {
   @override
