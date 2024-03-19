@@ -2,7 +2,7 @@ import 'package:doctor_pet/common_widget/custom_button/custom_button_selectday_w
 import 'package:doctor_pet/common_widget/custom_searchbar_widget.dart';
 import 'package:doctor_pet/common_widget/custom_text/custom_text_widget.dart';
 import 'package:doctor_pet/core/data/medicine_report.dart';
-import 'package:doctor_pet/views/clinic_manager/medicine_report/medicinereport_controller.dart';
+import 'package:doctor_pet/views/clinic_manager/medicine_report/medicine_report_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:doctor_pet/common_widget/data_title_widget.dart';
 import 'package:get/get.dart';
