@@ -2,6 +2,7 @@ import 'package:doctor_pet/common_widget/custom_button/custom_button_selectday_w
 import 'package:doctor_pet/common_widget/custom_searchbar_widget.dart';
 import 'package:doctor_pet/common_widget/custom_text/custom_text_widget.dart';
 import 'package:doctor_pet/core/data/invoice_report.dart';
+import 'package:doctor_pet/utils/app_extension.dart';
 import 'package:doctor_pet/views/clinic_manager/invoice_report/invoice_report_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:doctor_pet/common_widget/data_title_widget.dart';
@@ -40,7 +41,9 @@ class InvoiceReportView extends GetView<InvoiceReportController> {
                   label: 'Select Start Day',
                   bgColor: Color.fromARGB(255, 28, 195, 142),
                 ),
-                SizedBox(width: 50,),
+                SizedBox(
+                  width: 50,
+                ),
                 CustomButtonSelectDayWidget(
                   label: 'Select End Day',
                   bgColor: Color.fromARGB(255, 189, 50, 22),
@@ -58,39 +61,33 @@ class InvoiceReportView extends GetView<InvoiceReportController> {
                 ),
                 DataTitleModel(name: 'Patient Name', flex: 4),
                 DataTitleModel(name: 'Cost', flex: 2),
-                DataTitleModel(name: 'Day', flex: 5),
+                DataTitleModel(name: 'Day', flex: 4),
                 DataTitleModel(name: 'Prescription', flex: 5),
               ],
             ),
-            const Divider(
-              height: 10,
-            ),
+            const Divider(thickness: 3),
             Expanded(
-              child: ListView.builder(
+              child: ListView.separated(
+                separatorBuilder: (context, index) =>
+                    const Divider(thickness: 1),
                 itemBuilder: (context, index) => Row(
                   children: [
                     Expanded(
                       flex: 6,
                       child: DataTitleWidget(
                         titles: [
+                          DataTitleModel(name: data[index].patientID, flex: 2),
                           DataTitleModel(
-                              name: data[index].patientID,
-                              flex: 2),
+                              name: data[index].patientName, flex: 4),
                           DataTitleModel(
-                              name: data[index].patientName,
-                              flex: 4),
-                          DataTitleModel(
-                              name: data[index].cost.toString(),
-                              flex: 2),
+                              name: data[index].cost.toString(), flex: 2),
                           DataTitleModel(
                               name: data[index]
                                   .day
-                                  .toString()
-                                  .substring(0, 11),
-                              flex: 5),
+                                  .formatDateTime('dd-MM-yyyy'),
+                              flex: 4),
                           DataTitleModel(
-                              name: data[index].prescription,
-                              flex: 5),
+                              name: data[index].prescription, flex: 5),
                         ],
                       ),
                     ),

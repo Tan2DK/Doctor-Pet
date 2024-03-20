@@ -71,11 +71,12 @@ class ClinicDoctorView extends GetView<ClinicDoctorController> {
                 DataTitleModel(name: '', flex: 1),
               ],
             ),
-            const Divider(thickness: 2),
+            const Divider(thickness: 3),
             Expanded(
               child: Obx(() {
                 final List<Doctor> data = controller.dataMockDoctor.value;
-                return ListView.builder(
+                return ListView.separated(
+                  separatorBuilder: (context, index) => const Divider(thickness: 1),
                   itemBuilder: (context, index) => Row(
                     children: [
                       Expanded(

@@ -2,6 +2,7 @@ import 'package:doctor_pet/common_widget/custom_button/custom_button_selectday_w
 import 'package:doctor_pet/common_widget/custom_searchbar_widget.dart';
 import 'package:doctor_pet/common_widget/custom_text/custom_text_widget.dart';
 import 'package:doctor_pet/core/data/medicine_report.dart';
+import 'package:doctor_pet/utils/app_extension.dart';
 import 'package:doctor_pet/views/clinic_manager/medicine_report/medicine_report_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:doctor_pet/common_widget/data_title_widget.dart';
@@ -59,18 +60,18 @@ class MedicineReportView extends GetView<MedicineReportController> {
             DataTitleWidget(
               titles: [
                 DataTitleModel(name: 'Medicine Name', flex: 4),
-                DataTitleModel(name: 'Import Date', flex: 4),
-                DataTitleModel(name: 'Expiration Date', flex: 4),
+                DataTitleModel(name: 'Import Date', flex: 3),
+                DataTitleModel(name: 'Expiration Date', flex: 3),
                 DataTitleModel(name: 'Price', flex: 2),
                 DataTitleModel(name: 'Quantity', flex: 2),
                 DataTitleModel(name: 'Total Price', flex: 2),
               ],
             ),
-            const Divider(
-              height: 10,
-            ),
+            const Divider(thickness: 3),
             Expanded(
-              child: ListView.builder(
+              child: ListView.separated(
+                separatorBuilder: (context, index) =>
+                    const Divider(thickness: 1),
                 itemBuilder: (context, index) => Row(
                   children: [
                     Expanded(
@@ -80,9 +81,15 @@ class MedicineReportView extends GetView<MedicineReportController> {
                           DataTitleModel(
                               name: data[index].medicineName, flex: 4),
                           DataTitleModel(
-                              name: data[index].importDate.toString().substring(0,10), flex: 4),
-                              DataTitleModel(
-                              name: data[index].expirationDate.toString().substring(0,10), flex: 4),
+                              name: data[index]
+                                  .importDate
+                                  .formatDateTime('dd-MM-yyyy'),
+                              flex: 3),
+                          DataTitleModel(
+                              name: data[index]
+                                  .expirationDate
+                                  .formatDateTime('dd-MM-yyyy'),
+                              flex: 3),
                           DataTitleModel(
                               name: data[index].unitPrice.toString(), flex: 2),
                           DataTitleModel(
