@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../utils/app_routes.dart';
 
 import 'package:doctor_pet/views/doctor/doctor_invoice/doctor_invoice_binding.dart';
-import 'package:doctor_pet/views/doctor/doctor_invoice/invoice_view.dart';
+import 'package:doctor_pet/views/doctor/doctor_invoice/doctor_invoice_view.dart';
 
 class NestedNavigationInvoice extends StatelessWidget {
   const NestedNavigationInvoice({super.key});
@@ -18,7 +18,7 @@ class NestedNavigationInvoice extends StatelessWidget {
         return GetPageRoute(
           settings: settings,
           binding: DoctorInvoiceBinding(),
-          page: () => const InvoiceView(),
+          page: () => const DoctorInvoiceView(),
         );
       },
     );

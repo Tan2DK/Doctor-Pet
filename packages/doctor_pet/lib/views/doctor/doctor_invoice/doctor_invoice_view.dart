@@ -4,9 +4,13 @@ import 'package:doctor_pet/views/doctor/doctor_invoice/doctor_invoice_controller
 import 'package:doctor_pet/core/data/invoice.dart';
 import 'package:doctor_pet/data/data_mock/doctor_invoice.dart';
 import 'package:intl/intl.dart';
+import 'package:doctor_pet/views/doctor/doctor_invoice/widgets/order_widget.dart';
+import 'package:doctor_pet/views/doctor/doctor_invoice/widgets/issued_widget.dart';
+import 'package:doctor_pet/views/doctor/doctor_invoice/widgets/text_key_widget.dart';
+import 'package:doctor_pet/views/doctor/doctor_invoice/widgets/text_value_widget.dart';
 
-class InvoiceView extends GetView<DoctorInvoiceController> {
-  const InvoiceView({Key? key}) : super(key: key);
+class DoctorInvoiceView extends GetView<DoctorInvoiceController> {
+  const DoctorInvoiceView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +18,7 @@ class InvoiceView extends GetView<DoctorInvoiceController> {
     final List<Invoice> invoices = mockInvoice;
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 249, 249, 249),
+      backgroundColor: const Color.fromARGB(255, 249, 249, 249),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -58,24 +62,25 @@ class InvoiceView extends GetView<DoctorInvoiceController> {
                 width: 200,
                 height: 100,
               ),
-              Column(
+              const Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  _order(),
-                  _issued(),
+                  OrderWidget(),
+                  IssuedWidget(),
                 ],
               )
             ],
           ),
           const SizedBox(height: 15),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _textValue(
-                      "Dr. Darren Elder\n806 Twin Willow Lane, Old Forge,\nNewyork, USA",
+                  TextValueWidget(
+                      text:
+                          "Dr. Darren Elder\n806 Twin Willow Lane, Old Forge,\nNewyork, USA",
                       textAlign: TextAlign.start),
                 ],
               ),
@@ -87,16 +92,65 @@ class InvoiceView extends GetView<DoctorInvoiceController> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(flex: 4, child: Text("Description")),
                 Expanded(
-                    flex: 2, child: Text("Quantity", textAlign: TextAlign.end)),
+                  flex: 4,
+                  child: Text(
+                    "Description",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black54,
+                    ),
+                  ),
+                ),
                 Expanded(
-                    flex: 2,
-                    child: Text("Note Doctor", textAlign: TextAlign.end)),
+                  flex: 2,
+                  child: Text(
+                    "Quantity",
+                    textAlign: TextAlign.end,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black54,
+                    ),
+                  ),
+                ),
                 Expanded(
-                    flex: 2, child: Text("Date", textAlign: TextAlign.end)),
+                  flex: 2,
+                  child: Text(
+                    "Note Doctor",
+                    textAlign: TextAlign.end,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black54,
+                    ),
+                  ),
+                ),
                 Expanded(
-                    flex: 2, child: Text("Total", textAlign: TextAlign.end)),
+                  flex: 2,
+                  child: Text(
+                    "Date",
+                    textAlign: TextAlign.end,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black54,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Text(
+                    "Total",
+                    textAlign: TextAlign.end,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black54,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -110,27 +164,30 @@ class InvoiceView extends GetView<DoctorInvoiceController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
-                      flex: 4,
-                      child: _textValue(invoice.nameMedicine,
-                          textAlign: TextAlign.start)),
+                    flex: 4,
+                    child: TextValueWidget(
+                        text: invoice.nameMedicine, textAlign: TextAlign.start),
+                  ),
+                  const Expanded(
+                    flex: 2,
+                    child: TextValueWidget(text: "1", textAlign: TextAlign.end),
+                  ),
                   Expanded(
-                      flex: 2,
-                      child: _textValue("1",
-                          textAlign:
-                              TextAlign.end)), // Assume quantity is 1 for now
+                    flex: 2,
+                    child: TextValueWidget(
+                        text: invoice.noteDoctor, textAlign: TextAlign.end),
+                  ),
                   Expanded(
-                      flex: 2,
-                      child: _textValue(invoice.noteDoctor,
-                          textAlign: TextAlign.end)),
+                    flex: 2,
+                    child: TextValueWidget(
+                        text: DateFormat('dd/MM/yyyy').format(invoice.date),
+                        textAlign: TextAlign.end),
+                  ),
                   Expanded(
-                      flex: 2,
-                      child: _textValue(
-                          DateFormat('dd/MM/yyyy').format(invoice.date),
-                          textAlign: TextAlign.end)),
-                  Expanded(
-                      flex: 2,
-                      child: _textValue("\$${invoice.totals}",
-                          textAlign: TextAlign.end)),
+                    flex: 2,
+                    child: TextValueWidget(
+                        text: "\$${invoice.totals}", textAlign: TextAlign.end),
+                  ),
                 ],
               ),
             ),
@@ -138,11 +195,11 @@ class InvoiceView extends GetView<DoctorInvoiceController> {
           const SizedBox(height: 5),
           const Divider(),
           const SizedBox(height: 5),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Expanded(
                     flex: 6, child: SizedBox()), // This is just for spacing
                 Expanded(
@@ -156,58 +213,16 @@ class InvoiceView extends GetView<DoctorInvoiceController> {
             ),
           ),
           const SizedBox(height: 20),
-          _textkey("Other information", textAlign: TextAlign.start),
+          const TextKeyWidget(
+              text: "Other information", textAlign: TextAlign.start),
           const SizedBox(height: 10),
-          _textValue(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed dictum ligula, cursus blandit risus.",
+          const TextValueWidget(
+            text:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed dictum ligula, cursus blandit risus.",
             textAlign: TextAlign.start,
           ),
           const SizedBox(height: 20),
         ],
-      ),
-    );
-  }
-
-  Widget _order() {
-    return const Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Text("Order: ", style: TextStyle(fontWeight: FontWeight.bold)),
-        Text("#00124"),
-      ],
-    );
-  }
-
-  Widget _issued() {
-    return const Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Text("Issued: ", style: TextStyle(fontWeight: FontWeight.bold)),
-        Text("20/07/2023"),
-      ],
-    );
-  }
-
-  Widget _textkey(String text, {TextAlign? textAlign}) {
-    return Text(
-      text,
-      textAlign: textAlign,
-      style: const TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-        color: Colors.black,
-      ),
-    );
-  }
-
-  Widget _textValue(String text, {TextAlign? textAlign}) {
-    return Text(
-      text,
-      textAlign: textAlign,
-      style: const TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.w600,
-        color: Colors.grey,
       ),
     );
   }
