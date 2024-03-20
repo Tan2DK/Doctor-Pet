@@ -1,19 +1,39 @@
 class Medicine {
-  String medicineId;
-  String medicineName;
-  String medicineUnit;
-  double prices; // Lưu ý: Dart sử dụng `double` chứ không phải `Double`
-  int inventory;
-  String specifications;
-  String medicineCateId;
+  String idMedicine;
+  String nameMedicine;
+  String companyMedicineName;
+  String quantity;
+  DateTime importDate;
+  DateTime expirationDate;
+  String price;
 
   Medicine({
-    required this.medicineId,
-    required this.medicineName,
-    required this.medicineUnit,
-    required this.prices,
-    required this.inventory,
-    required this.specifications,
-    required this.medicineCateId,
+    required this.idMedicine,
+    required this.nameMedicine,
+    required this.companyMedicineName,
+    required this.quantity,
+    required this.importDate,
+    required this.expirationDate,
+    required this.price,
   });
+
+  Medicine copyWith({
+    String? idMedicine,
+    String? nameMedicine,
+    String? companyMedicineName,
+    String? quantity,
+    DateTime? importDate,
+    DateTime? expirationDate,
+    String? price,
+  }) {
+    return Medicine(
+      idMedicine: idMedicine ?? this.idMedicine,
+      nameMedicine: nameMedicine ?? this.nameMedicine,
+      companyMedicineName: companyMedicineName ?? this.companyMedicineName,
+      quantity: quantity ?? this.quantity,
+      importDate: importDate ?? this.importDate,
+      expirationDate: expirationDate ?? this.expirationDate,
+      price: price ?? this.price,
+    );
+  }
 }

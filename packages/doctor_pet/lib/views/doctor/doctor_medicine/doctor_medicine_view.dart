@@ -1,8 +1,9 @@
+import 'package:doctor_pet/utils/app_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:doctor_pet/views/doctor/doctor_medicine/doctor_medicine_controller.dart'; // Đảm bảo đường dẫn đến file này chính xác
-import 'package:doctor_pet/core/data/medicine.dart'; // Đảm bảo đường dẫn đến file này chính xác
+import 'package:doctor_pet/views/doctor/doctor_medicine/doctor_medicine_controller.dart'; // Make sure this path matches where your file is located
+import 'package:doctor_pet/core/data/medicine.dart'; // Make sure this path matches where your file is located
 
 class DoctorMedicineView extends GetView<DoctorMedicineController> {
   const DoctorMedicineView({Key? key}) : super(key: key);
@@ -31,9 +32,11 @@ class DoctorMedicineView extends GetView<DoctorMedicineController> {
             ),
             const SizedBox(height: 10),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 20), // Adjust based on your layout needs
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment
+                    .spaceBetween, // This will space out your children as far apart as possible
                 children: [
                   const Text(
                     'View Medicine Information',
@@ -45,11 +48,12 @@ class DoctorMedicineView extends GetView<DoctorMedicineController> {
                   ElevatedButton(
                     onPressed: () {
                       controller
-                          .showAddMedicineDialog(); // Đảm bảo phương thức này tồn tại trong controller của bạn
+                          .showAddMedicineDialog(); // Make sure this method exists in your controller
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      foregroundColor: Colors.white,
+                      backgroundColor:
+                          Colors.blue, // Background color of the button
+                      foregroundColor: Colors.white, // Text color
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
@@ -68,23 +72,41 @@ class DoctorMedicineView extends GetView<DoctorMedicineController> {
                 return SingleChildScrollView(
                   child: DataTable(
                     columns: const [
-                      DataColumn(label: Text('ID')),
-                      DataColumn(label: Text('Name')),
-                      DataColumn(label: Text('Unit')),
-                      DataColumn(label: Text('Price')),
-                      DataColumn(label: Text('Inventory')),
-                      DataColumn(label: Text('Specifications')),
-                      DataColumn(label: Text('Category')),
+                      DataColumn(
+                          label: Text('IDMedi',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold))),
+                      DataColumn(
+                          label: Text('Name',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold))),
+                      DataColumn(
+                          label: Text('Quantity',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold))),
+                      DataColumn(
+                          label: Text('Expiration Date',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold))),
+                      DataColumn(
+                          label: Text('Import Date',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold))),
+                      DataColumn(
+                          label: Text('Price',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold))),
                     ],
                     rows: medicines.map<DataRow>((Medicine medicine) {
                       return DataRow(cells: [
-                        DataCell(Text(medicine.medicineId)),
-                        DataCell(Text(medicine.medicineName)),
-                        DataCell(Text(medicine.medicineUnit)),
-                        DataCell(Text('\$${medicine.prices.toString()}')),
-                        DataCell(Text(medicine.inventory.toString())),
-                        DataCell(Text(medicine.specifications)),
-                        DataCell(Text(medicine.medicineCateId)),
+                        DataCell(Text(medicine.idMedicine)),
+                        DataCell(Text(medicine.nameMedicine)),
+                        DataCell(Text(medicine.quantity)),
+                        DataCell(Text(
+                            medicine.importDate.formatDateTime('dd-MM-yyyy'))),
+                        DataCell(Text(medicine.expirationDate
+                            .formatDateTime('dd-MM-yyyy'))),
+                        DataCell(Text('\$${medicine.price.toString()}')),
                       ]);
                     }).toList(),
                   ),
