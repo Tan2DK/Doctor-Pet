@@ -84,9 +84,7 @@ class InvoiceReportView extends GetView<InvoiceReportController> {
                           DataTitleModel(
                               name: data[index]
                                   .day
-                                  .formatDateTime('dd-MM-yyyy')
-                                  .toString()
-                                  .substring(0, 10),
+                                  .formatDateTime('dd-MM-yyyy'),
                               flex: 4),
                           DataTitleModel(
                               name: data[index].prescription, flex: 5),
