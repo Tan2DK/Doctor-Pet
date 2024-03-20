@@ -66,11 +66,11 @@ class MedicineReportView extends GetView<MedicineReportController> {
                 DataTitleModel(name: 'Total Price', flex: 2),
               ],
             ),
-            const Divider(
-              height: 10,
-            ),
+            const Divider(thickness: 3),
             Expanded(
-              child: ListView.builder(
+              child: ListView.separated(
+                separatorBuilder: (context, index) =>
+                    const Divider(thickness: 1),
                 itemBuilder: (context, index) => Row(
                   children: [
                     Expanded(
@@ -80,9 +80,17 @@ class MedicineReportView extends GetView<MedicineReportController> {
                           DataTitleModel(
                               name: data[index].medicineName, flex: 4),
                           DataTitleModel(
-                              name: data[index].importDate.toString().substring(0,10), flex: 4),
-                              DataTitleModel(
-                              name: data[index].expirationDate.toString().substring(0,10), flex: 4),
+                              name: data[index]
+                                  .importDate
+                                  .toString()
+                                  .substring(0, 10),
+                              flex: 4),
+                          DataTitleModel(
+                              name: data[index]
+                                  .expirationDate
+                                  .toString()
+                                  .substring(0, 10),
+                              flex: 4),
                           DataTitleModel(
                               name: data[index].unitPrice.toString(), flex: 2),
                           DataTitleModel(

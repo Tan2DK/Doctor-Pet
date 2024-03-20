@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 
 import '../../../core/data/data_title_model.dart';
 
-
 class PatientView extends GetView<PatientController> {
   const PatientView({Key? key}) : super(key: key);
   @override
@@ -51,7 +50,9 @@ class PatientView extends GetView<PatientController> {
                       'Sort',
                       style: TextStyle(color: Colors.black54),
                     )),
-                    const SizedBox(width: 20,)
+                const SizedBox(
+                  width: 20,
+                )
               ],
             ),
             const SizedBox(height: 10),
@@ -62,19 +63,19 @@ class PatientView extends GetView<PatientController> {
                 DataTitleModel(name: '', flex: 0),
               ],
             ),
-            const Divider(),
+            const Divider(thickness: 3),
             Expanded(
-              child: ListView.builder(
+              child: ListView.separated(
+                separatorBuilder: (context, index) =>
+                    const Divider(thickness: 1),
                 itemBuilder: (context, index) => Row(
                   children: [
                     Expanded(
                       flex: 6,
                       child: DataTitleWidget(
                         titles: [
-                          DataTitleModel(
-                              name: data[index].ownName, flex: 5),
-                          DataTitleModel(
-                              name: data[index].petName, flex: 5),
+                          DataTitleModel(name: data[index].ownName, flex: 5),
+                          DataTitleModel(name: data[index].petName, flex: 5),
                         ],
                       ),
                     ),
