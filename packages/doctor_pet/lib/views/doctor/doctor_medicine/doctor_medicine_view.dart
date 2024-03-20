@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:doctor_pet/views/doctor/doctor_medicine/doctor_medicine_controller.dart'; // Make sure this path matches where your file is located
-import 'package:doctor_pet/core/data/medicine.dart'; // Make sure this path matches where your file is located
+import 'package:doctor_pet/views/doctor/doctor_medicine/doctor_medicine_controller.dart'; // Đảm bảo đường dẫn đến file này chính xác
+import 'package:doctor_pet/core/data/medicine.dart'; // Đảm bảo đường dẫn đến file này chính xác
 
 class DoctorMedicineView extends GetView<DoctorMedicineController> {
   const DoctorMedicineView({Key? key}) : super(key: key);
@@ -31,11 +31,9 @@ class DoctorMedicineView extends GetView<DoctorMedicineController> {
             ),
             const SizedBox(height: 10),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 20), // Adjust based on your layout needs
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment
-                    .spaceBetween, // This will space out your children as far apart as possible
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
                     'View Medicine Information',
@@ -47,12 +45,11 @@ class DoctorMedicineView extends GetView<DoctorMedicineController> {
                   ElevatedButton(
                     onPressed: () {
                       controller
-                          .showAddMedicineDialog(); // Make sure this method exists in your controller
+                          .showAddMedicineDialog(); // Đảm bảo phương thức này tồn tại trong controller của bạn
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          Colors.blue, // Background color of the button
-                      foregroundColor: Colors.white, // Text color
+                      backgroundColor: Colors.blue,
+                      foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
@@ -71,27 +68,23 @@ class DoctorMedicineView extends GetView<DoctorMedicineController> {
                 return SingleChildScrollView(
                   child: DataTable(
                     columns: const [
-                      DataColumn(label: Text('IDMedi')),
+                      DataColumn(label: Text('ID')),
                       DataColumn(label: Text('Name')),
-                      DataColumn(label: Text('Specifications')),
-                      DataColumn(label: Text('Date')),
-                      DataColumn(label: Text('Expiration Date')),
+                      DataColumn(label: Text('Unit')),
                       DataColumn(label: Text('Price')),
+                      DataColumn(label: Text('Inventory')),
+                      DataColumn(label: Text('Specifications')),
+                      DataColumn(label: Text('Category')),
                     ],
                     rows: medicines.map<DataRow>((Medicine medicine) {
                       return DataRow(cells: [
-                        DataCell(Text(medicine.idMedicine)),
-                        DataCell(Text(medicine.nameMedicine)),
+                        DataCell(Text(medicine.medicineId)),
+                        DataCell(Text(medicine.medicineName)),
+                        DataCell(Text(medicine.medicineUnit)),
+                        DataCell(Text('\$${medicine.prices.toString()}')),
+                        DataCell(Text(medicine.inventory.toString())),
                         DataCell(Text(medicine.specifications)),
-                        DataCell(Text(
-                          DateFormat('yyyy-MM-dd')
-                              .format(medicine.dateMedicine),
-                        )),
-                        DataCell(Text(
-                          DateFormat('yyyy-MM-dd')
-                              .format(medicine.expirationdate as DateTime),
-                        )),
-                        DataCell(Text('\$${medicine.price.toString()}')),
+                        DataCell(Text(medicine.medicineCateId)),
                       ]);
                     }).toList(),
                   ),

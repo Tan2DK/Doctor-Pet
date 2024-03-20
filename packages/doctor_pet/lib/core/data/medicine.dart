@@ -1,16 +1,19 @@
 class Medicine {
-  String idMedicine;
-  String nameMedicine;
+  String medicineId;
+  String medicineName;
+  String medicineUnit;
+  double prices; // Lưu ý: Dart sử dụng `double` chứ không phải `Double`
+  int inventory;
   String specifications;
-  DateTime dateMedicine;
-  DateTime expirationdate;
-  String price;
+  String medicineCateId;
 
-  Medicine(
-      {required this.idMedicine,
-      required this.nameMedicine,
-      required this.specifications,
-      required this.dateMedicine,
-      required this.expirationdate,
-      required this.price});
+  Medicine({
+    required this.medicineId,
+    required this.medicineName,
+    required this.medicineUnit,
+    required this.prices,
+    required this.inventory,
+    required this.specifications,
+    required this.medicineCateId,
+  });
 }

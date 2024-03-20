@@ -3,20 +3,21 @@ import 'package:doctor_pet/core/data/medicine.dart';
 
 final List<Medicine> mockMedicines = [
   Medicine(
-    dateMedicine: DateTime(2018, 01, 10),
-    idMedicine: '05',
-    nameMedicine: 'Ibuprofen',
+    medicineId: '05',
+    medicineName: 'Ibuprofen',
+    medicineUnit: 'Tablets',
+    prices: 8,
+    inventory: 100,
     specifications: 'Pharmaco',
-    expirationdate: DateTime(2018, 01, 10),
-    price: '8',
+    medicineCateId: 'PainRelief',
   ),
   Medicine(
-    dateMedicine: DateTime(2019, 02, 15),
-    idMedicine: '06',
-    nameMedicine: 'Acetaminophen',
+    medicineId: '06',
+    medicineName: 'Acetaminophen',
+    medicineUnit: 'Tablets',
+    prices: 3,
+    inventory: 150,
     specifications: 'Medicorp',
-    expirationdate: DateTime(2018, 01, 10),
-    price: '3',
+    medicineCateId: 'PainRelief',
   ),
-  // Thêm các mục medicine khác tương tự
 ];
