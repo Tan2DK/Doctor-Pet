@@ -96,4 +96,5 @@ class RoutesName {
   static const String schedule = '/schedule';
   static const String nestedNavDoctor = 'nested_navigation_doctor';
   static const String nestedNavPet = 'nested_navigation_pet';
+  static const String nestedNavDocQuestion = 'nested_navigation_doc_Question';
 }
