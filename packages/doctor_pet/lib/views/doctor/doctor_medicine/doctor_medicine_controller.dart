@@ -36,6 +36,7 @@ class DoctorMedicineController extends GetxController {
 
   void showAddMedicineDialog() {
     Get.dialog(AddMedicineDialog(
-        medicines: medicines, addSelectedMedicine: addSelectedMedicine));
+        medicines: medicines.value, // Lấy List<Medicine> từ Rx<List<Medicine>>
+        addSelectedMedicine: addSelectedMedicine));
   }
 }

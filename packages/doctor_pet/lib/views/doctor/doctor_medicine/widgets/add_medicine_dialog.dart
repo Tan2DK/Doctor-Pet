@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart'; // Ensure you need this for other GetX features
 import 'package:doctor_pet/core/data/medicine.dart';
 import 'package:doctor_pet/views/doctor/doctor_medicine/widgets/medicine_row.dart';
 
 class AddMedicineDialog extends StatelessWidget {
-  final Rx<List<Medicine>> medicines;
-  final Function addSelectedMedicine;
+  final List<Medicine> medicines;
+  // Changed from Rx<List<Medicine>>
+  final Function(Medicine, int, String) addSelectedMedicine;
 
   AddMedicineDialog(
       {Key? key, required this.medicines, required this.addSelectedMedicine})
@@ -26,10 +27,11 @@ class AddMedicineDialog extends StatelessWidget {
       medicineWidgets.add(MedicineRow(
         quantityController: quantityController,
         noteController: noteController,
-        medicines: medicines,
+        medicines: medicines, // No change needed here since it now matches type
       ));
     }
 
+    // Initialize with one row
     addMedicineRow();
 
     return AlertDialog(
@@ -68,7 +70,7 @@ class AddMedicineDialog extends StatelessWidget {
             bool hasAdded = false;
             for (int i = 0; i < quantityControllers.length; i++) {
               final Medicine? selectedMedicine =
-                  medicines.value.length > i ? medicines.value[i] : null;
+                  medicines.length > i ? medicines[i] : null;
               if (selectedMedicine != null) {
                 final int quantity =
                     int.tryParse(quantityControllers[i].text) ?? 0;
@@ -79,23 +81,16 @@ class AddMedicineDialog extends StatelessWidget {
                 }
               }
             }
-            Get.back();
-
             if (hasAdded) {
+              Get.back(); // Close the dialog
               ScaffoldMessenger.of(context).showSnackBar(
-                // ignore: prefer_const_constructors
                 SnackBar(
-                  content:
-                      const Text('The medicine has been successfully saved!'),
+                  content: Text('The medicine has been successfully added!'),
                   backgroundColor: Colors.green,
-                  behavior: SnackBarBehavior
-                      .floating, // To show in the middle of the screen
-                  margin: const EdgeInsets.symmetric(
-                      horizontal: 20.0,
-                      vertical: 10.0), // Adjust based on your design
-                  duration: const Duration(seconds: 3),
                 ),
               );
+            } else {
+              Get.back(); // Close the dialog even if nothing was added
             }
           },
           child: const Text('Save'),

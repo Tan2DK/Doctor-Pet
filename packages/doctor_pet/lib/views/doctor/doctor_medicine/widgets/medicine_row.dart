@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:doctor_pet/core/data/medicine.dart';
 
 class MedicineRow extends StatelessWidget {
   final TextEditingController quantityController;
   final TextEditingController noteController;
-  final Rx<List<Medicine>> medicines;
+  final List<Medicine>
+      medicines; // Đã thay đổi từ Rx<List<Medicine>> sang List<Medicine>
 
   MedicineRow({
     Key? key,
     required this.quantityController,
     required this.noteController,
-    required this.medicines,
+    required this.medicines, // Không còn là reactive
   }) : super(key: key);
 
   @override
@@ -19,17 +19,17 @@ class MedicineRow extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: Obx(() => DropdownButtonFormField<Medicine>(
-                decoration: const InputDecoration(labelText: 'Medicine'),
-                onChanged: (Medicine? value) {},
-                items: medicines.value
-                    .map<DropdownMenuItem<Medicine>>((Medicine medicine) {
-                  return DropdownMenuItem<Medicine>(
-                    value: medicine,
-                    child: Text(medicine.nameMedicine),
-                  );
-                }).toList(),
-              )),
+          child: DropdownButtonFormField<Medicine>(
+            decoration: const InputDecoration(labelText: 'Medicine'),
+            onChanged: (Medicine? value) {},
+            items:
+                medicines.map<DropdownMenuItem<Medicine>>((Medicine medicine) {
+              return DropdownMenuItem<Medicine>(
+                value: medicine,
+                child: Text(medicine.nameMedicine),
+              );
+            }).toList(),
+          ),
         ),
         const SizedBox(width: 10),
         Expanded(
