@@ -3,7 +3,7 @@ import 'package:doctor_pet/views/home/nested_navigation/nested_navigation_pet.da
 import 'package:doctor_pet/views/home/nested_navigation/nested_navigation_doctor_medicine.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-
+import 'package:doctor_pet/views/home/nested_navigation/nested_navigation_doctor_invoice.dart';
 import '../../utils/app_enum.dart';
 
 class HomeController extends GetxController {
@@ -67,6 +67,7 @@ class HomeController extends GetxController {
     // Nếu không phải bác sĩ hoặc index không tương ứng với 'Medicine Management', trả về NestedNavigationDoctor
     return [
       const NestedNavigationDoctorMedicine(),
+      const NestedNavigationInvoice(),
     ];
   }
 }
