@@ -24,6 +24,8 @@ import 'package:doctor_pet/views/pet/pet_binding.dart';
 
 import '../views/schedule/schedule_binding.dart';
 import '../views/schedule/schedule_view.dart';
+import '../views/doctor/doctor_invoice/doctor_invoice_binding.dart';
+import '../views/doctor/doctor_invoice/doctor_invoice_view.dart';
 
 class AppRoutes {
   AppRoutes._();
@@ -49,7 +51,6 @@ class AppRoutes {
       page: () => const ScheduleView(),
       binding: ScheduleBinding(),
     ),
-
     GetPage(
       name: RoutesName.clinicDoctor,
       page: () => const ClinicDoctorView(),
@@ -80,6 +81,11 @@ class AppRoutes {
       page: () => const StaffView(),
       binding: StaffBinding(),
     ),
+    GetPage(
+      name: RoutesName.invoice,
+      page: () => const DoctorInvoiceView(),
+      binding: DoctorInvoiceBinding(),
+    ),
   ];
 }
 
@@ -90,10 +96,11 @@ class RoutesName {
   static const String invoiceReport = '/invoice-report';
   static const String clinicMedicine = '/clinic-medicine';
   static const String medicineReport = '/medicine-report';
-  static const String clinicPatient= '/clinic-patient';
-  static const String clinicStaff= '/clinic-staff';
+  static const String clinicPatient = '/clinic-patient';
+  static const String clinicStaff = '/clinic-staff';
   static const String pet = '/pet';
   static const String schedule = '/schedule';
   static const String nestedNavDoctor = 'nested_navigation_doctor';
   static const String nestedNavPet = 'nested_navigation_pet';
+  static const String invoice = '/invoice';
 }
