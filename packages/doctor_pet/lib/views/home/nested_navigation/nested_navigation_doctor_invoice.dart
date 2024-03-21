@@ -12,7 +12,7 @@ class NestedNavigationInvoice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Navigator(
-      key: Get.nestedKey(RoutesName.invoice),
+      key: Get.nestedKey(RoutesName.nestedNavDoctorInvoice),
       initialRoute: "/",
       onGenerateRoute: (settings) {
         return GetPageRoute(

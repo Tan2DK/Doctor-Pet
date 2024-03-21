@@ -82,7 +82,7 @@ class AppRoutes {
       binding: StaffBinding(),
     ),
     GetPage(
-      name: RoutesName.invoice,
+      name: RoutesName.nestedNavDoctorInvoice,
       page: () => const DoctorInvoiceView(),
       binding: DoctorInvoiceBinding(),
     ),
@@ -102,5 +102,5 @@ class RoutesName {
   static const String schedule = '/schedule';
   static const String nestedNavDoctor = 'nested_navigation_doctor';
   static const String nestedNavPet = 'nested_navigation_pet';
-  static const String invoice = '/invoice';
+  static const String nestedNavDoctorInvoice = '/nested_nav_doctor_invoice';
 }
