@@ -101,6 +101,8 @@ class RoutesName {
   static const String pet = '/pet';
   static const String schedule = '/schedule';
   static const String nestedNavDoctor = 'nested_navigation_doctor';
+  static const String nestedNavDoctorMedicine =
+      'nested_navigation_doctor_medicine';
   static const String nestedNavPet = 'nested_navigation_pet';
   static const String nestedNavDoctorInvoice = '/nested_nav_doctor_invoice';
 }

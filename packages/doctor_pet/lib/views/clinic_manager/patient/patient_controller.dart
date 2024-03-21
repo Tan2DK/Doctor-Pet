@@ -56,7 +56,7 @@ class PatientController extends GetxController {
           onPressed: () {
             Navigator.of(context).pop(); // Close the dialog
           },
-          child: Text('Close'),
+          child: const Text('Close'),
         ),
       ],
     ));
