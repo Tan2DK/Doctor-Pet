@@ -40,47 +40,44 @@ class RegisterView extends GetView<RegisterController> {
                     ),
                     const SizedBox(height: 16.0),
                     CustomTextFieldWidget(
-                      labelText: 'First Name',
-                      hintText: 'Enter your first name',
-                      validator: (value) => controller.validateFirstName(value),
+                      labelText: 'User Name',
+                      hintText: 'Enter your user name',
+                      validator: (value) => controller.validateUserName(value),
                       onSaved: (value) =>
-                          controller.firstName.value = value ?? ''.trim(),
+                          controller.userName.value = value ?? ''.trim(),
                     ),
                     const SizedBox(height: 16.0),
                     CustomTextFieldWidget(
-                      labelText: 'Last Name',
-                      hintText: 'Enter your last name',
-                      validator: (value) => controller.validateLastName(value),
+                      labelText: 'Full Name',
+                      hintText: 'Enter your full name',
+                      validator: (value) => controller.validateFullName(value),
                       onSaved: (value) =>
-                          controller.lastName.value = value ?? ''.trim(),
+                          controller.fullName.value = value ?? ''.trim(),
                     ),
                     const SizedBox(height: 16.0),
                     Stack(
+                      alignment: Alignment.centerRight,
                       children: [
-                        Obx(() => CustomTextFieldWidget(
-                              labelText: 'Date of Birth',
-                              hintText: 'Select your date of birth',
-                              controller: TextEditingController(
-                                text: controller.birthDate.value.isNotEmpty
-                                    ? controller.birthDate.value
-                                    : '',
-                              ),
-                            )),
-                        Positioned(
-                          right: 0,
-                          top: 0,
-                          bottom: 0,
-                          child: InkWell(
+                        Obx(
+                          () => CustomTextFieldWidget(
+                            labelText: 'Date of Birth',
+                            hintText: 'Select your date of birth',
+                            validator: (value) =>
+                                controller.validateBirthDate(value),
+                            controller: TextEditingController(
+                                text: controller.birthDate.value),
+                            readOnly:
+                                true, // Đặt thuộc tính này để ngăn nhập liệu từ bàn phím
                             onTap: () async {
                               controller.selectDate(context);
-                              // Sau khi chọn ngày, cập nhật lại giá trị trong text field
-                              controller.birthDate.refresh();
+                              // Controller sẽ tự động cập nhật giá trị qua Obx
                             },
-                            child: const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Icon(Icons.calendar_today),
-                            ),
                           ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(right: 8.0),
+                          child: Icon(Icons.calendar_today,
+                              color: Color.fromARGB(255, 11, 8, 8)),
                         ),
                       ],
                     ),
@@ -114,6 +111,14 @@ class RegisterView extends GetView<RegisterController> {
                     ),
                     const SizedBox(height: 16.0),
                     CustomTextFieldWidget(
+                      labelText: 'Address',
+                      hintText: 'Enter your address',
+                      validator: (value) => controller.validateAddress(value),
+                      onSaved: (value) =>
+                          controller.address.value = value ?? ''.trim(),
+                    ),
+                    const SizedBox(height: 16.0),
+                    CustomTextFieldWidget(
                       labelText: 'Phone',
                       hintText: 'Enter your phone number',
                       validator: (value) =>
@@ -126,18 +131,31 @@ class RegisterView extends GetView<RegisterController> {
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
+                          // Đúng chỗ này cần kiểm tra tính hợp lệ của form thông qua controller
                           controller.checkFormValidity();
+                          // Sau khi kiểm tra tính hợp lệ của form, kiểm tra biến isValid
                           if (controller.isValid.isTrue) {
+                            // Nếu form hợp lệ, tạo tài khoản
                             controller.createAccount();
+                            // Sau khi tạo tài khoản thành công, hiển thị thông báo
+                            controller.showSuccessMessage();
+                            // Bạn có thể thêm logic để chuyển hướng người dùng sau khi hiển thị thông báo ở đây
                           }
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF84C7AE),
-                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        foregroundColor: Colors.white,
+                        backgroundColor: const Color(0xFF84C7AE), // Màu nền
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.circular(32.0), // Làm tròn góc
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 32.0,
+                            vertical: 12.0), // Điều chỉnh kích thước
                         textStyle: const TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0, // Điều chỉnh cỡ chữ
+                          fontWeight: FontWeight.bold, // Điều chỉnh độ đậm
                         ),
                       ),
                       child: const Text('Create Account'),
