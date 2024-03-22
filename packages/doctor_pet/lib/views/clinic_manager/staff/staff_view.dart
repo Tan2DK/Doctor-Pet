@@ -51,8 +51,8 @@ class StaffView extends GetView<StaffController> {
                 const SizedBox(width: 10),
                 ElevatedButton.icon(
                     onPressed: () => controller.showAddEditStaffDialog(
-                    context,
-                  ),
+                          context,
+                        ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
                     ),
@@ -77,10 +77,12 @@ class StaffView extends GetView<StaffController> {
                 DataTitleModel(name: '', flex: 1),
               ],
             ),
-            const Divider(thickness: 2),
+            const Divider(thickness: 3),
             Expanded(child: Obx(() {
               final List<Staff> data = controller.dataMockStaff.value;
-              return ListView.builder(
+              return ListView.separated(
+                separatorBuilder: (context, index) =>
+                    const Divider(thickness: 1),
                 itemBuilder: (context, index) => Row(
                   children: [
                     Expanded(

@@ -43,7 +43,7 @@ class ClinicDoctorView extends GetView<ClinicDoctorController> {
                   txtColor: Colors.black54,
                   icon: Icons.sort_rounded,
                   iconColor: Colors.black54,
-                  onPressed: () {},
+                  onPressed: () => controller.sortDoctorByName(),
                 ),
                 const SizedBox(width: 10),
                 CustomButtonActionWidget(
@@ -60,38 +60,29 @@ class ClinicDoctorView extends GetView<ClinicDoctorController> {
             const SizedBox(height: 20),
             DataTitleWidget(
               titles: [
-                DataTitleModel(
-                  name: 'Doctor Name',
-                  flex: 2,
-                ),
+                DataTitleModel(name: 'Doctor Name',flex: 2,),
                 DataTitleModel(name: 'Address', flex: 2),
-                DataTitleModel(name: 'Phone', flex: 2),
-                DataTitleModel(name: 'Status', flex: 2),
-                DataTitleModel(name: 'Description', flex: 2),
+                DataTitleModel(name: 'PhoneNumber', flex: 2),
+                DataTitleModel(name: 'specialized', flex: 2),
                 DataTitleModel(name: '', flex: 1),
               ],
             ),
-            const Divider(thickness: 2),
+            const Divider(thickness: 3),
             Expanded(
               child: Obx(() {
                 final List<Doctor> data = controller.dataMockDoctor.value;
-                return ListView.builder(
+                return ListView.separated(
+                  separatorBuilder: (context, index) => const Divider(thickness: 1),
                   itemBuilder: (context, index) => Row(
                     children: [
                       Expanded(
                         flex: 6,
                         child: DataTitleWidget(
-                          titles: [
+                          titles: [ 
                             DataTitleModel(name: data[index].name, flex: 2),
                             DataTitleModel(name: data[index].address, flex: 2),
-                            DataTitleModel(
-                                name: data[index].phone.toString(), flex: 2),
-                            DataTitleModel(
-                                name:
-                                    data[index].status ? 'Active' : 'Inactive',
-                                flex: 2),
-                            DataTitleModel(
-                                name: data[index].description, flex: 2),
+                            DataTitleModel(name: data[index].phone, flex: 2),
+                            DataTitleModel(name:data[index].specialized,flex: 2),
                           ],
                         ),
                       ),
