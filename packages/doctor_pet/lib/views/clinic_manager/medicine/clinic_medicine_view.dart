@@ -1,16 +1,16 @@
+import 'package:doctor_pet/common_widget/custom_button/custom_button_action_widget.dart';
 import 'package:doctor_pet/common_widget/custom_searchbar_widget.dart';
 import 'package:doctor_pet/common_widget/custom_text/custom_text_widget.dart';
-import 'package:doctor_pet/core/data/data_title_model.dart';
-import 'package:doctor_pet/core/data/doctor.dart';
-import 'package:doctor_pet/views/clinic_manager/doctor/clinic_doctor_controller.dart';
+import 'package:doctor_pet/utils/app_extension.dart';
+import 'package:doctor_pet/views/clinic_manager/medicine/clinic_medicine_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:doctor_pet/core/data/medicine.dart';
 import 'package:doctor_pet/common_widget/data_title_widget.dart';
 import 'package:get/get.dart';
+import '../../../core/data/data_title_model.dart';
 
-import '../../../common_widget/custom_button/custom_button_action_widget.dart';
-
-class ClinicDoctorView extends GetView<ClinicDoctorController> {
-  const ClinicDoctorView({super.key});
+class ClinicMedicineView extends GetView<ClinicMedicineController> {
+  const ClinicMedicineView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,9 +26,8 @@ class ClinicDoctorView extends GetView<ClinicDoctorController> {
             const Row(
               children: [
                 SizedBox(width: 70),
-                // ignore: unnecessary_const
-                const CustomTextWidget(
-                  text: 'Doctor Management',
+                CustomTextWidget(
+                  text: 'Medicine Management',
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
@@ -41,18 +40,21 @@ class ClinicDoctorView extends GetView<ClinicDoctorController> {
                   label: 'Sort',
                   bgColor: Colors.white,
                   txtColor: Colors.black54,
-                  icon: Icons.sort_rounded,
                   iconColor: Colors.black54,
-                  onPressed: () => controller.sortDoctorByName(),
+                  icon: Icons.sort,
+                  onPressed: () {},
                 ),
                 const SizedBox(width: 10),
                 CustomButtonActionWidget(
-                  label: 'Add Doctor',
+                  label: 'Add Medicine',
                   bgColor: Colors.blue,
                   txtColor: Colors.white,
                   icon: Icons.add,
                   iconColor: Colors.white,
-                  onPressed: () => controller.showAddEditDialog(context),
+                  onPressed: () => controller.showAddEditMedicineDialog(
+                    context,
+                    null,
+                  ),
                 ),
                 const SizedBox(width: 10),
               ],
@@ -60,34 +62,58 @@ class ClinicDoctorView extends GetView<ClinicDoctorController> {
             const SizedBox(height: 20),
             DataTitleWidget(
               titles: [
-                DataTitleModel(name: 'Doctor Name',flex: 2,),
-                DataTitleModel(name: 'Address', flex: 2),
-                DataTitleModel(name: 'PhoneNumber', flex: 2),
-                DataTitleModel(name: 'specialized', flex: 2),
+                DataTitleModel(name: 'IDMedi', flex: 2),
+                DataTitleModel(name: 'Name', flex: 4),
+                DataTitleModel(name: 'Company Medicine Name', flex: 4),
+                DataTitleModel(name: 'Quantity', flex: 2),
+                DataTitleModel(name: 'Import Date', flex: 4),
+                DataTitleModel(name: 'Expiration Date', flex: 4),
+                DataTitleModel(name: 'Price', flex: 2),
                 DataTitleModel(name: '', flex: 1),
               ],
             ),
             const Divider(thickness: 3),
             Expanded(
               child: Obx(() {
-                final List<Doctor> data = controller.dataMockDoctor.value;
+                final List<Medicine> data = controller.dataMockMedicine.value;
                 return ListView.separated(
-                  separatorBuilder: (context, index) => const Divider(thickness: 1),
+                  separatorBuilder: (context, index) =>
+                      const Divider(thickness: 1),
                   itemBuilder: (context, index) => Row(
                     children: [
                       Expanded(
                         flex: 6,
                         child: DataTitleWidget(
-                          titles: [ 
-                            DataTitleModel(name: data[index].name, flex: 2),
-                            DataTitleModel(name: data[index].address, flex: 2),
-                            DataTitleModel(name: data[index].phone, flex: 2),
-                            DataTitleModel(name:data[index].specialized,flex: 2),
+                          titles: [
+                            DataTitleModel(
+                                name: data[index].idMedicine, flex: 2),
+                            DataTitleModel(
+                                name: data[index].nameMedicine, flex: 4),
+                            DataTitleModel(
+                                name: data[index].companyMedicineName, flex: 4),
+                            DataTitleModel(
+                                name: data[index].quantity.toString(), flex: 2),
+                            DataTitleModel(
+                                name: data[index]
+                                    .importDate
+                                    .formatDateTime('dd-MM-yyyy')
+                                    .toString()
+                                    .substring(0, 10),
+                                flex: 4),
+                            DataTitleModel(
+                                name: data[index]
+                                    .expirationDate
+                                    .formatDateTime('dd-MM-yyyy')
+                                    .toString()
+                                    .substring(0, 10),
+                                flex: 4),
+                            DataTitleModel(
+                                name: data[index].price.toString(), flex: 2),
                           ],
                         ),
                       ),
                       SizedBox(
-                        width: 100, // Set the width of the container
+                        width: 50, // Set the width of the container
                         child: PopupMenuButton<String>(
                           itemBuilder: (BuildContext context) =>
                               <PopupMenuEntry<String>>[
@@ -110,16 +136,14 @@ class ClinicDoctorView extends GetView<ClinicDoctorController> {
                             // Handle menu item selection
                             switch (action) {
                               case 'edit':
-                                controller.showAddEditDialog(
+                                controller.showAddEditMedicineDialog(
                                   context,
-                                  index: index,
+                                  data[index],
                                 );
                                 break;
                               case 'delete':
-                                controller.showDeleteDialog(
-                                  context,
-                                  index,
-                                );
+                                controller.showDeleteMedicineDialog(
+                                    context, data[index]);
                                 break;
                             }
                           },
@@ -131,9 +155,7 @@ class ClinicDoctorView extends GetView<ClinicDoctorController> {
                 );
               }),
             ),
-            const SizedBox(
-              height: 100,
-            ),
+            const SizedBox(height: 100)
           ],
         ),
       ),
