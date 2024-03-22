@@ -1,9 +1,10 @@
-import 'package:doctor_pet/views/home/nested_navigation/nested_navigation_doctor%20_mypatients.dart';
+import 'package:doctor_pet/views/home/nested_navigation/nested_navigation_doctor _mypatients.dart';
 import 'package:doctor_pet/views/home/nested_navigation/nested_navigation_doctor.dart';
 import 'package:doctor_pet/views/home/nested_navigation/nested_navigation_pet.dart';
+import 'package:doctor_pet/views/home/nested_navigation/nested_navigation_doctor_medicine.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-
+import 'package:doctor_pet/views/home/nested_navigation/nested_navigation_doctor_invoice.dart';
 import '../../utils/app_enum.dart';
 
 class HomeController extends GetxController {
@@ -44,6 +45,7 @@ class HomeController extends GetxController {
     'Ask Doctor',
     'Search Clinic',
   ];
+
   void changeTab(int i) => index.value = i;
 
   List<String> get getTabListByRole => switch (role.value) {
@@ -55,17 +57,19 @@ class HomeController extends GetxController {
       };
 
   List<Widget> listScreen() {
-    switch (role.value) {
-      case Role.customer:
+    if (role.value == Role.doctor) {
+      // Nếu là bác sĩ và index tương ứng với 'Medicine Management', trả về NestedNavigationDoctorMedicine
+      if (index.value == doctorTabNameList.indexOf('Medicine Management')) {
         return [
-          const NestedNavigationPet(),
+          const NestedNavigationDoctorMedicine(),
         ];
-      case Role.doctor:
-        return [
-          const NestedNavigationDocMypatients(),
-        ];
-      default:
-        return [];
+      }
     }
+    // Nếu không phải bác sĩ hoặc index không tương ứng với 'Medicine Management', trả về NestedNavigationDoctor
+    return [
+      const NestedNavigationDoctorMedicine(),
+      const NestedNavigationInvoice(),
+      const NestedNavigationDocMypatients(),
+    ];
   }
 }

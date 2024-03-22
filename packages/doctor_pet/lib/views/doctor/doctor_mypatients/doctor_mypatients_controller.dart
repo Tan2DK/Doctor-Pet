@@ -41,14 +41,14 @@ class MyPatientsController extends GetxController {
                       children: [
                         TableRow(
                           children: [
-                            Text('Pet Name: ',
+                            const Text('Pet Name: ',
                                 style: TextStyle(fontWeight: FontWeight.bold)),
                             Text(details.petName),
                           ],
                         ),
                         TableRow(
                           children: [
-                            Text('Pet Age: ',
+                            const Text('Pet Age: ',
                                 style: TextStyle(fontWeight: FontWeight.bold)),
                             Text(details.petAge),
                           ],
@@ -62,21 +62,21 @@ class MyPatientsController extends GetxController {
                         ),
                         TableRow(
                           children: [
-                            Text('Diagnosis: ',
+                            const Text('Diagnosis: ',
                                 style: TextStyle(fontWeight: FontWeight.bold)),
                             Text(details.diagnosis),
                           ],
                         ),
                         TableRow(
                           children: [
-                            Text('Pet Type ID: ',
+                            const Text('Pet Type ID: ',
                                 style: TextStyle(fontWeight: FontWeight.bold)),
                             Text(details.petTypeId),
                           ],
                         ),
                         TableRow(
                           children: [
-                            Text('Date Bought Medicine: ',
+                            const Text('Date Bought Medicine: ',
                                 style: TextStyle(fontWeight: FontWeight.bold)),
                             Text(DateFormat('yyyy-MM-dd')
                                 .format(details.dateBuyMedicine)),
@@ -84,7 +84,7 @@ class MyPatientsController extends GetxController {
                         ),
                         TableRow(
                           children: [
-                            Text('View Invoice: ',
+                            const Text('View Invoice: ',
                                 style: TextStyle(fontWeight: FontWeight.bold)),
                             RichText(
                               text: TextSpan(

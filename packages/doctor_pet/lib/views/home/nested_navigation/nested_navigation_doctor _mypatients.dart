@@ -6,7 +6,7 @@ import '../../../utils/app_routes.dart';
 import '../../doctor/doctor_mypatients/my_patients_view.dart'; // Import MyPatientsView
 
 class NestedNavigationDocMypatients extends StatelessWidget {
-  const NestedNavigationDocMypatients({Key? key});
+  const NestedNavigationDocMypatients({super.key});
 
   @override
   Widget build(BuildContext context) {
