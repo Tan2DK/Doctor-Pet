@@ -2,6 +2,8 @@ import 'package:doctor_pet/views/clinic_manager/staff/staff_view.dart';
 import 'package:doctor_pet/views/clinic_manager/medicine/clinic_medicine_view.dart';
 import 'package:doctor_pet/views/doctor/doctor_binding.dart';
 import 'package:doctor_pet/views/doctor/doctor_view.dart';
+import 'package:doctor_pet/views/super_admin/super_admin_clinic_binding.dart';
+import 'package:doctor_pet/views/super_admin/super_admin_clinic_view.dart';
 
 import 'package:get/get.dart';
 
@@ -80,6 +82,11 @@ class AppRoutes {
       page: () => const StaffView(),
       binding: StaffBinding(),
     ),
+    GetPage(
+      name: RoutesName.superAdminClinic,
+      page: () => const SuperAdminClinicView(),
+      binding: SuperAdminClinicBinding(),
+    ),
   ];
 }
 
@@ -92,6 +99,7 @@ class RoutesName {
   static const String medicineReport = '/medicine-report';
   static const String clinicPatient= '/clinic-patient';
   static const String clinicStaff= '/clinic-staff';
+  static const String superAdminClinic = '/super-admin-clinic';
   static const String pet = '/pet';
   static const String schedule = '/schedule';
   static const String nestedNavDoctor = 'nested_navigation_doctor';
