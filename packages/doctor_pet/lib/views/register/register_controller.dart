@@ -14,26 +14,58 @@ class RegisterController extends GetxController {
   var isValid = RxBool(false);
   var address = RxString('');
 
+  set updateUserName(String value) {
+    userName.value = value;
+    checkFormValidity();
+  }
+
+  set updateFullName(String value) {
+    fullName.value = value;
+    checkFormValidity();
+  }
+
+  set updateBirthDate(String value) {
+    birthDate.value = value;
+    checkFormValidity();
+  }
+
+  set updateEmail(String value) {
+    email.value = value;
+    checkFormValidity();
+  }
+
+  set updatePassword(String value) {
+    password.value = value;
+    checkFormValidity();
+    validateConfirmPassword(confirmPassword
+        .value); // Re-check confirmPassword when password changes
+  }
+
+  set updateConfirmPassword(String value) {
+    confirmPassword.value = value;
+    checkFormValidity();
+  }
+
+  set updatePhoneNumber(String value) {
+    phoneNumber.value = value;
+    checkFormValidity();
+  }
+
+  set updateAcceptTerms(bool value) {
+    acceptTerms.value = value;
+    checkFormValidity();
+  }
+
+  set updateAddress(String value) {
+    address.value = value;
+    checkFormValidity();
+  }
+
   @override
   void onInit() {
     super.onInit();
-    // Listens for changes in each field and updates the form validity accordingly
-    everAll([
-      userName,
-      fullName,
-      birthDate,
-      email,
-      password,
-      confirmPassword,
-      phoneNumber,
-      acceptTerms,
-      address
-    ], (_) => checkFormValidity());
-
-    // Add listeners for password and confirmPassword to validate them together
-    ever(password, (_) => validateConfirmPassword(confirmPassword.value));
-    ever(
-        confirmPassword, (_) => validateConfirmPassword(confirmPassword.value));
+    // Initial form validity check
+    checkFormValidity();
   }
 
   String? validateUserName(String? value) => _validateName(value, 'user name');
@@ -121,16 +153,6 @@ class RegisterController extends GetxController {
   }
 
   void createAccount() {
-    print('Creating account with:');
-    print('User Name: ${userName.value}');
-    print('Full Name: ${fullName.value}');
-    print('Birth Date: ${birthDate.value}');
-    print('Email: ${email.value}');
-    print('Address: ${address.value}');
-    print('Password: ${password.value.trim()}');
-    print('Confirm Password: ${confirmPassword.value.trim()}');
-    print('Phone Number: ${phoneNumber.value}');
-    print('Accept Terms: ${acceptTerms.value}');
     showSuccessMessage();
   }
 
