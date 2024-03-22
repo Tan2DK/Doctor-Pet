@@ -27,7 +27,6 @@ class EditStaffDialog extends StatefulWidget {
 class _EditStaffDialogState extends State<EditStaffDialog> {
   bool status = false;
 
-  final textControllerStaffId = TextEditingController();
   final textControllerName = TextEditingController();
   final textControllerAddress = TextEditingController();
   final textControllerPhone = TextEditingController();
@@ -35,17 +34,20 @@ class _EditStaffDialogState extends State<EditStaffDialog> {
   final textControllerUserId = TextEditingController();
   DateTime birthDay = DateTime.now();
 
+  List listUserId = ['1', '2', '3', '4', '5'];
+  String? valueChoose = '1';
+
   @override
   void initState() {
     super.initState();
     if (widget.staff == null) return;
-    textControllerStaffId.text = widget.staff!.staffId;
     textControllerName.text = widget.staff!.name;
     textControllerAddress.text = widget.staff!.address;
     textControllerPhone.text = widget.staff!.phone;
     textControllerUserId.text = widget.staff!.userId;
     status = widget.staff!.status;
     birthDay = widget.staff?.birthday ?? DateTime.now();
+    valueChoose = widget.staff?.userId;
   }
 
   @override
@@ -128,14 +130,48 @@ class _EditStaffDialogState extends State<EditStaffDialog> {
               ),
             ),
             const SizedBox(height: 10),
-            TextField(
-              keyboardType: TextInputType.text,
-              controller: textControllerUserId,
-              style: const TextStyle(fontSize: 15),
-              decoration: InputDecoration(
-                  labelText: 'User ID',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10))),
+            // TextField(
+            //   keyboardType: TextInputType.text,
+            //   controller: textControllerUserId,
+            //   style: const TextStyle(fontSize: 15),
+            //   decoration: InputDecoration(
+            //       labelText: 'User ID',
+            //       border: OutlineInputBorder(
+            //           borderRadius: BorderRadius.circular(10))),
+            // ),
+            const SizedBox(height: 10),
+            Container(
+              height: 50,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.black,
+                  width: 0.5,
+                ),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  const CustomTextWidget(
+                    text: 'User ID: ',
+                  ),
+                  const SizedBox(width: 8,),
+                  DropdownButton<String>(
+                      focusColor: Colors.transparent,
+                      value: valueChoose,
+                      items: listUserId.map((newValue) {
+                        return DropdownMenuItem<String>(
+                          value: newValue,
+                          child: Text(newValue),
+                        );
+                      }).toList(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          valueChoose = newValue;
+                        });
+                      }),
+                ],
+              ),
             ),
             const SizedBox(height: 10),
             Row(
@@ -158,7 +194,6 @@ class _EditStaffDialogState extends State<EditStaffDialog> {
                 ),
               ],
             ),
-            
           ],
         ),
       ),
@@ -171,8 +206,8 @@ class _EditStaffDialogState extends State<EditStaffDialog> {
               phone: textControllerPhone.text,
               status: status,
               birthday: birthDay,
-              staffId: textControllerStaffId.text,
-              userId: textControllerUserId.text,
+              staffId: widget.staff?.staffId ?? '',
+              userId: valueChoose!,
             ),
             widget.index,
           ),
