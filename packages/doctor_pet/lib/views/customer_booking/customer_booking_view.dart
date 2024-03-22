@@ -1,6 +1,7 @@
 import 'package:doctor_pet/utils/app_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'customer_booking_controller.dart'; // Ensure this path is correct
 
@@ -27,40 +28,93 @@ class AppointmentView extends GetView<CustomerBookingController> {
                 // Clinic Selection
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    // Column for text and dropdown
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Row(
                     children: [
-                      const Text('Select a Clinic:'),
-                      const SizedBox(height: 10), // Added this line
-                      DropdownButton<String>(
-                        // Dropdown for clinic selection
-                        value: controller.selectedClinic.value,
-                        iconEnabledColor: Colors.blueGrey,
-                        dropdownColor: Colors.white,
-                        underline: Container(
-                          height: 2,
-                          color: Colors.amber,
+                      // Clinic Selection Dropdown
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text('Select a Clinic:'),
+                            DropdownButton<String>(
+                              isExpanded: true,
+                              value: controller.selectedClinic.value,
+                              iconEnabledColor: Colors.blueGrey,
+                              dropdownColor: Colors.white,
+                              underline: Container(
+                                height: 2,
+                                color: Colors.amber,
+                              ),
+                              onChanged: (String? newValue) {
+                                if (newValue != null) {
+                                  controller.updateSelectedClinic(newValue);
+                                }
+                              },
+                              items: controller.clinicList
+                                  .map<DropdownMenuItem<String>>(
+                                      (String clinic) {
+                                return DropdownMenuItem<String>(
+                                  value: clinic,
+                                  child: Text(clinic),
+                                );
+                              }).toList(),
+                            ),
+                          ],
                         ),
-                        onChanged: (String? newValue) {
-                          if (newValue != null) {
-                            controller.updateSelectedClinic(newValue);
-                          }
-                        },
-                        items: controller.clinicList
-                            .map<DropdownMenuItem<String>>((String clinic) {
-                          return DropdownMenuItem<String>(
-                            value: clinic,
-                            child: Text(clinic,
-                                style: Theme.of(context).textTheme.bodyLarge),
-                          );
-                        }).toList(),
+                      ),
+
+                      // Doctor Selection Dropdown
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text('Select a Doctor:'),
+                            DropdownButton<String>(
+                              isExpanded: true,
+                              value: controller.selectedDoctor.value,
+                              onChanged: (String? newValue) {
+                                controller.updateSelectedDoctor(newValue!);
+                              },
+                              items: controller.doctorList
+                                  .map<DropdownMenuItem<String>>(
+                                      (String doctor) {
+                                return DropdownMenuItem<String>(
+                                  value: doctor,
+                                  child: Text(doctor),
+                                );
+                              }).toList(),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      // Pet Selection Dropdown
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text('Select a Pet:'),
+                            DropdownButton<String>(
+                              isExpanded: true,
+                              value: controller.selectedPet.value,
+                              onChanged: (String? newValue) {
+                                controller.updateSelectedPet(newValue!);
+                              },
+                              items: controller.petList
+                                  .map<DropdownMenuItem<String>>((String pet) {
+                                return DropdownMenuItem<String>(
+                                  value: pet,
+                                  child: Text(pet),
+                                );
+                              }).toList(),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 20),
-
                 // Calendar Selection
                 const Text('Choose a Date:'),
                 const SizedBox(height: 10), // Added this line
@@ -124,7 +178,23 @@ class AppointmentView extends GetView<CustomerBookingController> {
                   ),
                 ),
                 const SizedBox(height: 20),
+                const Text('Reason for Visit:'),
+                SizedBox(
+                  width: 600, // Set the width to your preference
 
+                  child: TextField(
+                    onChanged: (value) {
+                      controller.updateAppointmentReason(value);
+                    },
+                    decoration: const InputDecoration(
+                      hintText: 'Enter the reason for the visit',
+                      border: OutlineInputBorder(),
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
                 // Button to book an appointment
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -147,79 +217,62 @@ class AppointmentView extends GetView<CustomerBookingController> {
 
                 // Appointment Summary
                 const Text('Appointment Summary:'), // Added this line
-                DataTable(
-                  // Table to display appointment summary
-                  headingTextStyle: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
+                Card(
+                  elevation: 1.0,
+                  margin: const EdgeInsets.all(12.0),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Obx(() => Row(
+                          children: <Widget>[
+                            // Column for Field names
+                            const Expanded(
+                              flex: 1, // takes 1/3 of the space
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text('Selected Clinic'),
+                                  SizedBox(height: 8.0),
+                                  Text('Doctor'),
+                                  SizedBox(height: 8.0),
+                                  Text('Pet'),
+                                  SizedBox(height: 8.0),
+                                  Text('Selected Date'),
+                                  SizedBox(height: 8.0),
+                                  Text('Selected Time'),
+                                  SizedBox(height: 8.0),
+                                  Text('Reason for Visit'),
+                                  SizedBox(height: 8.0),
+                                  Text('Status'),
+                                ],
+                              ),
+                            ),
+                            // Column for Values
+                            Expanded(
+                              flex: 2, // takes 2/3 of the space
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(controller.selectedClinic.value),
+                                  const SizedBox(height: 8.0),
+                                  Text(controller.selectedDoctor.value),
+                                  const SizedBox(height: 8.0),
+                                  Text(controller.selectedPet.value),
+                                  const SizedBox(height: 8.0),
+                                  Text(DateFormat('yyyy-MM-dd')
+                                      .format(controller.selectedDate.value)),
+                                  const SizedBox(height: 8.0),
+                                  Text(controller.selectedSlot.value
+                                      .name), // Format as needed
+                                  const SizedBox(height: 8.0),
+                                  Text(controller.appointmentReason.value),
+                                  const SizedBox(height: 8.0),
+                                  Text(controller.status.value),
+                                ],
+                              ),
+                            ),
+                          ],
+                        )),
                   ),
-                  headingRowColor: MaterialStateColor.resolveWith((states) =>
-                      Colors.grey.shade300), // Header row background color
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey.shade300),
-                  ),
-                  columns: const <DataColumn>[
-                    DataColumn(
-                      label: Text('Field'),
-                    ),
-                    DataColumn(
-                      label: Text('Value'),
-                    ),
-                  ],
-                  rows: [
-                    DataRow(
-                      color: MaterialStateColor.resolveWith((states) =>
-                          states.contains(MaterialState.selected)
-                              ? Theme.of(context)
-                                  .colorScheme
-                                  .primary
-                                  .withOpacity(0.08)
-                              : Colors.white),
-                      cells: [
-                        const DataCell(Text('Selected Clinic')),
-                        DataCell(Text(controller.displayedClinic.value)),
-                      ],
-                    ),
-                    DataRow(
-                      color: MaterialStateColor.resolveWith((states) =>
-                          states.contains(MaterialState.selected)
-                              ? Theme.of(context)
-                                  .colorScheme
-                                  .primary
-                                  .withOpacity(0.08)
-                              : Colors.grey.shade50),
-                      cells: [
-                        const DataCell(Text('Selected Date')),
-                        DataCell(Text(controller.displayedDate.value)),
-                      ],
-                    ),
-                    DataRow(
-                      color: MaterialStateColor.resolveWith((states) =>
-                          states.contains(MaterialState.selected)
-                              ? Theme.of(context)
-                                  .colorScheme
-                                  .primary
-                                  .withOpacity(0.08)
-                              : Colors.white),
-                      cells: [
-                        const DataCell(Text('Selected Time')),
-                        DataCell(Text(controller.displayedSlot.value)),
-                      ],
-                    ),
-                    DataRow(
-                      color: MaterialStateColor.resolveWith((states) =>
-                          states.contains(MaterialState.selected)
-                              ? Theme.of(context)
-                                  .colorScheme
-                                  .primary
-                                  .withOpacity(0.08)
-                              : Colors.grey.shade50),
-                      cells: [
-                        const DataCell(Text('Status')),
-                        DataCell(Text(controller.status.value)),
-                      ],
-                    ),
-                  ],
                 )
               ],
             ),
