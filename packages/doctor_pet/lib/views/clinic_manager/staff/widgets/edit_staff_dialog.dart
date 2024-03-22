@@ -27,19 +27,23 @@ class EditStaffDialog extends StatefulWidget {
 class _EditStaffDialogState extends State<EditStaffDialog> {
   bool status = false;
 
+  final textControllerStaffId = TextEditingController();
   final textControllerName = TextEditingController();
   final textControllerAddress = TextEditingController();
   final textControllerPhone = TextEditingController();
   final textControllerDescription = TextEditingController();
+  final textControllerUserId = TextEditingController();
   DateTime birthDay = DateTime.now();
 
   @override
   void initState() {
     super.initState();
     if (widget.staff == null) return;
+    textControllerStaffId.text = widget.staff!.staffId;
     textControllerName.text = widget.staff!.name;
     textControllerAddress.text = widget.staff!.address;
     textControllerPhone.text = widget.staff!.phone;
+    textControllerUserId.text = widget.staff!.userId;
     status = widget.staff!.status;
     birthDay = widget.staff?.birthday ?? DateTime.now();
   }
@@ -124,6 +128,16 @@ class _EditStaffDialogState extends State<EditStaffDialog> {
               ),
             ),
             const SizedBox(height: 10),
+            TextField(
+              keyboardType: TextInputType.text,
+              controller: textControllerUserId,
+              style: const TextStyle(fontSize: 15),
+              decoration: InputDecoration(
+                  labelText: 'User ID',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10))),
+            ),
+            const SizedBox(height: 10),
             Row(
               children: [
                 const CustomTextWidget(
@@ -144,6 +158,7 @@ class _EditStaffDialogState extends State<EditStaffDialog> {
                 ),
               ],
             ),
+            
           ],
         ),
       ),
@@ -156,6 +171,8 @@ class _EditStaffDialogState extends State<EditStaffDialog> {
               phone: textControllerPhone.text,
               status: status,
               birthday: birthDay,
+              staffId: textControllerStaffId.text,
+              userId: textControllerUserId.text,
             ),
             widget.index,
           ),

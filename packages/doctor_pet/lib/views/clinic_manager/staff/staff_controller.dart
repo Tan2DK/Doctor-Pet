@@ -37,10 +37,13 @@ class StaffController extends GetxController {
     if (staff.name.isEmpty || staff.phone.isEmpty || staff.address.isEmpty) {
       return;
     }
-    if (index != null) {
-      dataMockStaff.value[index] = staff;
+    if (staff.staffId.isEmpty) {
+      dataMockStaff.value.add(staff.copyWith(
+          staffId: dataMockStaff.value.length.toString()));
     } else {
-      dataMockStaff.value.add(staff);
+      final index = dataMockStaff.value
+          .indexWhere((element) => element.staffId == staff.staffId);
+      dataMockStaff.value[index] = staff;
     }
     dataMockStaff.refresh();
     Get.back();

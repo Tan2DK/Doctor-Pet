@@ -7,6 +7,8 @@ List<Staff> mockStaff = [
       phone: '01122334455',
       status: true,
       birthday: DateTime(2022, 9, 7),
+      staffId: '1',
+      userId: '1'
     ),
     Staff(
       name: 'Nguyen Van A',
@@ -14,6 +16,8 @@ List<Staff> mockStaff = [
       phone: '01122334455',
       status: true,
       birthday: DateTime(2021, 9, 7),
+      staffId: '1',
+      userId: '1'
     ),
     Staff(
       name: 'Nguyen Van B',
@@ -21,6 +25,8 @@ List<Staff> mockStaff = [
       phone: '01122334455',
       status: true,
       birthday: DateTime(2022, 9, 7),
+      staffId: '1',
+      userId: '1'
     ),
     Staff(
       name: 'Nguyen Van A',
@@ -28,6 +34,8 @@ List<Staff> mockStaff = [
       phone: '01122334455',
       status: true,
       birthday: DateTime(2025, 9, 7, 17, 30, 20),
+      staffId: '1',
+      userId: '1'
     ),
     Staff(
       name: 'CC',
@@ -35,6 +43,8 @@ List<Staff> mockStaff = [
       phone: '01122334455',
       status: false,
       birthday: DateTime(1585, 9, 7, 17, 30, 20),
+      staffId: '1',
+      userId: '1'
     ),
     Staff(
       name: 'OneZi',
@@ -42,6 +52,8 @@ List<Staff> mockStaff = [
       phone: '01122334455',
       status: false,
       birthday: DateTime(2002, 9, 7, 17, 30, 20),
+      staffId: '1',
+      userId: '1'
     ),
     Staff(
       name: 'AAAA',
@@ -49,6 +61,8 @@ List<Staff> mockStaff = [
       phone: '01122334455',
       status: true,
       birthday: DateTime(1971, 2, 5, 17, 30, 20),
+      staffId: '1',
+      userId: '1' 
     ),
     Staff(
       name: 'Nguyen Van B',
@@ -56,6 +70,8 @@ List<Staff> mockStaff = [
       phone: '01122334455',
       status: false,
       birthday: DateTime(2021, 6, 12, 17, 30, 20),
+      staffId: '1',
+      userId: '1'
     ),
     Staff(
       name: 'Nguyen Van A',
@@ -63,6 +79,8 @@ List<Staff> mockStaff = [
       phone: '01122334455',
       status: false,
       birthday: DateTime(2021, 10, 21, 17, 30, 20),
+      staffId: '1',
+      userId: '1'
     ),
     Staff(
       name: 'Nguyen Van D',
@@ -70,6 +88,8 @@ List<Staff> mockStaff = [
       phone: '01122334455',
       status: false,
       birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      staffId: '1',
+      userId: '1'
     ),
     Staff(
       name: 'Nguyen Van C',
@@ -77,6 +97,8 @@ List<Staff> mockStaff = [
       phone: '01122334455',
       status: true,
       birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      staffId: '1',
+      userId: '1'
     ),
     Staff(
       name: 'Nguyen Van F',
@@ -84,6 +106,8 @@ List<Staff> mockStaff = [
       phone: '01122334455',
       status: true,
       birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      staffId: '1',
+      userId: '1'
     ),
     Staff(
       name: 'Nguyen Van A',
@@ -91,6 +115,8 @@ List<Staff> mockStaff = [
       phone: '01122334455',
       status: true,
       birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      staffId: '1',
+      userId: '1'
     ),
     Staff(
       name: 'Nguyen Van A',
@@ -98,6 +124,8 @@ List<Staff> mockStaff = [
       phone: '01122334455',
       status: false,
       birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      staffId: '1',
+      userId: '1'
     ),
     Staff(
       name: 'Nguyen Van A',
@@ -105,6 +133,8 @@ List<Staff> mockStaff = [
       phone: '01122334455',
       status: true,
       birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      staffId: '1',
+      userId: '1'
     ),
     Staff(
       name: 'Nguyen Van A',
@@ -112,6 +142,8 @@ List<Staff> mockStaff = [
       phone: '01122334455',
       status: false,
       birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      staffId: '1',
+      userId: '1'
     ),
     Staff(
       name: 'Nguyen Van A',
@@ -119,6 +151,8 @@ List<Staff> mockStaff = [
       phone: '01122334455',
       status: true,
       birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      staffId: '1',
+      userId: '1'
     ),
     Staff(
       name: 'Nguyen Van A',
@@ -126,6 +160,8 @@ List<Staff> mockStaff = [
       phone: '01122334455',
       status: true,
       birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      staffId: '1',
+      userId: '1'
     ),
     Staff(
       name: 'Nguyen Van A',
@@ -133,6 +169,8 @@ List<Staff> mockStaff = [
       phone: '01122334455',
       status: false,
       birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      staffId: '1',
+      userId: '1'
     ),
     Staff(
       name: 'Nguyen Van A',
@@ -140,5 +178,7 @@ List<Staff> mockStaff = [
       phone: '01122334455',
       status: true,
       birthday: DateTime(2021, 9, 7, 17, 30, 20),
+      staffId: '1',
+      userId: '1'
     ),
   ];
