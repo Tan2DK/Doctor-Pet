@@ -64,7 +64,7 @@ class SuperAdminClinicView extends GetView<SuperAdminClinicController> {
                   name: 'Clinic ID',
                   flex: 2,
                 ),
-                DataTitleModel(name: 'Clinic Admin', flex: 4),
+                DataTitleModel(name: 'Admin', flex: 4),
                 DataTitleModel(name: 'Clinic Name', flex: 4),
                 DataTitleModel(name: 'Address', flex: 4),
                 DataTitleModel(name: 'Phone', flex: 3),
@@ -85,7 +85,7 @@ class SuperAdminClinicView extends GetView<SuperAdminClinicController> {
                         child: DataTitleWidget(
                           titles: [
                             DataTitleModel(name: data[index].clinicId, flex: 2),
-                            DataTitleModel(name: data[index].adminId, flex: 4),
+                            DataTitleModel(name: data[index].staffId, flex: 4),
                             DataTitleModel(name: data[index].clinicName, flex: 4),
                             DataTitleModel(
                                 name: data[index].address, flex: 4),

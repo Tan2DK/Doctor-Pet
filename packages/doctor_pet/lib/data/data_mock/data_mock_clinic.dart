@@ -9,14 +9,14 @@ final List<Clinic> mockClinic = [
       address: 'Dong Thap',
       clinicPhoneNumber: '0445566',
       email: 'email',
-      adminId: 'Vui Ve'),
+      staffId: 'Vui Ve'),
   Clinic(
     clinicId: '2',
     clinicName: 'D Care 2',
     address: 'Can Tho',
     clinicPhoneNumber: '01122334455',
     email: 'email',
-    adminId: 'One Zi'
+    staffId: 'One Zi'
   ),
   Clinic(
     clinicId: '3',
@@ -24,7 +24,7 @@ final List<Clinic> mockClinic = [
     address: 'Viet Nam',
     clinicPhoneNumber: '01122334455',
     email: 'email',
-    adminId: 'Tran Thi C'
+    staffId: 'Tran Thi C'
   ),
   Clinic(
     clinicId: '4',
@@ -32,6 +32,6 @@ final List<Clinic> mockClinic = [
     address: 'Viet Nam',
     clinicPhoneNumber: '022556677',
     email: 'email',
-    adminId: 'Nguyen Van A'
+    staffId: 'Nguyen Van A'
   ),
 ];
