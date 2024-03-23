@@ -69,11 +69,13 @@ class StaffView extends GetView<StaffController> {
             const SizedBox(height: 20),
             DataTitleWidget(
               titles: [
+                DataTitleModel(name: 'Staff ID', flex: 2),
                 DataTitleModel(name: 'Staff Name', flex: 4),
                 DataTitleModel(name: 'Address', flex: 4),
                 DataTitleModel(name: 'Phone', flex: 4),
                 DataTitleModel(name: 'Status', flex: 2),
                 DataTitleModel(name: 'Birthday', flex: 3),
+                DataTitleModel(name: 'User ID', flex: 2),
                 DataTitleModel(name: '', flex: 1),
               ],
             ),
@@ -89,6 +91,7 @@ class StaffView extends GetView<StaffController> {
                       flex: 6,
                       child: DataTitleWidget(
                         titles: [
+                          DataTitleModel(name: data[index].staffId, flex: 2),
                           DataTitleModel(name: data[index].name, flex: 4),
                           DataTitleModel(name: data[index].address, flex: 4),
                           DataTitleModel(
@@ -101,11 +104,12 @@ class StaffView extends GetView<StaffController> {
                                   .birthday
                                   .formatDateTime('dd-MM-yyyy'),
                               flex: 3),
+                          DataTitleModel(name: data[index].userId, flex: 2),
                         ],
                       ),
                     ),
                     SizedBox(
-                      width: 60, // Set the width of the container
+                      width: 50, // Set the width of the container
                       child: PopupMenuButton<String>(
                         itemBuilder: (BuildContext context) =>
                             <PopupMenuEntry<String>>[
