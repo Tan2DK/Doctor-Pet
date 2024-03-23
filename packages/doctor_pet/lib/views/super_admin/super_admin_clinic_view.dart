@@ -85,7 +85,7 @@ class SuperAdminClinicView extends GetView<SuperAdminClinicController> {
                         child: DataTitleWidget(
                           titles: [
                             DataTitleModel(name: data[index].clinicId, flex: 2),
-                            DataTitleModel(name: data[index].staff.name, flex: 4),
+                            DataTitleModel(name: data[index].adminId, flex: 4),
                             DataTitleModel(name: data[index].clinicName, flex: 4),
                             DataTitleModel(
                                 name: data[index].address, flex: 4),

@@ -6,12 +6,12 @@ class Clinic {
   String address;
   String clinicPhoneNumber;
   String email;
-  Staff staff;
+  String adminId;
   Clinic(
       {required this.clinicId,
       required this.clinicName,
       required this.address,
       required this.clinicPhoneNumber,
       required this.email,
-      required this.staff});
+      required this.adminId});
 }
