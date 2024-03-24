@@ -2,6 +2,8 @@ import 'package:doctor_pet/views/clinic_manager/staff/staff_view.dart';
 import 'package:doctor_pet/views/clinic_manager/medicine/clinic_medicine_view.dart';
 import 'package:doctor_pet/views/doctor/doctor_binding.dart';
 import 'package:doctor_pet/views/doctor/doctor_view.dart';
+import 'package:doctor_pet/views/register/register_binding.dart';
+import 'package:doctor_pet/views/register/register_view.dart';
 
 import 'package:get/get.dart';
 
@@ -35,6 +37,11 @@ class AppRoutes {
       name: RoutesName.home,
       page: () => const HomeView(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: RoutesName.register,
+      page: () => const RegisterView(),
+      binding: RegisterBinding(),
     ),
     GetPage(
       name: RoutesName.doctor,
@@ -100,6 +107,7 @@ class RoutesName {
   static const String clinicStaff = '/clinic-staff';
   static const String pet = '/pet';
   static const String schedule = '/schedule';
+  static const String register = '/register';
   static const String nestedNavDoctor = 'nested_navigation_doctor';
   static const String nestedNavDoctorMedicine =
       'nested_navigation_doctor_medicine';
