@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomTextfieldWidget extends StatefulWidget {
   const CustomTextfieldWidget({
@@ -10,6 +11,7 @@ class CustomTextfieldWidget extends StatefulWidget {
     this.maxLength,
     this.onChanged,
     this.onSubmit,
+    this.textInputFormatter,
   }) : super(key: key);
 
   final bool isPassword;
@@ -19,6 +21,7 @@ class CustomTextfieldWidget extends StatefulWidget {
   final int? maxLength;
   final Function(String? value)? onChanged;
   final Function(String? value)? onSubmit;
+  final List<TextInputFormatter>? textInputFormatter;
 
   @override
   State<CustomTextfieldWidget> createState() => _CustomTextfieldWidgetState();
@@ -29,7 +32,8 @@ class _CustomTextfieldWidgetState extends State<CustomTextfieldWidget> {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      obscureText: widget.isPassword ? isShow : false,
+      inputFormatters: widget.textInputFormatter,
+      obscureText: widget.isPassword ? !isShow : false,
       onChanged: widget.onChanged,
       onSubmitted: widget.onSubmit,
       maxLength: widget.maxLength,
@@ -43,7 +47,7 @@ class _CustomTextfieldWidgetState extends State<CustomTextfieldWidget> {
                   isShow = !isShow;
                 }),
                 child: Icon(
-                  isShow ? Icons.visibility_off : Icons.visibility,
+                  isShow ? Icons.visibility : Icons.visibility_off,
                 ),
               )
             : null,
