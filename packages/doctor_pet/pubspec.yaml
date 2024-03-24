@@ -14,7 +14,10 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   get: ^4.6.5
+  http: ^1.2.1
+  intl: ^0.18.1
   responsive_framework: ^1.4.0
+  table_calendar: ^3.0.9
 
 dev_dependencies:
   flutter_test:
@@ -26,3 +29,4 @@ flutter:
   
   assets:
   - assets/
+  - assets/img/

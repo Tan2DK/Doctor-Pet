@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -23,6 +24,7 @@ Future<void> runMyApp() async {
 
   runApp(
     GetMaterialApp(
+      scrollBehavior: AppScrollBehavior(),
       title: StringConstant.appName,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
@@ -52,4 +54,13 @@ Future<void> runMyApp() async {
       ),
     ),
   );
+}
+
+class AppScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad,
+      };
 }
