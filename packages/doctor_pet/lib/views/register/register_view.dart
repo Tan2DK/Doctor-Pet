@@ -1,11 +1,12 @@
-import 'package:doctor_pet/common_widgets/custom_textfield_widget.dart';
-import 'package:doctor_pet/views/register/widgets/form_box_widget.dart';
+import 'package:doctor_pet/common_widget/custom_textfield_widget.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import '../../common_widget/form_box_widget.dart';
+import '../../common_widget/img_bg_widget.dart';
 import 'register_controller.dart';
-import 'widgets/img_bg_widget.dart';
 
 class RegisterView extends GetView<RegisterController> {
   const RegisterView({super.key});

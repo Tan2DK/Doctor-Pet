@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import '../../../utils/app_assets.dart';
+import '../utils/app_assets.dart';
 
 class ImgBgWidget extends StatelessWidget {
   const ImgBgWidget({super.key});
