@@ -130,7 +130,7 @@ class RegisterView extends GetView<RegisterController> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text('Already had account?'),
+                        const Text('Already have account?'),
                         const SizedBox(width: 10),
                         InkWell(
                           onTap: () {},

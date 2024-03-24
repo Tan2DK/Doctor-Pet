@@ -12,7 +12,6 @@ class FormBoxWidget extends StatelessWidget {
       constraints: const BoxConstraints(
         maxWidth: 450,
         minWidth: 250,
-        minHeight: 500,
       ),
       child: Container(
         padding: const EdgeInsets.symmetric(
