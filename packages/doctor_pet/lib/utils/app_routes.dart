@@ -2,6 +2,8 @@ import '../views/clinic_manager/staff/staff_view.dart';
 import '../views/clinic_manager/medicine/clinic_medicine_view.dart';
 import '../views/doctor/doctor_binding.dart';
 import '../views/doctor/doctor_view.dart';
+import '../views/login/login_binding.dart';
+import '../views/login/login_view.dart';
 import '../views/pet/pet_binding.dart';
 import '../views/pet/pet_view.dart';
 
@@ -47,6 +49,11 @@ class AppRoutes {
       name: RoutesName.register,
       page: () => const RegisterView(),
       binding: RegisterBinding(),
+    ),
+    GetPage(
+      name: RoutesName.login,
+      page: () => const LoginView(),
+      binding: LoginBinding(),
     ),
     GetPage(
       name: RoutesName.pet,
@@ -99,6 +106,7 @@ class AppRoutes {
 class RoutesName {
   static const String home = '/home';
   static const String register = '/register';
+  static const String login = '/login';
   static const String doctor = '/doctor';
   static const String clinicDoctor = '/clinic-doctor';
   static const String invoiceReport = '/invoice-report';

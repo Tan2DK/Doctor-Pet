@@ -133,11 +133,12 @@ class RegisterView extends GetView<RegisterController> {
                         const Text('Already have account?'),
                         const SizedBox(width: 10),
                         InkWell(
-                          onTap: () {},
+                          onTap: Get.back,
                           child: Text(
                             'Login',
                             style: TextStyle(
-                                color: Theme.of(context).primaryColor),
+                              color: Theme.of(context).primaryColor,
+                            ),
                           ),
                         ),
                       ],
