@@ -127,6 +127,22 @@ class RegisterView extends GetView<RegisterController> {
                       ),
                     ),
                     const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Already had account?'),
+                        const SizedBox(width: 10),
+                        InkWell(
+                          onTap: () {},
+                          child: Text(
+                            'Login',
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
                   ],
                 ),
               ).paddingSymmetric(
