@@ -34,9 +34,10 @@ class LoginController extends GetxController {
       );
 
       if (response.statusCode == 200) {
+        canSubmit.value = false;
         Get.toNamed('/home');
       } else {
-        Get.snackbar('Login Failed', 'Invalid username or password');
+        Get.snackbar('Login Failed', 'Invalid username or pass6 word');
       }
     } catch (e) {
       Get.snackbar('Error', 'An error occurred while processing your request');

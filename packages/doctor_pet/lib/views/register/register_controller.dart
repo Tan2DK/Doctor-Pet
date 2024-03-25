@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
 class RegisterController extends GetxController {
   Rx<String> username = Rx<String>('');
@@ -174,5 +177,35 @@ class RegisterController extends GetxController {
     canSubmit.value = isNotEmpty && isValid;
   }
 
-  void onTapSubmit() {}
+  void onTapSubmit() async {
+    Map<String, String> data = {
+      'userName': username.value,
+      'fullName': name.value,
+      'email': email.value,
+      'password': password.value,
+      'address': address.value,
+      'phone': phone.value,
+      'rePassword': cPassword.value,
+    };
+
+    String jsonData = jsonEncode(data);
+
+    // Tạo yêu cầu POST đến API
+    var response = await http.post(
+      Uri.parse('https://your-api-url.com/register'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonData,
+    );
+
+    // Kiểm tra mã trạng thái của phản hồi
+    if (response.statusCode == 200) {
+      // Xử lý phản hồi thành công
+      print('Đăng ký thành công');
+    } else {
+      // Xử lý phản hồi lỗi
+      print('Đăng ký thất bại: ${response.body}');
+    }
+  }
 }
