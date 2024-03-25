@@ -3,7 +3,7 @@ class Staff {
   String name;
   String address;
   String phone;
-  // bool status;
+  bool status;
   DateTime birthday;
   String userId;
 
@@ -11,7 +11,7 @@ class Staff {
       {required this.name,
       required this.address,
       required this.phone,
-      // required this.status,
+      required this.status,
       required this.birthday,
       required this.staffId,
       required this.userId});
@@ -30,7 +30,7 @@ class Staff {
       name: name ?? this.name,
       address: address ?? this.address,
       phone: phone ?? this.phone,
-      // status: status ?? this.status,
+      status: status ?? this.status,
       birthday: birthday ?? this.birthday,
       userId: userId ?? this.userId,
     );
@@ -44,6 +44,7 @@ class Staff {
       phone: json['phoneNumber'],
       birthday: DateTime.parse(json['birthday']),
       userId: json['userId'],
+      status: json['employeeStatus'],
     );
   }
 
@@ -55,6 +56,7 @@ class Staff {
       'phoneNumber': phone,
       'birthday': birthday.toIso8601String(),
       'userId': userId,
+      'employeeStatus': status,
     };
   }
 }

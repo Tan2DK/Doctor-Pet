@@ -45,7 +45,7 @@ class _EditStaffDialogState extends State<EditStaffDialog> {
     textControllerAddress.text = widget.staff!.address;
     textControllerPhone.text = widget.staff!.phone;
     textControllerUserId.text = widget.staff!.userId;
-    // status = widget.staff!.status;
+    status = widget.staff!.status;
     birthDay = widget.staff?.birthday ?? DateTime.now();
     valueChoose = widget.staff?.userId;
   }
@@ -130,6 +130,15 @@ class _EditStaffDialogState extends State<EditStaffDialog> {
               ),
             ),
             const SizedBox(height: 10),
+            // TextField(
+            //   keyboardType: TextInputType.text,
+            //   controller: textControllerUserId,
+            //   style: const TextStyle(fontSize: 15),
+            //   decoration: InputDecoration(
+            //       labelText: 'User ID',
+            //       border: OutlineInputBorder(
+            //           borderRadius: BorderRadius.circular(10))),
+            // ),
             const SizedBox(height: 10),
             Container(
               height: 50,
@@ -149,6 +158,7 @@ class _EditStaffDialogState extends State<EditStaffDialog> {
                   const SizedBox(
                     width: 8,
                   ),
+                  const SizedBox(width: 8,),
                   DropdownButton<String>(
                       focusColor: Colors.transparent,
                       value: valueChoose,
@@ -197,7 +207,7 @@ class _EditStaffDialogState extends State<EditStaffDialog> {
               name: textControllerName.text,
               address: textControllerAddress.text,
               phone: textControllerPhone.text,
-              // status: status,
+              status: status,
               birthday: birthDay,
               staffId: widget.staff?.staffId ?? '',
               userId: valueChoose!,
