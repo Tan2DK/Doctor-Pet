@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class RegisterController extends GetxController {
@@ -8,6 +9,7 @@ class RegisterController extends GetxController {
   Rx<String> cPassword = Rx<String>('');
   Rx<String> address = Rx<String>('');
   Rx<String> phone = Rx<String>('');
+  Rx<DateTime> birthday = Rx<DateTime>(DateTime.now());
   Rxn<String> errorUsername = Rxn<String>();
   Rxn<String> errorName = Rxn<String>();
   Rxn<String> errorPassword = Rxn<String>();
@@ -172,6 +174,13 @@ class RegisterController extends GetxController {
         errorPhone.value == null;
 
     canSubmit.value = isNotEmpty && isValid;
+  }
+
+  Future<void> birthdayChanged(BuildContext context) async {
+    final picked = await showDatePicker(
+        context: context, firstDate: DateTime(1900), lastDate: DateTime.now(),);
+    if (picked == null) return;
+    birthday.value = picked;
   }
 
   void onTapSubmit() {}

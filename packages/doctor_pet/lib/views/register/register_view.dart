@@ -1,9 +1,13 @@
 import 'package:doctor_pet/common_widget/custom_textfield_widget.dart';
+import 'package:doctor_pet/utils/app_extension.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import '../../common_widget/custom_text/custom_text_widget.dart';
 import '../../common_widget/form_box_widget.dart';
 import '../../common_widget/img_bg_widget.dart';
 import 'register_controller.dart';
@@ -90,15 +94,54 @@ class RegisterView extends GetView<RegisterController> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Obx(
-                      () => CustomTextfieldWidget(
-                        lable: 'Phone Number',
-                        errorMessage: controller.errorPhone.value,
-                        onChanged: controller.phoneChanged,
-                        textInputFormatter: [
-                          FilteringTextInputFormatter.digitsOnly
-                        ],
-                      ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Obx(
+                            () => CustomTextfieldWidget(
+                              lable: 'Phone Number',
+                              errorMessage: controller.errorPhone.value,
+                              onChanged: controller.phoneChanged,
+                              textInputFormatter: [
+                                FilteringTextInputFormatter.digitsOnly
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Obx(
+                            () => Container(
+                              height: 56,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                  color: Colors.black.withOpacity(0.9),
+                                ),
+                              ),
+                              child: TextButton.icon(
+                                icon: const Icon(
+                                  Icons.calendar_month_outlined,
+                                  color: Colors.black54,
+                                ),
+                                onPressed: () =>
+                                    controller.birthdayChanged(context),
+                                label: CustomTextWidget(
+                                  text: controller.birthday.value
+                                      .formatDateTime('dd-MM-yyyy'),
+                                  txtColor: Colors.black,
+                                ),
+                                style: ButtonStyle(
+                                  shape: MaterialStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  )),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 10),
                     SizedBox(
