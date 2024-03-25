@@ -47,13 +47,16 @@ class SuperAdminClinicView extends GetView<SuperAdminClinicController> {
                 ),
                 const SizedBox(width: 10),
                 CustomButtonActionWidget(
-                  label: 'Add Clinic',
-                  bgColor: Colors.blue,
-                  txtColor: Colors.white,
-                  icon: Icons.add,
-                  iconColor: Colors.white,
-                  onPressed: () {}
-                ),
+                    label: 'Add Clinic',
+                    bgColor: Colors.blue,
+                    txtColor: Colors.white,
+                    icon: Icons.add,
+                    iconColor: Colors.white,
+                    onPressed: () {
+                      controller.showAddEditDialog(
+                        context,
+                      );
+                    }),
                 const SizedBox(width: 10),
               ],
             ),
@@ -77,7 +80,8 @@ class SuperAdminClinicView extends GetView<SuperAdminClinicController> {
               child: Obx(() {
                 final List<Clinic> data = controller.dataMockClinic.value;
                 return ListView.separated(
-                  separatorBuilder: (context, index) => const Divider(thickness: 1),
+                  separatorBuilder: (context, index) =>
+                      const Divider(thickness: 1),
                   itemBuilder: (context, index) => Row(
                     children: [
                       Expanded(
@@ -86,15 +90,12 @@ class SuperAdminClinicView extends GetView<SuperAdminClinicController> {
                           titles: [
                             DataTitleModel(name: data[index].clinicId, flex: 2),
                             DataTitleModel(name: data[index].staffId, flex: 4),
-                            DataTitleModel(name: data[index].clinicName, flex: 4),
                             DataTitleModel(
-                                name: data[index].address, flex: 4),
+                                name: data[index].clinicName, flex: 4),
+                            DataTitleModel(name: data[index].address, flex: 4),
                             DataTitleModel(
-                                name:
-                                    data[index].clinicPhoneNumber,
-                                flex: 3),
-                            DataTitleModel(
-                                name: data[index].email, flex: 2),
+                                name: data[index].clinicPhoneNumber, flex: 3),
+                            DataTitleModel(name: data[index].email, flex: 2),
                           ],
                         ),
                       ),
@@ -122,16 +123,16 @@ class SuperAdminClinicView extends GetView<SuperAdminClinicController> {
                             // Handle menu item selection
                             switch (action) {
                               case 'edit':
-                                // controller.showAddEditDialog(
-                                //   context,
-                                //   index: index,
-                                // );
+                                controller.showAddEditDialog(
+                                  context,
+                                  index: index,
+                                );
                                 break;
                               case 'delete':
-                                // controller.showDeleteDialog(
-                                //   context,
-                                //   index,
-                                // );
+                                controller.showDeleteDialog(
+                                  context,
+                                  index,
+                                );
                                 break;
                             }
                           },
