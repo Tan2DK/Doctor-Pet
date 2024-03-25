@@ -1,7 +1,11 @@
-import 'package:doctor_pet/views/clinic_manager/staff/staff_view.dart';
-import 'package:doctor_pet/views/clinic_manager/medicine/clinic_medicine_view.dart';
-import 'package:doctor_pet/views/doctor/doctor_binding.dart';
-import 'package:doctor_pet/views/doctor/doctor_view.dart';
+import '../views/clinic_manager/staff/staff_view.dart';
+import '../views/clinic_manager/medicine/clinic_medicine_view.dart';
+import '../views/doctor/doctor_binding.dart';
+import '../views/doctor/doctor_view.dart';
+import '../views/login/login_binding.dart';
+import '../views/login/login_view.dart';
+import '../views/pet/pet_binding.dart';
+import '../views/pet/pet_view.dart';
 
 import 'package:get/get.dart';
 
@@ -19,8 +23,8 @@ import '../views/clinic_manager/medicine_report/medicine_report_view.dart';
 import '../views/clinic_manager/medicine/clinic_medicine_binding.dart';
 import '../views/home/home_binding.dart';
 import '../views/home/home_view.dart';
-import 'package:doctor_pet/views/pet/pet_view.dart';
-import 'package:doctor_pet/views/pet/pet_binding.dart';
+import '../views/register/register_binding.dart';
+import '../views/register/register_view.dart';
 
 import '../views/schedule/schedule_binding.dart';
 import '../views/schedule/schedule_view.dart';
@@ -40,6 +44,16 @@ class AppRoutes {
       name: RoutesName.doctor,
       page: () => const DoctorView(),
       binding: DoctorBinding(),
+    ),
+    GetPage(
+      name: RoutesName.register,
+      page: () => const RegisterView(),
+      binding: RegisterBinding(),
+    ),
+    GetPage(
+      name: RoutesName.login,
+      page: () => const LoginView(),
+      binding: LoginBinding(),
     ),
     GetPage(
       name: RoutesName.pet,
@@ -91,6 +105,8 @@ class AppRoutes {
 
 class RoutesName {
   static const String home = '/home';
+  static const String register = '/register';
+  static const String login = '/login';
   static const String doctor = '/doctor';
   static const String clinicDoctor = '/clinic-doctor';
   static const String invoiceReport = '/invoice-report';
@@ -101,8 +117,8 @@ class RoutesName {
   static const String pet = '/pet';
   static const String schedule = '/schedule';
   static const String nestedNavDoctor = 'nested_navigation_doctor';
+  static const String nestedNavPet = 'nested_navigation_pet';
   static const String nestedNavDoctorMedicine =
       'nested_navigation_doctor_medicine';
-  static const String nestedNavPet = 'nested_navigation_pet';
   static const String nestedNavDoctorInvoice = '/nested_nav_doctor_invoice';
 }
