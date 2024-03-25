@@ -60,10 +60,14 @@ class ClinicDoctorView extends GetView<ClinicDoctorController> {
             const SizedBox(height: 20),
             DataTitleWidget(
               titles: [
-                DataTitleModel(name: 'Doctor Name',flex: 2,),
+                DataTitleModel(
+                  name: 'Doctor Name',
+                  flex: 2,
+                ),
                 DataTitleModel(name: 'Address', flex: 2),
                 DataTitleModel(name: 'PhoneNumber', flex: 2),
                 DataTitleModel(name: 'specialized', flex: 2),
+                DataTitleModel(name: 'Status', flex: 2),
                 DataTitleModel(name: '', flex: 1),
               ],
             ),
@@ -72,17 +76,23 @@ class ClinicDoctorView extends GetView<ClinicDoctorController> {
               child: Obx(() {
                 final List<Doctor> data = controller.dataMockDoctor.value;
                 return ListView.separated(
-                  separatorBuilder: (context, index) => const Divider(thickness: 1),
+                  separatorBuilder: (context, index) =>
+                      const Divider(thickness: 1),
                   itemBuilder: (context, index) => Row(
                     children: [
                       Expanded(
                         flex: 6,
                         child: DataTitleWidget(
-                          titles: [ 
+                          titles: [
                             DataTitleModel(name: data[index].name, flex: 2),
                             DataTitleModel(name: data[index].address, flex: 2),
                             DataTitleModel(name: data[index].phone, flex: 2),
-                            DataTitleModel(name:data[index].specialized,flex: 2),
+                            DataTitleModel(
+                                name: data[index].specialized, flex: 2),
+                            DataTitleModel(
+                                name:
+                                    data[index].status ? 'Active' : 'Inactive',
+                                flex: 2),
                           ],
                         ),
                       ),

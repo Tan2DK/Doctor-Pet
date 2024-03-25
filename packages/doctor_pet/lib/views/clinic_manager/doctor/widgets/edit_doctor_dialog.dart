@@ -101,6 +101,26 @@ class _EditDoctorDialogState extends State<EditDoctorDialog> {
                       borderRadius: BorderRadius.circular(10))),
             ),
             const SizedBox(height: 10),
+            Row(
+              children: [
+                const CustomTextWidget(
+                  text: 'Status: ',
+                ),
+                Checkbox(
+                  activeColor: Colors.green,
+                  value: status,
+                  onChanged: (value) {
+                    setState(() {
+                      status = value!;
+                      widget.onChangedStatus?.call(value);
+                    });
+                  },
+                ),
+                CustomTextWidget(
+                  text: status ? 'Active' : 'Inactive',
+                ),
+              ],
+            ),
           ],
         ),
       ),
@@ -108,12 +128,12 @@ class _EditDoctorDialogState extends State<EditDoctorDialog> {
         TextButton(
           onPressed: () => widget.addEditDoctor?.call(
             Doctor(
-              id: doctorId,
-              name: textControllerName.text,
-              address: textControllerAddress.text,
-              phone: textControllerPhone.text,
-              specialized: textControllerSpecialized.text,
-            ),
+                id: doctorId,
+                name: textControllerName.text,
+                address: textControllerAddress.text,
+                phone: textControllerPhone.text,
+                specialized: textControllerSpecialized.text,
+                status: status),
             widget.index,
           ),
           child: CustomTextWidget(

@@ -156,9 +156,11 @@ class ClinicDoctorController extends GetxController {
     } catch (e) {
       throw Exception('Failed to sort doctors by name');
     }
+  }
+
+  @override
   void onInit() {
     super.onInit();
     fetchDoctors();
   }
-}
 }
