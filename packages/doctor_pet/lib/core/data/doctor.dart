@@ -5,6 +5,7 @@ class Doctor{
   String phone;
   String specialized;
   
+  
 
   Doctor({this.id,required this.name,required this.address, required this.phone, required this.specialized});
 

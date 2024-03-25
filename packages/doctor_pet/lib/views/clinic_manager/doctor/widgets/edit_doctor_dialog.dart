@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,16 +31,21 @@ class _EditDoctorDialogState extends State<EditDoctorDialog> {
   final textControllerPhone = TextEditingController();
   final textControllerClinicId = TextEditingController();
   final textControllerSpecialized = TextEditingController();
+  late String doctorId;
   @override
   void initState() {
     super.initState();
-    if (widget.doctor == null) return;
-    textControllerDoctorId.text = widget.doctor!.id.toString();
-    textControllerName.text = widget.doctor!.name;
-    textControllerAddress.text = widget.doctor!.address;
-    textControllerPhone.text = widget.doctor!.phone;
-    textControllerSpecialized.text = widget.doctor!.specialized;
-    
+    if (widget.doctor == null) {
+      doctorId = Random().nextInt(1000000).toString();
+      textControllerDoctorId.text = doctorId;
+    } else {
+      doctorId = widget.doctor!.id.toString();
+      textControllerDoctorId.text = doctorId;
+      textControllerName.text = widget.doctor!.name;
+      textControllerAddress.text = widget.doctor!.address;
+      textControllerPhone.text = widget.doctor!.phone;
+      textControllerSpecialized.text = widget.doctor!.specialized;
+    }
   }
 
   @override
@@ -54,15 +61,6 @@ class _EditDoctorDialogState extends State<EditDoctorDialog> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            TextField(
-              keyboardType: TextInputType.text,
-              controller: textControllerDoctorId,
-              style: const TextStyle(fontSize: 15),
-              decoration: InputDecoration(
-                  labelText: 'Doctor ID',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10))),
-            ),
             TextField(
               keyboardType: TextInputType.text,
               controller: textControllerName,
@@ -110,7 +108,7 @@ class _EditDoctorDialogState extends State<EditDoctorDialog> {
         TextButton(
           onPressed: () => widget.addEditDoctor?.call(
             Doctor(
-              id: textControllerDoctorId.text,
+              id: doctorId,
               name: textControllerName.text,
               address: textControllerAddress.text,
               phone: textControllerPhone.text,

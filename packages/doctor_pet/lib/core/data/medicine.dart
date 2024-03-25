@@ -36,4 +36,8 @@ class Medicine {
       price: price ?? this.price,
     );
   }
+
+  
+
+
 }

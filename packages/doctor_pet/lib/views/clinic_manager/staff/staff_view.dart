@@ -73,7 +73,7 @@ class StaffView extends GetView<StaffController> {
                 DataTitleModel(name: 'Staff Name', flex: 4),
                 DataTitleModel(name: 'Address', flex: 4),
                 DataTitleModel(name: 'Phone', flex: 4),
-                DataTitleModel(name: 'Status', flex: 2),
+                // DataTitleModel(name: 'Status', flex: 2),
                 DataTitleModel(name: 'Birthday', flex: 3),
                 DataTitleModel(name: 'User ID', flex: 2),
                 DataTitleModel(name: '', flex: 1),
@@ -96,9 +96,9 @@ class StaffView extends GetView<StaffController> {
                           DataTitleModel(name: data[index].address, flex: 4),
                           DataTitleModel(
                               name: data[index].phone.toString(), flex: 4),
-                          DataTitleModel(
-                              name: data[index].status ? 'Active' : 'Inactive',
-                              flex: 2),
+                          // DataTitleModel(
+                          //     name: data[index].status ? 'Active' : 'Inactive',
+                          //     flex: 2),
                           DataTitleModel(
                               name: data[index]
                                   .birthday
