@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:doctor_pet/core/data/medicine.dart';
-import 'package:doctor_pet/utils/app_extension.dart';
 import 'package:get/get.dart';
 import '../../../../common_widget/custom_text/custom_text_widget.dart';
 
@@ -22,23 +21,32 @@ class EditMedicineDialog extends StatefulWidget {
 
 class _EditMedicineDialogState extends State<EditMedicineDialog> {
   final TextEditingController textControllerName = TextEditingController();
-  final TextEditingController textControllerCompanyMedicineName =
-      TextEditingController();
-  final TextEditingController textControllerQuantity = TextEditingController();
+  // final TextEditingController textControllerCompanyMedicineName =
+  //     TextEditingController();
+  // final TextEditingController textControllerQuantity = TextEditingController();
+  final TextEditingController textControllerUnit = TextEditingController();
   final TextEditingController textControllerPrice = TextEditingController();
-  DateTime importDate = DateTime.now();
-  DateTime expirationDate = DateTime.now();
+  final TextEditingController textControllerInventory = TextEditingController();
+  final TextEditingController textControllerSpecifications =
+      TextEditingController();
+  final TextEditingController textControllerCateId = TextEditingController();
+  // DateTime importDate = DateTime.now();
+  // DateTime expirationDate = DateTime.now();
 
   @override
   void initState() {
     super.initState();
     textControllerName.text = widget.medicine?.nameMedicine ?? '';
-    textControllerCompanyMedicineName.text =
-        widget.medicine?.companyMedicineName ?? '';
-    textControllerQuantity.text = widget.medicine?.quantity ?? '';
+    textControllerUnit.text = widget.medicine?.medicineUnit ?? '';
+    // textControllerCompanyMedicineName.text =
+    //     widget.medicine?.companyMedicineName ?? '';
+    // textControllerQuantity.text = widget.medicine?.quantity ?? '';
     textControllerPrice.text = widget.medicine?.price ?? '';
-    importDate = widget.medicine?.importDate ?? DateTime.now();
-    expirationDate = widget.medicine?.expirationDate ?? DateTime.now();
+    // importDate = widget.medicine?.importDate ?? DateTime.now();
+    // expirationDate = widget.medicine?.expirationDate ?? DateTime.now();
+    textControllerInventory.text = widget.medicine?.inventory ?? '';
+    textControllerSpecifications.text = widget.medicine?.specifications ?? '';
+    textControllerCateId.text = widget.medicine?.medicineCateId ?? '';
   }
 
   @override
@@ -65,22 +73,40 @@ class _EditMedicineDialogState extends State<EditMedicineDialog> {
                         borderRadius: BorderRadius.circular(10))),
               ),
               const SizedBox(height: 10),
+              // TextField(
+              //   keyboardType: TextInputType.text,
+              //   controller: textControllerCompanyMedicineName,
+              //   style: const TextStyle(fontSize: 15),
+              //   decoration: InputDecoration(
+              //       labelText: 'Company Medicine Name',
+              //       border: OutlineInputBorder(
+              //           borderRadius: BorderRadius.circular(10))),
+              // ),
               TextField(
                 keyboardType: TextInputType.text,
-                controller: textControllerCompanyMedicineName,
+                controller: textControllerUnit,
                 style: const TextStyle(fontSize: 15),
                 decoration: InputDecoration(
-                    labelText: 'Company Medicine Name',
+                    labelText: 'Unit',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10))),
               ),
               const SizedBox(height: 10),
+              // TextField(
+              //   keyboardType: TextInputType.text,
+              //   controller: textControllerQuantity,
+              //   style: const TextStyle(fontSize: 15),
+              //   decoration: InputDecoration(
+              //       labelText: 'Quantity',
+              //       border: OutlineInputBorder(
+              //           borderRadius: BorderRadius.circular(10))),
+              // ),
               TextField(
                 keyboardType: TextInputType.text,
-                controller: textControllerQuantity,
+                controller: textControllerInventory,
                 style: const TextStyle(fontSize: 15),
                 decoration: InputDecoration(
-                    labelText: 'Quantity',
+                    labelText: 'Inventory',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10))),
               ),
@@ -95,83 +121,101 @@ class _EditMedicineDialogState extends State<EditMedicineDialog> {
                         borderRadius: BorderRadius.circular(10))),
               ),
               const SizedBox(height: 10),
-              Container(
-                height: 50,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.black, // Border color
-                    width: 0.5, // Border width
-                  ),
-                  borderRadius: BorderRadius.circular(
-                      8.0), // Optional: for rounded corners
-                ),
-                padding: const EdgeInsets.all(8.0), // Opt
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: CustomTextWidget(
-                        text: 'Import Date: ',
-                      ),
-                    ),
-                    TextButton.icon(
-                        icon: const Icon(Icons.calendar_month_outlined,
-                            color: Colors.black54),
-                        onPressed: () async {
-                          final picked = await widget.selectDate?.call(
-                            context,
-                            importDate,
-                            true,
-                          );
-                          if (picked == null) return;
-                          setState(() {
-                            importDate = picked;
-                          });
-                        },
-                        label: CustomTextWidget(
-                          text: importDate.formatDateTime('dd-MM-yyyy'),
-                          txtColor: Colors.black,
-                        )),
-                  ],
-                ),
+              // Container(
+              //   height: 50,
+              //   decoration: BoxDecoration(
+              //     border: Border.all(
+              //       color: Colors.black, // Border color
+              //       width: 0.5, // Border width
+              //     ),
+              //     borderRadius: BorderRadius.circular(
+              //         8.0), // Optional: for rounded corners
+              //   ),
+              //   padding: const EdgeInsets.all(8.0), // Opt
+              //   child: Row(
+              //     children: [
+              //       const Expanded(
+              //         child: CustomTextWidget(
+              //           text: 'Import Date: ',
+              //         ),
+              //       ),
+              //       TextButton.icon(
+              //           icon: const Icon(Icons.calendar_month_outlined,
+              //               color: Colors.black54),
+              //           onPressed: () async {
+              //             final picked = await widget.selectDate?.call(
+              //               context,
+              //               importDate,
+              //               true,
+              //             );
+              //             if (picked == null) return;
+              //             setState(() {
+              //               importDate = picked;
+              //             });
+              //           },
+              //           label: CustomTextWidget(
+              //             text: importDate.formatDateTime('dd-MM-yyyy'),
+              //             txtColor: Colors.black,
+              //           )),
+              //     ],
+              //   ),
+              // ),
+              TextField(
+                keyboardType: TextInputType.text,
+                controller: textControllerSpecifications,
+                style: const TextStyle(fontSize: 15),
+                decoration: InputDecoration(
+                    labelText: 'Specifications',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10))),
               ),
               const SizedBox(height: 10),
-              Container(
-                height: 50,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.black,
-                    width: 0.5, // Border width
-                  ),
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                padding: const EdgeInsets.all(8.0), // Opt
-                child: Row(
-                  children: [
-                    const Expanded(
-                      child: CustomTextWidget(
-                        text: 'Expiration Date: ',
-                      ),
-                    ),
-                    TextButton.icon(
-                        icon: const Icon(Icons.calendar_month_outlined,
-                            color: Colors.black54),
-                        onPressed: () async {
-                          final picked = await widget.selectDate?.call(
-                            context,
-                            expirationDate,
-                            false,
-                          );
-                          if (picked == null) return;
-                          setState(() {
-                            expirationDate = picked;
-                          });
-                        },
-                        label: CustomTextWidget(
-                          text: expirationDate.formatDateTime('dd-MM-yyyy'),
-                          txtColor: Colors.black,
-                        )),
-                  ],
-                ),
+              // Container(
+              //   height: 50,
+              //   decoration: BoxDecoration(
+              //     border: Border.all(
+              //       color: Colors.black,
+              //       width: 0.5, // Border width
+              //     ),
+              //     borderRadius: BorderRadius.circular(8.0),
+              //   ),
+              //   padding: const EdgeInsets.all(8.0), // Opt
+              //   child: Row(
+              //     children: [
+              //       const Expanded(
+              //         child: CustomTextWidget(
+              //           text: 'Expiration Date: ',
+              //         ),
+              //       ),
+              //       TextButton.icon(
+              //           icon: const Icon(Icons.calendar_month_outlined,
+              //               color: Colors.black54),
+              //           onPressed: () async {
+              //             final picked = await widget.selectDate?.call(
+              //               context,
+              //               expirationDate,
+              //               false,
+              //             );
+              //             if (picked == null) return;
+              //             setState(() {
+              //               expirationDate = picked;
+              //             });
+              //           },
+              //           label: CustomTextWidget(
+              //             text: expirationDate.formatDateTime('dd-MM-yyyy'),
+              //             txtColor: Colors.black,
+              //           )),
+              //     ],
+              //   ),
+              // ),
+              TextField(
+                keyboardType: TextInputType.text,
+                controller: textControllerCateId,
+                style: const TextStyle(fontSize: 15),
+                decoration: InputDecoration(
+                    labelText: 'Category',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10))),
               ),
             ],
           ),
@@ -183,11 +227,15 @@ class _EditMedicineDialogState extends State<EditMedicineDialog> {
             Medicine(
               idMedicine: widget.medicine?.idMedicine ?? '',
               nameMedicine: textControllerName.text,
-              companyMedicineName: textControllerCompanyMedicineName.text,
-              quantity: textControllerQuantity.text,
-              importDate: importDate,
-              expirationDate: expirationDate,
+              inventory: textControllerInventory.text,
+              medicineUnit: textControllerUnit.text,
+              specifications: textControllerSpecifications.text,
+              // companyMedicineName: textControllerCompanyMedicineName.text,
+              // quantity: textControllerQuantity.text,
+              // importDate: importDate,
+              // expirationDate: expirationDate,
               price: textControllerPrice.text,
+              medicineCateId: textControllerCateId.text,
             ),
           ),
           child: CustomTextWidget(

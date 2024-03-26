@@ -80,18 +80,18 @@ class DoctorMedicineView extends GetView<DoctorMedicineController> {
                           label: Text('Name',
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.bold))),
-                      DataColumn(
-                          label: Text('Quantity',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold))),
-                      DataColumn(
-                          label: Text('Expiration Date',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold))),
-                      DataColumn(
-                          label: Text('Import Date',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold))),
+                      // DataColumn(
+                      //     label: Text('Quantity',
+                      //         style: TextStyle(
+                      //             fontSize: 18, fontWeight: FontWeight.bold))),
+                      // DataColumn(
+                      //     label: Text('Expiration Date',
+                      //         style: TextStyle(
+                      //             fontSize: 18, fontWeight: FontWeight.bold))),
+                      // DataColumn(
+                      //     label: Text('Import Date',
+                      //         style: TextStyle(
+                      //             fontSize: 18, fontWeight: FontWeight.bold))),
                       DataColumn(
                           label: Text('Price',
                               style: TextStyle(
@@ -101,11 +101,11 @@ class DoctorMedicineView extends GetView<DoctorMedicineController> {
                       return DataRow(cells: [
                         DataCell(Text(medicine.idMedicine)),
                         DataCell(Text(medicine.nameMedicine)),
-                        DataCell(Text(medicine.quantity)),
-                        DataCell(Text(
-                            medicine.importDate.formatDateTime('dd-MM-yyyy'))),
-                        DataCell(Text(medicine.expirationDate
-                            .formatDateTime('dd-MM-yyyy'))),
+                        // DataCell(Text(medicine.quantity)),
+                        // DataCell(Text(
+                        //     medicine.importDate.formatDateTime('dd-MM-yyyy'))),
+                        // DataCell(Text(medicine.expirationDate
+                        //     .formatDateTime('dd-MM-yyyy'))),
                         DataCell(Text('\$${medicine.price.toString()}')),
                       ]);
                     }).toList(),

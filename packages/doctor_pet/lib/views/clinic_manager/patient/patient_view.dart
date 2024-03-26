@@ -1,5 +1,6 @@
 import 'package:doctor_pet/common_widget/custom_searchbar_widget.dart';
-import 'package:doctor_pet/core/data/patient.dart';
+import 'package:doctor_pet/core/data/prescription.dart';
+import 'package:doctor_pet/utils/app_extension.dart';
 import 'package:doctor_pet/views/clinic_manager/patient/patient_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:doctor_pet/common_widget/data_title_widget.dart';
@@ -11,7 +12,7 @@ class PatientView extends GetView<PatientController> {
   const PatientView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final List<Patient> data = controller.dataMockPatient.value;
+    final List<Prescription> data = controller.dataMockPrescription.value;
 
     return Scaffold(
       body: Container(
@@ -58,9 +59,12 @@ class PatientView extends GetView<PatientController> {
             const SizedBox(height: 10),
             DataTitleWidget(
               titles: [
-                DataTitleModel(name: 'Owner Name', flex: 4),
-                DataTitleModel(name: 'Pet Name', flex: 5),
-                DataTitleModel(name: '', flex: 0),
+                DataTitleModel(name: 'Patient Name', flex: 4),
+                DataTitleModel(name: 'Pet Name', flex: 4),
+                DataTitleModel(name: 'Day Create', flex: 3),
+                DataTitleModel(name: 'Medicine', flex: 3),
+                DataTitleModel(name: 'Doctor Name', flex: 3),
+                DataTitleModel(name: '', flex: 1),
               ],
             ),
             const Divider(thickness: 3),
@@ -74,13 +78,20 @@ class PatientView extends GetView<PatientController> {
                       flex: 6,
                       child: DataTitleWidget(
                         titles: [
-                          DataTitleModel(name: data[index].ownName, flex: 5),
-                          DataTitleModel(name: data[index].petName, flex: 5),
+                          DataTitleModel(name: data[index].customerId, flex: 4),
+                          DataTitleModel(name: data[index].petId, flex: 4),
+                          DataTitleModel(
+                              name: data[index]
+                                  .createDay
+                                  .formatDateTime('dd-MM-yyyy'),
+                              flex: 3),
+                          DataTitleModel(name: data[index].medicineId, flex: 3),
+                          DataTitleModel(name: data[index].doctorId, flex: 3)
                         ],
                       ),
                     ),
-                    Container(
-                      width: 100, // Set the width of the container
+                    SizedBox(
+                      width: 70, 
                       child: PopupMenuButton<String>(
                         itemBuilder: (BuildContext context) =>
                             <PopupMenuEntry<String>>[
