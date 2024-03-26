@@ -1,3 +1,4 @@
+import 'package:doctor_pet/common_widget/custom_text/custom_text_widget.dart';
 import 'package:doctor_pet/core/data/medicine.dart';
 import 'package:doctor_pet/views/clinic_manager/medicine/widgets/delete_medicine_dialog.dart';
 import 'package:doctor_pet/views/clinic_manager/medicine/widgets/edit_medicine_dialog.dart';
@@ -26,12 +27,14 @@ class ClinicMedicineController extends GetxController {
 
   void onAddEditMedicine(Medicine medicine) {
     if (medicine.nameMedicine.isEmpty ||
-        medicine.companyMedicineName.isEmpty ||
-        medicine.quantity.isEmpty ||
-        medicine.price.isEmpty) return;
+        medicine.medicineUnit.isEmpty ||
+        medicine.inventory.isEmpty ||
+        medicine.price.isEmpty ||
+        medicine.specifications.isEmpty ||
+        medicine.medicineCateId.isEmpty) return;
     if (medicine.idMedicine.isEmpty) {
       dataMockMedicine.value.add(medicine.copyWith(
-          idMedicine: dataMockMedicine.value.length.toString()));
+          idMedicine: (dataMockMedicine.value.length + 1).toString()));
     } else {
       final index = dataMockMedicine.value
           .indexWhere((element) => element.idMedicine == medicine.idMedicine);
@@ -47,6 +50,11 @@ class ClinicMedicineController extends GetxController {
     dataMockMedicine.value.removeAt(index);
     dataMockMedicine.refresh();
     Get.back();
+    Get.snackbar('Delete Medicine', 'You deleted medicine successfully',
+        titleText: const CustomTextWidget(
+          text: 'Delete Medicine',
+          fontWeight: FontWeight.bold,
+        ));
   }
 
   void showAddEditMedicineDialog(BuildContext context, Medicine? medicine) {
