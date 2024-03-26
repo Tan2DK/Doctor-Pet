@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -11,6 +12,7 @@ class RegisterController extends GetxController {
   Rx<String> cPassword = Rx<String>('');
   Rx<String> address = Rx<String>('');
   Rx<String> phone = Rx<String>('');
+  Rx<DateTime> birthday = Rx<DateTime>(DateTime.now());
   Rxn<String> errorUsername = Rxn<String>();
   Rxn<String> errorName = Rxn<String>();
   Rxn<String> errorPassword = Rxn<String>();
@@ -19,6 +21,9 @@ class RegisterController extends GetxController {
   Rxn<String> errorAddress = Rxn<String>();
   Rxn<String> errorPhone = Rxn<String>();
   RxBool canSubmit = RxBool(false);
+
+  //Todo register
+  late String accessToken;
 
   void usernameChanged(String? value) {
     username.value = value ?? '';
@@ -177,35 +182,52 @@ class RegisterController extends GetxController {
     canSubmit.value = isNotEmpty && isValid;
   }
 
-  void onTapSubmit() async {
-    Map<String, String> data = {
+  Future<void> birthdayChanged(BuildContext context) async {
+    final picked = await showDatePicker(
+      context: context,
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+      initialDate: birthday.value,
+    );
+    if (picked == null) return;
+    birthday.value = picked;
+  }
+
+  //Todo Register API
+  void callRegisterAPI() async {
+    var url = Uri.parse('https://localhost:5001/api/User/register');
+    var body = jsonEncode({
       'userName': username.value,
       'fullName': name.value,
       'email': email.value,
       'password': password.value,
       'address': address.value,
-      'phone': phone.value,
       'rePassword': cPassword.value,
-    };
+      'phoneNumber': phone.value,
+      'birthday': birthday.value.toIso8601String(),
+    });
 
-    String jsonData = jsonEncode(data);
+    try {
+      var response = await http.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: body,
+      );
 
-    // Tạo yêu cầu POST đến API
-    var response = await http.post(
-      Uri.parse('https://your-api-url.com/register'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonData,
-    );
+      if (response.statusCode == 200) {
+        Get.toNamed('/login');
+      } else {
+        Get.snackbar(
+            'Registration Failed', 'An error occurred during registration');
+      }
+    } catch (e) {
+      Get.snackbar('Error', 'An error occurred while processing your request');
+    }
+  }
 
-    // Kiểm tra mã trạng thái của phản hồi
-    if (response.statusCode == 200) {
-      // Xử lý phản hồi thành công
-      print('Đăng ký thành công');
-    } else {
-      // Xử lý phản hồi lỗi
-      print('Đăng ký thất bại: ${response.body}');
+  void onTapSubmit() {
+    if (canSubmit.value) {
+      callRegisterAPI();
     }
   }
 }

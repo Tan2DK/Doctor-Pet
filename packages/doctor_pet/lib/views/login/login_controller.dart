@@ -7,6 +7,7 @@ class LoginController extends GetxController {
   Rx<String> username = Rx<String>('');
   Rx<String> password = Rx<String>('');
   RxBool canSubmit = RxBool(false);
+  RxString token = RxString('');
 
   void usernameChanged(String? value) {
     username.value = value ?? '';
@@ -34,8 +35,9 @@ class LoginController extends GetxController {
       );
 
       if (response.statusCode == 200) {
-        canSubmit.value = false;
-        Get.toNamed('/home');
+        var responseData = json.decode(response.body);
+        token.value = responseData['accessToken'];
+        Get.toNamed('/home', arguments: {'accessToken': token.value});
       } else {
         Get.snackbar('Login Failed', 'Invalid username or pass6 word');
       }

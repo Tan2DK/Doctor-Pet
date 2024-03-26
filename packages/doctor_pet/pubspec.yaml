@@ -16,6 +16,7 @@ dependencies:
   get: ^4.6.5
   http: ^1.2.0
   intl: ^0.18.1
+  jwt_decoder: ^2.0.1
   responsive_framework: ^1.4.0
   table_calendar: ^3.0.9
 
