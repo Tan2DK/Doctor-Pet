@@ -9,6 +9,7 @@ class PatientController extends GetxController {
 
   @override
   void onInit() {
+    super.onInit();
     dataMockPrescription.value = mockPrescription;
   }
 
