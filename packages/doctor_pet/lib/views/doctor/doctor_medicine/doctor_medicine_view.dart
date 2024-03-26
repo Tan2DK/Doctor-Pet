@@ -32,11 +32,9 @@ class DoctorMedicineView extends GetView<DoctorMedicineController> {
             ),
             const SizedBox(height: 10),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 20), // Adjust based on your layout needs
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment
-                    .spaceBetween, // This will space out your children as far apart as possible
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
                     'View Medicine Information',
@@ -46,14 +44,10 @@ class DoctorMedicineView extends GetView<DoctorMedicineController> {
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {
-                      controller
-                          .showAddMedicineDialog(); // Make sure this method exists in your controller
-                    },
+                    onPressed: () => controller.showAddMedicineDialog(),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          Colors.blue, // Background color of the button
-                      foregroundColor: Colors.white, // Text color
+                      backgroundColor: Colors.blue,
+                      foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
@@ -73,7 +67,7 @@ class DoctorMedicineView extends GetView<DoctorMedicineController> {
                   child: DataTable(
                     columns: const [
                       DataColumn(
-                          label: Text('IDMedi',
+                          label: Text('ID',
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.bold))),
                       DataColumn(
@@ -81,19 +75,23 @@ class DoctorMedicineView extends GetView<DoctorMedicineController> {
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.bold))),
                       DataColumn(
-                          label: Text('Quantity',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold))),
-                      DataColumn(
-                          label: Text('Expiration Date',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold))),
-                      DataColumn(
-                          label: Text('Import Date',
+                          label: Text('Specifications',
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.bold))),
                       DataColumn(
                           label: Text('Price',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold))),
+                      DataColumn(
+                          label: Text('Inventory',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold))),
+                      DataColumn(
+                          label: Text('Unit',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold))),
+                      DataColumn(
+                          label: Text('Category ID',
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.bold))),
                     ],
@@ -101,12 +99,11 @@ class DoctorMedicineView extends GetView<DoctorMedicineController> {
                       return DataRow(cells: [
                         DataCell(Text(medicine.idMedicine)),
                         DataCell(Text(medicine.nameMedicine)),
-                        DataCell(Text(medicine.quantity)),
-                        DataCell(Text(
-                            medicine.importDate.formatDateTime('dd-MM-yyyy'))),
-                        DataCell(Text(medicine.expirationDate
-                            .formatDateTime('dd-MM-yyyy'))),
-                        DataCell(Text('\$${medicine.price.toString()}')),
+                        DataCell(Text(medicine.specifications)),
+                        DataCell(Text('\$${medicine.price}')),
+                        DataCell(Text(medicine.inventory)),
+                        DataCell(Text(medicine.medicineUnit)),
+                        DataCell(Text(medicine.medicineCateId)),
                       ]);
                     }).toList(),
                   ),

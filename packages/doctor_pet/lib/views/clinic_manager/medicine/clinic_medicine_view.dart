@@ -1,7 +1,6 @@
 import 'package:doctor_pet/common_widget/custom_button/custom_button_action_widget.dart';
 import 'package:doctor_pet/common_widget/custom_searchbar_widget.dart';
 import 'package:doctor_pet/common_widget/custom_text/custom_text_widget.dart';
-import 'package:doctor_pet/utils/app_extension.dart';
 import 'package:doctor_pet/views/clinic_manager/medicine/clinic_medicine_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:doctor_pet/core/data/medicine.dart';
@@ -64,11 +63,11 @@ class ClinicMedicineView extends GetView<ClinicMedicineController> {
               titles: [
                 DataTitleModel(name: 'IDMedi', flex: 2),
                 DataTitleModel(name: 'Name', flex: 4),
-                DataTitleModel(name: 'Company Medicine Name', flex: 4),
-                DataTitleModel(name: 'Quantity', flex: 2),
-                DataTitleModel(name: 'Import Date', flex: 4),
-                DataTitleModel(name: 'Expiration Date', flex: 4),
+                DataTitleModel(name: 'Medicine Unit', flex: 2),
                 DataTitleModel(name: 'Price', flex: 2),
+                DataTitleModel(name: 'Inventory', flex: 2),
+                DataTitleModel(name: 'Specifications', flex: 4),
+                DataTitleModel(name: 'Category', flex: 2),
                 DataTitleModel(name: '', flex: 1),
               ],
             ),
@@ -90,30 +89,38 @@ class ClinicMedicineView extends GetView<ClinicMedicineController> {
                             DataTitleModel(
                                 name: data[index].nameMedicine, flex: 4),
                             DataTitleModel(
-                                name: data[index].companyMedicineName, flex: 4),
-                            DataTitleModel(
-                                name: data[index].quantity.toString(), flex: 2),
-                            DataTitleModel(
-                                name: data[index]
-                                    .importDate
-                                    .formatDateTime('dd-MM-yyyy')
-                                    .toString()
-                                    .substring(0, 10),
-                                flex: 4),
-                            DataTitleModel(
-                                name: data[index]
-                                    .expirationDate
-                                    .formatDateTime('dd-MM-yyyy')
-                                    .toString()
-                                    .substring(0, 10),
-                                flex: 4),
+                                name: data[index].medicineUnit, flex: 2),
+                            // DataTitleModel(
+                            //     name: data[index].companyMedicineName, flex: 4),
+                            // DataTitleModel(
+                            //     name: data[index].quantity.toString(), flex: 2),
+                            // DataTitleModel(
+                            //     name: data[index]
+                            //         .importDate
+                            //         .formatDateTime('dd-MM-yyyy')
+                            //         .toString()
+                            //         .substring(0, 10),
+                            //     flex: 4),
+                            // DataTitleModel(
+                            //     name: data[index]
+                            //         .expirationDate
+                            //         .formatDateTime('dd-MM-yyyy')
+                            //         .toString()
+                            //         .substring(0, 10),
+                            //     flex: 4),
                             DataTitleModel(
                                 name: data[index].price.toString(), flex: 2),
+                            DataTitleModel(
+                                name: data[index].inventory, flex: 2),
+                            DataTitleModel(
+                                name: data[index].specifications, flex: 4),
+                            DataTitleModel(
+                                name: data[index].medicineCateId, flex: 2),
                           ],
                         ),
                       ),
                       SizedBox(
-                        width: 50, // Set the width of the container
+                        width: 60, // Set the width of the container
                         child: PopupMenuButton<String>(
                           itemBuilder: (BuildContext context) =>
                               <PopupMenuEntry<String>>[
