@@ -1,14 +1,15 @@
-import 'package:doctor_pet/core/data/patient.dart';
-import 'package:doctor_pet/data/data_mock/data_mock_patient.dart';
+import 'package:doctor_pet/core/data/prescription.dart';
+import 'package:doctor_pet/data/data_mock/data_mock_prescription.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PatientController extends GetxController {
-  Rx<List<Patient>> dataMockPatient = Rx<List<Patient>>([]);
+  Rx<List<Prescription>> dataMockPrescription = Rx<List<Prescription>>([]);
+
 
   @override
   void onInit() {
-    dataMockPatient.value = mockPatient;
+    dataMockPrescription.value = mockPrescription;
   }
 
   void showOwnerInfoDialog(BuildContext context) {
