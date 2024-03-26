@@ -1,35 +1,62 @@
+import 'package:doctor_pet/common_widget/custom_text/custom_text_widget.dart';
+import 'package:doctor_pet/utils/app_extension.dart';
 import 'package:flutter/material.dart';
 
-class CustomButtonSelectDayWidget extends StatelessWidget {
+class CustomButtonSelectDayWidget extends StatefulWidget {
   const CustomButtonSelectDayWidget({
     Key? key,
-    required this.label,
     this.bgColor,
     this.btnColor,
   }) : super(key: key);
 
-  final String label;
   final Color? bgColor;
   final Color? btnColor;
+
+  @override
+  State<CustomButtonSelectDayWidget> createState() =>
+      _CustomButtonSelectDayWidgetState();
+}
+
+class _CustomButtonSelectDayWidgetState
+    extends State<CustomButtonSelectDayWidget> {
+      
+  DateTime day = DateTime.now();
+  Future<DateTime?> selectDate(
+      BuildContext context, DateTime date, bool isLimit) async {
+    return await showDatePicker(
+      context: context,
+      initialDate: date,
+      firstDate: DateTime(1900),
+      lastDate: isLimit ? DateTime.now() : DateTime(2100),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
         icon: const Icon(Icons.calendar_month_outlined, color: Colors.white),
         style: ElevatedButton.styleFrom(
-          backgroundColor: bgColor,
+          backgroundColor: widget.bgColor,
         ),
-        onPressed: () {
-          showDatePicker(
-              context: context,
-              firstDate: (DateTime(1900, 1, 1)),
-              lastDate: DateTime.now());
+        onPressed: () async {
+          final picked = await selectDate.call(
+            context,
+            day,
+            true,
+          );
+          if (picked == null) return;
+          setState(() {
+            day = picked;
+          });
         },
-        label: Text(
-          label,
-          style: const TextStyle(
-            color: Colors.white,
-          ),
+        label: CustomTextWidget(
+          text: day.formatDateTime('dd-MM-yyyy'),
+          txtColor: Colors.white,
         ));
   }
 }
