@@ -1,10 +1,8 @@
 import 'package:doctor_pet/common_widget/custom_textfield_widget.dart';
 import 'package:doctor_pet/utils/app_extension.dart';
-import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import '../../common_widget/custom_text/custom_text_widget.dart';
@@ -133,9 +131,10 @@ class RegisterView extends GetView<RegisterController> {
                                 ),
                                 style: ButtonStyle(
                                   shape: MaterialStatePropertyAll(
-                                      RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  )),
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
