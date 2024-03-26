@@ -35,4 +35,4 @@ class Staff {
       userId: userId ?? this.userId,
     );
   }
-}
+
