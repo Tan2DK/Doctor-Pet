@@ -7,42 +7,65 @@ class BottomWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // MediaQuery to get the width of the screen
+    double screenWidth = MediaQuery.of(context).size.width;
+    bool isWideScreen =
+        screenWidth > 768; // Define your breakpoint for widescreen
+
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 75),
-      height: 328,
+      padding: EdgeInsets.symmetric(
+          horizontal:
+              isWideScreen ? 75 : 20), // Adjust padding based on screen size
       color: Color(0xff0F172B),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          _buildColumn(
-            context,
-            "Company",
-            ["About", "Features", "Works", "Career"],
-          ),
-          _buildColumn(
-            context,
-            "Help",
-            [
-              "Customer Support",
-              "Delivery Details",
-              "Terms & Conditions",
-              "Privacy Policy"
-            ],
-          ),
-          _buildColumn(
-            context,
-            "Resources",
-            [
-              "Free eBooks",
-              "Development Tutorial",
-              "How to - Blog",
-              "YouTube Playlist"
-            ],
-          ),
-          _buildInstallAppColumn(context),
-        ],
-      ),
+      child: isWideScreen
+          ? _wideScreenLayout(context)
+          : _narrowScreenLayout(context),
+    );
+  }
+
+  Widget _wideScreenLayout(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        _buildColumn(
+            context, "Company", ["About", "Features", "Works", "Career"]),
+        _buildColumn(context, "Help", [
+          "Customer Support",
+          "Delivery Details",
+          "Terms & Conditions",
+          "Privacy Policy"
+        ]),
+        _buildColumn(context, "Resources", [
+          "Free eBooks",
+          "Development Tutorial",
+          "How to - Blog",
+          "YouTube Playlist"
+        ]),
+        _buildInstallAppColumn(context),
+      ],
+    );
+  }
+
+  Widget _narrowScreenLayout(BuildContext context) {
+    return Column(
+      children: [
+        _buildColumn(
+            context, "Company", ["About", "Features", "Works", "Career"]),
+        _buildColumn(context, "Help", [
+          "Customer Support",
+          "Delivery Details",
+          "Terms & Conditions",
+          "Privacy Policy"
+        ]),
+        _buildColumn(context, "Resources", [
+          "Free eBooks",
+          "Development Tutorial",
+          "How to - Blog",
+          "YouTube Playlist"
+        ]),
+        _buildInstallAppColumn(context),
+      ],
     );
   }
 

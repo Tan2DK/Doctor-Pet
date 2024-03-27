@@ -26,8 +26,8 @@ import '../views/schedule/schedule_binding.dart';
 import '../views/schedule/schedule_view.dart';
 import '../views/doctor/doctor_invoice/doctor_invoice_binding.dart';
 import '../views/doctor/doctor_invoice/doctor_invoice_view.dart';
-import '../views/LandingPage/LandingPage_binding.dart';
-import '../views/LandingPage/LandingPage_view.dart';
+import '../views/LandingPage/landing_page_binding.dart';
+import '../views/LandingPage/landing_page_view.dart';
 
 class AppRoutes {
   AppRoutes._();

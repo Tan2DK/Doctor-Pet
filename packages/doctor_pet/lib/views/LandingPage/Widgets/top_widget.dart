@@ -14,7 +14,7 @@ class TopBarWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween, // Added
         children: [
-          Image.asset(AppImages.logo,
+          Image.asset(AppImages.dCareLogo,
               width: 167, fit: BoxFit.contain, height: 125),
           _buildNavItem(context, "Home", () => _navigateTo(context, "/home")),
           _buildNavItem(
