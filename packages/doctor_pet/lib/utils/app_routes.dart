@@ -26,6 +26,8 @@ import '../views/schedule/schedule_binding.dart';
 import '../views/schedule/schedule_view.dart';
 import '../views/doctor/doctor_invoice/doctor_invoice_binding.dart';
 import '../views/doctor/doctor_invoice/doctor_invoice_view.dart';
+import 'package:doctor_pet/views/doctor/doctor_mypatients/doctor_my_patients_binding.dart';
+import 'package:doctor_pet/views/doctor/doctor_mypatients/doctor_my_patients_view.dart';
 
 class AppRoutes {
   AppRoutes._();
@@ -86,6 +88,11 @@ class AppRoutes {
       page: () => const DoctorInvoiceView(),
       binding: DoctorInvoiceBinding(),
     ),
+    GetPage(
+      name: RoutesName.nestedNavDocMypatients,
+      page: () => const MyPatientsView(),
+      binding: MyPatientsBinding(),
+    ),
   ];
 }
 
@@ -105,4 +112,6 @@ class RoutesName {
       'nested_navigation_doctor_medicine';
   static const String nestedNavPet = 'nested_navigation_pet';
   static const String nestedNavDoctorInvoice = '/nested_nav_doctor_invoice';
+  static const String nestedNavDocMypatients =
+      '/nested_nav_doctor__my_patients';
 }
