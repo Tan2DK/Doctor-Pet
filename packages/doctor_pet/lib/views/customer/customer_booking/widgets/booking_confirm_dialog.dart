@@ -64,7 +64,7 @@ class BookingConfirmDialog extends StatelessWidget {
             const SizedBox(height: 24),
             FilledButton(onPressed: Get.back, child: const Text('Cancel')),
             const SizedBox(height: 16),
-            FilledButton(onPressed: Get.back, child: const Text('Confirm')),
+            FilledButton(onPressed: onConfirm, child: const Text('Confirm')),
             const SizedBox(height: 16),
           ],
         ),

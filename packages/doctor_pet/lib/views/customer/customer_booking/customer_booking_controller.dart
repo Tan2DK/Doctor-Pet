@@ -40,6 +40,7 @@ class CustomerBookingController extends GetxController {
       BookingConfirmDialog(
         branch: selectedBranch.value,
         slotInDay: selectedSlot.value!,
+        onConfirm: onConfirm,
       ),
     );
   }
@@ -75,4 +76,6 @@ class CustomerBookingController extends GetxController {
     super.onInit();
     fetchDoctorSlotByBranch();
   }
+
+  void onConfirm() {}
 }
