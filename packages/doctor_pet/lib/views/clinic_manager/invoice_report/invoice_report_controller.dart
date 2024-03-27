@@ -1,12 +1,14 @@
-import 'package:doctor_pet/core/data/invoice_report.dart';
-import 'package:doctor_pet/data/data_mock/data_mock_invoice_report.dart';
+import 'package:doctor_pet/core/data/prescription.dart';
+import 'package:doctor_pet/data/data_mock/data_mock_prescription.dart';
 import 'package:get/get.dart';
 
 class InvoiceReportController extends GetxController {
-  Rx<List<InvoiceReport>> dataMockInvoiceReport = Rx<List<InvoiceReport>>([]);
+  Rx<List<Prescription>> dataMockPrescription = Rx<List<Prescription>>([]);
 
   @override
   void onInit() {
-    dataMockInvoiceReport.value = mockInvoiceReport;
+    super.onInit(); 
+    dataMockPrescription.value = mockPrescription;
   }
+  
 }

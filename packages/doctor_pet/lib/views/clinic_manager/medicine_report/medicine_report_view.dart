@@ -41,15 +41,25 @@ class MedicineReportView extends GetView<MedicineReportController> {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                CustomTextWidget(
+                  text: 'Start Day:',
+                  fontSize: 15,
+                  fontWeight: FontWeight.w800,
+                ),
+                SizedBox(width: 8,),
                 CustomButtonSelectDayWidget(
-                  label: 'Select Start Day',
                   bgColor: Color.fromARGB(255, 28, 195, 142),
                 ),
                 SizedBox(
-                  width: 50,
+                  width: 30,
                 ),
+                CustomTextWidget(
+                  text: 'End Day:',
+                  fontSize: 15,
+                  fontWeight: FontWeight.w800,
+                ),
+                SizedBox(width: 8,),
                 CustomButtonSelectDayWidget(
-                  label: 'Select End Day',
                   bgColor: Color.fromARGB(255, 189, 50, 22),
                 ),
               ],
