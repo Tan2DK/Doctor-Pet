@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/data/doctor_slot_in_day_model.dart';
+import '../../../core/data/slot_in_day_model.dart';
 
 class SlotWidget extends StatelessWidget {
   const SlotWidget({
     Key? key,
-    this.doctorSlotInDay = const DoctorSlotInDayModel(),
+    this.doctorSlotInDay = const SlotInDayModel(),
     this.onChecked,
     required this.width,
   }) : super(key: key);
-  final DoctorSlotInDayModel doctorSlotInDay;
+  final SlotInDayModel doctorSlotInDay;
   final Function()? onChecked;
   final double width;
   @override
   Widget build(BuildContext context) {
     final colorTheme = Theme.of(context).colorScheme;
     return InkWell(
-      onTap: onChecked == null ? null : () => onChecked?.call(),
+      onTap: onChecked == null || doctorSlotInDay.isAvailable == null
+          ? null
+          : () => onChecked?.call(),
       child: Container(
         width: width,
         height: width,
@@ -25,7 +27,7 @@ class SlotWidget extends StatelessWidget {
             width: .5,
             color: colorTheme.outline,
           ),
-          color: onChecked != null
+          color: onChecked != null && doctorSlotInDay.isAvailable != null
               ? colorTheme.primaryContainer
               : colorTheme.errorContainer,
         ),
@@ -33,12 +35,14 @@ class SlotWidget extends StatelessWidget {
           fit: BoxFit.scaleDown,
           child: Icon(
             size: 30,
-            onChecked != null
-                ? doctorSlotInDay.isAvailable
-                    ? Icons.circle_outlined
-                    : Icons.check_circle_outlined
+            onChecked != null && doctorSlotInDay.isAvailable != null
+                ? doctorSlotInDay.isAvailable!
+                    ? Icons.check_circle_outlined
+                    : Icons.circle_outlined
                 : Icons.close_rounded,
-            color: onChecked != null ? colorTheme.primary : colorTheme.error,
+            color: onChecked != null && doctorSlotInDay.isAvailable != null
+                ? colorTheme.primary
+                : colorTheme.error,
           ),
         ),
       ),

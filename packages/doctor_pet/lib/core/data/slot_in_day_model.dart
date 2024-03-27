@@ -1,24 +1,28 @@
 import 'package:doctor_pet/utils/app_enum.dart';
 
-class DoctorSlotInDayModel {
+class SlotInDayModel {
   final int nextDay;
   final FixedSlot fixedSlot;
-  final bool isAvailable;
-  const DoctorSlotInDayModel({
+  final bool? isAvailable;
+  const SlotInDayModel({
     this.nextDay = 0,
     this.fixedSlot = FixedSlot.slot1,
-    this.isAvailable = false,
+    this.isAvailable,
   });
 
-  DoctorSlotInDayModel copyWith({
+  SlotInDayModel copyWith({
     int? nextDay,
     FixedSlot? fixedSlot,
     bool? isAvailable,
   }) {
-    return DoctorSlotInDayModel(
+    return SlotInDayModel(
       nextDay: nextDay ?? this.nextDay,
       fixedSlot: fixedSlot ?? this.fixedSlot,
-      isAvailable: isAvailable ?? this.isAvailable,
+      isAvailable: isAvailable,
     );
   }
+
+  @override
+  String toString() =>
+      'SlotInDayModel(nextDay: $nextDay, fixedSlot: $fixedSlot, isAvailable: $isAvailable)\n';
 }

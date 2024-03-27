@@ -1,9 +1,9 @@
-import 'package:doctor_pet/data/data_mock/doctor_slot_in_day_data.dart';
+import 'package:doctor_pet/core/data/argument/customer_booking_argument.dart';
 import 'package:doctor_pet/utils/app_enum.dart';
 import 'package:doctor_pet/views/schedule/widgets/shedule_slot_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../core/data/doctor_slot_in_day_model.dart';
+import '../../core/data/slot_in_day_model.dart';
 import 'widgets/slot_widget.dart';
 
 class ScheduleController extends GetxController {
@@ -23,12 +23,17 @@ class ScheduleController extends GetxController {
       millisecond: 0,
     ),
   );
-
+  final dynamic argument;
+  Function(SlotInDayModel?)? onSelectedSlotInDay;
+  ScheduleController({this.argument});
+  Rxn<CustomerBookingArgument> customerBookingArgument =
+      Rxn<CustomerBookingArgument>();
   Rx<double> pageWidth = Rx<double>(0);
-  Rx<List<List<DoctorSlotInDayModel>>> list = Rx(DoctorSlotInDayData.data);
+  Rx<List<List<SlotInDayModel>>> list = Rx([]);
 
   final PageController pageController =
       PageController(initialPage: 0, keepPage: true, viewportFraction: 1);
+
   void onShowScheduleSlot() {
     Get.dialog(
       Dialog(
@@ -48,12 +53,27 @@ class ScheduleController extends GetxController {
     );
   }
 
-  void onChecked(DoctorSlotInDayModel slotInDay) {
+  void onChecked(SlotInDayModel slotInDay) {
+    if ((slotInDay.isAvailable == false &&
+            list.value.any(
+                (slots) => slots.any((slot) => slot.isAvailable == true))) ||
+        slotInDay.isAvailable == null) {
+      return;
+    }
     list.value[slotInDay.nextDay][slotInDay.fixedSlot.index] = list
         .value[slotInDay.nextDay][slotInDay.fixedSlot.index]
-        .copyWith(isAvailable: !slotInDay.isAvailable);
+        .copyWith(isAvailable: !slotInDay.isAvailable!);
     list.refresh();
+    if (list.value[slotInDay.nextDay][slotInDay.fixedSlot.index].isAvailable ==
+        false) {
+      onSelectedSlotInDay?.call(null);
+      return;
+    }
+    onSelectedSlotInDay
+        ?.call(list.value[slotInDay.nextDay][slotInDay.fixedSlot.index]);
   }
+
+  void onSubmit() {}
 
   void onPageChange(int page) {
     if (page == 0) {
@@ -123,5 +143,23 @@ class ScheduleController extends GetxController {
     if (pageController.offset % pageWidth.value != 0) return;
     pageController.animateToPage(page,
         duration: const Duration(milliseconds: 250), curve: Curves.easeIn);
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    if (argument == null || argument is! CustomerBookingArgument) return;
+    customerBookingArgument.value = argument as CustomerBookingArgument;
+    onSelectedSlotInDay = customerBookingArgument.value?.onSelectedSlot;
+    final customerAvailableSlot =
+        customerBookingArgument.value?.availableSlots ?? [];
+    list.value = customerAvailableSlot
+        .map((slotsInDay) => slotsInDay
+            .map((slot) =>
+                (slot.isAvailable == null || slot.isAvailable == false)
+                    ? slot.copyWith(isAvailable: null)
+                    : slot.copyWith(isAvailable: false))
+            .toList())
+        .toList();
   }
 }
