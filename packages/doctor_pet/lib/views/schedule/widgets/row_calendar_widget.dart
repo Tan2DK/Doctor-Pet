@@ -3,7 +3,7 @@ import 'package:table_calendar/table_calendar.dart';
 
 import 'package:doctor_pet/utils/app_extension.dart';
 
-import '../../../core/data/doctor_slot_in_day_model.dart';
+import '../../../core/data/slot_in_day_model.dart';
 import '../../../utils/app_enum.dart';
 import '../../../utils/app_helper.dart';
 
@@ -19,7 +19,7 @@ class RowCalendarWidget extends StatelessWidget {
   final BoxConstraints constraints;
   final int lPadding;
   final DateTime? selectedDay;
-  final List<List<DoctorSlotInDayModel>> slotTime;
+  final List<List<SlotInDayModel>> slotTime;
   final Function(DateTime)? onChangedCalendarPage;
 
   @override
@@ -31,7 +31,8 @@ class RowCalendarWidget extends StatelessWidget {
       microsecond: 0,
       millisecond: 0,
     );
-    final maxDay = now.add(Duration(days: slotTime.length - 1));
+    final maxDay =
+        now.add(Duration(days: slotTime.isNotEmpty ? slotTime.length - 1 : 0));
     final monthYear =
         '${AppHelper.formatMonthNumber((selectedDay ?? now).month)} ${(selectedDay ?? now).formatDateTime('yyyy')}';
     return Row(

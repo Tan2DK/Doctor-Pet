@@ -5,3 +5,9 @@ extension DateTimeX on DateTime {
     return DateFormat(format).format(this);
   }
 }
+
+extension StringX on String {
+  DateTime parseDateTime(String parser) {
+    return DateFormat(parser).parse(this);
+  }
+}
