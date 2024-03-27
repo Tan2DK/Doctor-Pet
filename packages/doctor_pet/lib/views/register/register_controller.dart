@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -180,6 +177,17 @@ class RegisterController extends GetxController {
         errorPhone.value == null;
 
     canSubmit.value = isNotEmpty && isValid;
+  }
+
+  Future<void> birthdayChanged(BuildContext context) async {
+    final picked = await showDatePicker(
+      context: context,
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+      initialDate: birthday.value,
+    );
+    if (picked == null) return;
+    birthday.value = picked;
   }
 
   Future<void> birthdayChanged(BuildContext context) async {

@@ -7,11 +7,8 @@ import '../../utils/app_enum.dart';
 
 class DoctorSlotInDayData {
   DoctorSlotInDayData._();
-  List slotsInThreeDay = [
-
-  ];
   static List<List<SlotInDayModel>> data = List.generate(
-    3,
+    IntConstant.maxDay,
     (index1) => FixedSlot.values
         .asMap()
         .map(
@@ -20,7 +17,7 @@ class DoctorSlotInDayData {
             SlotInDayModel(
               fixedSlot: value,
               nextDay: index1,
-              isAvailable: Random().nextBool(),
+              isAvailable: Random().nextBool() ? Random().nextBool() : null,
             ),
           ),
         )
