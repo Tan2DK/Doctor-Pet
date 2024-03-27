@@ -113,5 +113,5 @@ class RoutesName {
   static const String nestedNavPet = 'nested_navigation_pet';
   static const String nestedNavDoctorInvoice = '/nested_nav_doctor_invoice';
   static const String nestedNavDocMypatients =
-      '/nested_nav_doctor_invoice_my_patients';
+      '/nested_nav_doctor__my_patients';
 }
