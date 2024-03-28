@@ -1,3 +1,4 @@
+import 'package:doctor_pet/views/home/nested_navigation/nested_navigation_doctor _mypatients.dart';
 import 'package:doctor_pet/views/home/nested_navigation/nested_navigation_doctor.dart';
 import 'package:doctor_pet/views/home/nested_navigation/nested_navigation_pet.dart';
 import 'package:doctor_pet/views/home/nested_navigation/nested_navigation_doctor_medicine.dart';
@@ -68,6 +69,7 @@ class HomeController extends GetxController {
     return [
       const NestedNavigationDoctorMedicine(),
       const NestedNavigationInvoice(),
+      const NestedNavigationDocMypatients(),
     ];
   }
 }

@@ -6,7 +6,7 @@ import '../../doctor/doctor_binding.dart';
 import '../../doctor/doctor_view.dart';
 
 class NestedNavigationDoctor extends StatelessWidget {
-  const NestedNavigationDoctor({super.key});
+  const NestedNavigationDoctor({Key? key});
 
   @override
   Widget build(BuildContext context) {
