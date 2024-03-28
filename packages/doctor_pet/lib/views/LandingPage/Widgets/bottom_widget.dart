@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:doctor_pet/utils/app_assets.dart'; // Ensure this path is correct
 
 class BottomWidget extends StatelessWidget {
@@ -78,12 +77,10 @@ class BottomWidget extends StatelessWidget {
           Text(
             title,
             textAlign: TextAlign.center,
-            style: GoogleFonts.poppins(
-              textStyle: TextStyle(
-                fontSize: 16,
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-              ),
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
             ),
           ),
           SizedBox(height: 26),
@@ -93,12 +90,10 @@ class BottomWidget extends StatelessWidget {
                   const EdgeInsets.only(bottom: 10), // Add space between items
               child: Text(
                 item,
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                    fontSize: 14,
-                    color: Color(0xffE4E4E7),
-                    fontWeight: FontWeight.w400,
-                  ),
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Color(0xffE4E4E7),
+                  fontWeight: FontWeight.w400,
                 ),
               ),
             ),
@@ -116,12 +111,10 @@ class BottomWidget extends StatelessWidget {
         children: [
           Text(
             "Install App",
-            style: GoogleFonts.poppins(
-              textStyle: TextStyle(
-                fontSize: 16,
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-              ),
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
             ),
           ),
           SizedBox(height: 26),

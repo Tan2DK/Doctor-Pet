@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:doctor_pet/utils/app_assets.dart';
 
 class TopBarWidget extends StatelessWidget {
@@ -40,12 +39,10 @@ class TopBarWidget extends StatelessWidget {
           children: [
             Text(
               title,
-              style: GoogleFonts.nunitoSans(
-                textStyle: TextStyle(
-                  fontSize: 24,
-                  color: Color(0xff131010),
-                  fontWeight: FontWeight.w500,
-                ),
+              style: TextStyle(
+                fontSize: 24,
+                color: Color(0xff131010),
+                fontWeight: FontWeight.w500,
               ),
             ),
             SizedBox(width: 8), // Adjust arrow spacing here
@@ -71,12 +68,10 @@ class TopBarWidget extends StatelessWidget {
         },
         child: Text(
           "Login",
-          style: GoogleFonts.nunitoSans(
-            textStyle: TextStyle(
-              fontSize: 24,
-              color: Color(0xffFEEAEA),
-              fontWeight: FontWeight.w500,
-            ),
+          style: TextStyle(
+            fontSize: 24,
+            color: Color(0xffFEEAEA),
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),
@@ -98,12 +93,10 @@ class TopBarWidget extends StatelessWidget {
         },
         child: Text(
           "Sign Up",
-          style: GoogleFonts.nunitoSans(
-            textStyle: TextStyle(
-              fontSize: 24,
-              color: Color(0xff1F1F1F),
-              fontWeight: FontWeight.w500,
-            ),
+          style: TextStyle(
+            fontSize: 24,
+            color: Color(0xff1F1F1F),
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),

@@ -11,8 +11,6 @@ class LandingPageView extends GetView<LandingPageController> {
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: Color(0xffFEEAEA),
       body: LayoutBuilder(

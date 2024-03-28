@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:doctor_pet/utils/app_assets.dart'; // Ensure this path is correct
 
 class ContentWidget extends StatelessWidget {
@@ -19,14 +18,13 @@ class ContentWidget extends StatelessWidget {
           Text(
             "Features of DoctorPet veterinary clinic management software",
             textAlign: TextAlign.center,
-            style: GoogleFonts.nunitoSans(
-                textStyle: TextStyle(
+            style: TextStyle(
               fontSize: screenWidth < 600
                   ? 28
                   : 40, // Adjust text size based on screen width
               color: Color(0xff4A4A4A),
               fontWeight: FontWeight.bold,
-            )),
+            ),
           ),
           SizedBox(
               height:
@@ -86,25 +84,23 @@ class ContentWidget extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: GoogleFonts.nunitoSans(
-                    textStyle: TextStyle(
+                style: TextStyle(
                   fontSize: screenWidth < 600
                       ? 24
                       : 32, // Adjust font size based on screen width
                   color: Color(0xff4A4A4A),
                   fontWeight: FontWeight.bold,
-                )),
+                ),
               ),
               Text(
                 content,
-                style: GoogleFonts.nunitoSans(
-                    textStyle: TextStyle(
+                style: TextStyle(
                   fontSize: screenWidth < 600
                       ? 18
                       : 22, // Adjust font size based on screen width
                   color: Color(0xff575757),
                   fontWeight: FontWeight.normal,
-                )),
+                ),
               )
             ],
           ),
