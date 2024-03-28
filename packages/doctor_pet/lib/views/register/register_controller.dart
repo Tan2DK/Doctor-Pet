@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -190,52 +191,5 @@ class RegisterController extends GetxController {
     birthday.value = picked;
   }
 
-  Future<void> birthdayChanged(BuildContext context) async {
-    final picked = await showDatePicker(
-      context: context,
-      firstDate: DateTime(1900),
-      lastDate: DateTime.now(),
-      initialDate: birthday.value,
-    );
-    if (picked == null) return;
-    birthday.value = picked;
-  }
-
-  //Todo Register API
-  void callRegisterAPI() async {
-    var url = Uri.parse('https://localhost:5001/api/User/register');
-    var body = jsonEncode({
-      'userName': username.value,
-      'fullName': name.value,
-      'email': email.value,
-      'password': password.value,
-      'address': address.value,
-      'rePassword': cPassword.value,
-      'phoneNumber': phone.value,
-      'birthday': birthday.value.toIso8601String(),
-    });
-
-    try {
-      var response = await http.post(
-        url,
-        headers: {'Content-Type': 'application/json'},
-        body: body,
-      );
-
-      if (response.statusCode == 200) {
-        Get.toNamed('/login');
-      } else {
-        Get.snackbar(
-            'Registration Failed', 'An error occurred during registration');
-      }
-    } catch (e) {
-      Get.snackbar('Error', 'An error occurred while processing your request');
-    }
-  }
-
-  void onTapSubmit() {
-    if (canSubmit.value) {
-      callRegisterAPI();
-    }
-  }
+  void onTapSubmit() {}
 }

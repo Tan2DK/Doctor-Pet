@@ -73,7 +73,9 @@ class ScheduleController extends GetxController {
         ?.call(list.value[slotInDay.nextDay][slotInDay.fixedSlot.index]);
   }
 
-  void onSubmit() {}
+  void onSubmit() {
+    
+  }
 
   void onPageChange(int page) {
     if (page == 0) {
